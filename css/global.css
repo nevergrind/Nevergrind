@@ -1,0 +1,469 @@
+
+body, html{
+	font-family:Arial,sans-serif;
+	font-smooth:always;
+	-webkit-font-smoothing: antialiased;
+	font-size:13px;
+	color:#000;
+	background:#060606;
+	margin:0;
+	padding:0;
+}
+a{
+	color:#68c3ff;
+	cursor:pointer;
+	text-decoration:none;
+}
+a:hover{
+	color:#aaffff;
+	text-decoration:none;
+}
+a:visited{ 
+	color:#25a5f5;
+}
+.centerize{
+	text-align:center;
+}
+.strongShadow{
+	text-shadow:
+		1px 1px #222,
+		-.4px .6px #222,
+		.6px -.6px #222,
+		-.4px 0 #222,
+		.6px 0 #222,
+		0 .6px #222,
+		0 -.6px #222,
+		.6px .6px #222;
+}
+.strongShadow2{
+	text-shadow:
+		.6px .6px #222,
+		-.4px .6px #222,
+		.6px -.6px #222,
+		-.4px 0 #222,
+		.6px 0 #222,
+		0 .6px #222,
+		0 -.6px #222,
+		0 0 5px #222,
+		0 0 10px #222,
+		0 0 20px #222;
+}
+.blackOutline3{
+	text-shadow:
+		.6px .6px #222,
+		-.4px .6px #222,
+		-.4px 0 #222,
+		.6px 0 #222,
+		0 .6px #222,
+		0 -.6px #222,
+		0px 0px 5px #222,
+		0px 0px 2px #222;
+}
+.message{
+	position: absolute;
+	top: 50px;
+	text-align: center;
+	font-size: 24px;
+	color: #fff;
+	width: 100%;
+	padding: 0;
+	box-shadow: 0 999px 0 rgba(0,0,0,.5) inset;
+}
+.message > p{
+	padding: 0 7%;
+}
+#window2{
+	position:absolute;
+	background:#000;
+	color:#fff;
+	padding:0;
+	border:0;
+	width:1280px;
+	height:720px;
+	top:0;
+	left:0;
+	right:0;
+	margin:0 auto;
+	z-index:0;
+	background-color:rgba(0,0,0,.2);
+}
+#mainBG{
+	position:absolute;
+	background:#000;
+	color:#fff;
+	padding:0;
+	border:0;
+	width:1280px;
+	height:720px;
+	top:0;
+	left:0;
+	right:0;
+	margin:0 auto;
+	z-index:0;
+	background-color:rgba(0,0,0,.2);
+	background:url('/backgrounds/home.jpg');
+}
+#gameView{
+	position:absolute;
+	padding:0;
+	border:0;
+	width:1280px;
+	height:720px;
+	top:0;
+	left:0;
+	overflow:hidden;
+}
+#curtain{
+	margin:0;
+	padding:0;
+	overflow:hidden;
+}
+img, canvas{
+	-khtml-user-select: none;
+	-o-user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+i{
+	font-style: normal;
+}
+#currencyIndicator{
+	position:relative;
+	height:32px;
+	box-shadow: 0 100px rgba(0,0,0,.75) inset;
+	border-bottom:2px groove #444;
+	overflow:hidden;
+	left:0;
+	top:0;
+	z-index:99999;
+}
+.modePanel{
+	float:right;
+	line-height:32px;
+	font-size:18px;
+	padding-right:1%;
+}
+.crystalIcon{
+	background:url('/images1/currency.png') 100% 0 / 200% 100%;
+	width:30px;
+	height:30px;
+}
+.crystals{
+	background:url('/images1/currency.png') 100% 0 / 200% 100%;
+	width:30px;
+	height:30px;
+	position:absolute;
+	top:5px;
+	right:5px;
+}
+.crystals2{
+	position:absolute;
+	top:5px;
+	left:15px;
+}
+#goldIcon{
+	position:absolute;
+	top:2px;
+	left:6px;
+}
+.goldIcon{
+	width:30px;
+	height:30px;
+	background:url('/images1/currency.png') 0 0 / 200% 100%;
+	background-size:60px 30px;
+}
+#globalGold{
+	background:url('/images1/currency.png') 0 0 / 200% 100%;
+	width:30px;
+	height:30px;
+}
+.accountDetails{
+	height:30px;
+	float:left;
+	padding-left:1%;
+	margin-right:12px;
+}
+.accountValues{
+	float:left;
+	height:30px;
+	line-height:30px;
+	font-size:15px;
+	text-indent:5px;
+}
+.accountValueText{
+	line-height:32px;
+	font-size:18px;
+}
+.accountValueText2{
+	float:left;
+	line-height:32px;
+	font-size:18px;
+	margin-left:5px;
+}
+.fancyHR{
+	border: 0; 
+	height: 1px; 
+	background-image: -webkit-linear-gradient(left, rgba(176,176,176,0), rgba(176,176,176,0.75), rgba(176,176,176,0)); 
+	background-image: -moz-linear-gradient(left, rgba(176,176,176,0), rgba(176,176,176,0.75), rgba(176,176,176,0)); 
+	background-image: -ms-linear-gradient(left, rgba(176,176,176,0), rgba(176,176,176,0.75), rgba(176,176,176,0)); 
+	background-image: -o-linear-gradient(left, rgba(176,176,176,0), rgba(176,176,176,0.75), rgba(176,176,176,0)); 
+	margin:12px 0;
+}
+#payment-errors{
+	margin:6px 0 0;
+	color: #ffff55;
+	overflow: hidden;
+	text-align:center;
+}
+#payment-form{
+	position:absolute;
+	top:50px;
+	left:0;
+	right:0;
+	margin:0 auto;
+	width:360px;
+	background:#222;
+	padding:0 12px 12px;
+	border-radius:6px;
+	border:1px solid #666;
+	box-shadow:0 0 1px #ddd;
+	z-index:999999;
+	font-size:1.25em;
+	box-shadow:	0 0 12px #000 inset,
+		0 0 5px #000 inset;
+}
+#showCrystals{
+	position: relative;
+	width:200px;
+	height:40px;
+	line-height:40px;
+	background:url('/images1/buyButtons.png') 0 100% / 100% 200%;
+	text-indent:25px;
+	margin: 5px auto;
+}
+#deleteCards{
+	position:relative;
+	left:0;
+	right:0;
+	margin:10px auto 0 auto;
+	padding:0;
+	height:30px;
+	line-height:30px;
+	font-size:20px;
+	width:160px;
+	border: none;
+}
+#payment-confirm{
+	height:40px;
+	line-height:40px;
+	width:160px;
+	margin-top: 8px;
+	border: none;
+}
+audio{ display:none; }
+#errorMsg{
+	position:absolute;
+	top:200px;
+	width:600px;
+	text-align:center;
+	height:auto;
+	font-size:22px;
+	color:#fff;
+	background:transparent;
+	left:0;
+	right:0;
+	margin:0 auto;
+	padding:0;
+	z-index:100003;
+	opacity:1;
+	pointer-events:none;
+}
+.error{
+	color:#ff5;
+	text-align:center; 
+	overflow:hidden; 
+	box-shadow:0 999px rgba(0,0,0,.75) inset;
+}
+.QMsg{
+	color:#fff;
+	text-align:center; 
+	overflow:hidden; 
+	box-shadow:0 999px rgba(0,0,0,.75) inset;
+}
+#loginWrap{
+	position:absolute;
+	bottom:0;
+	left:0;
+	right:0;
+	margin:0 auto;
+	width:280px;
+	padding-bottom:40px;
+	text-align:center;
+}
+#createAccountWrap{
+	margin-bottom:12px;}
+#createAccount{ 
+	top:0;
+	left:0;
+	right:0;
+	color:#6ef;
+	text-align:center;
+	font-size:16px;
+	cursor:pointer;
+}
+#createAccount:hover{
+	color:#85ffff;
+}
+.aqua{
+	color:#3bf;
+}
+#tosWrap{
+	display:none;
+	margin:6px 0;
+}
+#tos{
+	cursor:pointer;
+}
+#loginVerifyPassword, #promoCode, #loginAccount{
+	display:none;
+}
+.textLeft{
+	text-align:left;
+	text-indent:15px;
+}
+.signupHeader{
+	text-align:left;
+	text-indent:15px;
+	display:none;
+}
+
+#login, #resetPW{
+	position:relative;
+	font-size:16px;
+	width:180px;
+	margin:0 auto;
+	margin-top:10px;
+	left:0;
+	right:0;
+	border:2px groove #642;
+}
+#login:hover, #resetPW:hover{
+	box-shadow:0 0 2px rgba(80, 110, 240, 1),
+		0 0 5px rgba(80, 110, 240, 1);
+}
+.loginInputs{
+	display:block;
+	left:0;
+	right:0;
+	margin:0 auto;
+	border:1px solid #666;
+	font-size:16px;
+	line-height:22px;
+	width:250px;
+	background:#132239;
+    background-image: -webkit-radial-gradient(80px 0px, farthest-corner, #132239 0%, #001 100%);
+    background-image: -moz-radial-gradient(80px 0px, farthest-corner, #132239 0%, #001 100%);
+    background-image: -ms-radial-gradient(80px 0px, farthest-corner, #132239 0%, #001 100%);
+    background-image: -o-radial-gradient(80px 0px, farthest-corner, #132239 0%, #001 100%);
+	color:#fff;
+	border-radius:4px;
+	text-indent:2px;
+}
+.loginInputs:focus{
+	background:#4478c7;
+    background-image: -webkit-radial-gradient(80px 0px, farthest-corner, #5488da 0%, #132239 100%);
+    background-image: -moz-radial-gradient(80px 0px, farthest-corner, #5488da 0%, #132239 100%);
+    background-image: -ms-radial-gradient(80px 0px, farthest-corner, #5488da 0%, #132239 100%);
+    background-image: -o-radial-gradient(80px 0px, farthest-corner, #5488da 0%, #132239 100%);
+}
+.NGgradient{
+	font-family:Times New Roman,serif;
+	font-size:24px;
+	line-height:45px;
+	height:45px;
+	text-align:center;
+	cursor:pointer;
+	color:#f2f2f2;
+	background:#143b74;
+	background: url('/images1/NGbutton.png');
+	background-size:100% 200%;
+}
+.NGhardcore{
+	font-family:Times New Roman,serif;
+	font-size:24px;
+	line-height:45px;
+	height:45px;
+	background:#331111;
+	cursor:pointer;
+	color:#f2f2f2;
+	background: url('/images1/NGbutton.png') 0 100%;
+	background-size:100% 200%;
+}
+#forgotPasswordWrap{
+	margin-top:15px;
+}
+#forgotPassword{
+	color:#3bf;
+	cursor:pointer;
+}
+#crystalWrap{
+	position:relative;
+	font-size:28px;
+	line-height:40px;
+	height:40px;
+	margin:10px 0;
+}
+.floater{
+	position:relative;
+	text-indent:5px;
+	float:left;
+	width:25%;
+	margin:0 4%;
+	background:url('/images1/buyButtons.png') 0 0 / 100% 200%;
+}
+.floater:hover{
+	cursor:pointer;
+}
+.purchase{
+	background:url('/images1/buyButtons.png') 0 100% / 100% 200%;
+}
+#last-credit-card{
+	background:#777;
+	border:2px groove #aaa;
+	padding:6px;
+	border-radius:6px;
+	cursor:pointer;
+}
+#CC-last-four{
+	cursor:pointer;
+}
+#old-cards{
+	display:none;
+}
+#crystalsExplained{
+	text-align:center;
+	margin:5px 0;
+}
+.social-wrap{
+	position:relative;
+	font-size:0;
+	margin:0;
+	margin:0 2px;
+	display: inline-block; 
+	width:36px;
+	height:36px; 
+	background:url('/images1/social-icons.png') ;
+	padding:0; 
+	border:none; 
+	box-shadow:none;
+}
+#twitter{ background-position:-36px 0; }
+#google_plus{ background-position:-72px 0; }
+#youtube{ background-position:-108px 0; }
+#reddit{ background-position:-144px 0; }
+#linkedin{ background-position:-180px 0; }
+#sendEmailConfirmation{ 
+	display: none;
+	padding: 0 12px;
+}
