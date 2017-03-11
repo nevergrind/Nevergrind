@@ -7,7 +7,7 @@
 	}
 	require('php/values.php');
 	
-	if(isset($_SESSION['email'])){
+	if (isset($_SESSION['email'])){
 		if(strlen($_SESSION['email']) > 0){
 			header("Location: /");
 			exit();
@@ -85,13 +85,13 @@
 		<header id="currencyIndicator" class="strongShadow">
 		<?php
 			echo "<div class='modePanel'>";
-				echo "Login to Nevergrind";
+				echo "Login to Nevergrind.com";
 			echo '</div>';
 		?>
 		</header>
 		<div class="message blackOutline3"></div>
 	<?php
-		if(isset($_GET['reset'])){
+		if (isset($_GET['reset'])){
 			echo 
 				'<form id="loginWrap" class="strongShadow">
 					<div>Reset Your Password</div>
@@ -164,7 +164,7 @@
 				run: "forgotPassword",
 				email: email
 			}
-		}).done(function(data) {
+		}).done(function(data){
 			QMsg(data, 0, 0, 8000);
 			$("#forgotPassword").text(msg);
 		});
@@ -234,17 +234,19 @@
 				token: token
 			}
 		}).done(function(data){
-			gotoRefer(data);
+			gotoRefer(data, true);
 		}).always(function(){
-			e.style.visibility = 'visible';
+			document.getElementById('curtain').style.visibility = 'visible';
 		});
 	}
-	function gotoRefer(data){
+	function gotoRefer(data, suppress){
 		var target = "https://" + location.host + $("#refer").attr("href");
 		if (data === "Login successful!"){
 			location.replace(target);
 		} else {
-			QMsg(data);
+			if (!suppress){
+				QMsg(data);
+			}
 		}
 	}
 	
@@ -268,12 +270,12 @@
 				}).done(function(data){
 					token = data;
 				}).always(function(){
-					e.style.visibility = 'visible';
+					document.getElementById('curtain').style.visibility = 'visible';
 				});
 			}
 		} else {
 			$("#loginEmail").focus();
-			e.style.visibility = 'visible';
+			document.getElementById('curtain').style.visibility = 'visible';
 		}
 	})();
 	</script>

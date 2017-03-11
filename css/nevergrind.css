@@ -365,6 +365,7 @@ hr{
 	height:145px;
 }
 #chatId{
+	display: none;
 	position:absolute;
 	visibility:hidden;
 	height:180px;

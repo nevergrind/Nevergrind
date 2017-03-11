@@ -1924,7 +1924,7 @@ function Chat2(entry, fg) {
     if (GLB.showCombatLog === "Off") {
         return;
     }
-    while (NG.chatLog.childNodes.length > 100) {
+    while (NG.chatLog.childNodes.length > 10) {
         NG.chatLog.removeChild(NG.chatLog.firstChild);
     }
     var color = "";
@@ -11450,7 +11450,7 @@ function enterZoneSuccess2(instant) {
     // one-time actions upon login
     if (enteredWorldOnce === false) {
         checkSessionActive();
-		chatInit();
+		// chatInit();
 		Chat2("Hit Enter to begin chatting",3);
 		Chat2("Type /help for chat commands",3);
 		Chat2("You have joined [1. General Chat]",3);

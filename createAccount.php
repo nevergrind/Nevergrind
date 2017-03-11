@@ -59,7 +59,8 @@
 			display: block;
 		}
 		#loginWrap{
-			bottom: 20%;
+			top: 10%;
+			bottom: auto;
 			padding: 10px 0;
 			border-radius: 6px;
 			border: 2px ridge #337ab7;
@@ -101,6 +102,10 @@
 				
 				<label class="signupHeader create-account" for="promoCode">Promo Code
 					<input name="promo" type="text" id="promoCode" class="loginInputs create-account" maxlength="20" placeholder="Promo Code" />
+				</label>
+				
+				<label class="signupHeader create-account" for="referFriend">Referral Account Name
+					<input name="refer" type="text" id="referFriend" class="loginInputs create-account" maxlength="20" placeholder="Referral Account Name" />
 				</label>
 				
 				<div id="tosWrap" class="create-account">
@@ -158,7 +163,8 @@
 				email: $("#loginEmail").val().toLowerCase(),
 				account: newAcc.toLowerCase(),
 				password: pw,
-				promo: $("#promoCode").val().toLowerCase()
+				promo: $("#promoCode").val().toLowerCase(),
+				referral: $("#referFriend").val().toLowerCase()
 			}
 		}).done(function(data) {
 			if (data.indexOf("Account Created") === -1){

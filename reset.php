@@ -165,14 +165,12 @@
 					password: $("#resetPassword").val(),
 					verify: $("#resetVerifyPassword").val()
 				}
-			}).done(function(data) {
+			}).done(function(data){
 				if (data === "Password Reset Successful.") {
 					document.getElementById('loginWrap').style.display = 'none';
 					$(".message").html("<p>Your password has been reset!</p>" +
-						"<p>You will be redirected in five seconds.</p>");
-					setTimeout(function() {
-						location.replace('https://nevergrind.com');
-					}, 5000);
+						"<p><a href='/'>Play Nevergrind</a></p>" +
+						"<p><a href='/games/firmament-wars'>Play Firmament Wars</a></p>");
 				} else {
 					$(".message").html("<p>There was a server error when resetting your password.</p>");
 				}

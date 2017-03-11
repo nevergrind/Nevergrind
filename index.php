@@ -16,12 +16,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<script>
+		patchVersion="1-0-104";
+	</script>
 	<title>Nevergrind | Browser RPG | Free Online Game</title>
 	<meta name="keywords" content="fantasy, online, browser, free, game, rpg">
 	<meta name="description" content="Nevergrind is a fantasy browser RPG created by Neverworks Games. Nevergrind is a single-player game with leaderboards and player profiles.">
 	<meta name="viewport" content="width=1280,user-scalable=no">
 	<link rel='stylesheet' type='text/css' href="/css/global.css">
-	<link rel='stylesheet' type='text/css' href="css/style87.css">
+	<link rel='stylesheet' type='text/css' href="/css/nevergrind.css?v=1-0-104">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<?php
 		include($_SERVER['DOCUMENT_ROOT'] . "/includes/head.html");
@@ -71,7 +74,7 @@
 					<a href="//www.facebook.com/neverworksgames">
 						<i class="fa fa-facebook text-primary pointer"></i>
 					</a>
-					<a href="//twitter.com/neverworksgames">
+					<a href="//twitter.com/maelfyn">
 						<i class="fa fa-twitter text-primary pointer"></i>
 					</a>
 					<a href="//plus.google.com/118162473590412052664">
@@ -186,25 +189,10 @@
 				</div>
 				<div id="rightPaneBG">
 					<nav id="nglogo" class="strongShadow">
-						<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-						<!-- xy responsive -->
-						<?php
-						if ($_SERVER['SERVER_NAME'] !== 'localhost'){
-						echo '<ins class="adsbygoogle"
-							 style="display:block"
-							 data-ad-client="ca-pub-8697751823759563"
-							 data-ad-slot="1466592983"
-							 data-ad-format="auto"></ins>';
-						}
-						?>
-						<script>
-						(adsbygoogle = window.adsbygoogle || []).push({});
-						</script>
-						<hr class="fancyHR">
 						<h1>
-							Nevergrind | Fantasy Browser RPG<br>
-							a free online game<br>
-							by <a href="https://www.linkedin.com/company/neverworks-games-llc">Neverworks Games</a>
+							<div>Nevergrind | Fantasy Browser RPG</div>
+							<div>a free online game</div>
+							<div>by <a href="https://www.linkedin.com/company/neverworks-games-llc">Neverworks Games</a></div>
 						</h1>
 						<img id="nevergrind" src="/images1/ng_logo_532x428.png" alt="Nevergrind Logo" title="Nevergrind">
 						
@@ -214,25 +202,8 @@
 						<a href="//nevergrind.com/wiki" class="links">Wiki</a> | 
 						<a href="//nevergrind.com/blog" class="links" title="Browser Game Development News and Articles">Blog</a>
 						<hr class="fancyHR">
-						<div>Coming Soon:</div>
-						<a href="//nevergrind.com/games/firmament-wars" title="Firmament Wars | Real-Time Multiplayer Grand Strategy Browser Game" class="links">Firmament Wars | Real-Time Multiplayer Grand Strategy Browser Game</a>
-						<hr class="fancyHR">
-						<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-						<!-- Small Leaderboard -->
-						<?php
-						if ($_SERVER['SERVER_NAME'] !== 'localhost'){
-						echo '<ins class="adsbygoogle"
-							 style="display:block"
-							 data-ad-client="ca-pub-8697751823759563"
-							 data-ad-slot="1466592983"
-							 data-ad-format="auto"></ins>';
-						}
-						?>
-						<script>
-						if (location.hostname !== 'localhost'){
-							(adsbygoogle = window.adsbygoogle || []).push({});
-						}
-						</script>
+						<div>Released 2/27:</div>
+						<a href="//nevergrind.com/games/firmament-wars" title="Firmament Wars | Real-Time Multiplayer Grand Strategy Browser Game" class="links">Firmament Wars | Multiplayer Realtime Risk-Like Strategy Game</a>
 					</nav>
 				</div>
 				
@@ -537,7 +508,6 @@
 		}
 	?>
 	<script>
-		patchVersion="1-0-103";
 		(function(d){
 			if(location.host==='localhost'){
 				var _scriptLoader = [

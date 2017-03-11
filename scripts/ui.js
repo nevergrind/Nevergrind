@@ -7488,8 +7488,10 @@ $(document).on('keydown',function(e){
 			}
 		}
 	}
+	console.info(e.keyCode);
 	if(enteredWorld===true){
 		if(e.keyCode===13||e.keyCode===191){
+			return;
 			if(inputFocus===false){
 				if(!nameFocus){
 					inputFocus = true;
@@ -7617,6 +7619,7 @@ $(document).on('keydown',function(e){
 	}
 });
 function chatInit(){
+	return;
     $.ajax({
 		url: 'php/chat.php',
         data: {
@@ -7631,6 +7634,7 @@ function chatInit(){
 	});
 }
 function chatUpdate(){
+	return;
     $.ajax({
 		url: 'php/chat.php',
         data: {
@@ -7725,6 +7729,7 @@ function chatInsert(msg, from, to, color){
     });
 }
 function chatWho(name, job){
+	return;
     $.ajax({
 		url: 'php/chat.php',
         data: {
