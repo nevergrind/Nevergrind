@@ -21,7 +21,7 @@
 	</script>
 	<title>Nevergrind | Browser RPG | Free Online Game</title>
 	<meta name="keywords" content="fantasy, online, browser, free, game, rpg">
-	<meta name="description" content="Nevergrind is a fantasy browser RPG created by Neverworks Games. Nevergrind is a single-player game with leaderboards and player profiles.">
+	<meta name="description" content="Nevergrind is a free fantasy browser RPG created by Neverworks Games. Nevergrind is a single-player web game with leaderboards and player profiles.">
 	<meta name="viewport" content="width=1280,user-scalable=no">
 	<link rel='stylesheet' type='text/css' href="/css/global.css">
 	<link rel='stylesheet' type='text/css' href="/css/nevergrind.css?v=1-0-104">
@@ -68,28 +68,25 @@
 				}
 				
 				echo '<div class="modePanel">
-					<a href="//www.youtube.com/user/Maelfyn">
+					<a href="//www.youtube.com/user/Maelfyn" target="_blank">
 						<i class="fa fa-youtube text-primary pointer"></i>
 					</a>
-					<a href="//www.facebook.com/neverworksgames">
+					<a href="//facebook.com/neverworksgames" target="_blank">
 						<i class="fa fa-facebook text-primary pointer"></i>
 					</a>
-					<a href="//twitter.com/maelfyn">
+					<a href="//twitter.com/maelfyn" target="_blank">
 						<i class="fa fa-twitter text-primary pointer"></i>
 					</a>
-					<a href="//plus.google.com/118162473590412052664">
-						<i class="fa fa-google-plus text-primary pointer"></i>
-					</a>
-					<a href="//github.com/Maelfyn/Nevergrind">
+					<a href="//github.com/Maelfyn/Nevergrind" target="_blank">
 						<i class="fa fa-github text-primary pointer"></i>
 					</a>
-					<a href="//reddit.com/r/nevergrind">
+					<a href="//reddit.com/r/nevergrind" target="_blank">
 						<i class="fa fa-reddit text-primary pointer"></i>
 					</a> 
-					<a href="//goo.gl/BFsmf2" title="LinkedIn">
+					<a href="//linkedin.com/company-beta/10050163" title="LinkedIn" target="_blank">
 						<i class="fa fa-linkedin text-primary pointer"></i>
 					</a>
-					<a href="http://www.indiedb.com/games/nevergrind">
+					<a href="http://www.indiedb.com/games/nevergrind" target="_blank">
 						<i class="fa fa-gamepad text-primary pointer"></i>
 					</a>'; 
 				if (isset($_SESSION['email'])){
@@ -196,14 +193,14 @@
 						</h1>
 						<img id="nevergrind" src="/images1/ng_logo_532x428.png" alt="Nevergrind Logo" title="Nevergrind">
 						
-						<a href="//nevergrind.com/leaderboards/" class="links">Leaderboards</a> | 
+						<a href="//discord.gg/n2gp8rC" title="Join the Nevergrind Discord Server">Discord Server</a> | 
+						<a href="//nevergrind.com/leaderboards/" class="links" title="Nevergrind Leaderboards">Leaderboards</a> | 
 						<a href="//nevergrind.com/nevergrounds/" class="links" title="Character Profiles, Items, and More">Nevergrounds</a> | 
-						<a href="//nevergrind.com/forums" class="links">Forums</a> | 
-						<a href="//nevergrind.com/wiki" class="links">Wiki</a> | 
+						<a href="//nevergrind.com/wiki" class="links" title="Nevergrind Wiki">Wiki</a> | 
 						<a href="//nevergrind.com/blog" class="links" title="Browser Game Development News and Articles">Blog</a>
 						<hr class="fancyHR">
-						<div>Released 2/27:</div>
-						<a href="//nevergrind.com/games/firmament-wars" title="Firmament Wars | Real-Time Multiplayer Grand Strategy Browser Game" class="links">Firmament Wars | Multiplayer Realtime Risk-Like Strategy Game</a>
+						<pre>Other Games We Made:</pre>
+						<a href="//nevergrind.com/games/firmament-wars" title="Firmament Wars | Real-Time Multiplayer Grand Strategy Browser Game" class="links">Firmament Wars | Free Multiplayer Risk-Like Strategy Game</a>
 					</nav>
 				</div>
 				
