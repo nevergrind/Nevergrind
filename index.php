@@ -23,6 +23,7 @@
 	<meta name="keywords" content="fantasy, online, browser, free, game, rpg">
 	<meta name="description" content="Nevergrind is a free fantasy browser RPG created by Neverworks Games. Nevergrind is a single-player web game with leaderboards and player profiles.">
 	<meta name="viewport" content="width=1280,user-scalable=no">
+	<meta name="google-site-verification" content="iC9l4midOGIXERCwagfpkef9ifunV-aZd_zlUUOPjIU" />
 	<link rel='stylesheet' type='text/css' href="/css/global.css">
 	<link rel='stylesheet' type='text/css' href="/css/nevergrind.css?v=1-0-104">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -68,26 +69,17 @@
 				}
 				
 				echo '<div class="modePanel">
-					<a href="//www.youtube.com/user/Maelfyn" target="_blank">
+					<a href="//twitch.tv/maelfyn" target="_blank">
+						<i class="fa fa-twitch text-primary pointer"></i>
+					</a>
+					<a href="//youtube.com/c/Maelfyn" target="_blank">
 						<i class="fa fa-youtube text-primary pointer"></i>
 					</a>
-					<a href="//facebook.com/neverworksgames" target="_blank">
+					<a href="//www.facebook.com/neverworksgames" target="_blank">
 						<i class="fa fa-facebook text-primary pointer"></i>
 					</a>
 					<a href="//twitter.com/maelfyn" target="_blank">
 						<i class="fa fa-twitter text-primary pointer"></i>
-					</a>
-					<a href="//github.com/Maelfyn/Nevergrind" target="_blank">
-						<i class="fa fa-github text-primary pointer"></i>
-					</a>
-					<a href="//reddit.com/r/nevergrind" target="_blank">
-						<i class="fa fa-reddit text-primary pointer"></i>
-					</a> 
-					<a href="//linkedin.com/company-beta/10050163" title="LinkedIn" target="_blank">
-						<i class="fa fa-linkedin text-primary pointer"></i>
-					</a>
-					<a href="http://www.indiedb.com/games/nevergrind" target="_blank">
-						<i class="fa fa-gamepad text-primary pointer"></i>
 					</a>'; 
 				if (isset($_SESSION['email'])){
 					echo '<a title="Manage Account" href="/account/?back=/">Account</a>';
