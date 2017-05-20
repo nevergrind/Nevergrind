@@ -178,6 +178,18 @@
 				</div>
 				<div id="rightPaneBG">
 					<nav id="nglogo" class="strongShadow">
+						<div  style="margin: 6px 0">
+							<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+							<!-- Nevergrind ads -->
+							<ins class="adsbygoogle"
+								 style="display:block"
+								 data-ad-client="ca-pub-8697751823759563"
+								 data-ad-slot="5248467388"
+								 data-ad-format="auto"></ins>
+							<script>
+							(adsbygoogle = window.adsbygoogle || []).push({});
+							</script>
+						</div>
 						<h1>
 							<div>Nevergrind | Fantasy Browser RPG</div>
 							<div>a free online game</div>
@@ -191,8 +203,20 @@
 						<a href="//nevergrind.com/wiki" class="links" title="Nevergrind Wiki">Wiki</a> | 
 						<a href="//nevergrind.com/blog" class="links" title="Browser Game Development News and Articles">Blog</a>
 						<hr class="fancyHR">
-						<pre>Other Games We Made:</pre>
+						<p>Other Games We Made:</p>
 						<a href="//nevergrind.com/games/firmament-wars" title="Firmament Wars | Real-Time Multiplayer Grand Strategy Browser Game" class="links">Firmament Wars | Free Multiplayer Risk-Like Strategy Game</a>
+						<div  style="margin: 6px 0">
+							<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+							<!-- Nevergrind ads -->
+							<ins class="adsbygoogle"
+								 style="display:block"
+								 data-ad-client="ca-pub-8697751823759563"
+								 data-ad-slot="5248467388"
+								 data-ad-format="auto"></ins>
+							<script>
+							(adsbygoogle = window.adsbygoogle || []).push({});
+							</script>
+						</div>
 					</nav>
 				</div>
 				
