@@ -7,7 +7,7 @@
 	require('php/values.php');
 	if(isset($_SESSION['email'])){
 		// nothing
-	}else{
+	}else{ 
 		unset($_SESSION['email']);
 		unset($_SESSION['account']);
 		unset($_SESSION['customerId']);
