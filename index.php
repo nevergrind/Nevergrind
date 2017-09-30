@@ -16,7 +16,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> 
 	<script>
 		patchVersion="1-0-104"; 
 	</script>
