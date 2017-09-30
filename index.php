@@ -15,10 +15,10 @@
 	}
 ?>
 <!DOCTYPE html>
-<html lang="en"> 
-<head> 
+<html lang="en">
+<head>
 	<script>
-		patchVersion="1-0-104"; 
+		patchVersion="1-0-104";
 	</script>
 	<title>Nevergrind | Browser RPG | Free Online Game</title>
 	<meta name="keywords" content="fantasy, online, browser, free, game, rpg">
