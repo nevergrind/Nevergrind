@@ -2282,7 +2282,7 @@ function initMOB() {
         stage[i] = new C.Stage(canvas[i]);
         stage[i].snapToPixelEnabled = true;
         TweenLite.ticker.addEventListener("tick", stage[i].update, stage[i]);
-        bmp[i] = new C.Bitmap("/images1/blank.png");
+        bmp[i] = new C.Bitmap("images1/blank.png");
         tintTimer[i] = {};
         tintTimer[i].poison = TDC();
         tintTimer[i].magic = TDC();
@@ -2291,11 +2291,11 @@ function initMOB() {
         tintTimer[i].cold = TDC();
         blurTimer[i] = TDC();
         bmpTint[i] = {};
-        bmpTint[i].poison = new C.Bitmap("/images1/blank.png");
-        bmpTint[i].magic = new C.Bitmap("/images1/blank.png");
-        bmpTint[i].lightning = new C.Bitmap("/images1/blank.png");
-        bmpTint[i].fire = new C.Bitmap("/images1/blank.png");
-        bmpTint[i].cold = new C.Bitmap("/images1/blank.png");
+        bmpTint[i].poison = new C.Bitmap("images1/blank.png");
+        bmpTint[i].magic = new C.Bitmap("images1/blank.png");
+        bmpTint[i].lightning = new C.Bitmap("images1/blank.png");
+        bmpTint[i].fire = new C.Bitmap("images1/blank.png");
+        bmpTint[i].cold = new C.Bitmap("images1/blank.png");
         pulsate[i] = TDC();
     }
     // cWin canvas
@@ -5700,7 +5700,7 @@ function loadingScreen() {
         opacity: 1
     });
 	// cloudfront: '//d3t6yj0r8qins4.cloudfront.net/ng_logo_532x428.png'
-	$("#bglogo").attr('src', '/images1/ng_logo_532x428.png');
+	$("#bglogo").attr('src', 'images1/ng_logo_532x428.png');
 	T.from('#bglogo', 1, {
 		opacity: 0,
 		ease: ez.lin
@@ -6995,25 +6995,25 @@ function loadProcImage() {
     asset[213] = D.createElement('audio');
     for (var i = 12; i <= 13; i++) {
         var x = asset[100 + i];
-        x.src = "/images1/blank.png";
+        x.src = "images1/blank.png";
         var N = P.eq[i].name;
         if (N === "Ebony Blade" || N === "Spriggan's Blade") {
-            x.src = "/images1/rootImage.png";
+            x.src = "images1/rootImage.png";
         } else if (N === "Baezil's Vortex" ||
             N === "Rathmonan's Vortex") {
-            x.src = "/images1/lightningNova.png";
+            x.src = "images1/lightningNova.png";
         } else if (N === "Flamebellow") {
-            x.src = "/images1/fireNova.png";
+            x.src = "images1/fireNova.png";
         } else if (N === "Scimitar of the Mistwalker" ||
             N === "Scimitar of the Grovecaller" ||
             N === "Jysin's Blade of the Darkwind") {
             asset[114] = D.createElement('img');
-            asset[114].src = "/images1/a white wolf.png";
+            asset[114].src = "images1/a white wolf.png";
         } else if (N === "Plankton Laced Greatsword") {
-            x.src = "/images1/frostNova.png";
+            x.src = "images1/frostNova.png";
             asset[200 + i].src = soundLocation + "novaice." + audioExt;
         } else if (N === "Megnemon's Glacial Crook") {
-            x.src = "/images1/glacialSpike.png";
+            x.src = "images1/glacialSpike.png";
             asset[200 + i].src = soundLocation + "icespike1." + audioExt;
         }
     }
@@ -7244,7 +7244,7 @@ function enterWorld() {
     drawExpBar(0);
     classSpriteLoaded = false;
     var classSprite = new Image();
-    classSprite.src = "/images1/sprite" + my.job + "3.png";
+    classSprite.src = "images1/sprite" + my.job + "3.png";
     classSprite.onload = function() {
             classSpriteLoaded = true;
         }
@@ -8342,19 +8342,19 @@ $(document).ready(function() {
 });
 
 function setClassStyles() {
-    $NG.addmonsterId.css("background-image", "url('/images1/sprite" + my.job + "3.png')")
+    $NG.addmonsterId.css("background-image", "url('images1/sprite" + my.job + "3.png')")
         .css({
             backgroundPosition: "0 0"
         });
-    $("#toggleattackId").css("background-image", "url('/images1/sprite" + my.job + "3.png')")
+    $("#toggleattackId").css("background-image", "url('images1/sprite" + my.job + "3.png')")
         .css({
             backgroundPosition: "-100% 0"
         });
-    $("#addmonsterId").css("background-image", "url('/images1/sprite" + my.job + "3.png')")
+    $("#addmonsterId").css("background-image", "url('images1/sprite" + my.job + "3.png')")
         .css({
             backgroundPosition: "0 -200%"
         });
-    $("#runId").css("background-image", "url('/images1/sprite" + my.job + "3.png')")
+    $("#runId").css("background-image", "url('images1/sprite" + my.job + "3.png')")
         .css({
             backgroundPosition: "-100% -200%"
         });
@@ -8860,14 +8860,14 @@ function initTalentStyles() {
         if (i === 17) {
             skilly = -300;
         }
-        s += "#" + id[i] + "{ background: url('/images1/sprite" + my.job + "3.png') -" + skillx[i] + "% " + skilly + "%; }";
+        s += "#" + id[i] + "{ background: url('images1/sprite" + my.job + "3.png') -" + skillx[i] + "% " + skilly + "%; }";
     }
     // exceptions
     if (my.job === "Bard" || my.job === "Druid") {
-        s += "#rangertrackId{ background: url('/images1/spriteTrack2.png') 0 0; }";
+        s += "#rangertrackId{ background: url('images1/spriteTrack2.png') 0 0; }";
     }
     if (my.job === "Rogue" && my.race === "Halfling") {
-        s += "#halflinghideId{ background: url('/images1/spriteHalfling2.png') 0 0; }";
+        s += "#halflinghideId{ background: url('images1/spriteHalfling2.png') 0 0; }";
     }
     for (var i = 1; i <= 12; i++) {
         var taly = -192;
@@ -8879,7 +8879,7 @@ function initTalentStyles() {
                 taly = -128;
             }
         }
-        s += "#talent" + i + "{ background: url('/images1/sprite" + my.job + "3.png') -" + talx[i - 1] + "px " + taly + "px; }";
+        s += "#talent" + i + "{ background: url('images1/sprite" + my.job + "3.png') -" + talx[i - 1] + "px " + taly + "px; }";
     }
     s += "</style>";
     $("head").append(s);
@@ -10010,35 +10010,35 @@ function checkCity(foo) {
 function loadWeaponSlashes() {
     if (P.eq[12].type === "slashed") {
         asset[109] = D.createElement('img');
-        asset[109].src = "/images1/slashed.png";
+        asset[109].src = "images1/slashed.png";
     } else if (P.eq[12].type === "crushed") {
         asset[107] = D.createElement('img');
-        asset[107].src = "/images1/crushed.png";
+        asset[107].src = "images1/crushed.png";
     } else if (P.eq[12].type === "pierced") {
         asset[105] = D.createElement('img');
-        asset[105].src = "/images1/pierced.png";
+        asset[105].src = "images1/pierced.png";
     } else if (P.eq[12].type === "punched") {
         asset[103] = D.createElement('img');
-        asset[103].src = "/images1/punched.png";
+        asset[103].src = "images1/punched.png";
     } else if (P.eq[12].type === "smashed" || "staff" === P.eq[12].type) {
         asset[101] = D.createElement('img');
-        asset[101].src = "/images1/smashed.png";
+        asset[101].src = "images1/smashed.png";
     } else if (P.eq[12].type === "cleaved") {
         asset[100] = D.createElement('img');
-        asset[100].src = "/images1/cleaved.png";
+        asset[100].src = "images1/cleaved.png";
     }
     if (P.eq[13].type === "crushed") {
         asset[106] = D.createElement('img');
-        asset[106].src = "/images1/crushedL.png";
+        asset[106].src = "images1/crushedL.png";
     } else if (P.eq[13].type === "pierced") {
         asset[104] = D.createElement('img');
-        asset[104].src = "/images1/piercedL.png";
+        asset[104].src = "images1/piercedL.png";
     } else if (P.eq[13].type === "punched") {
         asset[102] = D.createElement('img');
-        asset[102].src = "/images1/punched.png";
+        asset[102].src = "images1/punched.png";
     } else if (P.eq[13].type === "slashed") {
         asset[108] = D.createElement('img');
-        asset[108].src = "/images1/slashedL.png";
+        asset[108].src = "images1/slashedL.png";
     }
 }
 
@@ -10054,67 +10054,67 @@ function loadMiscImages() {
     asset[116] = D.createElement('img');
     asset[116].src = "//" + itemSprite;
     asset[117] = D.createElement('img');
-    asset[117].src = "/images1/NGbutton.png";
+    asset[117].src = "images1/NGbutton.png";
     asset[118] = D.createElement('img');
-    asset[118].src = "/images1/classPlate.png";
+    asset[118].src = "images1/classPlate.png";
     asset[119] = D.createElement('img');
-    asset[119].src = "/images1/rock380-430.jpg";
+    asset[119].src = "images1/rock380-430.jpg";
     asset[120] = D.createElement('img');
-    asset[120].src = "/images1/win5.png";
+    asset[120].src = "images1/win5.png";
     asset[121] = D.createElement('img');
-    asset[121].src = "/images1/ng_logo_532x428.png";
+    asset[121].src = "images1/ng_logo_532x428.png";
     asset[122] = D.createElement('img');
-    asset[122].src = "/images1/entername.png";
+    asset[122].src = "images1/entername.png";
     asset[122] = D.createElement('img');
-    asset[122].src = "/images1/ccFrame.png";
+    asset[122].src = "images1/ccFrame.png";
     asset[123] = D.createElement('img');
-    asset[123].src = "/images1/statFrame.png";
+    asset[123].src = "images1/statFrame.png";
     asset[124] = D.createElement('img');
-    asset[124].src = '/images1/blank.png';
+    asset[124].src = 'images1/blank.png';
     asset[125] = D.createElement('img');
     asset[125].src = '//i.imgur.com/d1iYz2W.jpg';
     asset[126] = D.createElement('img');
-    asset[126].src = "/images1/raceButtons.png";
+    asset[126].src = "images1/raceButtons.png";
     asset[127] = D.createElement('img');
-    asset[127].src = "/images1/myhpbardiv.png";
+    asset[127].src = "images1/myhpbardiv.png";
     asset[128] = D.createElement('img');
-    asset[128].src = "/images1/bossPlate.png";
+    asset[128].src = "images1/bossPlate.png";
     asset[129] = D.createElement('img');
-    asset[129].src = "/images1/championPlate.png";
+    asset[129].src = "images1/championPlate.png";
     asset[130] = D.createElement('img');
-    asset[130].src = "/images1/rarePlate.png";
+    asset[130].src = "images1/rarePlate.png";
     asset[131] = D.createElement('img');
-    asset[131].src = "/images1/normalPlate.png";
+    asset[131].src = "images1/normalPlate.png";
     asset[132] = D.createElement('img');
-    asset[132].src = "/images1/statButton.png";
+    asset[132].src = "images1/statButton.png";
     asset[133] = D.createElement('img');
-    asset[133].src = "/images1/greyButton.png";
+    asset[133].src = "images1/greyButton.png";
     asset[134] = D.createElement('img');
-    asset[134].src = "/images1/equipment.png";
+    asset[134].src = "images1/equipment.png";
     asset[135] = D.createElement('img');
-    asset[135].src = "/images1/stats.png";
+    asset[135].src = "images1/stats.png";
     asset[136] = D.createElement('img');
-    asset[136].src = "/images1/tile.png";
+    asset[136].src = "images1/tile.png";
     asset[137] = D.createElement('img');
-    asset[137].src = "/images1/wideHead.png";
+    asset[137].src = "images1/wideHead.png";
     asset[139] = D.createElement('img');
-    asset[139].src = "/images1/itemtt.png";
+    asset[139].src = "images1/itemtt.png";
     asset[140] = D.createElement('img');
-    asset[140].src = "/images1/portal.png";
+    asset[140].src = "images1/portal.png";
     asset[141] = D.createElement('img');
-    asset[141].src = "/images1/portraits.png";
+    asset[141].src = "images1/portraits.png";
     asset[142] = D.createElement('img');
-    asset[142].src = '/images1/greenparticle200.png';
+    asset[142].src = 'images1/greenparticle200.png';
     asset[143] = D.createElement('img');
-    asset[143].src = '/images1/magentaparticle200.png';
+    asset[143].src = 'images1/magentaparticle200.png';
     asset[144] = D.createElement('img');
-    asset[144].src = '/images1/yellowparticle200.png';
+    asset[144].src = 'images1/yellowparticle200.png';
     asset[145] = D.createElement('img');
-    asset[145].src = '/images1/glacialSpike.png';
+    asset[145].src = 'images1/glacialSpike.png';
     asset[146] = D.createElement('img');
-    asset[146].src = '/images1/fireball.png';
+    asset[146].src = 'images1/fireball.png';
     asset[147] = D.createElement('img');
-    asset[147].src = '/images1/bossPlate.png';
+    asset[147].src = 'images1/bossPlate.png';
     asset[148] = D.createElement('img');
     asset[148].src = '//i.imgur.com/7bn79bN.png';
     asset[201] = D.createElement('audio');
@@ -10136,7 +10136,7 @@ function loadMiscImages() {
     }
     for (var i = 150, len = foo.length + 150; i < len; i++) {
         asset[i] = D.createElement('img');
-        asset[i].src = "/images1/" + foo[i - 150] + ".png";
+        asset[i].src = "images1/" + foo[i - 150] + ".png";
     }
 }
 
@@ -10187,7 +10187,7 @@ function loadSkillImages() {
     foo.push("bloodSpray");
     for (var i = 0, len = foo.length; i < len; i++) {
         asset[i] = new Image();
-        asset[i].src = "/images1/" + foo[i] + ".png";
+        asset[i].src = "images1/" + foo[i] + ".png";
     }
 }
 
@@ -10317,7 +10317,7 @@ function renderBank(max) {
         if (P.bank[i].name) {
             z += "<img id='bank" + i + "' src='//" + itemSprite + "' class='bank' style='left:" + P.bank[i].xPos + "px;top:" + P.bank[i].yPos + "px'>";
         } else {
-            z += "<img id='bank" + i + "' src='/images1/blank.png' class='bank'>";
+            z += "<img id='bank" + i + "' src='images1/blank.png' class='bank'>";
         }
         "</li>";
     }
@@ -10823,7 +10823,7 @@ function loadZone() {
         var z = "";
         for (var i = 24; i <= 43; i++) {
             z += "<li class='cityBG' id='city" + (i - 24) + "BG'>" +
-                "<img src='/images1/blank.png' id='inv" + i + "' class='city'>" +
+                "<img src='images1/blank.png' id='inv" + i + "' class='city'>" +
                 "</li>";
         }
         D.getElementById('itemsForSale').innerHTML = z;
@@ -10857,8 +10857,8 @@ function loadZone() {
         D.getElementById('cityNPCname').textContent = NPCname;
         $("#cityWindow").css("left", 10);
         $("#trainOK,#trainingOptions").css("left", -700);
-        $("#cityNPC").attr("src", '/images1/blank.png');
-        $("#cityNPC").attr("src", '/images1/' + zog);
+        $("#cityNPC").attr("src", 'images1/blank.png');
+        $("#cityNPC").attr("src", 'images1/' + zog);
         D.getElementById('cityNPCdiv').style.bottom = "-100px";
         T.set("#cityNPC", {
             rotationY: 0
@@ -10868,10 +10868,10 @@ function loadZone() {
     mobs = [];
     for (var i = 0; i < len; i++) {
         mobs[i] = D.createElement('img');
-        mobs[i].src = '/images1/' + zig[i] + '.png';
+        mobs[i].src = 'images1/' + zig[i] + '.png';
     }
     imagesLoaded = 0;
-    $("#window2zoneday").attr("src", '/backgrounds/' + foo + '?v1');
+    $("#window2zoneday").attr("src", 'backgrounds/' + foo + '?v1');
     if (cityStatus === true) {
         $NG2.city.attr("src", "//" + itemSprite);
         $NG2.cityBG.css("background", "url('//" + itemSprite + "')").css({
@@ -10912,7 +10912,7 @@ function writeCityHtml() {
         '<div id="cityNPCdiv">' +
         '<img id="cityNPCshadow" src="//i.imgur.com/7bn79bN.png">' +
         '<div id="cityNPCname" class="strongShadow"></div>' +
-        '<img id="cityNPC" src="/images1/blank.png">' +
+        '<img id="cityNPC" src="images1/blank.png">' +
         '</div>' +
         '<div id="trainingOptions" class="strongShadow">' +
         '<div id="training1">' +
@@ -11338,13 +11338,13 @@ function resizeButtonBackgrounds() {
 
 function enterZoneSuccess(referenceLoad) {
     if (my.job === "Rogue") {
-        $NG.shadowstrikeId.css("background-image", "url('/images1/spriteRogue3.png')")
+        $NG.shadowstrikeId.css("background-image", "url('images1/spriteRogue3.png')")
             .css({
                 backgroundPosition: "-300% 0"
             });
     } //temporary problem?
     if (my.job === "Paladin") {
-        $NG.palslamId.css("background-image", "url('/images1/spritePaladin3.png')")
+        $NG.palslamId.css("background-image", "url('images1/spritePaladin3.png')")
             .css({
                 backgroundPosition: "-300% 0"
             });
@@ -11698,7 +11698,7 @@ function updateEquipment() {
                 e1.style.left = o.xPos + 'px';
                 e1.style.top = o.yPos + 'px';
             } else {
-                e1.src = "/images1/blank.png";
+                e1.src = "images1/blank.png";
             }
         }
     }
@@ -11714,7 +11714,7 @@ function updateInventory() {
                 e1.style.left = o.xPos + 'px';
                 e1.style.top = o.yPos + 'px';
             } else {
-                e1.src = "/images1/blank.png";
+                e1.src = "images1/blank.png";
             }
         }
     }
@@ -11730,7 +11730,7 @@ function updateBank() {
                 e1.style.left = o.xPos + 'px';
                 e1.style.top = o.yPos + 'px';
             } else {
-                e1.src = "/images1/blank.png";
+                e1.src = "images1/blank.png";
             }
         }
     }
@@ -11827,7 +11827,7 @@ $(function() {
             dragSlot = that.parent().index();
             var X = P.item[dragSlot];
             classDrag = "inventory";
-            if (that.attr("src") === "/images1/blank.png") { //clicked an empty slot
+            if (that.attr("src") === "images1/blank.png") { //clicked an empty slot
                 dragID = "";
                 dragStatus = false;
                 Error("There seems to be nothing there.");
@@ -12032,7 +12032,7 @@ $(function() {
                 classDrag = "bank";
                 dragSlot = dragSlot + (activeBankTab * 90);
             }
-            if (that.attr("src") === "/images1/blank.png") { //clicked an empty slot
+            if (that.attr("src") === "images1/blank.png") { //clicked an empty slot
                 dragID = "";
                 dragStatus = false;
             } else { // transfer data to dragged object
@@ -12253,5 +12253,5 @@ function keepSessionAlive() {
 }
 (function() {
     var e = new Image();
-    e.src = '/backgrounds/home.jpg';
+    e.src = 'backgrounds/home.jpg';
 })();

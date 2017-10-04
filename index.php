@@ -25,8 +25,8 @@
 	<meta name="description" content="Nevergrind is a free fantasy browser RPG created by Neverworks Games. Nevergrind is a single-player web game with leaderboards and player profiles.">
 	<meta name="viewport" content="width=1280,user-scalable=no">
 	<meta name="google-site-verification" content="iC9l4midOGIXERCwagfpkef9ifunV-aZd_zlUUOPjIU" />
-	<link rel='stylesheet' type='text/css' href="/css/global.css">
-	<link rel='stylesheet' type='text/css' href="/css/nevergrind.css?v=1-0-104">
+	<link rel='stylesheet' type='text/css' href="css/global.css">
+	<link rel='stylesheet' type='text/css' href="css/nevergrind.css?v=1-0-104">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<?php
 		include($_SERVER['DOCUMENT_ROOT'] . "/includes/head.html");
@@ -130,7 +130,7 @@
 				<div id="loadingwait">Loading... Please Wait</div>
 				<div id="bgWrap">
 					<div id='bglogowrap'></div>
-					<img id='bglogo' src="/images1/ng_logo_532x428.png" alt="Nevergrind Logo" title="Nevergrind">
+					<img id='bglogo' src="images1/ng_logo_532x428.png" alt="Nevergrind Logo" title="Nevergrind">
 				</div>
 			</div>
 			<canvas id="spellcurtain" width="1280" height="720"></canvas>
@@ -196,7 +196,7 @@
 							<div>a free online game</div>
 							<div>by <a href="https://www.linkedin.com/company/neverworks-games-llc">Neverworks Games</a></div>
 						</h1>
-						<img id="nevergrind" src="/images1/ng_logo_532x428.png" alt="Nevergrind Logo" title="Nevergrind">
+						<img id="nevergrind" src="images1/ng_logo_532x428.png" alt="Nevergrind Logo" title="Nevergrind">
 						
 						<a href="//discord.gg/n2gp8rC" title="Join the Nevergrind Discord Server">Discord Server</a> | 
 						<a href="//nevergrind.com/leaderboards/" class="links" title="Nevergrind Leaderboards">Leaderboards</a> | 
@@ -340,7 +340,7 @@
 			</div>
 
 			<div id="window2scrollsky"></div>
-			<img id="window2zoneday" src="/images1/blank.png" alt="Blank image placeholder">
+			<img id="window2zoneday" src="images1/blank.png" alt="Blank image placeholder">
 				<!-- Travel Window -->
 
 
@@ -381,7 +381,7 @@
 				<div id="monsterhpbarbg" class="barbg">
 					<canvas id="monsterhpbarId" width="300" height="24"></canvas>
 				</div>
-				<img id="mobPlate" src="/images1/blank.png" alt="Blank image placeholder">
+				<img id="mobPlate" src="images1/blank.png" alt="Blank image placeholder">
 				<div id="mobDetails">
 					<div id="mobTraits" class="strongShadow"></div>
 					<div id="mobIcons0" class="mobIcons"></div>
@@ -393,36 +393,36 @@
 			</div>
 
 			<div id="mob2">
-				<img id="mobShadow2" class="shadows" src="/images1/blank.png" alt="Blank image placeholder">
+				<img id="mobShadow2" class="shadows" src="images1/blank.png" alt="Blank image placeholder">
 				<div id="mobName2" class="strongShadow"></div>
 				<canvas id="mobPic2" width="1280" height="720"></canvas>
 			</div>
 			<div id="mob1">
-				<img id="mobShadow1" class="shadows" src="/images1/blank.png" alt="Blank image placeholder">
+				<img id="mobShadow1" class="shadows" src="images1/blank.png" alt="Blank image placeholder">
 				<div id="mobName1" class="strongShadow"></div>
 				<canvas id="mobPic1"></canvas>
 			</div>
 			<div id="mob4">
-				<img id="mobShadow4" class="shadows" src="/images1/blank.png" alt="Blank image placeholder">
+				<img id="mobShadow4" class="shadows" src="images1/blank.png" alt="Blank image placeholder">
 				<div id="mobName4" class="strongShadow"></div>
 				<canvas id="mobPic4"></canvas>
 			</div>
 			<div id="mob0">
-				<img id="mobShadow0" class="shadows" src="/images1/blank.png" alt="Blank image placeholder">
+				<img id="mobShadow0" class="shadows" src="images1/blank.png" alt="Blank image placeholder">
 				<div id="mobName0" class="strongShadow"></div>
 				<canvas id="mobPic0"></canvas>
 			</div><
 			<div id="mob3">
-				<img id="mobShadow3" class="shadows" src="/images1/blank.png" alt="Blank image placeholder">
+				<img id="mobShadow3" class="shadows" src="images1/blank.png" alt="Blank image placeholder">
 				<div id="mobName3" class="strongShadow"></div>
 				<canvas id="mobPic3"></canvas>
 			</div>
 
 
 			<div id="mob5">
-				<img id="petShadow" class="shadows" src="/images1/blank.png" alt="Blank image placeholder">
+				<img id="petShadow" class="shadows" src="images1/blank.png" alt="Blank image placeholder">
 				<div id="petName" class="strongShadow"></div>
-				<img id="petImage" src="/images1/blank.png" alt="Blank image placeholder">
+				<img id="petImage" src="images1/blank.png" alt="Blank image placeholder">
 			</div>
 
 			<div id="window1" class="strongShadow noSelect">
@@ -499,7 +499,7 @@
 				<div id="optionsId" class="buttonsManage" title="(X) Options"></div>
 				<div id="campId" class="buttonsManage" title="Camp"></div>
 			</div>
-			<img class="hide" src="/images1/neverworks.png" alt="Neverworks Logo" title="Neverworks">
+			<img class="hide" src="images1/neverworks.png" alt="Neverworks Logo" title="Neverworks">
 			
 			<div id="errorMsg" class="strongShadow">
 				<noscript>In order to play NeverGrind, you must enable JavaScript!</noscript>
@@ -516,7 +516,7 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/EaselJS/0.7.1/easeljs.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/plugins/EaselPlugin.min.js"></script>
 	<?php
-		require($_SERVER['DOCUMENT_ROOT'] . "/includes/ga.html");
+		require "includes/ga.html";
 		if (!isset($_SESSION['email'])){
 			exit();
 		}

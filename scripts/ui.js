@@ -4548,12 +4548,12 @@ function cacheAdd(s2, target, x, y, scaleX, scaleY, regCenter, first){
 function img(img, w, h){
     if(w===undefined){ w = 25; }
     if(h===undefined){ h = 25; }
-    s1 = new C.Bitmap("/images1/"+img+".png");
+    s1 = new C.Bitmap("images1/"+img+".png");
     s1.cache(0, 0, w, h);
     return s1.cacheCanvas;
 }
 function can(img, target, x, y, w, h, regCenter, first){ 
-	var e = new C.Bitmap("/images1/"+img+".png");
+	var e = new C.Bitmap("images1/"+img+".png");
 	var imgW = e.image.width;
 	var imgH = e.image.height;
 	var scaleX = w/imgW;
@@ -5931,7 +5931,7 @@ function writeGearHtml(){
 	var foo="";
 	for(var i=0;i<=23;i++){
 		foo +=	"<li class='inventoryBG' id='inv"+i+"BG'>ITEM"+
-					"<img src='/images1/blank.png' id='inv"+i+"' class='inventory'>"+
+					"<img src='images1/blank.png' id='inv"+i+"' class='inventory'>"+
 				"</li>";
 	}
 	D.getElementById('inventoryContainer').innerHTML=foo;
@@ -6407,19 +6407,19 @@ function updateTargetedMob(drawHp){
 	var c1="ui-draggable";
 	if(mob[TGT].rare===0){
 		NG.mobBar.className=c1;
-		NG.mobPlate.src = "/images1/rarePlate.png";
+		NG.mobPlate.src = "images1/rarePlate.png";
 		NG.mobPlate.className = "nameplateGold";
 	}else if(mob[TGT].rare===2){
 		NG.mobBar.className=c1;
-		NG.mobPlate.src = "/images1/championPlate.png";
+		NG.mobPlate.src = "images1/championPlate.png";
 		NG.mobPlate.className = "nameplateBlue";
 	}else if(mob[TGT].rare===3){
 		NG.mobBar.className=c1;
-		NG.mobPlate.src = "/images1/bossPlate.png";
+		NG.mobPlate.src = "images1/bossPlate.png";
 		NG.mobPlate.className = "nameplateRed";
 	}else if(mob[TGT].rare===1){
 		NG.mobBar.className=c1;
-		NG.mobPlate.src = "/images1/normalPlate.png";
+		NG.mobPlate.src = "images1/normalPlate.png";
 		NG.mobPlate.className = "nameplateBlack";
 	}
 	NG.mobTraits.innerHTML=mob[TGT].traits;
@@ -6434,7 +6434,7 @@ function updateCitySlot(Slot){
 		if(P.item[Slot].name){
 			$("#inv"+Slot).css({"left":P.item[Slot].xPos,"top":P.item[Slot].yPos});
 		}else{
-			$("#inv"+Slot).attr("src","/images1/blank.png");
+			$("#inv"+Slot).attr("src","images1/blank.png");
 		}
 	}
 }
@@ -6742,7 +6742,7 @@ function updateInvDrag(Slot){
 			e.style.left = P.item[Slot].xPos+'px';
 			e.style.top = P.item[Slot].yPos+'px';
 		}else{
-			e.src = "/images1/blank.png";
+			e.src = "images1/blank.png";
 		}
 	}
 }
@@ -6754,7 +6754,7 @@ function updateInvDrop(Slot){
 			e.style.left = P.item[Slot].xPos+'px';
 			e.style.top = P.item[Slot].yPos+'px';
 		}else{
-			e.src = "/images1/blank.png";
+			e.src = "images1/blank.png";
 		}
 	}
 }
@@ -6766,7 +6766,7 @@ function updateEqDrag(id,Slot){
 			e.style.left = P.eq[Slot].xPos+'px';
 			e.style.top = P.eq[Slot].yPos+'px';
 		}else{
-			e.src = "/images1/blank.png";
+			e.src = "images1/blank.png";
 		}
 	}
 }
@@ -6778,7 +6778,7 @@ function updateEqDrop(id,Slot){
 			e.style.left = P.eq[Slot].xPos+'px';
 			e.style.top = P.eq[Slot].yPos+'px';
 		}else{
-			e.src = "/images1/blank.png";
+			e.src = "images1/blank.png";
 		}
 	}
 }
@@ -6790,7 +6790,7 @@ function updateBankDrag(Slot){
 			e.style.left = P.bank[Slot].xPos+'px';
 			e.style.top = P.bank[Slot].yPos+'px';
 		}else{
-			e.src = "/images1/blank.png";
+			e.src = "images1/blank.png";
 		}
 	}
 }
@@ -6802,7 +6802,7 @@ function updateBankDrop(Slot){
 			e.style.left = P.bank[Slot].xPos+'px';
 			e.style.top = P.bank[Slot].yPos+'px';
 		}else{
-			e.src = "/images1/blank.png";
+			e.src = "images1/blank.png";
 		}
 	}
 }
@@ -7488,7 +7488,7 @@ $(document).on('keydown',function(e){
 			}
 		}
 	}
-	console.info(e.keyCode);
+	//console.info(e.keyCode);
 	if(enteredWorld===true){
 		if(e.keyCode===13||e.keyCode===191){
 			return;

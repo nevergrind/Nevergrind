@@ -1360,7 +1360,7 @@ function summonWolfFamiliar(name, maxDam, minDam){
 		left:-50,
 		opacity:0,
 		width:400
-	}).attr("src","/images1/a white wolf.png")
+	}).attr("src","images1/a white wolf.png")
 	.appendTo($NG.eWin2);
 	T.to(familiar[familiarId], .5, {
 		opacity:1
@@ -4171,7 +4171,7 @@ function killAllMonsters(){
 function playEnding(){
 	window.onbeforeunload = null;
 	playMusic("Heroic Demise (2013 - With Choir)");
-	var w4 = new C.Bitmap('/backgrounds/nimgaul.jpg');
+	var w4 = new C.Bitmap('backgrounds/nimgaul.jpg');
 	stage[8].addChild(w4);
 	w4.image.onload = function(){
 		var e = w4.getBounds();
@@ -4226,9 +4226,9 @@ function killBoss(){
 	var s3 = new Audio();
 	s3.src = "sound1/explode3."+audioExt;
 	var p1 = new Image();
-	p1.src = '/images1/tremorFG.png';
+	p1.src = 'images1/tremorFG.png';
 	var p2 = new Image();
-	p2.src = '/images1/tremorBG.png';
+	p2.src = 'images1/tremorBG.png';
 	D.getElementById('intro').style.display='none';
 	D.getElementById('intro').style.opacity=0;
 	bossExplosion(26);
@@ -4722,7 +4722,7 @@ function mobDamage(Slot, fleeFlag2){
 		}
 	}
 	if(o.ironMaidenStatus===true&&o.flurry===false&&TGT===Slot){
-		preload(['/images1/ironMaidenIcon.png']);
+		preload(['images1/ironMaidenIcon.png']);
 		var skillCheck = M.random()*100;
 		if(o.name==="Sanctum Guardian Ghalentus"){ skillCheck=100; }
 		if(skillCheck > 70){
@@ -6327,19 +6327,19 @@ function battle(){
 		NG['mobIcons'+newSlotNumber].style.display="block";
 		if(mob[TGT].rare===0){
 			NG.mobBar.className="ui-draggable";
-			NG.mobPlate.src = "/images1/rarePlate.png";
+			NG.mobPlate.src = "images1/rarePlate.png";
 			NG.mobPlate.className = "nameplateGold";
 		}else if(mob[TGT].rare==2){
 			NG.mobBar.className="ui-draggable";
-			NG.mobPlate.src = "/images1/championPlate.png";
+			NG.mobPlate.src = "images1/championPlate.png";
 			NG.mobPlate.className = "nameplateBlue";
 		}else if(mob[TGT].rare==3){
 			NG.mobBar.className="ui-draggable";
-			NG.mobPlate.src = "/images1/bossPlate.png";
+			NG.mobPlate.src = "images1/bossPlate.png";
 			NG.mobPlate.className = "nameplateRed";
 		}else if(mob[TGT].rare===1){
 			NG.mobBar.className="ui-draggable";
-			NG.mobPlate.src = "/images1/normalPlate.png";
+			NG.mobPlate.src = "images1/normalPlate.png";
 			NG.mobPlate.className = "nameplateBlack";
 		}
 		NG.mobTraits.innerHTML=mob[newSlotNumber].traits;
@@ -7123,7 +7123,7 @@ function addBuffRaceIcon(skillName,buffId,duration,spriteX){
 			top:0,
 			left:spriteX,
 			position:"absolute"
-		}).attr("src", "/images1/sprite"+my.race+"2.png");
+		}).attr("src", "images1/sprite"+my.race+"2.png");
 	var newBuff1 = $('<div>').css({
 			width:32,
 			height:32,
@@ -7161,7 +7161,7 @@ function addBuffIcon(skillName,buffId,duration,spriteX,spriteY){ //buff myself
 			top:spriteY,
 			left:spriteX,
 			position:"absolute"
-		}).attr("src", "/images1/sprite"+my.job+"3.png");
+		}).attr("src", "images1/sprite"+my.job+"3.png");
 	var newBuff1 = $('<div>').css({
 			width:32,
 			height:32,
@@ -7208,12 +7208,12 @@ function addMobBuffIcon(skillName,Slot,buffId,duration,spriteX,spriteY,proc,stac
 	var w1 = 576;
 	var h1 = 128;
 	if(spriteX===9999){
-		img = "/images1/spriteGnome2.png";
+		img = "images1/spriteGnome2.png";
 		spriteX=0;
 		var w1 = 32;
 		var h1 = 64;
 	}else{
-		img = "/images1/sprite"+my.job+"3.png";
+		img = "images1/sprite"+my.job+"3.png";
 	}
 	var newBuff2 = $('<img>').css({
 			width:w1,
@@ -7229,7 +7229,7 @@ function addMobBuffIcon(skillName,Slot,buffId,duration,spriteX,spriteY,proc,stac
 			top:0,
 			left:0,
 			position:"absolute"
-		}).attr("src","/images1/"+proc+"Icon.png");
+		}).attr("src","images1/"+proc+"Icon.png");
 	}
 	var newBuff1 = $('<div>').css({
 		width:32,

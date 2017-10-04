@@ -3027,7 +3027,7 @@ function animateBloodDrop(Slot){
 function IMG(x,y,w,h,img){
 	var H1=D.createElement('img');
 	H1.style.cssText = "position:absolute; left:"+x+"px; top:"+y+"px; width:"+w+"px; height:"+h+"px;";
-	H1.src="/images1/"+img+".png";
+	H1.src="images1/"+img+".png";
 	return H1;
 }
 function DIV(x,y,w,h){
@@ -9585,7 +9585,7 @@ function summonDead(){
 		animateParticlesUp("purple");
 		animateCastBar("summonDead");
 		playAudio("spellCastAbjure");
-		preload(['/images1/a dark skeleton.png']);
+		preload(['images1/a dark skeleton.png']);
 	}
 }
 $(function(){
@@ -9632,7 +9632,7 @@ g.summonDeadFinish=function(){
 	$("#pethpbardiv").css('display','block');
     BGP('summondeadId', "-1600% -100%");
 	g.drawMyHp();
-	$NG.petImage.attr("src","/images1/a dark skeleton.png").width(petWidth+"px");
+	$NG.petImage.attr("src","images1/a dark skeleton.png").width(petWidth+"px");
 	$NG.mob5.stop(true,true).height(petHeight).width(petWidth+"px")
 		.css({"left":leftAdjust,"bottom":60,opacity:1,display:"block"});
 	var leftAdjust = 190+((290-petWidth)/2);
@@ -15542,7 +15542,7 @@ function guardianSpirit(){
 		animateParticlesUp("teal");
 		animateCastBar("guardianSpirit");
 		playAudio("spellCastAbjure");
-		preload(['/images1/a wolf.png']);
+		preload(['images1/a wolf.png']);
 	}
 }
 $(function(){
@@ -15588,7 +15588,7 @@ g.guardianSpiritFinish=function(){
 	BGP('guardianspirit', "-1500% -100%");
 	g.drawMyHp();
 	var leftAdjust = 190+((290-petWidth)/2);
-	$NG.petImage.attr("src","/images1/a wolf.png").width(petWidth);
+	$NG.petImage.attr("src","images1/a wolf.png").width(petWidth);
 	$NG.mob5.stop(true,true).height(petHeight).width(petWidth+"px")
 		.css({"left":leftAdjust,"bottom":60,opacity:1,display:"block"});
 	var nameWid=$("#petName").width();
@@ -15733,7 +15733,7 @@ function invokeDeath(){
 		playAudio("spellCastAbjure");
 		animateParticlesUp("purple");
 		animateCastBar("invokeDeath");
-		preload(['/images1/a dark skeleton.png']);
+		preload(['images1/a dark skeleton.png']);
 	}
 }
 $(function(){
@@ -15785,7 +15785,7 @@ g.invokeDeathFinish=function(proc){
 	BGP('invokedeath', "-1600% -100%");
 	g.drawMyHp();
 	var leftAdjust = 190+((290-petWidth)/2);
-	$NG.petImage.attr("src","/images1/a dark skeleton.png").width(petWidth);
+	$NG.petImage.attr("src","images1/a dark skeleton.png").width(petWidth);
 	$NG.mob5.stop(true,true).height(petHeight).width(petWidth)
 		.css({"left":leftAdjust,"bottom":60,opacity:1,display:"block"});
 	var nameWid=$("#petName").width();
@@ -18279,7 +18279,7 @@ function earthElemental(){
 		animateParticlesUp("green");
 		animateCastBar("earthElemental");
 		playAudio("spellCastAbjure");
-		preload(['/images1/an earth elemental.png']);
+		preload(['images1/an earth elemental.png']);
 	}
 }
 $(function(){
@@ -18324,7 +18324,7 @@ g.earthElementalFinish=function(proc){
 	BGP('earthelemental', "-200% -100%");
 	g.drawMyHp();
 	var leftAdjust = 190+((290-petWidth)/2);
-	$NG.petImage.attr("src","/images1/an earth elemental.png").width(petWidth+"px");
+	$NG.petImage.attr("src","images1/an earth elemental.png").width(petWidth+"px");
 	$NG.mob5.stop(true,true).height(petHeight).width(petWidth+"px")
 		.css({"left":leftAdjust,"bottom":60,opacity:1,display:"block"});
 	var nameWid=$("#petName").width();
@@ -18352,7 +18352,7 @@ function airElemental(){
 		animateParticlesUp("white");
 		animateCastBar("airElemental");
 		playAudio("spellCastAbjure");
-		preload(['/images1/an air elemental.png']);
+		preload(['images1/an air elemental.png']);
 	}
 }
 $(function(){
@@ -18396,7 +18396,7 @@ g.airElementalFinish=function(proc){
 	BGP('airelemental', "-200% -100%");
 	g.drawMyHp();
 	var leftAdjust = 190+((290-petWidth)/2);
-	$NG.petImage.attr("src","/images1/an air elemental.png").width(petWidth+"px");
+	$NG.petImage.attr("src","images1/an air elemental.png").width(petWidth+"px");
 	$NG.mob5.stop(true,true).height(petHeight).width(petWidth+"px")
 		.css({"left":leftAdjust,"bottom":60,opacity:1,display:"block"});
 	var nameWid=$("#petName").width();
@@ -18424,7 +18424,7 @@ function fireElemental(){
 		animateParticlesUp("red");
 		animateCastBar("fireElemental");
 		playAudio("spellCastAbjure");
-		preload(['/images1/a fire elemental.png']);
+		preload(['images1/a fire elemental.png']);
 	}
 }
 $(function(){
@@ -18468,7 +18468,7 @@ g.fireElementalFinish=function(proc){
 	BGP('fireelemental', "-200% -100%");
 	g.drawMyHp();
 	var leftAdjust = 190+((290-petWidth)/2);
-	$NG.petImage.attr("src","/images1/a fire elemental.png").width(petWidth+"px");
+	$NG.petImage.attr("src","images1/a fire elemental.png").width(petWidth+"px");
 	$NG.mob5.stop(true,true).height(petHeight).width(petWidth+"px")
 		.css({"left":leftAdjust,"bottom":60,opacity:1,display:"block"});
 	var nameWid=$("#petName").width();
@@ -18496,7 +18496,7 @@ function frostElemental(){
 		animateParticlesUp("teal");
 		animateCastBar("frostElemental");
 		playAudio("spellCastAbjure");
-		preload(['/images1/a frost elemental.png']);
+		preload(['images1/a frost elemental.png']);
 	}
 }
 $(function(){
@@ -18541,7 +18541,7 @@ g.frostElementalFinish=function(proc){
 	BGP('frostelemental', "-200% -100%");
 	g.drawMyHp();
 	var leftAdjust = 190+((290-petWidth)/2);
-	$NG.petImage.attr("src","/images1/a frost elemental.png").width(petWidth+"px");
+	$NG.petImage.attr("src","images1/a frost elemental.png").width(petWidth+"px");
 	$NG.mob5.stop(true,true).height(petHeight).width(petWidth+"px")
 		.css({"left":leftAdjust,"bottom":60,opacity:1,display:"block"});
 	var nameWid=$("#petName").width();
@@ -19348,7 +19348,7 @@ function elementalFury(){
 		}
 	}else if(petImage==="an air elemental"){
 		Chat(petName+" summons a lightning storm.");
-		preload(['/images1/lightningBlast.png']);
+		preload(['images1/lightningBlast.png']);
 		var hits=2+M.round((conjurationTotal()/60));
 		for(var i=0;i<=hits;i++){
 			var duration = 1000+M.random()*17000;
@@ -19357,7 +19357,7 @@ function elementalFury(){
 			});
 		}
 	}else if(petImage==="a fire elemental"){
-		preload(['/images1/fireNova.png']);
+		preload(['images1/fireNova.png']);
 		for(var i=0;i<7;i++){
 			T.delayedCall((i*3)+3, function(){ 
 				doFire();
