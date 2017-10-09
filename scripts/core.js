@@ -12091,28 +12091,42 @@ function setCharacterSelectPanel() {
 
 
 function logout() {
+	
+	function nwLogout(){
+		$.ajax({
+			data: {
+				run: "logout"
+			}
+		}).done(function(data) {
+			QMsg("Logout successful");
+			for (var i = 1; i < 16; i++) {
+				$('#characterslot' + i).css('display', "none");
+			}
+			$("#createcharacter, #deletecharacter").remove();
+			$('#enterWorldWrap').css('display', "none");
+			$('#logout').html('');
+			$("#loginPassword").val('');
+			location.reload();
+		}).fail(function() {
+			QMsg("Logout failed.");
+			$('#logout').html("[ " + GLB.account.split("")[0].toUpperCase() + GLB.account.slice(1) + "&nbsp;Logout&nbsp;]");
+		});
+	}
+	
     g.lockScreen();
+	localStorage.removeItem('email');
+	localStorage.removeItem('token');
     $('#logout').html("Logging Out");
     QMsg("Logging out...");
-    $.ajax({
-        data: {
-            run: "logout"
-        }
-    }).done(function(data) {
-		localStorage.removeItem('token');
-        QMsg("Logout successful");
-        for (var i = 1; i < 16; i++) {
-            $('#characterslot' + i).css('display', "none");
-        }
-        $("#createcharacter, #deletecharacter").remove();
-        $('#enterWorldWrap').css('display', "none");
-        $('#logout').html('');
-        $("#loginPassword").val('');
-        location.reload();
-    }).fail(function() {
-        QMsg("Logout failed.");
-        $('#logout').html("[ " + GLB.account.split("")[0].toUpperCase() + GLB.account.slice(1) + "&nbsp;Logout&nbsp;]");
-    });
+	
+	var auth2 = gapi.auth2.getAuthInstance();
+	if (auth2 === null){
+		nwLogout();
+	} else {
+		auth2.signOut().then(function () {
+			nwLogout();
+		});
+	}
 }
 $("#gameView").on('click', '#logout', function() {
     logout();

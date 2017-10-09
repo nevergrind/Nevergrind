@@ -18,15 +18,16 @@
 <html lang="en"> 
 <head>
 	<script>
-		patchVersion="1-0-104";
+		patchVersion="1-0-107";
 	</script>
 	<title>Nevergrind | Browser RPG | Free Online Game</title>
 	<meta name="keywords" content="fantasy, online, browser, free, game, rpg">
 	<meta name="description" content="Nevergrind is a free fantasy browser RPG created by Neverworks Games. Nevergrind is a single-player web game with leaderboards and player profiles.">
 	<meta name="viewport" content="width=1280,user-scalable=no">
+	<meta name="google-signin-client_id" content="1015425037202-g5ri6qnj14b8vrk33lnu130ver9f43ef.apps.googleusercontent.com">
 	<meta name="google-site-verification" content="iC9l4midOGIXERCwagfpkef9ifunV-aZd_zlUUOPjIU" />
 	<link rel='stylesheet' type='text/css' href="css/global.css">
-	<link rel='stylesheet' type='text/css' href="css/nevergrind.css?v=1-0-104">
+	<link rel='stylesheet' type='text/css' href="css/nevergrind.css?v=1-0-107">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<?php
 		include($_SERVER['DOCUMENT_ROOT'] . "/includes/head.html");
@@ -510,11 +511,20 @@
 			</div>
 		</div> <!-- gameView -->
 	</div><!-- window 2 -->
+	<script>
+	function googleSsoSignIn(){
+		gapi.load('auth2', function() {
+			gapi.auth2.init();
+			console.info("Loaded SSO data");
+		});
+	}
+	</script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/EaselJS/0.7.1/easeljs.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/plugins/EaselPlugin.min.js"></script>
+	<script src="//apis.google.com/js/platform.js?onload=googleSsoSignIn" async defer></script>
 	<?php
 		require "includes/ga.html";
 		if (!isset($_SESSION['email'])){
@@ -522,37 +532,37 @@
 		}
 	?>
 	<script>
-		(function(d){
-			if(location.host==='localhost'){
-				var _scriptLoader = [
-					'functions4',
-					'core',
-					'battle',
-					'skills',
-					'monsters',
-					'quests',
-					'town',
-					'items',
-					'ui'
-				];
-			}else{
-				var _scriptLoader = [
-					'nevergrind'
-				];
-			}
-			if (location.hash !== ""){
-				var _scriptLoader = [
-					'nevergrind'
-				];
-			}
-			var target = d.getElementsByTagName('script')[0];
-			for(var i=0, len=_scriptLoader.length; i<len; i++){
-				var x=d.createElement('script');
-				x.src = 'scripts/'+_scriptLoader[i]+'.js?v=' + patchVersion;
-				x.async=false;
-				target.parentNode.appendChild(x);
-			}
-		})(document);
+	(function(d){
+		if(location.host==='localhost'){
+			var _scriptLoader = [
+				'functions4',
+				'core',
+				'battle',
+				'skills',
+				'monsters',
+				'quests',
+				'town',
+				'items',
+				'ui'
+			];
+		}else{
+			var _scriptLoader = [
+				'nevergrind'
+			];
+		}
+		if (location.hash !== ""){
+			var _scriptLoader = [
+				'nevergrind'
+			];
+		}
+		var target = d.getElementsByTagName('script')[0];
+		for(var i=0, len=_scriptLoader.length; i<len; i++){
+			var x=d.createElement('script');
+			x.src = 'scripts/'+_scriptLoader[i]+'.js?v=' + patchVersion;
+			x.async=false;
+			target.parentNode.appendChild(x);
+		}
+	})(document);
 	</script>
 </body>
 </html>
