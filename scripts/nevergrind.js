@@ -2838,8 +2838,8 @@ if(mob[Slot].barrier){if(my.job==="Cleric"&&my.talent6>=20){}else{foo-=67;}}
 if(my.job==="Ranger"){if(my.talent6>=20&&foo>100){foo=100;}}
 if(foo<33){foo=33;}
 return foo/100;}
-function TTphy(max,percent,skillName,number,type){if(!type){type=false;}
-var min=max*percent;var a=[];if(number!==true){a[0]="<span class='green'>"+g.myPhysicalDamage(min,0,skillName,false,type,1)+"</span>";a[1]="<span class='green'>"+g.myPhysicalDamage(max,0,skillName,false,type,2)+"</span>";}else{a[0]=g.myPhysicalDamage(min,0,skillName,false,type,1);a[1]=g.myPhysicalDamage(max,0,skillName,false,type,2);}
+function TTphy(max,percent,skillName,number,type,tt){if(!type){type=false;}
+var min=max*percent;var a=[];if(number!==true){a[0]="<span class='green'>"+g.myPhysicalDamage(min,0,skillName,false,type,tt||1)+"</span>";a[1]="<span class='green'>"+g.myPhysicalDamage(max,0,skillName,false,type,tt||2)+"</span>";}else{a[0]=g.myPhysicalDamage(min,0,skillName,false,type,tt||1);a[1]=g.myPhysicalDamage(max,0,skillName,false,type,tt||2);}
 return a;}
 g.myPhysicalDamage=function(damage,Slot,skillName,crit,type,tt){if(tt===undefined){if(mob[Slot].name===""||mob[Slot].charmStatus===true){return;}
 if(g.gaspingFrenzyStatus===false){if(skillName==="Subjugate"||skillName==="Shockwave"||skillName==="Harm Touch"){}else{var dodge=M.random()*100;if(dodge<g.mobDodgeChance(Slot)){Chat(mob[Slot].name+" dodged your attack.");g.popupMsg("MISS",Slot);if(my.job==="Warrior"&&my.level>=9){g.subjugateStatus=0;clearSubjugate.kill();clearSubjugate=T.delayedCall(8,subjugateReady);g.checkWarriorSkills();}
@@ -2861,7 +2861,8 @@ if(mob[Slot].frozenStatus===true){var b=0;if(mob[Slot].shatterStatus===true){T.t
 damage=M.round(damage*1.25+b);damEnh+=(25+b);if(g.autoAttackStatus===1&&Lmy.autoAttackOption==="On"){toggleAutoAttackStatus();}}}
 if(my.race==="Barbarian"){if(ancestralRampageStatus===true){damEnh+=100;}}
 if(secondWindStatus===true){damEnh+=25;}
-var skillLeech=0;damEnh+=g[JOB.PhyEnh](skillName,Slot,tt,damage);damage=(damage+(damage*(damEnh/100)));if(tt===undefined){damage=(damage*(g.mobDefense(Slot)));}
+var skillLeech=0;if(tt===undefined){damEnh+=g[JOB.PhyEnh](skillName,Slot,tt,damage);}
+damage=(damage+(damage*(damEnh/100)));if(tt===undefined){damage=(damage*(g.mobDefense(Slot)));}
 if(mob[Slot].stasisFieldStatus===true){if(tt===undefined){damage=0;g.slotDamage(damage,Slot);return damage;}}
 if(type==="bow"){if(my.talent8>=20&&tt===undefined){if(M.random()>.7){animateCorpseExplosion(Slot,true);playAudio('explode'+M.ceil(M.random()*3));for(var i=0;i<=4;i++){if((i+1===Slot)||i===Slot||(i-1===Slot)){if(mob[i].name!==""){var dam=minMax(attackFunct()/7,.8);g.myMagicDamage("fire",dam,i,false,"elemental");}}}}}
 if(my.talent11>=1&&sowStatus===true&&tt===undefined){if(M.random()<((talent11()*1.2)/100)){playAudio('lightning2');if(mob[Slot].name!==""){animateLightningBlast(Slot)
@@ -3258,8 +3259,8 @@ if(o.flurry===true){slowMod=-2500;}
 if(slowMod<-2500){slowMod=-2500;}
 if(slowMod>3000){slowMod=3000;}
 return slowMod;}
-function resumeMonsterAttack(Slot){var x=M.random()*100;var d2=mob[Slot].level*.8;if(mob[Slot].doubleAttack===false){if((mob[Slot].level>5)&&(d2>x)){if(mob[Slot].charmStatus===true){cLog("Charmed pet attacks with delay: "+100);}
-mob[Slot].doubleAttack=true;mobResumeAttackTimer(Slot,0,100);}else{if(mob[Slot].charmStatus===true){cLog("Charmed pet attacks with delay: "+mobAttackSpeed(Slot));}
+function resumeMonsterAttack(Slot){var x=M.random()*100;var d2=mob[Slot].level*.8;if(mob[Slot].doubleAttack===false){if((mob[Slot].level>5)&&(d2>x)){if(mob[Slot].charmStatus===true){}
+mob[Slot].doubleAttack=true;mobResumeAttackTimer(Slot,0,100);}else{if(mob[Slot].charmStatus===true){}
 mobResumeAttackTimer(Slot,0,mobAttackSpeed(Slot));}}else{if(mob[Slot].charmStatus===true){cLog("Charmed pet double attacks with delay: "+mobAttackSpeed(Slot));}
 mob[Slot].doubleAttack=false;mobResumeAttackTimer(Slot,0,mobAttackSpeed(Slot));}}
 function monsterDrain(Slot){var healAmount=(mob[Slot].level*5+M.random()*mob[Slot].level);if(mob[Slot].ampMagicStatus===true){healAmount=(healAmount+(healAmount*.5));}
@@ -3502,7 +3503,7 @@ D.getElementById('worldMap').style.top='-900px';travelStatus=1;if(melee){if(hide
 T.delayedCall(.1,function(){hideStatus=1;});$("#halflinghideId").css({backgroundPosition:"0 0"});$("#roguehideId").css({backgroundPosition:"-200% -100%"});T.to(spellCurtain,.1,{alpha:0,ease:ez.Qin});CStat();if(my.job==="Warrior"){checkDecisiveBlow();}
 if(Lmy.autoAttackOption==="On"&&g.autoAttackStatus===1){toggleAutoAttackStatus();}}
 $(function(){$NG.gameView.on('mouseenter','#addmonsterId',function(){if(mobsFound()===false){NG.tooltipname.innerHTML="Pull Next Monster";NG.tooltipmsg.innerHTML="Pull a monster to battle. Use while in combat to build chain combos that reward extra gold, experience, and magic find.";}else{NG.tooltipname.innerHTML="Pull Random Monster";NG.tooltipmsg.innerHTML="Pull an additional random monster to build combo bonuses. Combo bonuses yield greater experience and treasure.";}});$NG.gameView.on('mouseenter','#runId',function(){var foo=(escapeChance()/2).toPrecision(3);var d=6;if(my.race==="Halfling"){d=5;}
-foo=(foo+"%").fontcolor("#00ff00");NG.tooltipname.innerHTML="Run";NG.tooltipmsg.innerHTML="Cooldown: "+red(d)+" Seconds<BR><BR>You have a "+foo+" chance to successfully run from battle. Failed run attempts increase your escape chance on successive attempts.";});$NG.gameView.on('mouseenter','#toggleattackId',function(){var a=TTphy((1+attackFunct()/4500)*(P.eq[12].damage*10),.2,"attack");var b=TTphy((1+attackFunct()/4500)*(P.eq[13].damage*10),.2,"attack");var c=TTphy((1+attackFunct()/4500)*(P.eq[12].damage*10),.5,"attack");var DAchance=(doubleAttackChance()).toPrecision(3);DAchance=(DAchance+"%").fontcolor("#00ff00");var DWchance=(dualWieldChance()).toPrecision(3);DWchance=(DWchance+"%").fontcolor("#00ff00");var weapon1=(totalHaste1()/1000).toPrecision(2);var speed1=(weapon1+"").fontcolor("#00ff00");var weapon2=(totalHaste2()/1000).toPrecision(2);var speed2=(weapon2+"").fontcolor("#00ff00");NG.tooltipname.innerHTML="Auto Attack";var s='';s+="Toggle your auto attacks on or off.<br><br>";if(P.eq[12].type==="cleaved"||P.eq[12].type==="smashed"||"staff"===P.eq[12].type){s+="Primary Speed: "+speed1+" seconds<br>Primary Damage: "+c[0]+" to "+c[1];}else{s+="Primary Speed: "+speed1+" seconds<br>Primary Damage: "+a[0]+" to "+a[1];}
+foo=(foo+"%").fontcolor("#00ff00");NG.tooltipname.innerHTML="Run";NG.tooltipmsg.innerHTML="Cooldown: "+red(d)+" Seconds<BR><BR>You have a "+foo+" chance to successfully run from battle. Failed run attempts increase your escape chance on successive attempts.";});$NG.gameView.on('mouseenter','#toggleattackId',function(){var a=TTphy((1+attackFunct()/4500)*(P.eq[12].damage*10),.2,"attack",undefined,undefined,true);var b=TTphy((1+attackFunct()/4500)*(P.eq[13].damage*10),.2,"attack",undefined,undefined,true);var c=TTphy((1+attackFunct()/4500)*(P.eq[12].damage*10),.5,"attack",undefined,undefined,true);var DAchance=(doubleAttackChance()).toPrecision(3);DAchance=(DAchance+"%").fontcolor("#00ff00");var DWchance=(dualWieldChance()).toPrecision(3);DWchance=(DWchance+"%").fontcolor("#00ff00");var weapon1=(totalHaste1()/1000).toPrecision(2);var speed1=(weapon1+"").fontcolor("#00ff00");var weapon2=(totalHaste2()/1000).toPrecision(2);var speed2=(weapon2+"").fontcolor("#00ff00");NG.tooltipname.innerHTML="Auto Attack";var s='';s+="Toggle your auto attacks on or off.<br><br>";if(P.eq[12].type==="cleaved"||P.eq[12].type==="smashed"||"staff"===P.eq[12].type){s+="Primary Speed: "+speed1+" seconds<br>Primary Damage: "+c[0]+" to "+c[1];}else{s+="Primary Speed: "+speed1+" seconds<br>Primary Damage: "+a[0]+" to "+a[1];}
 if(P.eq[13].type==="punched"||P.eq[13].type==="slashed"||P.eq[13].type==="crushed"||P.eq[13].type==="pierced"){s+="<br>Secondary Speed: "+speed2+" seconds<br>Secondary Damage: "+b[0]+" to "+b[1];}
 if(my.doubleAttack>=1||my.dualWield>=1){s+="<br><br>";if(my.doubleAttack>=1){s+="Double Attack Chance: "+DAchance+"<br>";}
 if(my.dualWield>=1){s+="Dual Wield Chance: "+DWchance;}}

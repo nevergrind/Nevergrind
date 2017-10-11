@@ -18,7 +18,7 @@
 <html lang="en"> 
 <head>
 	<script>
-		patchVersion="1-0-107";
+		patchVersion="1-0-109";
 	</script>
 	<title>Nevergrind | Browser RPG | Free Online Game</title>
 	<meta name="keywords" content="fantasy, online, browser, free, game, rpg">
@@ -27,8 +27,9 @@
 	<meta name="google-signin-client_id" content="1015425037202-g5ri6qnj14b8vrk33lnu130ver9f43ef.apps.googleusercontent.com">
 	<meta name="google-site-verification" content="iC9l4midOGIXERCwagfpkef9ifunV-aZd_zlUUOPjIU" />
 	<link rel='stylesheet' type='text/css' href="css/global.css">
-	<link rel='stylesheet' type='text/css' href="css/nevergrind.css?v=1-0-107">
+	<link rel='stylesheet' type='text/css' href="css/nevergrind.css?v=1-0-109">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="shortcut icon" href="/images/favicon.png">
 	<?php
 		include($_SERVER['DOCUMENT_ROOT'] . "/includes/head.html");
 	?>
@@ -67,7 +68,7 @@
 						Bank Slots: <span id="bankSlots">0</span>
 					</div>';
 				} else {
-					echo '<a id="Login" class="strongShadow" href="/login.php?back=/">Login</a>';
+					echo '<a id="Login" class="btn btn-responsive strongShadow" href="/login.php?back=/">Login</a>';
 				}
 				
 				echo '<div class="modePanel">
@@ -180,7 +181,10 @@
 				</div>
 				<div id="rightPaneBG">
 					<nav id="nglogo" class="strongShadow">
-						<div  style="margin: 6px 0">
+						<?php
+						if($_SERVER["SERVER_NAME"] === "localhost"){
+						?>
+						<div style="margin: 6px 0">
 							<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 							<!-- Nevergrind ads -->
 							<ins class="adsbygoogle"
@@ -192,6 +196,7 @@
 							(adsbygoogle = window.adsbygoogle || []).push({});
 							</script>
 						</div>
+						<?php } ?>
 						<h1>
 							<div>Nevergrind | Fantasy Browser RPG</div>
 							<div>a free online game</div>
@@ -200,14 +205,28 @@
 						<img id="nevergrind" src="images1/ng_logo_532x428.png" alt="Nevergrind Logo" title="Nevergrind">
 						
 						<a href="//discord.gg/n2gp8rC" title="Join the Nevergrind Discord Server">Discord Server</a> | 
-						<a href="//nevergrind.com/leaderboards/" class="links" title="Nevergrind Leaderboards">Leaderboards</a> | 
-						<a href="//nevergrind.com/nevergrounds/" class="links" title="Character Profiles, Items, and More">Nevergrounds</a> | 
+						<a href="/leaderboards/" class="links" title="Nevergrind Leaderboards">Leaderboards</a> | 
+						<a href="/nevergrounds/" class="links" title="Character Profiles, Items, and More">Nevergrounds</a> | 
 						<a href="//nevergrind.com/wiki" class="links" title="Nevergrind Wiki">Wiki</a> | 
 						<a href="//nevergrind.com/blog" class="links" title="Browser Game Development News and Articles">Blog</a>
+						
+						<!--hr class="fancyHR">
+						<marquee class="red">Season 2 of Nevergrind coming soon... date to be decided</marquee-->
+						
 						<hr class="fancyHR">
-						<p>Other Games We Made:</p>
-						<a href="//nevergrind.com/games/firmament-wars" title="Firmament Wars | Real-Time Multiplayer Grand Strategy Browser Game" class="links">Firmament Wars | Free Multiplayer Risk-Like Strategy Game</a>
-						<div  style="margin: 6px 0">
+						<p>Other Games I Made:</p>
+						<a href="/games/firmament-wars" title="Firmament Wars | Real-Time Multiplayer Grand Strategy Browser Game" class="links">Firmament Wars | Free Multiplayer Risk-Like Strategy Game</a>
+						
+						<hr class="fancyHR">
+						
+						<div>In Development:</div>
+						<div>
+							<a href="//nevergrind.com/blog/nevergrind-2/">Nevergrind 2 Featuring Multiplayer Real-time Combat!</a>
+						</div>
+						<?php
+						if($_SERVER["SERVER_NAME"] === "localhost"){
+						?>
+						<div style="margin: 6px 0">
 							<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 							<!-- Nevergrind ads -->
 							<ins class="adsbygoogle"
@@ -219,6 +238,8 @@
 							(adsbygoogle = window.adsbygoogle || []).push({});
 							</script>
 						</div>
+						<?php } ?>
+						
 					</nav>
 				</div>
 				

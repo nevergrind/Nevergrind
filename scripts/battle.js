@@ -2523,16 +2523,16 @@ g.mobDefense = function(Slot){
 	if(foo < 33){ foo = 33; }
 	return foo/100;
 }
-function TTphy(max, percent, skillName, number, type){
+function TTphy(max, percent, skillName, number, type, tt){
 	if(!type){ type=false; }
 	var min = max*percent;	
 	var a=[];
 	if(number!==true){
-		a[0]="<span class='green'>"+g.myPhysicalDamage(min, 0, skillName, false, type, 1)+"</span>";
-		a[1]="<span class='green'>"+g.myPhysicalDamage(max, 0, skillName, false, type, 2)+"</span>";
+		a[0]="<span class='green'>"+g.myPhysicalDamage(min, 0, skillName, false, type, tt || 1)+"</span>";
+		a[1]="<span class='green'>"+g.myPhysicalDamage(max, 0, skillName, false, type, tt || 2)+"</span>";
 	}else{
-		a[0]=g.myPhysicalDamage(min, 0, skillName, false, type, 1);
-		a[1]=g.myPhysicalDamage(max, 0, skillName, false, type, 2);
+		a[0]=g.myPhysicalDamage(min, 0, skillName, false, type, tt || 1);
+		a[1]=g.myPhysicalDamage(max, 0, skillName, false, type, tt || 2);
 	}
 	return a;
 }
@@ -2676,7 +2676,9 @@ g.myPhysicalDamage = function(damage, Slot, skillName, crit, type, tt){
 	}
 	//talents physical
 	var skillLeech=0;
-	damEnh += g[JOB.PhyEnh](skillName, Slot, tt, damage);
+	if (tt === undefined){
+		damEnh += g[JOB.PhyEnh](skillName, Slot, tt, damage);
+	}
 	damage = (damage+(damage*(damEnh/100)));
 	//mob defense adjustment
 	if(tt===undefined){
@@ -5141,13 +5143,13 @@ function resumeMonsterAttack(Slot){
 	if(mob[Slot].doubleAttack===false){
 		if((mob[Slot].level > 5)&&(d2 > x)){
 			if(mob[Slot].charmStatus===true){
-				cLog("Charmed pet attacks with delay: "+100);
+				//cLog("Charmed pet attacks with delay: "+100);
 			}
 			mob[Slot].doubleAttack=true;
 			mobResumeAttackTimer(Slot, 0, 100);
 		}else{
 			if(mob[Slot].charmStatus===true){
-				cLog("Charmed pet attacks with delay: "+mobAttackSpeed(Slot));
+				//cLog("Charmed pet attacks with delay: "+mobAttackSpeed(Slot));
 			}
 			mobResumeAttackTimer(Slot, 0, mobAttackSpeed(Slot));
 		}
@@ -6519,9 +6521,9 @@ $(function(){
 		NG.tooltipmsg.innerHTML = "Cooldown: "+red(d)+" Seconds<BR><BR>You have a "+foo+" chance to successfully run from battle. Failed run attempts increase your escape chance on successive attempts.";
 	});
 	$NG.gameView.on('mouseenter','#toggleattackId',function(){
-		var a=TTphy( (1+attackFunct()/4500)*(P.eq[12].damage*10), .2, "attack"); 
-		var b=TTphy( (1+attackFunct()/4500)*(P.eq[13].damage*10), .2, "attack"); 
-		var c=TTphy( (1+attackFunct()/4500)*(P.eq[12].damage*10), .5, "attack"); 
+		var a=TTphy( (1+attackFunct()/4500)*(P.eq[12].damage*10), .2, "attack", undefined, undefined, true); 
+		var b=TTphy( (1+attackFunct()/4500)*(P.eq[13].damage*10), .2, "attack", undefined, undefined, true); 
+		var c=TTphy( (1+attackFunct()/4500)*(P.eq[12].damage*10), .5, "attack", undefined, undefined, true); 
 		var DAchance = (doubleAttackChance()).toPrecision(3);
 		DAchance = (DAchance+"%").fontcolor("#00ff00");
 		var DWchance = (dualWieldChance()).toPrecision(3);

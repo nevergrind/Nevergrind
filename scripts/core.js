@@ -734,180 +734,176 @@ function diff() {
 P.Q = [];
 
 function initQ() {
-    if (location.protocol === "http:") {
-        for (var i = 0; i <= 2; i++) {
-            P.Q[i] = {
-                ButcherblockMountains: 0,
-                CastleMistmoore: 0,
-                Crushbone: 0,
-                DagnorsCauldron: 0,
-                EstateofUnrest: 0,
-                GreaterFaydark: 0,
-                KedgeKeep: 0,
-                LesserFaydark: 0,
-                SteamfontMountains: 0,
-                Befallen: 0,
-                Beholders: 0,
-                Blackburrow: 0,
-                CazicThule: 0,
-                ClanRunnyeye: 0,
-                EastCommonlands: 0,
-                EastKarana: 0,
-                EverfrostPeaks: 0,
-                HighpassHold: 0,
-                InnothuleSwamp: 0,
-                KithicorForest: 0,
-                LakeRathetear: 0,
-                LavastormMountains: 0,
-                LowerGuk: 0,
-                MistyThicket: 0,
-                NagafensLair: 0,
-                Najena: 0,
-                NektulosForest: 0,
-                NorthKarana: 0,
-                NorthRo: 0,
-                OasisofMarr: 0,
-                OceanofTears: 0,
-                PermafrostKeep: 0,
-                QeynosHills: 0,
-                RatheMountains: 0,
-                SouthKarana: 0,
-                SouthRo: 0,
-                SoluseksEye: 0,
-                SplitpawLair: 0,
-                TheFeerrott: 0,
-                UpperGuk: 0,
-                WestCommonlands: 0,
-                WestKarana: 0,
-                ErudsCrossing: 0,
-                ToxxuliaForest: 0,
-                PlaneofFear: 0,
-                PlaneofHate: 0,
-                repeatCm3: false,
-                repeatCt3: false,
-                repeatKk3: false,
-                repeatNl3: false,
-                repeatSl3: false,
-                repeatSe3: false,
-                repeatLg3: false,
-                repeatKk4: false,
-                repeatNl4: false,
-                repeatPk4: false,
-                repeatCB: false,
-                repeatER: false,
-                CM1: 0,
-                CM2: 0,
-                CM3: 0,
-                CM4: 0,
-                CM5: 0,
-                CM6: 0,
-                CB1: 0,
-                CB2: 0,
-                CB3: 0,
-                CB4: 0,
-                CB5: 0,
-                ER1: 0,
-                ER2: 0,
-                ER3: 0,
-                ER4: 0,
-                ER5: 0,
-                GF1: 0,
-                KK1: 0,
-                KK2: 0,
-                KK3: 0,
-                KK4: 0,
-                KK5: 0,
-                LF1: 0,
-                LF2: 0,
-                BF1: 0,
-                BF2: 0,
-                BF3: 0,
-                BF4: 0,
-                BB1: 0,
-                BB2: 0,
-                BB3: 0,
-                BB4: 0,
-                CT1: 0,
-                CT2: 0,
-                CT3: 0,
-                CT4: 0,
-                CT5: 0,
-                LG1: 0,
-                LG2: 0,
-                LG3: 0,
-                LG4: 0,
-                LG5: 0,
-                LG6: 0,
-                NL1: 0,
-                NL2: 0,
-                NL3: 0,
-                NL4: 0,
-                NL5: 0,
-                NL6: 0,
-                NL7: 0,
-                NL8: 0,
-                NL9: 0,
-                NL10: 0,
-                NL11: 0,
-                NL12: 0,
-                NJ1: 0,
-                NJ2: 0,
-                NJ3: 0,
-                NJ4: 0,
-                NJ5: 0,
-                NR1: 0,
-                NR2: 0,
-                PF1: 0,
-                PF2: 0,
-                PF3: 0,
-                PF4: 0,
-                PF5: 0,
-                PF6: 0,
-                PF7: 0,
-                PF8: 0,
-                PF9: 0,
-                PF10: 0,
-                PF11: 0,
-                PF12: 0,
-                PF13: 0,
-                PF14: 0,
-                PF15: 0,
-                PF16: 0,
-                PF17: 0,
-                PF18: 0,
-                PF19: 0,
-                PF20: 0,
-                PF21: 0,
-                PF22: 0,
-                PH1: 0,
-                PH2: 0,
-                PH3: 0,
-                PH4: 0,
-                PH5: 0,
-                PH6: 0,
-                PH7: 0,
-                PH8: 0,
-                PH9: 0,
-                PH10: 0,
-                PH11: 0,
-                PH12: 0,
-                PH13: 0,
-                PK1: 0,
-                PK2: 0,
-                PK3: 0,
-                PK4: 0,
-                PK5: 0,
-                PK6: 0,
-                PK7: 0,
-                PK8: 0,
-                PK9: 0,
-                UG1: 0,
-                UG2: 0,
-                UG3: 0,
-                UG4: 0
-            };
-        }
-    }
+	for (var i = 0; i <= 2; i++) {
+		P.Q[i] = {
+			ButcherblockMountains: 0,
+			CastleMistmoore: 0,
+			Crushbone: 0,
+			DagnorsCauldron: 0,
+			EstateofUnrest: 0,
+			GreaterFaydark: 0,
+			KedgeKeep: 0,
+			LesserFaydark: 0,
+			SteamfontMountains: 0,
+			Befallen: 0,
+			Beholders: 0,
+			Blackburrow: 0,
+			CazicThule: 0,
+			ClanRunnyeye: 0,
+			EastCommonlands: 0,
+			EastKarana: 0,
+			EverfrostPeaks: 0,
+			HighpassHold: 0,
+			InnothuleSwamp: 0,
+			KithicorForest: 0,
+			LakeRathetear: 0,
+			LavastormMountains: 0,
+			LowerGuk: 0,
+			MistyThicket: 0,
+			NagafensLair: 0,
+			Najena: 0,
+			NektulosForest: 0,
+			NorthKarana: 0,
+			NorthRo: 0,
+			OasisofMarr: 0,
+			OceanofTears: 0,
+			PermafrostKeep: 0,
+			QeynosHills: 0,
+			RatheMountains: 0,
+			SouthKarana: 0,
+			SouthRo: 0,
+			SoluseksEye: 0,
+			SplitpawLair: 0,
+			TheFeerrott: 0,
+			UpperGuk: 0,
+			WestCommonlands: 0,
+			WestKarana: 0,
+			ErudsCrossing: 0,
+			ToxxuliaForest: 0,
+			PlaneofFear: 0,
+			PlaneofHate: 0,
+			repeatCm3: false,
+			repeatCt3: false,
+			repeatKk3: false,
+			repeatNl3: false,
+			repeatLg3: false,
+			repeatKk4: false,
+			repeatNl4: false,
+			repeatPk4: false,
+			repeatCB: false,
+			repeatER: false,
+			CM1: 0,
+			CM2: 0,
+			CM3: 0,
+			CM4: 0,
+			CM5: 0,
+			CM6: 0,
+			CB1: 0,
+			CB2: 0,
+			CB3: 0,
+			CB4: 0,
+			CB5: 0,
+			ER1: 0,
+			ER2: 0,
+			ER3: 0,
+			ER4: 0,
+			ER5: 0,
+			GF1: 0,
+			KK1: 0,
+			KK2: 0,
+			KK3: 0,
+			KK4: 0,
+			KK5: 0,
+			LF1: 0,
+			LF2: 0,
+			BF1: 0,
+			BF2: 0,
+			BF3: 0,
+			BF4: 0,
+			BB1: 0,
+			BB2: 0,
+			BB3: 0,
+			BB4: 0,
+			CT1: 0,
+			CT2: 0,
+			CT3: 0,
+			CT4: 0,
+			CT5: 0,
+			LG1: 0,
+			LG2: 0,
+			LG3: 0,
+			LG4: 0,
+			LG5: 0,
+			LG6: 0,
+			NL1: 0,
+			NL2: 0,
+			NL3: 0,
+			NL4: 0,
+			NL5: 0,
+			NL6: 0,
+			NL7: 0,
+			NL8: 0,
+			NL9: 0,
+			NL10: 0,
+			NL11: 0,
+			NL12: 0,
+			NJ1: 0,
+			NJ2: 0,
+			NJ3: 0,
+			NJ4: 0,
+			NJ5: 0,
+			NR1: 0,
+			NR2: 0,
+			PF1: 0,
+			PF2: 0,
+			PF3: 0,
+			PF4: 0,
+			PF5: 0,
+			PF6: 0,
+			PF7: 0,
+			PF8: 0,
+			PF9: 0,
+			PF10: 0,
+			PF11: 0,
+			PF12: 0,
+			PF13: 0,
+			PF14: 0,
+			PF15: 0,
+			PF16: 0,
+			PF17: 0,
+			PF18: 0,
+			PF19: 0,
+			PF20: 0,
+			PF21: 0,
+			PF22: 0,
+			PH1: 0,
+			PH2: 0,
+			PH3: 0,
+			PH4: 0,
+			PH5: 0,
+			PH6: 0,
+			PH7: 0,
+			PH8: 0,
+			PH9: 0,
+			PH10: 0,
+			PH11: 0,
+			PH12: 0,
+			PH13: 0,
+			PK1: 0,
+			PK2: 0,
+			PK3: 0,
+			PK4: 0,
+			PK5: 0,
+			PK6: 0,
+			PK7: 0,
+			PK8: 0,
+			PK9: 0,
+			UG1: 0,
+			UG2: 0,
+			UG3: 0,
+			UG4: 0
+		};
+	}
 }
 initQ();
 // old quest status
@@ -943,12 +939,6 @@ function resetRepeatableQuests() {
         P.Q[df].repeatNl3 = false;
         for (var i = 1; i <= 2; i++) {
             P.Q[df]['NL' + i] = 0;
-        }
-    }
-    if (P.Q[df].repeatSl3) {
-        P.Q[df].repeatSl3 = false;
-        for (var i = 1; i <= 6; i++) {
-            P.Q[df]['SL' + i] = 0;
         }
     }
     if (P.Q[df].repeatLg3) {
@@ -7566,16 +7556,22 @@ $(function() {
                     name: name
                 }
             }).done(function(data) {
-                if (data == 'false') {
-                    QMsg("Your previous character has not timed out yet.", 0, 0, 15000);
-                    QMsg("Use Camp when you're done playing your character.", 0, 0, 15000);
-                } else if (data==''){
-					return;
+				if (typeof data === 'string'){
+					if (data == 'false'){
+						QMsg("Your previous character has not timed out yet.", 0, 0, 15000);
+						QMsg("Use Camp when you're done playing your character.", 0, 0, 15000);
+					}
 				} else {
-                    var a = data.split("|");
-                    a.pop();
-                    var loops = a.length / 94;
-                    parseItem('item', loops, a);
+					data.forEach(function(item, i){
+						console.info('item ', i, item);
+						P.item[i].name = item.name;
+						if (item.json){
+							var o = JSON.parse(item.json);
+							for (var key in o){
+								P.item[i][key] = o[key];
+							}
+						}
+					});
                     srv.item = true;
                     // load character data
                     $.ajax({
@@ -7719,16 +7715,23 @@ $(function() {
                             name: name
                         }
                     }).done(function(data) {
-                        var a = data.split("|");
-                        a.pop();
-                        var loops = a.length / 94;
-                        parseItem('eq', loops, a);
+						data.forEach(function(eq, i){
+							console.info('eq ', i, eq);
+							P.eq[i].name = eq.name;
+							if (eq.json){
+								var o = JSON.parse(eq.json);
+								for (var key in o){
+									P.eq[i][key] = o[key];
+								}
+							}
+						});
                         srv.eq = true;
                         checkEnterWorld();
                         loadWeaponSlashes();
                     }).fail(function() {
                         QMsg("Server Error! Failed to load equipment values.");
                     });
+					initQ();
                     $.ajax({
                         url: 'php/loadData1.php',
                         data: {
@@ -7737,164 +7740,13 @@ $(function() {
                             name: name
                         }
                     }).done(function(data) {
-                        var a = data.split("|");
-                        a.pop();
-                        P.Q = [];
-						if(a.length < 420){
-							QMsg("Server Error! Failed to load quest values.");
-							reloadPage();
-							return;
-						}
                         for (var i = 0; i <= 2; i++) {
-                            P.Q[i] = {};
-                            P.Q[i].BB1 = a.shift() * 1;
-                            P.Q[i].BB2 = a.shift() * 1;
-                            P.Q[i].BB3 = a.shift() * 1;
-                            P.Q[i].BB4 = a.shift() * 1;
-                            P.Q[i].Befallen = a.shift() * 1;
-                            P.Q[i].BF1 = a.shift() * 1;
-                            P.Q[i].BF2 = a.shift() * 1;
-                            P.Q[i].BF3 = a.shift() * 1;
-                            P.Q[i].BF4 = a.shift() * 1;
-                            P.Q[i].Blackburrow = a.shift() * 1;
-                            P.Q[i].CastleMistmoore = a.shift() * 1;
-                            P.Q[i].CazicThule = a.shift() * 1;
-                            P.Q[i].CB1 = a.shift() * 1;
-                            P.Q[i].CB2 = a.shift() * 1;
-                            P.Q[i].CB3 = a.shift() * 1;
-                            P.Q[i].CB4 = a.shift() * 1;
-                            P.Q[i].CB5 = a.shift() * 1;
-                            P.Q[i].CM1 = a.shift() * 1;
-                            P.Q[i].CM2 = a.shift() * 1;
-                            P.Q[i].CM3 = a.shift() * 1;
-                            P.Q[i].CM4 = a.shift() * 1;
-                            P.Q[i].CM5 = a.shift() * 1;
-                            P.Q[i].CM6 = a.shift() * 1;
-                            P.Q[i].Crushbone = a.shift() * 1;
-                            P.Q[i].CT1 = a.shift() * 1;
-                            P.Q[i].CT2 = a.shift() * 1;
-                            P.Q[i].CT3 = a.shift() * 1;
-                            P.Q[i].CT4 = a.shift() * 1;
-                            P.Q[i].CT5 = a.shift() * 1;
-                            P.Q[i].ER1 = a.shift() * 1;
-                            P.Q[i].ER2 = a.shift() * 1;
-                            P.Q[i].ER3 = a.shift() * 1;
-                            P.Q[i].ER4 = a.shift() * 1;
-                            P.Q[i].ER5 = a.shift() * 1;
-                            P.Q[i].EstateofUnrest = a.shift() * 1;
-                            P.Q[i].GF1 = a.shift() * 1;
-                            P.Q[i].GreaterFaydark = a.shift() * 1;
-                            P.Q[i].KedgeKeep = a.shift() * 1;
-                            P.Q[i].KK1 = a.shift() * 1;
-                            P.Q[i].KK2 = a.shift() * 1;
-                            P.Q[i].KK3 = a.shift() * 1;
-                            P.Q[i].KK4 = a.shift() * 1;
-                            P.Q[i].KK5 = a.shift() * 1;
-                            P.Q[i].KK6 = a.shift() * 1;
-                            P.Q[i].KK7 = a.shift() * 1;
-                            P.Q[i].KK8 = a.shift() * 1;
-                            P.Q[i].LesserFaydark = a.shift() * 1;
-                            P.Q[i].LF1 = a.shift() * 1;
-                            P.Q[i].LF2 = a.shift() * 1;
-                            P.Q[i].LG1 = a.shift() * 1;
-                            P.Q[i].LG2 = a.shift() * 1;
-                            P.Q[i].LG3 = a.shift() * 1;
-                            P.Q[i].LG4 = a.shift() * 1;
-                            P.Q[i].LG5 = a.shift() * 1;
-                            P.Q[i].LG6 = a.shift() * 1;
-                            P.Q[i].LowerGuk = a.shift() * 1;
-                            P.Q[i].NagafensLair = a.shift() * 1;
-                            P.Q[i].Najena = a.shift() * 1;
-                            P.Q[i].NJ1 = a.shift() * 1;
-                            P.Q[i].NJ2 = a.shift() * 1;
-                            P.Q[i].NJ3 = a.shift() * 1;
-                            P.Q[i].NJ4 = a.shift() * 1;
-                            P.Q[i].NJ5 = a.shift() * 1;
-                            P.Q[i].NL1 = a.shift() * 1;
-                            P.Q[i].NL2 = a.shift() * 1;
-                            P.Q[i].NL3 = a.shift() * 1;
-                            P.Q[i].NL4 = a.shift() * 1;
-                            P.Q[i].NL5 = a.shift() * 1;
-                            P.Q[i].NL6 = a.shift() * 1;
-                            P.Q[i].NL7 = a.shift() * 1;
-                            P.Q[i].NL8 = a.shift() * 1;
-                            P.Q[i].NL9 = a.shift() * 1;
-                            P.Q[i].NL10 = a.shift() * 1;
-                            P.Q[i].NL11 = a.shift() * 1;
-                            P.Q[i].NL12 = a.shift() * 1;
-                            P.Q[i].NorthRo = a.shift() * 1;
-                            P.Q[i].NR1 = a.shift() * 1;
-                            P.Q[i].NR2 = a.shift() * 1;
-                            P.Q[i].PermafrostKeep = a.shift() * 1;
-                            P.Q[i].PF1 = a.shift() * 1;
-                            P.Q[i].PF2 = a.shift() * 1;
-                            P.Q[i].PF3 = a.shift() * 1;
-                            P.Q[i].PF4 = a.shift() * 1;
-                            P.Q[i].PF5 = a.shift() * 1;
-                            P.Q[i].PF6 = a.shift() * 1;
-                            P.Q[i].PF7 = a.shift() * 1;
-                            P.Q[i].PF8 = a.shift() * 1;
-                            P.Q[i].PF9 = a.shift() * 1;
-                            P.Q[i].PF10 = a.shift() * 1;
-                            P.Q[i].PF11 = a.shift() * 1;
-                            P.Q[i].PF12 = a.shift() * 1;
-                            P.Q[i].PF13 = a.shift() * 1;
-                            P.Q[i].PF14 = a.shift() * 1;
-                            P.Q[i].PF15 = a.shift() * 1;
-                            P.Q[i].PF16 = a.shift() * 1;
-                            P.Q[i].PF17 = a.shift() * 1;
-                            P.Q[i].PF18 = a.shift() * 1;
-                            P.Q[i].PF19 = a.shift() * 1;
-                            P.Q[i].PF20 = a.shift() * 1;
-                            P.Q[i].PF21 = a.shift() * 1;
-                            P.Q[i].PF22 = a.shift() * 1;
-                            P.Q[i].PH1 = a.shift() * 1;
-                            P.Q[i].PH2 = a.shift() * 1;
-                            P.Q[i].PH3 = a.shift() * 1;
-                            P.Q[i].PH4 = a.shift() * 1;
-                            P.Q[i].PH5 = a.shift() * 1;
-                            P.Q[i].PH6 = a.shift() * 1;
-                            P.Q[i].PH7 = a.shift() * 1;
-                            P.Q[i].PH8 = a.shift() * 1;
-                            P.Q[i].PH9 = a.shift() * 1;
-                            P.Q[i].PH10 = a.shift() * 1;
-                            P.Q[i].PH11 = a.shift() * 1;
-                            P.Q[i].PH12 = a.shift() * 1;
-                            P.Q[i].PH13 = a.shift() * 1;
-                            P.Q[i].PK1 = a.shift() * 1;
-                            P.Q[i].PK2 = a.shift() * 1;
-                            P.Q[i].PK3 = a.shift() * 1;
-                            P.Q[i].PK4 = a.shift() * 1;
-                            P.Q[i].PK5 = a.shift() * 1;
-                            P.Q[i].PK6 = a.shift() * 1;
-                            P.Q[i].PK7 = a.shift() * 1;
-                            P.Q[i].PK8 = a.shift() * 1;
-                            P.Q[i].PK9 = a.shift() * 1;
-                            P.Q[i].PlaneofFear = a.shift() * 1;
-                            P.Q[i].PlaneofHate = a.shift() * 1;
-
-                            function convert(foo) {
-                                if (foo) {
-                                    return true;
-                                } else {
-                                    return false;
-                                }
-                            }
-                            P.Q[i].repeatCB = convert(a.shift() * 1);
-                            P.Q[i].repeatCm3 = convert(a.shift() * 1);
-                            P.Q[i].repeatCt3 = convert(a.shift() * 1);
-                            P.Q[i].repeatER = convert(a.shift() * 1);
-                            P.Q[i].repeatKk3 = convert(a.shift() * 1);
-                            P.Q[i].repeatKk4 = convert(a.shift() * 1);
-                            P.Q[i].repeatLg3 = convert(a.shift() * 1);
-                            P.Q[i].repeatNl3 = convert(a.shift() * 1);
-                            P.Q[i].repeatNl4 = convert(a.shift() * 1);
-                            P.Q[i].repeatPk4 = convert(a.shift() * 1);
-                            P.Q[i].UG1 = a.shift() * 1;
-                            P.Q[i].UG2 = a.shift() * 1;
-                            P.Q[i].UG3 = a.shift() * 1;
-                            P.Q[i].UG4 = a.shift() * 1;
-                            P.Q[i].UpperGuk = a.shift() * 1;
+							if (data[i] !== ''){
+								var x = JSON.parse(data[i]);
+								for (var key in x){
+									P.Q[i][key] = x[key];
+								}
+							}
                         }
                         //ok!
                         g.difficulty = srv.difficulty;
@@ -8270,28 +8122,13 @@ function setZoneDifficultyIndicators(reset) {
             $('#hellLabel').css('color', '#fff');
         }
     }
-    if (location.protocol === "http:") {
-        if (dev) {
-            if (P.Q[1].PlaneofFear > 1) {
-                $("#normalLabel, #nightmareLabel,#hellLabel").css({
-                    display: 'inline-block'
-                });
-            } else if (P.Q[0].PlaneofFear > 1) {
-                $("#normalLabel, #nightmareLabel").css({
-                    display: 'inline-block'
-                });
-            }
-        }
-        setDiffColor(my.difficulty);
-    } else {
-        var hardcoreMode = $("#characterslot" + characterslot).data('hardcoreMode');
-        if ($("#characterslot" + characterslot).data('hell') >= 2) {
-            $("#normalLabel, #nightmareLabel, #hellLabel").css('display', 'inline-block');
-        } else if ($("#characterslot" + characterslot).data('nightmare') >= 2) {
-            $("#normalLabel, #nightmareLabel").css('display', 'inline-block');
-        }
-        setDiffColor(srv.difficulty);
-    }
+	var hardcoreMode = $("#characterslot" + characterslot).data('hardcoreMode');
+	if ($("#characterslot" + characterslot).data('hell')*1 >= 2) {
+		$("#normalLabel, #nightmareLabel, #hellLabel").css('display', 'inline-block');
+	} else if ($("#characterslot" + characterslot).data('nightmare')*1 >= 2) {
+		$("#normalLabel, #nightmareLabel").css('display', 'inline-block');
+	}
+	setDiffColor(srv.difficulty);
     if (hardcoreMode === "true") {
         D.getElementById("enterworld").className = "strongShadow NGhardcore";
     } else {
@@ -9260,8 +9097,6 @@ function checkUndefined() {
             delete P.Q[i].WestKarana;
             delete P.Q[i].ErudsCrossing;
             delete P.Q[i].ToxxuliaForest;
-            delete P.Q[i].repeatSl3;
-            delete P.Q[i].repeatSe3;
             delete P.Q[i].BBM1;
             delete P.Q[i].DC1;
             delete P.Q[i].DC2;
@@ -9686,13 +9521,23 @@ function itemSwapDone() {
 }
 save.itemSwap = function(itemDragType, dragSlot, itemDropType, dropSlot) {
     itemSwapStart();
-    var item1 = P[itemDragType][dragSlot];
-    var item2 = P[itemDropType][dropSlot];
+	
+    var item1 = JSON.parse(JSON.stringify(P[itemDragType][dragSlot])),
+		item2 = JSON.parse(JSON.stringify(P[itemDropType][dropSlot]));
+		
+	delete item1.name;
+	delete item2.name;
+	
+	var data1 = JSON.stringify(item1);
+	var data2 = JSON.stringify(item2);
+	
     $.ajax({
         url: 'php/itemSwap2.php',
         data: {
-            item1: item1,
-            item2: item2,
+            name1: P[itemDragType][dragSlot].name,
+            name2: P[itemDropType][dropSlot].name,
+			data1: data1,
+			data2: data2,
             itemDragType: itemDragType,
             dragSlot: dragSlot,
             itemDropType: itemDropType,
@@ -9706,78 +9551,64 @@ save.itemSwap = function(itemDragType, dragSlot, itemDropType, dropSlot) {
     });
 }
 save.item = function(Slot) {
-    if (location.protocol === "http:") {
-        var item2 = jQuery.extend(true, [], P.item); //deep copy
-        while (item2.length > 24) { // dont save town data
-            item2.pop();
-        }
-        localStorage.setItem('inv' + (lsKey + characterslot + 10), JSON.stringify(item2));
-    } else {
-        itemSwapStart();
-        $.ajax({
-            url: 'php/game1.php',
-            data: {
-                run: "updateItem",
-                item: P.item[Slot],
-                Slot: Slot,
-                slotType: 'item',
-                name: my.name
-            }
-        }).done(function(data) {
-            itemSwapDone();
-        }).fail(function(data) {
-            failToCommunicate();
-        });
-    }
+	itemSwapStart();
+	var json = JSON.parse(JSON.stringify(P.item[Slot]));
+	delete json.name;
+	$.ajax({
+		url: 'php/game1.php',
+		data: {
+			run: "updateItem",
+			json: json,
+			itemName: P.item[Slot].name,
+			Slot: Slot,
+			slotType: 'item',
+			name: my.name
+		}
+	}).done(function(data) {
+		itemSwapDone();
+	}).fail(function(data) {
+		failToCommunicate();
+	});
 }
 save.eq = function(Slot) {
-    if (location.protocol === "http:") {
-        localStorage.setItem('eq' + (lsKey + characterslot), JSON.stringify(P.eq));
-    } else {
-        itemSwapStart();
-        $.ajax({
-            url: 'php/game1.php',
-            data: {
-                run: "updateItem",
-                item: P.eq[Slot],
-                Slot: Slot,
-                slotType: 'eq',
-                name: my.name
-            }
-        }).done(function(data) {
-            itemSwapDone();
-        }).fail(function(data) {
-            failToCommunicate();
-        });
-    }
+	itemSwapStart();
+	var json = JSON.parse(JSON.stringify(P.eq[Slot]));
+	delete json.name;
+	$.ajax({
+		url: 'php/game1.php',
+		data: {
+			run: "updateItem",
+			json: json,
+			itemName: P.eq[Slot].name,
+			Slot: Slot,
+			slotType: 'eq',
+			name: my.name
+		}
+	}).done(function(data) {
+		itemSwapDone();
+	}).fail(function(data) {
+		failToCommunicate();
+	});
 }
 save.bank = function(Slot) {
-    if (location.protocol === "http:") {
-        if (enteredWorldOnce === true) {
-            if (my.hardcoreMode === "true") {
-                localStorage.setItem('HCbank4', JSON.stringify(P.bank));
-            } else {
-                localStorage.setItem('bank4', JSON.stringify(P.bank));
-            }
-        }
-    } else {
-        itemSwapStart();
-        var t1 = new Date();
-        $.ajax({
-            url: 'php/game1.php',
-            data: {
-                run: "updateItem",
-                item: P.bank[Slot],
-                Slot: Slot,
-                slotType: 'bank',
-                name: my.name
-            }
-        }).done(function(data) {
-            itemSwapDone();
-        }).fail(function(data) {
-            failToCommunicate();
-        });
-    }
+	itemSwapStart();
+	var json = JSON.parse(JSON.stringify(P.bank[Slot]));
+	delete json.name;
+	$.ajax({
+		url: 'php/game1.php',
+		data: {
+			run: "updateItem",
+			json: json,
+			itemName: P.bank[Slot].name,
+			Slot: Slot,
+			slotType: 'bank',
+			name: my.name
+		}
+	}).done(function(data) {
+		itemSwapDone();
+	}).fail(function(data) {
+		failToCommunicate();
+	});
 }
 save.GLB = function() {
     if (location.protocol === "http:") {
@@ -9850,6 +9681,11 @@ save.quests = function() {
         qq.repeatNl3 = convert(qq.repeatNl3);
         qq.repeatNl4 = convert(qq.repeatNl4);
         qq.repeatPk4 = convert(qq.repeatPk4);
+		var data = {};
+		for (var key in qq) {
+			data[key] = qq[key];
+		}
+		qq.data = JSON.stringify(data);
         $.ajax({
             url: 'php/game1.php',
             data: {
@@ -11267,18 +11103,32 @@ function loadServerCharacters() {
         data: {
             run: 'checkDifficulty'
         }
-    }).done(function(data) {
-        var a = data.split("|");
-        a.pop();
-        for (var i = 1, len = a.length / 2; i <= len; i++) {
-            var nightmare = a.shift() * 1;
-            var hell = a.shift() * 1;
-            $("#characterslot" + i).data({
-                nightmare: nightmare,
-                hell: hell
-            });
+    }).done(function(a) {
+		// skips normal
+        for (var i = 1, len=a.length+1; i < len; i++) {
+			var z = a.shift();
+			// has data
+			var x = {
+				nightmare: 0,
+				hell: 0
+			};
+			if (z.nightmare){
+				var nm = JSON.parse(z.nightmare);
+				x.nightmare = nm.PlaneofFear;
+			}
+			if (z.hell){
+				var h = JSON.parse(z.nightmare);
+				x.hell = h.PlaneofFear;
+			}
+			$("#characterslot" + i).data({
+				nightmare: x.nightmare,
+				hell: x.hell
+			});
         }
         setZoneDifficultyIndicators();
+		setTimeout(function(){
+			$("#characterslot1").trigger('click');
+		}, 100);
     });
 }
 

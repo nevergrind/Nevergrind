@@ -6921,8 +6921,8 @@ function rebuke(){
 		playAudio("lightning2");
 		for(var i=0;i<=3;i++){
 			var Slot = selectRandomTarget();
-			if(mob[Slot].name){
-				if(GLB.videoSetting==="High"){ animateLightningBlast(Slot); }
+			if(mob[Slot] !== undefined && mob[Slot].name){
+				GLB.videoSetting==="High" && animateLightningBlast(Slot);
 				var dam = minMax(attackFunct()/2.2,.75);
 				g.myMagicDamage('lightning', dam, Slot, checkCrit(), "Thunderbolt");
 			}

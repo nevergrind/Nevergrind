@@ -5586,16 +5586,26 @@ function bankToggle(){
 							run: "loadBank"
 						}
 					}).done(function(data){
-						var a = data.split("|");
-						a.pop();
-						var gold = a.shift()*1;
+						console.info("BANK: ", data);
+						var gold = data.gold * 1;
 						$('#bankGoldAmount').text(gold);
 						GLB.gold = gold;
-						maxBankSlots = a.shift()*1;
+						maxBankSlots = data.totalBankSlots * 1;
 						if(maxBankSlots<1080){
 							$("#addBankSlots").css('display','block');
 						}
-						parseItem('bank', maxBankSlots, a);
+						
+						data.bank.forEach(function(bank, i){
+							console.info('bank ', i, bank);
+							P.bank[i].name = bank.name;
+							if (bank.json){
+								var o = JSON.parse(bank.json);
+								for (var key in o){
+									P.bank[i][key] = o[key];
+								}
+							}
+						});
+						
 						renderBank(maxBankSlots);
 					}).fail(function(){
 						QMsg("Server Error. Cannot load bank.");

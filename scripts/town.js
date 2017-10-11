@@ -634,20 +634,16 @@ function sellItem(){
 			playAudio("buyitem");
 			var baz = logItemName(z.name,z.rarity);
 			Chat(('You sold '+baz+' for '+kek+' gold.'),5);
-			if(location.protocol==='https:'){
-				$.ajax({
-					url: 'php/town1.php',
-					data:{
-						run:"sellItem",
-						cost:kek,
-						name:my.name
-					}
-				}).done(function(data){
-					writeGold();
-				});
-			}else{
+			$.ajax({
+				url: 'php/town1.php',
+				data:{
+					run:"sellItem",
+					cost:kek,
+					name:my.name
+				}
+			}).done(function(data){
 				writeGold();
-			}
+			});
 			//destroy item
 			cancelDragging();
 			for(var x=0, len=g.key.length; x<len;x++){
