@@ -984,10 +984,11 @@ label{
 #createCharacterCost{
 	position:absolute;
 	left:-30px;
-	top:45px;
-	width:260px;
-	padding:6px;
+	top:43px;
+	width:316px;
+	padding:2px 8px;
 	box-shadow:0 720px rgba(0,0,0,.7) inset;
+	border:  2px ridge #333;
 	overflow:hidden;
 }
 #createcancelId{

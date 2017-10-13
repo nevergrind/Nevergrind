@@ -6,7 +6,7 @@
 })();
 $.ajaxSetup({
     type: 'POST',
-    url: '/php/master1.php'
+    url: 'php/master1.php'
 });
 var M = Math,
     T = TweenMax,
@@ -7608,98 +7608,30 @@ $(function() {
                             reloadPage();
                             return;
                         }
-                        var a = data.split("|");
-                        a.pop();
-                        my.name = a.shift();
-                        my.abjuration = a.shift() * 1;
-                        my.agi = a.shift() * 1;
-                        my.alteration = a.shift() * 1;
-                        my.cha = a.shift() * 1;
-                        my.championsSlain = a.shift() * 1;
-                        my.channeling = a.shift() * 1;
-                        my.conjuration = a.shift() * 1;
-                        my.deaths = a.shift() * 1;
-                        my.defense = a.shift() * 1;
-                        my.dex = a.shift() * 1;
-                        my.difficulty = a.shift() * 1;
-                        my.dodge = a.shift() * 1;
-                        my.doubleAttack = a.shift() * 1;
-                        my.dualWield = a.shift() * 1;
-                        my.epicQuests = a.shift() * 1;
-                        my.escapes = a.shift() * 1;
-                        my.evocation = a.shift() * 1;
-                        my.exp = a.shift() * 1;
-                        my.gender = a.shift();
-                        my.gold = a.shift() * 1;
-                        my.handtohand = a.shift() * 1;
-                        my.hardcoreMode = a.shift();
-                        my.hp = a.shift() * 1;
-                        my.intel = a.shift() * 1;
-                        my.job = a.shift();
-                        my.lastName = a.shift();
-                        my.level = a.shift() * 1;
-                        my.magicFound = a.shift() * 1;
-                        my.maxHp = a.shift() * 1;
-                        my.maxMp = a.shift() * 1;
-                        my.mobsSlain = a.shift() * 1;
-                        my.mp = a.shift() * 1;
-                        my.offense = a.shift() * 1;
-                        my.oneHandBlunt = a.shift() * 1;
-                        my.oneHandSlash = a.shift() * 1;
-                        my.parry = a.shift() * 1;
-                        my.patch = a.shift();
-                        my.piercing = a.shift() * 1;
-                        my.playtime = a.shift() * 1;
-                        my.quests = a.shift() * 1;
-                        my.race = a.shift();
-                        my.raresFound = a.shift() * 1;
-                        my.riposte = a.shift() * 1;
-                        my.setFound = a.shift() * 1;
-                        my.sta = a.shift() * 1;
-                        my.story = a.shift();
-                        my.str = a.shift() * 1;
-                        my.subzone = a.shift() * 1;
-                        my.subzoneN = a.shift() * 1;
-                        my.subzoneH = a.shift() * 1;
-                        my.svcold = a.shift() * 1;
-                        my.svfire = a.shift() * 1;
-                        my.svlightning = a.shift() * 1;
-                        my.svmagic = a.shift() * 1;
-                        my.svpoison = a.shift() * 1;
-                        my.talent1 = a.shift() * 1;
-                        my.talent2 = a.shift() * 1;
-                        my.talent3 = a.shift() * 1;
-                        my.talent4 = a.shift() * 1;
-                        my.talent5 = a.shift() * 1;
-                        my.talent6 = a.shift() * 1;
-                        my.talent7 = a.shift() * 1;
-                        my.talent8 = a.shift() * 1;
-                        my.talent9 = a.shift() * 1;
-                        my.talent10 = a.shift() * 1;
-                        my.talent11 = a.shift() * 1;
-                        my.talent12 = a.shift() * 1;
-                        my.title = a.shift();
-                        my.totalGold = a.shift() * 1;
-                        my.twoHandBlunt = a.shift() * 1;
-                        my.twoHandSlash = a.shift() * 1;
-                        my.uniquesFound = a.shift() * 1;
-                        my.upgrades = a.shift() * 1;
-                        my.wis = a.shift() * 1;
-                        my.zone = a.shift();
-                        my.zoneH = a.shift();
-                        my.zoneN = a.shift();
-                        my.comboOverall = a.shift() * 1;
-                        my.comboMistmoore = a.shift() * 1;
-                        my.comboLowerGuk = a.shift() * 1;
-                        my.comboCazicThule = a.shift() * 1;
-                        my.comboKedgeKeep = a.shift() * 1;
-                        my.comboPermafrost = a.shift() * 1;
-                        my.comboSolB = a.shift() * 1;
-                        my.comboPlaneofHate = a.shift() * 1;
-                        my.comboPlaneofFear = a.shift() * 1;
-                        my.raresSlain = a.shift() * 1;
-                        my.views = a.shift() * 1;
+                        my.title = data.title;
+                        my.name = data.name;
+                        my.views = data.views * 1;
+                        my.exp = data.exp * 1;
+                        my.gender = data.gender;
+                        my.gold = data.gold * 1;
+                        my.hardcoreMode = data.hardcoreMode;
                         my.difficulty = srv.difficulty;
+                        my.race = data.race;
+                        my.job = data.job;
+                        my.lastName = data.lastName;
+                        my.level = data.level * 1;
+                        my.zone = data.zone;
+                        my.zoneH = data.zoneH;
+                        my.zoneN = data.zoneN;
+                        my.subzone = data.subzone * 1;
+                        my.subzoneN = data.subzoneN * 1;
+                        my.subzoneH = data.subzoneH * 1;
+                        my.comboOverall = data.comboOverall * 1;
+						
+						var o = JSON.parse(data.json);
+						for (var key in o){
+							P.my[key] = o[key];
+						}
                         save.my('local');
                         srv.my = true;
                         checkEnterWorld();
@@ -9491,9 +9423,6 @@ function checkUndefined() {
     if (my.subzone === undefined) {
         my.subzone = 1;
     }
-    if (my.season !== undefined) {
-        delete my.season;
-    }
     var a = (my.patch + "").split("-");
     var m2 = a[0] * 1;
     var m = a[1] * 1;
@@ -9611,19 +9540,15 @@ save.bank = function(Slot) {
 	});
 }
 save.GLB = function() {
-    if (location.protocol === "http:") {
-        localStorage.setItem('GLB', JSON.stringify(GLB));
-    } else {
-        $.ajax({
-            url: 'php/game1.php',
-            data: {
-                run: "updateGLB",
-                GLB: GLB
-            }
-        }).fail(function(data) {
-            failToCommunicate();
-        });
-    }
+	$.ajax({
+		url: 'php/game1.php',
+		data: {
+			run: "updateGLB",
+			GLB: GLB
+		}
+	}).fail(function(data) {
+		failToCommunicate();
+	});
 }
 function serverLogout(){
 	$.ajax({
@@ -9637,69 +9562,86 @@ function serverLogout(){
 	});
 }
 save.my = function(loc) {
-    if (location.protocol === "http:" || loc === "local") {
-        localStorage.setItem('my' + (lsKey + characterslot), JSON.stringify(my));
-    } else {
-		if(!g.hardcoreDeathStatus){
-			$.ajax({
-				url: 'php/game1.php',
-				data: {
-					run: "updateMy",
-					my: my
-				}
-			}).done(function(data) {
-				if (campStatus === true) {
-					QMsg("Logging out...");
-					serverLogout();
-				}
-			}).fail(function(data) {
-				failToCommunicate();
-			});
-		}
-    }
+	if(!g.hardcoreDeathStatus){
+		var json = JSON.parse(JSON.stringify(my));
+		var keys = [
+			'name',
+			'lastName',
+			'exp',
+			'gold',
+			'title',
+			'hardcoreMode',
+			'job',
+			'level',
+			'race',
+			'difficulty',
+			'zone',
+			'zoneH',
+			'zoneN',
+			'subzone',
+			'subzoneN',
+			'subzoneH',
+			'comboOverall',
+			'views'
+		];
+		keys.forEach(function(key){
+			delete json[key];
+		});
+		my.json = json;
+		$.ajax({
+			url: 'php/game1.php',
+			data: {
+				run: "updateMy",
+				my: my
+			}
+		}).done(function(data) {
+			if (campStatus === true) {
+				QMsg("Logging out...");
+				serverLogout();
+			}
+		}).fail(function(data) {
+			failToCommunicate();
+		});
+	}
 }
 save.Lmy = function() {
     localStorage.setItem('Lmy' + (lsKey + characterslot), JSON.stringify(Lmy));
 }
 save.quests = function() {
-    if (location.protocol === "https:") {
-        function convert(foo) {
-            if (foo === true) {
-                return 1;
-            } else {
-                return 0;
-            }
-        }
-        var qq = jQuery.extend(true, {}, P.Q[diff()]); //deep copy
-        qq.repeatCB = convert(qq.repeatCB);
-        qq.repeatCm3 = convert(qq.repeatCm3);
-        qq.repeatCt3 = convert(qq.repeatCt3);
-        qq.repeatER = convert(qq.repeatER);
-        qq.repeatKk3 = convert(qq.repeatKk3);
-        qq.repeatKk4 = convert(qq.repeatKk4);
-        qq.repeatLg3 = convert(qq.repeatLg3);
-        qq.repeatNl3 = convert(qq.repeatNl3);
-        qq.repeatNl4 = convert(qq.repeatNl4);
-        qq.repeatPk4 = convert(qq.repeatPk4);
-		var data = {};
-		for (var key in qq) {
-			data[key] = qq[key];
+	function convert(foo) {
+		if (foo === true) {
+			return 1;
+		} else {
+			return 0;
 		}
-		qq.data = JSON.stringify(data);
-        $.ajax({
-            url: 'php/game1.php',
-            data: {
-                run: "updateQuests",
-                diff: diff(),
-                Q: qq,
-                name: my.name
-            }
-        }).fail(function(data) {
-            failToCommunicate();
-        });
-    } else {
-        localStorage.setItem('Q' + (lsKey + characterslot), JSON.stringify(P.Q));
-    }
+	}
+	var qq = jQuery.extend(true, {}, P.Q[diff()]); //deep copy
+	qq.repeatCB = convert(qq.repeatCB);
+	qq.repeatCm3 = convert(qq.repeatCm3);
+	qq.repeatCt3 = convert(qq.repeatCt3);
+	qq.repeatER = convert(qq.repeatER);
+	qq.repeatKk3 = convert(qq.repeatKk3);
+	qq.repeatKk4 = convert(qq.repeatKk4);
+	qq.repeatLg3 = convert(qq.repeatLg3);
+	qq.repeatNl3 = convert(qq.repeatNl3);
+	qq.repeatNl4 = convert(qq.repeatNl4);
+	qq.repeatPk4 = convert(qq.repeatPk4);
+	var data = {};
+	for (var key in qq) {
+		data[key] = qq[key];
+	}
+	qq.data = JSON.stringify(data);
+	$.ajax({
+		url: 'php/game1.php',
+		data: {
+			run: "updateQuests",
+			diff: diff(),
+			Q: qq,
+			name: my.name
+		}
+	}).fail(function(data) {
+		failToCommunicate();
+	});
 }
 
 function saveGame() {
@@ -10935,17 +10877,6 @@ function loadAllCharacters() {
 	block(['currencyIndicator', 'leftPaneBG']);
 }
 
-function testAjax() {
-    $.ajax({
-        data: {
-            run: "testAjax"
-        }
-    }).done(function(data) {
-        cLog(data);
-		x = JSON.parse(data);
-    });
-}
-
 function loadServerCharacters() {
     QMsg('Loading account data');
     D.getElementById('zoneIndicator').textContent = '';
@@ -10954,32 +10885,32 @@ function loadServerCharacters() {
             run: "loadAllCharacters"
         }
     }).done(function(data) {
-        var a = data.split("|");
-        a.pop();
-        var email = a.shift().toLowerCase();
+		console.info("loadAllCharacters: ", data);
+        var email = data.email.toLowerCase();
         foundCharacter = false;
         var Slot = 1;
         charactersFound = 0;
         for (var i = 1; i <= 16; i++) {
             D.getElementById('characterslot' + i).style.display = 'none';
         }
-        while (a.length > 0) {
-            var foo = D.getElementById('characterslot' + Slot);
-            var name = a.shift();
-            var level = a.shift() * 1;
-            var race = a.shift();
-            var job = a.shift();
-            var difficulty = a.shift() * 1;
-            var zone = a.shift();
-            var zoneN = a.shift();
-            var zoneH = a.shift();
-            var subzone = a.shift() * 1;
-            var subzoneN = a.shift() * 1;
-            var subzoneH = a.shift() * 1;
-            var hardcoreMode = a.shift();
-			var timestamp = a.shift()*1;
+		data.chars.forEach(function(c, i){
+			i++;
+            var foo = D.getElementById('characterslot' + i);
+            var name = c.name;
+            var level = c.level;
+            var race = c.race;
+            var job = c.job;
+            var difficulty = c.difficulty * 1;
+            var zone = c.zone;
+            var zoneN = c.zoneN;
+            var zoneH = c.zoneH;
+            var subzone = c.subzone * 1;
+            var subzoneN = c.subzoneN * 1;
+            var subzoneH = c.subzoneH * 1;
+            var hardcoreMode = c.hardcoreMode;
+			var timestamp = c.timestamp*1;
             var s1 = '<div class="yellow glowYellow nomouse">' + name + '</div>' +
-                '<div class="nomouse">' + level + ' ' + race + ' <span id="myjob' + Slot + '">' + job + '</div>';
+                '<div class="nomouse">' + level + ' ' + race + ' <span id="myjob' + i + '">' + job + '</div>';
 			if(timestamp===0){ // no expire
 				s1 += '<div class="nomouse yellow"></div>';
 			}else if(timestamp>0){ // time left to expire
@@ -10992,7 +10923,7 @@ function loadServerCharacters() {
 				}
 			}
             foo.innerHTML = s1
-            $("#characterslot" + Slot).data({
+            $("#characterslot" + i).data({
                 difficulty: difficulty,
                 zone: zone,
                 zoneN: zoneN,
@@ -11005,9 +10936,8 @@ function loadServerCharacters() {
             foo.style.display = 'inline-block';
             charactersFound++;
             firstEmptyCharacterSlot = 16 - charactersFound;
-            Slot++;
             foundCharacter = true;
-        }
+		});
         block(['leftPaneBG']);
         D.getElementById('createWindowId').style.display = 'block';
         D.getElementById('currencyIndicator').style.display = 'block';
@@ -12048,24 +11978,22 @@ $("#gameView").on('dragstart', 'img', function(e) {
 });
 
 function checkSessionActive() {
-    if (location.protocol === 'https:') {
-        $.ajax({
-            data: {
-                run: "checkSessionActive"
-            }
-        }).done(function(data) {
-            if (!data) {
-                // is your session still active? If not boot! 
-                // perform upon login and window focus
-                if (g.view !== "Main") {
-                    Error("Your session has timed out.");
-                    setTimeout(function() {
-                        serverLogout();
-                    }, 5000);
-                }
-            }
-        });
-    }
+	$.ajax({
+		data: {
+			run: "checkSessionActive"
+		}
+	}).done(function(data) {
+		if (!data) {
+			// is your session still active? If not boot! 
+			// perform upon login and window focus
+			if (g.view !== "Main") {
+				Error("Your session has timed out.");
+				setTimeout(function() {
+					serverLogout();
+				}, 5000);
+			}
+		}
+	});
 }
 
 function keepSessionAlive() {
