@@ -503,7 +503,7 @@ hr{
 }
 #enterWorldWrap{
 	position:absolute;
-	top:580px;
+	bottom:30px;
 	width:400px;
 	left:0;
 	right:0;

@@ -10593,8 +10593,8 @@ function loadServerCharacters() {
         }
         setZoneDifficultyIndicators();
 		setTimeout(function(){
-			$("#characterslot1").trigger('click');
-		}, 100);
+			setZoneDifficultyIndicators(true);
+		}, 500);
     });
 }
 
