@@ -353,7 +353,7 @@ function QupdateJournal(c,sz,bypass){ //update journal via function call or clic
 			Done=true; 
 		}
 	}
-	if(P.Q[x].Crushbone<5&&P.Q[x].repeatCB===false
+	if(P.Q[x].Crushbone<5&&!P.Q[x].repeatCB
 		&&P.Q[x].Befallen>=4){
 		z="Lanfeld Outpost";
 		q="Grimden's Gambit";
@@ -569,14 +569,14 @@ function QupdateJournal(c,sz,bypass){ //update journal via function call or clic
 			Done=true; 
 		}
 	}
-	if(P.Q[x].EstateofUnrest<5&&P.Q[x].repeatER===false
+	if(P.Q[x].EstateofUnrest<5&& !P.Q[x].repeatER
 		&&P.Q[x].UpperGuk>=4){
 		z="Arcturin's Crypt";
 		q="Laid to Rest";
 		if(P.Q[x].EstateofUnrest<=1){ s1+="<div class='questZones'>"+z+" 1</div><div class='QT'>"+Qcolor(q,DADJ(29+dAdj))+"</div>"; }
 		if(P.Q[x].EstateofUnrest===2){ s1+="<div class='questZones'>"+z+" 2</div><div class='QT'>"+Qcolor(q,DADJ(30+dAdj))+"</div>"; }
 		if(P.Q[x].EstateofUnrest===3){ s1+="<div class='questZones'>"+z+" 3</div><div class='QT'>"+Qcolor(q,DADJ(31+dAdj))+"</div>"; }
-		if(P.Q[x].EstateofUnrest===4&&P.Q[x].repeatER===false){ 
+		if(P.Q[x].EstateofUnrest===4&& !P.Q[x].repeatER){ 
 			s1+="<div class='questZones'>"+z+" 3 (repeatable)</div><div class='QT'>"+Qcolor(q,DADJ(31+dAdj))+"</div>"; 
 		}
 		if(((Z1===z||Z1==="Aspen Grove")&&c===undefined)||c===q&&Done===false){
@@ -637,7 +637,7 @@ function QupdateJournal(c,sz,bypass){ //update journal via function call or clic
 		}
 	}
 	//act3
-	if(P.Q[x].repeatCm3===false && ((P.Q[x].CastleMistmoore<4
+	if(!P.Q[x].repeatCm3 && ((P.Q[x].CastleMistmoore<4
 		&&P.Q[x].EstateofUnrest>=4) || P.Q[x].CastleMistmoore>3)){
 		z="Fahlnir Citadel";
 		q="Tribal Warfare";
@@ -649,7 +649,7 @@ function QupdateJournal(c,sz,bypass){ //update journal via function call or clic
 		}
 		if(P.Q[x].CastleMistmoore===3){
 			s1+="<div class='questZones'>"+z+" 3</div><div class='QT'>"+Qcolor(q,DADJ(35+dAdj))+"</div>";
-		}else if(P.Q[x].CastleMistmoore>3&&P.Q[x].repeatCm3===false){
+		}else if(P.Q[x].CastleMistmoore>3&& !P.Q[x].repeatCm3){
 			s1+="<div class='questZones'>"+z+" (repeatable)</div><div class='QT'>"+Qcolor(q,DADJ(35+dAdj))+"</div>";
 		}
 		if(((Z1===z||Z1==="Artremia")&&c===undefined)||c===q&&Done===false){
@@ -707,7 +707,7 @@ function QupdateJournal(c,sz,bypass){ //update journal via function call or clic
 					s2+=QI("Dragoon Reklyn slain",2);
 				}
 			}
-			if(P.Q[x].CastleMistmoore===3 || (P.Q[x].CastleMistmoore>3&&P.Q[x].repeatCm3===false)){
+			if(P.Q[x].CastleMistmoore===3 || (P.Q[x].CastleMistmoore>3&& !P.Q[x].repeatCm3)){
 				QHead(q,3);
 				m1=gold("Valeska: ")+"Well done! Yet another quest where you made it look so easy. This final leg of the mission is the most deadly. You will have to confront Countess Varnia and her bodyguard, Zigruben, a powerful shadow knight. The wood elves of Artremia are counting on you, "+my.name+".";
 				if(!QL.fahnlir3&&P.Q[x].CastleMistmoore===3&&(Z1===z&&SZ===3||Z1==="Artremia")){ 
@@ -733,7 +733,7 @@ function QupdateJournal(c,sz,bypass){ //update journal via function call or clic
 			Done=true; 
 		}
 	}
-	if(P.Q[x].repeatLg3===false && ((P.Q[x].LowerGuk<4
+	if(!P.Q[x].repeatLg3 && ((P.Q[x].LowerGuk<4
 		&&P.Q[x].CastleMistmoore>=4) || P.Q[x].LowerGuk>3)){
 		z="Kordata Ruins";
 		q="Mired in Ruins";
@@ -741,7 +741,7 @@ function QupdateJournal(c,sz,bypass){ //update journal via function call or clic
 		if(P.Q[x].LowerGuk===2){	s1+="<div class='questZones'>"+z+" 2</div><div class='QT'>"+Qcolor(q,DADJ(37+dAdj))+"</div>"; }
 		if(P.Q[x].LowerGuk===3){ 
 			s1+="<div class='questZones'>"+z+" 3</div><div class='QT' data-subzone='3'>"+Qcolor(q,DADJ(38+dAdj))+"</div>"; 
-		}else if(P.Q[x].LowerGuk>3&&P.Q[x].repeatLg3===false){
+		}else if(P.Q[x].LowerGuk>3&& !P.Q[x].repeatLg3){
 			s1+="<div class='questZones'>"+z+" 3 (repeatable)</div><div class='QT' data-subzone='3'>"+Qcolor(q,DADJ(38+dAdj))+"</div>";
 		}
 		if(((Z1===z||Z1==="Artremia")&&c===undefined)||c===q&&Done===false){
@@ -796,7 +796,7 @@ function QupdateJournal(c,sz,bypass){ //update journal via function call or clic
 					s2+=QI("<i id='qind6'>Anuran sentinel slain</i>",2);
 				}
 			}
-			if(P.Q[x].LowerGuk===3 || (P.Q[x].LowerGuk>3&&P.Q[x].repeatLg3===false)){
+			if(P.Q[x].LowerGuk===3 || (P.Q[x].LowerGuk>3&& !P.Q[x].repeatLg3)){
 				QHead(q,3);
 				m1=gold("Valeska: ")+"Splendid! You are drawing near to the Temple of Prenssor. Only King Froaki and his personal arch magi stand in your way. Of course you will have to defeat their henchmen first, which is no small task either.<br><br>"+
 				"The arch magi uses vicious magic spells. Have you been collecting armor with good resistances on them? It's a good idea to hang on to armor with strong resistances. In some fights, high resists are more important than armor.<br><br>"+
@@ -823,15 +823,14 @@ function QupdateJournal(c,sz,bypass){ //update journal via function call or clic
 			Done=true; 
 		}
 	}
-	if(P.Q[x].repeatCt3===false
-		&&P.Q[x].LowerGuk>=4){
+	if(!P.Q[x].repeatCt3 && P.Q[x].LowerGuk>=4){
 		z="Temple of Prenssor";
 		q="Omen of the Serpent Lord";
 		if(P.Q[x].CazicThule<=1){ s1+="<div class='questZones'>"+z+" 1</div><div class='QT'>"+Qcolor(q,DADJ(39+dAdj))+"</div>"; }
 		if(P.Q[x].CazicThule===2){ s1+="<div class='questZones'>"+z+" 2</div><div class='QT'>"+Qcolor(q,DADJ(40+dAdj))+"</div>"; }
 		if(P.Q[x].CazicThule===3){
 			s1+="<div class='questZones'>"+z+" 3</div><div class='QT'>"+Qcolor(q,DADJ(41+dAdj))+"</div>";
-		}else if(P.Q[x].CazicThule>3&&P.Q[x].repeatCt3===false){
+		}else if(P.Q[x].CazicThule>3&& !P.Q[x].repeatCt3){
 			s1+="<div class='questZones'>"+z+" 3 (repeatable)</div><div class='QT'>"+Qcolor(q,DADJ(41+dAdj))+"</div>";
 		}
 		if(((Z1===z||Z1==="Artremia")&&c===undefined)||c===q&&Done===false){
@@ -876,7 +875,7 @@ function QupdateJournal(c,sz,bypass){ //update journal via function call or clic
 					s2+=QI("<i id='qind5'>Merszas the Divine slain</i>",2);
 				}
 			}
-			if(P.Q[x].CazicThule===3|| (P.Q[x].CazicThule>3&&P.Q[x].repeatCt3===false)){
+			if(P.Q[x].CazicThule===3|| (P.Q[x].CazicThule>3&& !P.Q[x].repeatCt3)){
 				QHead(q,3);
 				m1=gold("Valeska: ")+"You have made it to the altar. This is it! The chance to collect all three Idols of Chaos! Sentoth's elite lizardmen will be at the altar ready to defend against your assault. Be prepared to fight Sentoth, the toughest encounter thus far.";
 				if(!QL.temple3&&P.Q[x].CazicThule===3&&(Z1===z&&SZ===3||Z1==="Artremia")){ 
@@ -909,13 +908,13 @@ function QupdateJournal(c,sz,bypass){ //update journal via function call or clic
 		}
 		if(P.Q[x].KedgeKeep===3){
 			s1+="<div class='questZones'>"+z+" 3</div><div class='QT' data-subzone='3'>"+Qcolor(q,DADJ(43+dAdj))+"</div>";
-		}else if(P.Q[x].KedgeKeep>3&&P.Q[x].repeatKk3===false){
+		}else if(P.Q[x].KedgeKeep>3&& !P.Q[x].repeatKk3){
 			s1+="<div class='questZones'>"+z+" 3 (repeatable)</div><div class='QT' data-subzone='3'>"+Qcolor(q,DADJ(43+dAdj))+"</div>";
 		}
 		if(P.Q[x].KedgeKeep===4){
 			s1+="<div class='questZones'>"+z+" 4</div><div class='QT' data-subzone='4'>"+Qcolor(q,DADJ(44+dAdj))+"</div>";
 		}
-		if(P.Q[x].KedgeKeep===5&&P.Q[x].repeatKk4===false){
+		if(P.Q[x].KedgeKeep===5&&!P.Q[x].repeatKk4){
 			s1+="<div class='questZones'>"+z+" 4 (repeatable)</div><div class='QT' data-subzone='4'>"+Qcolor(q,DADJ(44+dAdj))+"</div>";
 		}
 		if(((Z1===z||Z1==="Fenwoven")&&c===undefined)||c===q&&Done===false){
@@ -971,7 +970,7 @@ function QupdateJournal(c,sz,bypass){ //update journal via function call or clic
 					s2+=QI("Shardok slain",2);
 				}
 			}
-			if(P.Q[x].repeatKk3===false){
+			if(!P.Q[x].repeatKk3){
 				if(P.Q[x].KedgeKeep===3
 					|| ( P.Q[x].KedgeKeep>=4&&sz===3 )
 					|| ( P.Q[x].KedgeKeep>=4&&(c===undefined&&mySubzone()===3)) 
@@ -998,8 +997,8 @@ function QupdateJournal(c,sz,bypass){ //update journal via function call or clic
 					}
 				}
 			}
-			if(P.Q[x].repeatKk4===false){
-				if(P.Q[x].KedgeKeep===4&&P.Q[x].repeatKk3===true
+			if(!P.Q[x].repeatKk4){
+				if(P.Q[x].KedgeKeep===4&& P.Q[x].repeatKk3
 					||P.Q[x].KedgeKeep>=4&&sz===4 
 					||P.Q[x].KedgeKeep>=4&&(sz===4&&c===undefined) 
 				){
@@ -1129,14 +1128,14 @@ function QupdateJournal(c,sz,bypass){ //update journal via function call or clic
 		}
 	}
 	if(P.Q[x].PermafrostKeep>=5 && P.Q[x].NagafensLair<=5){
-		if(P.Q[x].repeatNl3===false || P.Q[x].repeatNl4===false){
+		if(!P.Q[x].repeatNl3 || !P.Q[x].repeatNl4){
 			z="Ashenflow Peak";
 			q="Volcanic Siege";
 			if(P.Q[x].NagafensLair<=1){ s1+="<div class='questZones'>"+z+" 1</div><div class='QT'>"+Qcolor(q,DADJ(47+dAdj))+"</div>"; }
 			if(P.Q[x].NagafensLair===2){	s1+="<div class='questZones'>"+z+" 2</div><div class='QT'>"+Qcolor(q,DADJ(48+dAdj))+"</div>"; }
 			if(P.Q[x].NagafensLair===3){
 				s1+="<div class='questZones'>"+z+" 3</div><div class='QT' data-subzone='3'>"+Qcolor(q,DADJ(49+dAdj))+"</div>";
-			}else if(P.Q[x].NagafensLair>3&&P.Q[x].repeatNl3===false){
+			}else if(P.Q[x].NagafensLair>3&& !P.Q[x].repeatNl3){
 				s1+="<div class='questZones'>"+z+" 3 (repeatable)</div><div class='QT' data-subzone='3'>"+Qcolor(q,DADJ(49+dAdj))+"</div>";
 			}
 			if(P.Q[x].NagafensLair===4){ 
@@ -1192,8 +1191,8 @@ function QupdateJournal(c,sz,bypass){ //update journal via function call or clic
 					}
 				}
 				if(P.Q[x].NagafensLair===3
-				|| ( (P.Q[x].NagafensLair>=4&&P.Q[x].repeatNl3===false)&&sz===3)
-				|| ( (P.Q[x].NagafensLair>=4&&P.Q[x].repeatNl3===false)&&(sz===undefined&&mySubzone()===3))			
+				|| ( (P.Q[x].NagafensLair>=4&& !P.Q[x].repeatNl3) && sz===3)
+				|| ( (P.Q[x].NagafensLair>=4&& !P.Q[x].repeatNl3) && (sz===undefined&&mySubzone()===3))			
 				){
 					QHead(q,3); 
 					m1=gold("Arwen: ")+"That last section was pretty disgusting! I can't stand bugs or spiders. That's why I choose to live in the frigid north where I don't see nasty critters like that!<br><br>"+
@@ -1470,7 +1469,7 @@ function Qprogress(Slot){ //indicate progress was made
 				return;
 			}
 		}
-		if(P.Q[x].CastleMistmoore===3 || (P.Q[x].CastleMistmoore>3&&P.Q[x].repeatCm3===false)){
+		if(P.Q[x].CastleMistmoore===3 || (P.Q[x].CastleMistmoore>3&& !P.Q[x].repeatCm3)){
 			if(mob[Slot].name==="a deathly harbinger"&&P.Q[x].CM1<7){
 				P.Q[x].CM1++;
 				flashQuest(1);
@@ -1495,13 +1494,13 @@ function Qprogress(Slot){ //indicate progress was made
 				P.Q[x].CM6=2;
 				flashQuest(6);
 			}
-			if(P.Q[x].CM1>=7&&P.Q[x].CM2>=7&&P.Q[x].CM3>=7&&P.Q[x].CM4>=7&&P.Q[x].CM5>=2&&P.Q[x].CM6>=2&&P.Q[x].repeatCm3===false){
+			if(P.Q[x].CM1>=7&&P.Q[x].CM2>=7&&P.Q[x].CM3>=7&&P.Q[x].CM4>=7&&P.Q[x].CM5>=2&&P.Q[x].CM6>=2&& !P.Q[x].repeatCm3){
 				playAudio("endquest");
 				my.quests++;
 				QMsg("Quest Completed!");
 				P.Q[x].CastleMistmoore=4;
 				setEquipValues();
-				P.Q[x].repeatCm3=true;
+				P.Q[x].repeatCm3 = 1;
 				return;
 			}
 		}
@@ -1583,7 +1582,7 @@ function Qprogress(Slot){ //indicate progress was made
 				}
 				stopMusic();
 				P.Q[x].Crushbone++;
-				P.Q[x].repeatCB=true;
+				P.Q[x].repeatCB=1;
 				setEquipValues();
 				return;
 			}
@@ -1667,7 +1666,7 @@ function Qprogress(Slot){ //indicate progress was made
 				}
 				stopMusic();
 				P.Q[x].EstateofUnrest++;
-				P.Q[x].repeatER=true;
+				P.Q[x].repeatER = 1;
 				setEquipValues();
 				return;
 			}
@@ -1763,7 +1762,7 @@ function Qprogress(Slot){ //indicate progress was made
 				return;
 			}
 		}
-		if(P.Q[x].KedgeKeep===3|| (P.Q[x].KedgeKeep>3&&P.Q[x].repeatKk3===false)){
+		if(P.Q[x].KedgeKeep===3|| (P.Q[x].KedgeKeep>3&& !P.Q[x].repeatKk3)){
 			if(mob[Slot].name==="a pained seether"&&P.Q[x].KK1<10){
 				P.Q[x].KK1++;
 				flashQuest(1);
@@ -1784,7 +1783,7 @@ function Qprogress(Slot){ //indicate progress was made
 				P.Q[x].KK5=2;
 				flashQuest(5);
 			}
-			if(P.Q[x].KK1>=10&&P.Q[x].KK2>=10&&P.Q[x].KK3>=8&&P.Q[x].KK4>=2&&P.Q[x].KK5>=2&&P.Q[x].repeatKk3===false){
+			if(P.Q[x].KK1>=10&&P.Q[x].KK2>=10&&P.Q[x].KK3>=8&&P.Q[x].KK4>=2&&P.Q[x].KK5>=2 && !P.Q[x].repeatKk3){
 				playAudio("endquest");
 				my.quests++;
 				P.Q[x].KK1=0;
@@ -1795,7 +1794,7 @@ function Qprogress(Slot){ //indicate progress was made
 				QMsg("Quest Completed!");
 				P.Q[x].KedgeKeep=4;
 				setEquipValues();
-				P.Q[x].repeatKk3=true;
+				P.Q[x].repeatKk3 = 1;
 				return;
 			}
 		}
@@ -1817,7 +1816,7 @@ function Qprogress(Slot){ //indicate progress was made
 					P.Q[x].KedgeKeep++;
 				}
 				P.Q[x].KK8=2;
-				P.Q[x].repeatKk4=true; 
+				P.Q[x].repeatKk4 = 1; 
 				QMsg("Quest Completed!");
 				P.Q[x].KedgeKeep++;
 				my.epicQuests++;
@@ -2052,7 +2051,7 @@ function Qprogress(Slot){ //indicate progress was made
 				return;
 			}
 		}
-		if(P.Q[x].CazicThule===3|| (P.Q[x].CazicThule>3&&P.Q[x].repeatCt3===false)){
+		if(P.Q[x].CazicThule===3|| (P.Q[x].CazicThule>3&& !P.Q[x].repeatCt3)){
 			if(mob[Slot].name==="a lizard zealot"&&P.Q[x].CT1<10){
 				P.Q[x].CT1++;
 				flashQuest(1);
@@ -2070,7 +2069,7 @@ function Qprogress(Slot){ //indicate progress was made
 				my.quests++;
 				my.epicQuests++;
 				QMsg("Quest Completed!");
-				P.Q[x].repeatCt3=true;
+				P.Q[x].repeatCt3 = 1;
 				if(P.Q[x].CazicThule===3){
 					var a="Permanent +1 Talent Point".fontcolor("#dd7711");
 					QMsg("Quest Reward: "+a,0,0,8000);
@@ -2157,7 +2156,7 @@ function Qprogress(Slot){ //indicate progress was made
 				return;
 			}
 		}
-		if(P.Q[x].LowerGuk===3 || (P.Q[x].LowerGuk>3&&P.Q[x].repeatLg3===false)){
+		if(P.Q[x].LowerGuk===3 || (P.Q[x].LowerGuk>3&& !P.Q[x].repeatLg3)){
 			if(mob[Slot].name==="a mal anuran knight"&&P.Q[x].LG1<12){
 				P.Q[x].LG1++;
 				flashQuest(1);
@@ -2178,13 +2177,13 @@ function Qprogress(Slot){ //indicate progress was made
 				P.Q[x].LG5=2;
 				flashQuest(5);
 			}
-			if(P.Q[x].LG1>=12&&P.Q[x].LG2>=10&&P.Q[x].LG3>=8&&P.Q[x].LG4>=2&&P.Q[x].LG5>=2&&P.Q[x].repeatLg3===false){
+			if(P.Q[x].LG1>=12&&P.Q[x].LG2>=10&&P.Q[x].LG3>=8&&P.Q[x].LG4>=2&&P.Q[x].LG5>=2&& !P.Q[x].repeatLg3){
 				playAudio("endquest");
 				my.quests++;
 				P.Q[x].LowerGuk=4;
 				QMsg("Quest Completed!");
 				setEquipValues();
-				P.Q[x].repeatLg3=true;
+				P.Q[x].repeatLg3 = 1;
 				return;
 			}
 		}
@@ -2263,7 +2262,7 @@ function Qprogress(Slot){ //indicate progress was made
 				return;
 			}
 		}
-		if(P.Q[x].NagafensLair===3 || (P.Q[x].NagafensLair>3&&P.Q[x].repeatNl3===false)){
+		if(P.Q[x].NagafensLair===3 || (P.Q[x].NagafensLair>3&& !P.Q[x].repeatNl3)){
 			if(mob[Slot].name==="a lava guardian"&&P.Q[x].NL1<10){
 				P.Q[x].NL1++;
 				flashQuest(1);
@@ -2282,7 +2281,7 @@ function Qprogress(Slot){ //indicate progress was made
 					P.Q[x].NagafensLair=4;
 				}
 				setEquipValues();
-				P.Q[x].repeatNl3=true;
+				P.Q[x].repeatNl3 = 1;
 				return;
 			}
 		}
@@ -2312,7 +2311,7 @@ function Qprogress(Slot){ //indicate progress was made
 				my.epicQuests++;
 				stopMusic();
 			}
-			if(P.Q[x].NL7>=12&&P.Q[x].NL8>=8&&P.Q[x].NL9>=2&&P.Q[x].NL10>=2&&P.Q[x].NL11>=2&&P.Q[x].NL12>=1&&P.Q[x].repeatNl4===false&&mob[Slot].name==="Highlord Szarthax"){
+			if(P.Q[x].NL7>=12&&P.Q[x].NL8>=8&&P.Q[x].NL9>=2&&P.Q[x].NL10>=2&&P.Q[x].NL11>=2&&P.Q[x].NL12>=1&&!P.Q[x].repeatNl4&&mob[Slot].name==="Highlord Szarthax"){
 				playAudio("endquest");
 				if(P.Q[x].NagafensLair===4){ 
 					my.quests++; 
@@ -2324,7 +2323,7 @@ function Qprogress(Slot){ //indicate progress was made
 					QMsg("Quest Reward: "+a,0,0,8000);
 				}
 				P.Q[x].NagafensLair++;
-				P.Q[x].repeatNl4=true;
+				P.Q[x].repeatNl4 = 1;
 				return;
 			}
 		}
@@ -2539,7 +2538,7 @@ function Qprogress(Slot){ //indicate progress was made
 				}else{
 					P.Q[x].PermafrostKeep++;
 				}
-				P.Q[x].repeatPk4=true; 
+				P.Q[x].repeatPk4=1; 
 				my.epicQuests++;
 				stopMusic();
 				return;

@@ -170,9 +170,6 @@ function resetTalents(){
 	if(petName){
 		slainPet();
 	}
-	if(location.protocol==='http:'){
-		save.my();
-	}
 }
 $("#cityWrap").on('click','#trainOK',function(){
 	if(buttonLock===true){
@@ -225,24 +222,20 @@ $("#cityWrap").on('click','#trainOK',function(){
 		Chat(NPCname+' says, "Train '+X+' for '+cost+' gold?"');
 		Chat2(NPCname+' says, "Train '+X+' for '+cost+' gold?"');
 	}
-	if(location.protocol==='http:'){
+	buttonLock=true;
+	$.ajax({
+		url: 'php/town1.php',
+		data:{
+			run:"trainSkill",
+			cost:trainSkillCost,
+			name:my.name
+		}
+	}).done(function(data){
 		doit();
-	}else{
-		buttonLock=true;
-		$.ajax({
-			url: 'php/town1.php',
-			data:{
-				run:"trainSkill",
-				cost:trainSkillCost,
-				name:my.name
-			}
-		}).done(function(data){
-			doit();
-			buttonLock=false;
-		}).fail(function(){
-			failToCommunicate();
-		});
-	}
+		buttonLock=false;
+	}).fail(function(){
+		failToCommunicate();
+	});
 }).on('click','#upgrade',function(){
 	$("#upgradeOK").text("Ok");
 	$("#upgradeCANCEL").text("Cancel");
@@ -272,27 +265,23 @@ $("#cityWrap").on('click','#trainOK',function(){
 			$("#upgradeConfirm").css("left",-700);
 			save.my();
 		}
-		if(location.protocol==='https:'){
-			g.lockScreen();
-			$.ajax({
-				url: 'php/town1.php',
-				data:{
-					run:"resetTalents",
-					cost:cost,
-					name:my.name
-				}
-			}).done(function(data){
-				var a = data.split("|");
-				if(a[0]==='ok'){
-					do1();
-				}
-				g.unlockScreen();
-			}).fail(function(){
-				failToCommunicate();
-			});
-		}else{
-			do1();
-		}
+		g.lockScreen();
+		$.ajax({
+			url: 'php/town1.php',
+			data:{
+				run:"resetTalents",
+				cost:cost,
+				name:my.name
+			}
+		}).done(function(data){
+			var a = data.split("|");
+			if(a[0]==='ok'){
+				do1();
+			}
+			g.unlockScreen();
+		}).fail(function(){
+			failToCommunicate();
+		});
 		return;
 	}
 	if(upgradePrompt){
@@ -354,20 +343,16 @@ $("#cityWrap").on('click','#trainOK',function(){
 			return;
 		}
 		if(P.item[dragSlot].name){
-			if(location.protocol==='https:'){
-				$.ajax({
-					url: 'php/town1.php',
-					data:{
-						run:"buyItem",
-						cost:cost,
-						name:my.name
-					}
-				}).done(function(data){
-					do1();
-				});
-			}else{
+			$.ajax({
+				url: 'php/town1.php',
+				data:{
+					run:"buyItem",
+					cost:cost,
+					name:my.name
+				}
+			}).done(function(data){
 				do1();
-			}
+			});
 		}
 	}else{
 		Error("You must select an item to buy first.");
@@ -499,20 +484,16 @@ function upgradeItem(){
 			save.item(dragSlot);
 			save.my();
 		}
-		if(location.protocol==='https:'){
-			$.ajax({
-				url: 'php/town1.php',
-				data:{
-					run:"buyUpgrade",
-					cost:cost,
-					name:my.name
-				}
-			}).done(function(data){
-				upgradeSuccess();
-			});
-		}else{
+		$.ajax({
+			url: 'php/town1.php',
+			data:{
+				run:"buyUpgrade",
+				cost:cost,
+				name:my.name
+			}
+		}).done(function(data){
 			upgradeSuccess();
-		}
+		});
 		CStat();
 		$("#upgradeOK").text("Ok");
 		$("#upgradeCANCEL").text("Cancel");

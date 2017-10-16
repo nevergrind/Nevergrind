@@ -182,7 +182,7 @@
 				<div id="rightPaneBG">
 					<nav id="nglogo" class="strongShadow">
 						<?php
-						if($_SERVER["SERVER_NAME"] === "localhost"){
+						if($_SERVER["SERVER_NAME"] !== "localhost"){
 						?>
 						<div style="margin: 6px 0">
 							<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -224,7 +224,7 @@
 							<a href="//nevergrind.com/blog/nevergrind-2/">Nevergrind 2 Featuring Multiplayer Real-time Combat!</a>
 						</div>
 						<?php
-						if($_SERVER["SERVER_NAME"] === "localhost"){
+						if($_SERVER["SERVER_NAME"] !== "localhost"){
 						?>
 						<div style="margin: 6px 0">
 							<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -536,7 +536,6 @@
 	function googleSsoSignIn(){
 		gapi.load('auth2', function() {
 			gapi.auth2.init();
-			console.info("Loaded SSO data");
 		});
 	}
 	</script>

@@ -14728,43 +14728,44 @@ function getLoot(Slot, Qitem, weaponType, rarity, armorType) {
 		var goy = g.difficulty - 1;
 		champBuff = 200;
 		if (mob[Slot].rare === 3) {
-			if (myZone() === "Lanfeld Outpost") {
+			var _zone = myZone();
+			if (_zone === "Lanfeld Outpost") {
 				if (P.Q[goy].Crushbone === 3) {
 					// virgin kill
 					champBuff = 700;
 				}
 			}
-			if (myZone() === "Arcturin's Crypt") {
+			if (_zone === "Arcturin's Crypt") {
 				if (P.Q[goy].EstateofUnrest === 3) {
 					champBuff = 700;
 				}
 			}
-			if (myZone() === "Temple of Prenssor") {
+			if (_zone === "Temple of Prenssor") {
 				if (P.Q[goy].CazicThule === 3) {
 					champBuff = 700;
 				}
 			}
-			if (myZone() === "Ashenflow Peak") {
+			if (_zone === "Ashenflow Peak") {
 				if (P.Q[goy].NagafensLair === 4) {
 					champBuff = 700;
 				}
 			}
-			if (myZone() === "Galeblast Fortress") {
+			if (_zone === "Galeblast Fortress") {
 				if (P.Q[goy].PermafrostKeep === 4) {
 					champBuff = 700;
 				}
 			}
-			if (myZone() === "Viston's Redoubt") {
+			if (_zone === "Viston's Redoubt") {
 				if (P.Q[goy].KedgeKeep === 4) {
 					champBuff = 700;
 				}
 			}
-			if (myZone() === "Nimgaul") {
+			if (_zone === "Nimgaul") {
 				if (P.Q[goy].PlaneofFear === 1) {
 					champBuff = 700;
 				}
 			}
-			if (myZone() === "Dire Sanctum") {
+			if (_zone === "Dire Sanctum") {
 				if (P.Q[goy].PlaneofHate === 1) {
 					champBuff = 700;
 				}
@@ -15000,7 +15001,7 @@ function getLoot(Slot, Qitem, weaponType, rarity, armorType) {
 	Chat(x);
 	if (newRarity >= 3) {
 		g.lastDrop = P.item[NI].name;
-		if (!dev && location.protocol === "https:") {
+		if (!dev) {
 			$.ajax({
 				data : {
 					run : "addLoot",

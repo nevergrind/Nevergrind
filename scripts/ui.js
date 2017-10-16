@@ -25,7 +25,7 @@ $(function(){
 		var zig = myZone()+" "+mySubzone();
 		if(selectedZone===myZone() && selectedSubzone===mySubzone()){
 			if(selectedSubzone!==0){
-				Error(("You are already located in "+myZone()+" "+mySubzone()+"!"));
+				Error(("You are already located in "+ zig +"!"));
 			}else{
 				Error(("You are already located in "+myZone()+"!"));
 			}
@@ -35,7 +35,7 @@ $(function(){
 			Error("Select a zone first!");
 			return;
 		}
-		travelZone(selectedZone,selectedSubzone);
+		travelZone(selectedZone, selectedSubzone);
 		$NG.zoneSelectButton.css({"background-position":"-5px -85px"});
 	}).on('mouseenter','.zoneSelectButton',function(){
 		var foo = this.textContent;
@@ -4400,18 +4400,12 @@ $("#gameView").on('click', '#inventoryGold, #bankGold', function(){
 	}
 });
 function writeAllGold(amount){ // character gold | bank gold
-	if(location.protocol==='http:'){
-		$("#inventoryGoldAmount").text(my.gold);
-		$("#cityGold").html("<div id='goldIcon' class='goldIcon'></div> "+my.gold);
-		$("#bankGoldAmount").text(GLB.gold);
-	}else{
-		var a = amount.split("|");
-		my.gold = a[0]*1;
-		GLB.gold = a[1]*1;
-		$("#inventoryGoldAmount").text(my.gold);
-		$("#cityGold").html("<div id='goldIcon' class='goldIcon'></div> "+my.gold);
-		$("#bankGoldAmount").text(GLB.gold);
-	}
+	var a = amount.split("|");
+	my.gold = a[0]*1;
+	GLB.gold = a[1]*1;
+	$("#inventoryGoldAmount").text(my.gold);
+	$("#cityGold").html("<div id='goldIcon' class='goldIcon'></div> "+my.gold);
+	$("#bankGoldAmount").text(GLB.gold);
 }
 $("#goldInput").on('change keyup keydown blur', function(){
 	var e = D.getElementById('goldInput');
@@ -4441,79 +4435,58 @@ $("#gameView").on('click', '.transferGold', function(){
 	var amount = parseInt(D.getElementById('goldInput').value, 10);
 	if(amount>0){
 		if(goldTransferMode==="deposit"){
-			if(location.protocol==="http:"){
-				if(amount<=my.gold){
-					my.gold-=amount;
-					GLB.gold+=amount;
-					writeAllGold();
-					playAudio('buyitem');
-				}
-			}else{
-				if(amount<=my.gold){
-					g.lockScreen(true);
-					$.ajax({
-						url: 'php/town1.php',
-						data:{
-							run:"depositGold",
-							amount:amount,
-							name:my.name
-						}
-					}).done(function(data){
-						if(data!='no'){
-							writeAllGold(data);
-							playAudio('buyitem');
-						}
-						g.unlockScreen();
-					}).fail(function(){
-						failToCommunicate();
-					});
-				}
+			if(amount<=my.gold){
+				g.lockScreen(true);
+				$.ajax({
+					url: 'php/town1.php',
+					data:{
+						run:"depositGold",
+						amount:amount,
+						name:my.name
+					}
+				}).done(function(data){
+					if(data!='no'){
+						writeAllGold(data);
+						playAudio('buyitem');
+					}
+					g.unlockScreen();
+				}).fail(function(){
+					failToCommunicate();
+				});
 			}
 		}else{
-			if(location.protocol==="http:"){
-				// withdrawal
-				if(amount<=GLB.gold){
-					my.gold+=amount;
-					GLB.gold-=amount;
-					writeAllGold();
-					playAudio('buyitem');
-				}
-			}else{
-				if(amount<=GLB.gold){
-					g.lockScreen(true);
-					$.ajax({
-						url: 'php/town1.php',
-						data:{
-							run:"withdrawGold",
-							amount:amount,
-							name:my.name
-						}
-					}).done(function(data){
-						if(data!='no'){
-							writeAllGold(data);
-							playAudio('buyitem');
-						}
-						g.unlockScreen();
-					}).fail(function(){
-						failToCommunicate();
-					});
-				}
+			if(amount<=GLB.gold){
+				g.lockScreen(true);
+				$.ajax({
+					url: 'php/town1.php',
+					data:{
+						run:"withdrawGold",
+						amount:amount,
+						name:my.name
+					}
+				}).done(function(data){
+					if(data!='no'){
+						writeAllGold(data);
+						playAudio('buyitem');
+					}
+					g.unlockScreen();
+				}).fail(function(){
+					failToCommunicate();
+				});
 			}
 		}
 	}
 	goldTransferMode='';
 });
 function setCrystals(){
-	if(location.protocol==="https:"){
-		$.ajax({
-			url: 'php/town1.php',
-			data:{
-				run:"setCrystals"
-			}
-		}).done(function(data){
-			$("#cityCrystalAmount").text(data);
-		});
-	}
+	$.ajax({
+		url: 'php/town1.php',
+		data:{
+			run:"setCrystals"
+		}
+	}).done(function(data){
+		$("#cityCrystalAmount").text(data);
+	});
 }
 
 
@@ -5586,7 +5559,6 @@ function bankToggle(){
 							run: "loadBank"
 						}
 					}).done(function(data){
-						console.info("BANK: ", data);
 						var gold = data.gold * 1;
 						$('#bankGoldAmount').text(gold);
 						GLB.gold = gold;
@@ -5594,15 +5566,14 @@ function bankToggle(){
 						if(maxBankSlots<1080){
 							$("#addBankSlots").css('display','block');
 						}
-						
 						data.bank.forEach(function(bank, i){
-							console.info('bank ', i, bank);
 							P.bank[i].name = bank.name;
-							if (bank.json){
-								var o = JSON.parse(bank.json);
-								for (var key in o){
-									P.bank[i][key] = o[key];
-								}
+							if (bank.name){
+								console.log('slot: ', i, bank.name);
+							}
+							var o = JSON.parse(bank.json);
+							for (var key in o){
+								P.bank[i][key] = o[key];
 							}
 						});
 						
@@ -5679,7 +5650,7 @@ function DA(x){ // dAdj
 	return x;
 }
 function writeMapHtml(){
-    var x=g.difficulty-1;    
+    var x=g.difficulty-1;
     var z='<div id="zoneSelect" class="strongShadow staggeredGrey">'+
 		'<div id="mapActWrap">'+
           '<div id="act1" class="zoneSelectHeader">I</div>';
@@ -6267,11 +6238,6 @@ function camp(){
 		QMsg("Saving Game... Please Wait");
 		saveButtonPositions();
 		saveGame();
-		if(location.protocol==="http:"){
-			T.delayedCall(1, function(){
-				location.reload();
-			});
-		}
 	}
 }
 
@@ -6449,42 +6415,11 @@ function updateCitySlot(Slot){
 	}
 }
 $(window).on('blur',function(){
-	if(enteredWorld===true &&
-	location.protocol==="http:"
-	&& mobsFound()===false){
-		saveGame();
-	}
 	ttTimer.kill();
 	NG.tooltip.style.visibility = "hidden";
 });
 $(window).on('focus',function(){
-	if(location.protocol==='http:'){
-		if(my.hardcoreMode==="true"){
-			var zig = localStorage.getItem("HCbank4");
-			if(zig){
-				P.bank = JSON.parse(zig);
-				if(enteredWorldOnce===true){
-					updateBank();
-				}
-			}
-		}else{
-			var zig = localStorage.getItem("bank4");
-			if(zig){
-				P.bank = JSON.parse(zig);
-				if(enteredWorldOnce===true){
-					updateBank();
-				}
-			}
-		}
-		setEquipValues();
-		if(cityStatus===true){
-			for(var i=24;i<=43;i++){
-				updateCitySlot(i);
-			}
-		}
-	}else{
-		checkSessionActive();
-	}
+	checkSessionActive();
 });
 function setDragFlash(that){
 	function flashThis(that,toggleStatus){
@@ -6728,21 +6663,8 @@ function swapItems(){
 	}
 	var itemDragType = convertType(classDrag);
 	var itemDropType = convertType(classDrop);
-	if(location.protocol==='https:'){
-		NG.ttItem.style.display='none';
-		save.itemSwap(itemDragType, dragSlot, itemDropType, dropSlot);
-	}else{
-		if(classDrag==="equipment"||classDrop==="equipment"){
-			save.eq();
-		}
-		if(classDrag==="inventory"||classDrop==="inventory"){
-			save.item();
-		}
-		if(classDrag==="bank"||classDrop==="bank"){
-			save.bank();
-		}
-		finishItemSwap();
-	}
+	NG.ttItem.style.display='none';
+	save.itemSwap(itemDragType, dragSlot, itemDropType, dropSlot);
 }
 function updateInvDrag(Slot){
 	var e = document.getElementById('inv'+Slot);
@@ -6938,20 +6860,16 @@ function destroyItem(){
 		playAudio("buyitem");
 		var baz = logItemName(P.item[dragSlot].name,P.item[dragSlot].rarity);
 		Chat(('You sold '+baz+' for '+kek+' gold.'),5);
-		if(location.protocol==='https:'){
-			$.ajax({
-				url: 'php/town1.php',
-				data:{
-					run:"sellItem",
-					cost:kek,
-					name:my.name
-				}
-			}).done(function(data){
-				writeGold();
-			});
-		}else{
+		$.ajax({
+			url: 'php/town1.php',
+			data:{
+				run:"sellItem",
+				cost:kek,
+				name:my.name
+			}
+		}).done(function(data){
 			writeGold();
-		}
+		});
 	}
 	Chat("You destroyed "+logItemName(P.item[dragSlot].name,P.item[dragSlot].rarity)+".");
 	for(var x=0, len=g.key.length; x<len;x++){
@@ -6966,15 +6884,10 @@ function destroyAllItems(){
 	for(var i=0;i<=23;i++){
 		for(var x=0, len=g.key.length; x<len;x++){
 			P.item[i][g.key[x]] = g.val[x];
-			if(location.protocol==="https:"){
-				save.item(i);
-			}
+			save.item(i);
 		}
 	}
 	updateInventory();
-	if(location.protocol==="http:"){
-		save.item();
-	}
 }
 function resurrectMe(){
 	$("#deathScreen").css("display","none");
@@ -7488,9 +7401,7 @@ $(document).on('keydown',function(e){
 		}
 	}
 	if(e.keyCode===27){
-		if(inputFocus){
-			chatClose();
-		}else{
+		if(!inputFocus){
 			if(paused===false){
 				pauseGame();
 			}else{
@@ -7499,122 +7410,6 @@ $(document).on('keydown',function(e){
 		}
 	}
 	//console.info(e.keyCode);
-	if(enteredWorld===true){
-		if(e.keyCode===13||e.keyCode===191){
-			return;
-			if(inputFocus===false){
-				if(!nameFocus){
-					inputFocus = true;
-					$("#chatLog").css('bottom',26);
-					$("#chatInput").css('display','block').focus();
-				}
-			}else{
-				if(e.keyCode!==191){
-					chatClose();
-					var e = $("#chatInput");
-					var x = e.val();
-					if(x.length>0){
-						if(x[0]==="/"){
-							if(x.indexOf('/who')===0){
-								var job = '';
-								var name = '';
-								if(x.length>5){
-									name = x.split(" ");
-									if(name[2]!==undefined){
-										var name2 = name[2].toLowerCase();
-									}
-									name = name[1].toLowerCase();
-									if(name==="warrior"){
-										job = "warrior";
-										name = '';
-									}else if(name==="monk"){
-										job = "monk";
-										name = '';
-									}else if(name==="rogue"){
-										job = "rogue";
-										name = '';
-									}else if(name==="paladin"){
-										job = "paladin";
-										name = '';
-									}else if(name==="ranger"){
-										job = "ranger";
-										name = '';
-									}else if(name==="shadow" && name2==="knight"){
-										job = "shadow knight";
-										name = '';
-									}else if(name==="bard"){
-										job = "bard";
-										name = '';
-									}else if(name==="druid"){
-										job = "druid";
-										name = '';
-									}else if(name==="cleric"){
-										job = "cleric";
-										name = '';
-									}else if(name==="shaman"){
-										job = "shaman";
-										name = '';
-									}else if(name==="necromancer"){
-										job = "necromancer";
-										name = '';
-									}else if(name==="enchanter"){
-										job = "enchanter";
-										name = '';
-									}else if(name==="magician"){
-										job = "magician";
-										name = '';
-									}else if(name==="wizard"){
-										job = "wizard";
-										name = '';
-									}
-								}
-								chatWho(name, job);
-							}else if(x.indexOf('/camp')===0){
-								camp();
-							}else if(x.indexOf('/help')===0){
-								var x = "<div><b><u>Chat Commands:</u></b></div>"+
-									"<div>[url][/url] : embed hyperlink</div>"+
-									"<div>[img][/img] : embed image</div>"+
-									"<div>/who : display all players online</div>"+
-									"<div>/who warrior : display all warriors</div>"+
-									"<div>/who Bob : display Bob's information</div>"+
-									"<div>/w Bob : send Bob a private message</div>"+
-									"<div>/camp : exit the game</div>";
-								Chat2(x,3);
-							}else if(x.indexOf('/system ')===0){
-								x = x.replace('/system ', '');
-								chatInsert(x, my.name, '', 8);
-							}else if(x.indexOf('/event ')===0){
-								x = x.replace('/event ', '');
-								chatInsert(x, my.name, '', 0);
-							}else if(x.indexOf('/ban ')===0){
-								x = x.replace('/ban ', '');
-								chatBan(x);
-							}else if(x.indexOf('/suspend ')===0){
-								x = x.replace('/suspend ', '');
-								chatSuspend(x);
-							}else if(x.indexOf('/active ')===0){
-								x = x.replace('/active ', '');
-								chatActive(x);
-							}else if(x.indexOf('/w ')===0){
-								x = x.replace('/w ', '');
-								var a = x.split(" ");
-								var to = a[0].charAt(0).toUpperCase() + a[0].slice(1);
-								var name = a[0].toLowerCase();
-								a.shift();
-								var msg = a.join(" ");
-								chatInsert(msg, my.name, name, 7);
-								Chat2("To ["+to+"]: "+msg, 7);
-							}
-						}else{
-							chatInsert(x, my.name, '', 6);
-						}
-						e.val('');
-					}
-				}
-			}
-		}
-	}
 	if(e.keyCode===32){
 		// prevent page scroll
 		if(inputFocus===false){
@@ -7627,166 +7422,6 @@ $(document).on('keydown',function(e){
 			return false;
 		}
 	}
-});
-function chatInit(){
-	return;
-    $.ajax({
-		url: 'php/chat.php',
-        data: {
-            run: "chatInit"
-        }
-    }).done(function(data) {
-		chatRow = data*1;
-	}).always(function(){
-		setTimeout(function(){
-			chatUpdate();
-		}, 1000);
-	});
-}
-function chatUpdate(){
-	return;
-    $.ajax({
-		url: 'php/chat.php',
-        data: {
-            run: "chatUpdate",
-			chatRow: chatRow
-        }
-    }).done(function(data) {
-		var a = data.split("|");
-		a.pop();
-		var loops = a.length / 8;
-		for(var i=0;i<loops;i++){
-			chatRow = a.shift()*1;
-			var GM = a.shift()*1;
-			var GMstr = '';
-			if(GM){
-				GMstr = "GM ";
-			}
-			var msg = a.shift();
-			var from = a.shift();
-			var to = a.shift();
-			var color = a.shift()*1;
-			var level = a.shift()*1;
-			var job = a.shift();
-			job = job.replace(' ', '');
-			if(to!==''){
-				if(to===my.name.toLowerCase()){
-					if(from!==my.name){
-						chatReply = from;
-						Chat2(GMstr+"["+from+"] whispers: "+msg, color);
-					}
-				}
-			}else{
-				if(color===6){
-					Chat2(GMstr+"[<span class='white'>"+level+"</span>:<span class='"+job+"-chat'>"+from+"</span>]: "+msg, color);
-				}else{
-					Chat2(msg, color);
-				}
-			}
-		}
-		
-	}).always(function(){
-		setTimeout(function(){
-			chatUpdate();
-		}, 1000);
-	});
-}
-function chatActive(account){
-    $.ajax({
-		url: 'php/chatAdmin.php',
-        data: {
-            run: "chatActive",
-			account: account
-        }
-	});
-}
-function chatBan(account){
-    $.ajax({
-		url: 'php/chatAdmin.php',
-        data: {
-            run: "chatBan",
-			account: account
-        }
-	});
-}
-function chatSuspend(account){
-    $.ajax({
-		url: 'php/chatAdmin.php',
-        data: {
-            run: "chatSuspend",
-			account: account
-        }
-	});
-}
-function chatInsert(msg, from, to, color){
-	if(color===undefined){
-		color = 6;
-	}
-	if(to===undefined){
-		to = '';
-	}
-    $.ajax({
-		url: 'php/chatWrite1.php',
-        data: {
-            run: "chatInsert",
-			msg: msg,
-			nameFrom: my.name,
-			nameTo: to,
-			color: color,
-			level: my.level,
-			job: my.job
-        }
-    });
-}
-function chatWho(name, job){
-	return;
-    $.ajax({
-		url: 'php/chat.php',
-        data: {
-            run: "chatWho",
-			name: name,
-			job: job
-        }
-    }).done(function(data) {
-		var a = data.split("|");
-		a.pop();
-		var loops = ~~(a.length / 6);
-		var z = "<div style='white-space:nowrap'>==============================================</div>";
-			var word = 'people';
-			if(loops===1){
-				word = 'person';
-			}
-			var x = z;
-			for(var i=0;i<loops;i++){
-				var level = a.shift();
-				var job = a.shift();
-				var name = a.shift();
-				var hardcoreMode = a.shift();
-				var account = a.shift();
-				var zone = a.shift();
-				var urlName = name.replace(/'/g, '%27');
-				var color = "";
-				if(hardcoreMode==='true'){
-					color = " style='color:#ff3a3a'";
-				}
-				x+= "<div"+color+">["+level+" "+job+"] <a target='_blank' style='color:#68c3ff' href='//nevergrind.com/nevergrounds/?character="+urlName+"'>"+name+"</a> - "+zone+"</div>";
-				
-			}
-			if(loops===0){
-				Chat2(x,7);
-			}else{
-				x += "<div>Your query found "+loops+' '+word+' in Vandamor.</div>';
-				Chat2(x,7);
-			}
-    });
-}
-function chatClose(){
-	inputFocus = false;
-	$(".chatLogs").css('bottom',0);
-	$("#chatInput").css('display','none');
-}
-$("input").on("blur", function() {
-	chatClose();
 });
 //cancel spell
 $(document).ready(function(){
@@ -8193,46 +7828,14 @@ function animateParticlesDown(color){
 	var ez2=ez.Qin;
 	function doit(){
 		if(my.job!=="Bard"){
-			if(castingSpell===1){
-				T.to(p3, .25, {
-					scaleX:0,
-					scaleY:0,
-					ease:ez1,
-					onComplete:function(){
-						cRem(6, p3);
-					}
-				});
-				T.to(p4, .25, {
-					scaleX:0,
-					scaleY:0,
-					ease:ez1,
-					onComplete:function(){
-						cRem(6, p4);
-					}
-				});
+			if(castingSpell){
 				return;
 			}
 		}else{
-			if(bardSingStatus===false){
-				T.to(p3, .25, {
-					scaleX:0,
-					scaleY:0,
-					ease:ez1,
-					onComplete:function(){
-						cRem(6, p3);
-					}
-				});
-				T.to(p4, .25, {
-					scaleX:0,
-					scaleY:0,
-					ease:ez1,
-					onComplete:function(){
-						cRem(6, p4);
-					}
-				});
+			if(!bardSingStatus){
 				return;
 			}
-		}	
+		}
 		var p2 = cacheAdd(s2, 6, 357, 550);
 		T.to(p2, 1,{
 			y:968,
@@ -8256,31 +7859,52 @@ function animateParticlesDown(color){
 		T.delayedCall(d2, doit);
 	}
 	var p3 = can(color+"Light3", 6, 170, 363, 0, 0, true);
-	T.to(p3, .1, {
-		scaleX:1,
-		scaleY:1,
-		onComplete:function(){
-			T.to(p3, .25, {
-				scaleX:.9,
-				scaleY:.9,
-				repeat:-1,
-				yoyo:true
-			});
-		}
-	});	
+	p3.image.onload = function(){
+		T.to(p3, .1, {
+			startAt: {
+				scaleX:1,
+				scaleY:1,
+			},
+			scaleX:.9,
+			scaleY:.9,
+			repeat:-1,
+			yoyo:true,
+			onUpdate: function(){
+				if(my.job!=="Bard" && castingSpell || 
+				my.job === 'Bard' && !bardSingStatus){
+					T.to(p3, .2, {
+						scaleX:0,
+						scaleY:0,
+						ease:ez1,
+						onComplete:function(){
+							cRem(6, p3);
+						}
+					});
+					T.to(p4, .2, {
+						scaleX:0,
+						scaleY:0,
+						ease:ez1,
+						onComplete:function(){
+							cRem(6, p4);
+						}
+					});
+				}
+			}
+		});	
+	}
 	var p4 = can(color+"Light3", 6, 710, 363, 0, 0, true);
-	T.to(p4, .5, {
-		scaleX:1,
-		scaleY:1,
-		onComplete:function(){
-			T.to(p4, .25, {
-				scaleX:.9,
-				scaleY:.9,
-				repeat:-1,
-				yoyo:true
-			});
-		}
-	});
+	p4.image.onload = function(){
+		T.to(p4, .5, {
+			startAt: {
+				scaleX:1,
+				scaleY:1,
+			},
+			scaleX:.9,
+			scaleY:.9,
+			repeat:-1,
+			yoyo:true
+		});
+	}
 	doit();
 }
 function animateParticlesUp(color){
@@ -8294,43 +7918,11 @@ function animateParticlesUp(color){
 	var ez2=ez.Qin;
 	function doit(){
 		if(my.job!=="Bard"){
-			if(castingSpell===1){
-				T.to(p3, .25, {
-					scaleX:0,
-					scaleY:0,
-					ease:ez1,
-					onComplete:function(){
-						cRem(6, p3);
-					}
-				});
-				T.to(p4, .25, {
-					scaleX:0,
-					scaleY:0,
-					ease:ez1,
-					onComplete:function(){
-						cRem(6, p4);
-					}
-				});
+			if(castingSpell){
 				return;
 			}
 		}else{
-			if(bardSingStatus===false){
-				T.to(p3, .25, {
-					scaleX:0,
-					scaleY:0,
-					ease:ez1,
-					onComplete:function(){
-						cRem(6, p3);
-					}
-				});
-				T.to(p4, .25, {
-					scaleX:0,
-					scaleY:0,
-					ease:ez1,
-					onComplete:function(){
-						cRem(6, p4);
-					}
-				});
+			if(!bardSingStatus){
 				return;
 			}
 		}
@@ -8363,31 +7955,52 @@ function animateParticlesUp(color){
 		T.delayedCall(d2, doit);
 	}
 	var p3 = can(color+"Light3", 6, 170, 363, 0, 0, true);
-	T.to(p3, .5, {
-		scaleX:1,
-		scaleY:1,
-		onComplete:function(){
-			T.to(p3, .25, {
-				scaleX:.9,
-				scaleY:.9,
-				repeat:-1,
-				yoyo:true
-			});
-		}
-	});	
+	p3.image.onload = function(){
+		T.to(p3, .25, {
+			startAt: {
+				scaleX:1,
+				scaleY:1,
+			},
+			scaleX:.9,
+			scaleY:.9,
+			repeat:-1,
+			yoyo:true,
+			onUpdate: function(){
+				if(my.job!=="Bard" && castingSpell || 
+				my.job === 'Bard' && !bardSingStatus){
+					T.to(p3, .2, {
+						scaleX:0,
+						scaleY:0,
+						ease:ez1,
+						onComplete:function(){
+							cRem(6, p3);
+						}
+					});
+					T.to(p4, .2, {
+						scaleX:0,
+						scaleY:0,
+						ease:ez1,
+						onComplete:function(){
+							cRem(6, p4);
+						}
+					});
+				}
+			}
+		});	
+	}
 	var p4 = can(color+"Light3", 6, 710, 363, 0, 0, true);
-	T.to(p4, .5, {
-		scaleX:1,
-		scaleY:1,
-		onComplete:function(){
-			T.to(p4, .25, {
-				scaleX:.9,
-				scaleY:.9,
-				repeat:-1,
-				yoyo:true
-			});
-		}
-	});
+	p4.image.onload = function(){
+		T.to(p4, .25, {
+			startAt: {
+				scaleX:1,
+				scaleY:1,
+			},
+			scaleX:.9,
+			scaleY:.9,
+			repeat:-1,
+			yoyo:true
+		});
+	}
 	doit();
 }
 
@@ -8538,23 +8151,25 @@ function makePortal(){
 		var x1 = circX(630, 130, angle);
 		var y1 = circY(470, 130, angle);
 		var p1 = can('whiteparticle50', 7, x1, y1, 25, 25);
-		T.to(p1, d, {
-			startAt:{
-				alpha:0
-			},
-			ease:ez1,
-			alpha:1
-		});
-		T.to(p1, d, {
-			x:640,
-			y:480,
-			scaleX:.1,
-			scaleY:.1,
-			ease:ez1,
-			onComplete:function(){
-				cRem(7, p1);
-			}
-		});
+		p1.image.onload = function(){
+			T.to(p1, d, {
+				startAt:{
+					alpha:0
+				},
+				ease:ez1,
+				alpha:1
+			});
+			T.to(p1, d, {
+				x:640,
+				y:480,
+				scaleX:.1,
+				scaleY:.1,
+				ease:ez1,
+				onComplete:function(){
+					cRem(7, p1);
+				}
+			});
+		}
 		if(portalStatus===true){
 			T.delayedCall(interval, doit);
 		}

@@ -2955,20 +2955,22 @@ function Remove(e){ //element
 function animateFlyingBlood(Slot, total){
 	function doit(){
 		var p4 = can('bloodSpray', 7, x2, y2, 25, 25, true);
-		var goX = x2+M.random()*630-315;
-		var goY = M.random()*55+653;
-		T.to(p4, .2, {
-			y:goY,
-			x:goX
-		});
-		T.to(p4, 8+(M.random()*(6)), {
-			scaleX:6,
-			scaleY:2,
-			alpha:0,
-			onComplete:function(){
-				cRem(7, p4);
-			}
-		});
+		p4.image.onload = function(){
+			var goX = x2+M.random()*630-315;
+			var goY = M.random()*55+653;
+			T.to(p4, .2, {
+				y:goY,
+				x:goX
+			});
+			T.to(p4, 8+(M.random()*(6)), {
+				scaleX:6,
+				scaleY:2,
+				alpha:0,
+				onComplete:function(){
+					cRem(7, p4);
+				}
+			});
+		}
 	}
 	if(GLB.videoSetting==="High"){ 
 		if(Slot===undefined){ Slot = TGT; }
@@ -2986,21 +2988,23 @@ function animatePoisonDrop(Slot){
 	var goX = M.random()*(100)-50;
 	var goY = M.random()*(15)+658;
 	var p4 = can('poisonSpray', 7, x2, y2, 25, 25, true);
-	T.to(p4, .3, {
-		y:goY,
-		x:x2+goX,
-		ease:ez.sin,
-		onComplete:function(){
-			T.to(p4, 6+M.random()*(9), {
-				scaleX:3,
-				scaleY:1.5,
-				alpha:0,
-				onComplete:function(){
-					cRem(7, p4);
-				}
-			});
-		}
-	});
+	p4.image.onload = function(){
+		T.to(p4, .3, {
+			y:goY,
+			x:x2+goX,
+			ease:ez.sin,
+			onComplete:function(){
+				T.to(p4, 6+M.random()*(9), {
+					scaleX:3,
+					scaleY:1.5,
+					alpha:0,
+					onComplete:function(){
+						cRem(7, p4);
+					}
+				});
+			}
+		});
+	}
 }
 function animateBloodDrop(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX);
@@ -3008,21 +3012,23 @@ function animateBloodDrop(Slot){
 	var goX = M.random()*(100)-50;
 	var goY = M.random()*(15)+658;
 	var p4 = can('bloodSpray', 7, x2, y2, 25, 25, true);
-	T.to(p4, .3, {
-		y:goY,
-		x:x2+goX,
-		ease:ez.sin,
-		onComplete:function(){
-			T.to(p4, 6+M.random()*(9), {
-				scaleX:6,
-				scaleY:2,
-				alpha:0,
-				onComplete:function(){
-					cRem(7, p4);
-				}
-			});
-		}
-	});
+	p4.image.onload = function(){
+		T.to(p4, .3, {
+			y:goY,
+			x:x2+goX,
+			ease:ez.sin,
+			onComplete:function(){
+				T.to(p4, 6+M.random()*(9), {
+					scaleX:6,
+					scaleY:2,
+					alpha:0,
+					onComplete:function(){
+						cRem(7, p4);
+					}
+				});
+			}
+		});
+	}
 }
 function IMG(x,y,w,h,img){
 	var H1=D.createElement('img');
@@ -3039,23 +3045,25 @@ function animateKick(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX+200);
 	var y2 = (MOB[Slot].offsetTop+mob[Slot].cY+200);
 	var e1 = can('kick', 5, x2, y2, 0, 0);
-	T.to(e1, .125, {
-		scaleX:1,
-		scaleY:1,
-		x:x2-225,
-		y:y2-225,
-		ease:ez.Qin,
-		onComplete:function(){
-			T.to(e1, .125, {
-				alpha:.25,
-				x:"-=125",
-				y:"-=125",
-				onComplete:function(){
-					cRem(5, e1);
-				}
-			});
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, .125, { 
+			scaleX:1,
+			scaleY:1,
+			x:x2-225,
+			y:y2-225,
+			ease:ez.Qin,
+			onComplete:function(){
+				T.to(e1, .125, {
+					alpha:.25,
+					x:"-=125",
+					y:"-=125",
+					onComplete:function(){
+						cRem(5, e1);
+					}
+				});
+			}
+		});
+	}
 }
 function slamReady(){
 	if(D.getElementById('slamId').textContent!==''){return;}
@@ -3161,15 +3169,17 @@ function animateSlam(Slot){
 	var y2 = (MOB[Slot].offsetTop+mob[Slot].cY-200);
 	function doit(count){
 		var e1 = can('slam', 5, x2, y2, 400, 400, true);
-		T.to(e1, .25, {
-			alpha:0,
-			scaleY:.25,
-			scaleX:.25,
-			ease:ez.sout,
-			onComplete:function(){
-				cRem(5, e1);
-			}
-		});
+		e1.image.onload = function(){
+			T.to(e1, .25, {
+				alpha:0,
+				scaleY:.25,
+				scaleX:.25,
+				ease:ez.sout,
+				onComplete:function(){
+					cRem(5, e1);
+				}
+			});
+		}
 		count++;
 		if(count<3){ 
 			T.delayedCall(.05, function(){ 
@@ -3235,21 +3245,23 @@ function animateAvengingStrike(Slot){
 	var x2 = MOB[Slot].offsetLeft+mob[Slot].cX+100;
 	var y2 = MOB[Slot].offsetTop+mob[Slot].cY-100;
 	var e1 = can('punchedRed', 5, x2, y2, 0, 0);
-	T.to(e1, .12, {
-		scaleX:1,
-		scaleY:1,
-		x:x2-200,
-		ease:ez.Qin
-	});
-	T.to(e1, .12, {
-		delay:.12,
-		scaleX:0,
-		scaleY:0,
-		y:y2+200,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, .12, {
+			scaleX:1,
+			scaleY:1,
+			x:x2-200,
+			ease:ez.Qin
+		});
+		T.to(e1, .12, {
+			delay:.12,
+			scaleX:0,
+			scaleY:0,
+			y:y2+200,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+	}
 }
 $(function(){
 	$NG.window3.on('mouseenter','#avengingstrikeId',function(){
@@ -3371,21 +3383,23 @@ function animateHemorrhage(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX);
 	var y2 = (MOB[Slot].offsetTop+mob[Slot].cY);
 	var e1 = can('hemorrhage', 5, x2, y2, 0, 0);
-	T.to(e1, .1, {
-		scaleX:1,
-		scaleY:1,
-		y:y2-200,
-		ease:ez.lin
-	});
-	T.to(e1, .4, {
-		delay:.1,
-		alpha:0,
-		y:"+="+5,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
-	animateFlyingBlood(Slot, 20);
+	e1.image.onload = function(){
+		T.to(e1, .1, {
+			scaleX:1,
+			scaleY:1,
+			y:y2-200,
+			ease:ez.lin
+		});
+		T.to(e1, .4, {
+			delay:.1,
+			alpha:0,
+			y:"+="+5,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+		animateFlyingBlood(Slot, 20);
+	}
 }
 
 function shockwaveReady(){
@@ -3465,14 +3479,16 @@ function animateNova(img,pet){
 	}
 	function doit(count){
 		var p4 = can(img, 7, x1-200, y1-50, 0, 0, true);
-		T.to(p4, .5, {
-			scaleX:sx,
-			scaleY:sy,
-			alpha:0,
-			onComplete:function(){
-				cRem(7, p4);
-			}
-		});
+		p4.image.onload = function(){
+			T.to(p4, .5, {
+				scaleX:sx,
+				scaleY:sy,
+				alpha:0,
+				onComplete:function(){
+					cRem(7, p4);
+				}
+			});
+		}
 		count++;
 		if(count<8){ 
 			T.delayedCall(.03, function(){ 
@@ -3569,41 +3585,45 @@ function animateSubjugate(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX+150);
 	var y2 = (MOB[Slot].offsetTop+mob[Slot].cY-150);
 	var e1 = can('subjugate', 5, x2, y2, 0, 0);
-	T.to(e1, .125, {
-		scaleX:1.5,
-		scaleY:1.5,
-		x:x2-300,
-		ease:ez.Qin,
-		onComplete:function(){
-			T.to(e1, 2, {
-				startAt:{
-					alpha:.2
-				},
-				alpha:0,
-				onComplete:function(){
-					cRem(5, e1);
-				}
-			});
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, .125, {
+			scaleX:1.5,
+			scaleY:1.5,
+			x:x2-300,
+			ease:ez.Qin,
+			onComplete:function(){
+				T.to(e1, 2, {
+					startAt:{
+						alpha:.2
+					},
+					alpha:0,
+					onComplete:function(){
+						cRem(5, e1);
+					}
+				});
+			}
+		});
+	}
 	var e2 = can('subjugate', 5, x2, y2, 0, 0);
-	T.to(e2, .125, {
-		scaleX:1.5,
-		scaleY:1.5,
-		x:x2-300,
-		ease:ez.Qin,
-		onComplete:function(){
-			T.to(e2, .125, {
-				y:y2+300,
-				scaleX:0,
-				scaleY:0,
-				onComplete:function(){
-					cRem(5, e2);
-				}
-			});
-		}
-	});
-	T.delayedCall(.1, animateTremor, [x2-150, 600]);
+	e2.image.onload = function(){
+		T.to(e2, .125, {
+			scaleX:1.5,
+			scaleY:1.5,
+			x:x2-300,
+			ease:ez.Qin,
+			onComplete:function(){
+				T.to(e2, .125, {
+					y:y2+300,
+					scaleX:0,
+					scaleY:0,
+					onComplete:function(){
+						cRem(5, e2);
+					}
+				});
+			}
+		});
+		T.delayedCall(.1, animateTremor, [x2-150, 600]);
+	}
 }
 $(function(){
 	$NG.window3.on('mouseenter','#subjugateId',function(){
@@ -3656,40 +3676,44 @@ function animateDecisiveBlow(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX+150);
 	var y2 = (MOB[Slot].offsetTop+mob[Slot].cY-150);
 	var e1 = can('decisiveBlow', 5, x2, y2, 0, 0);
-	T.to(e1, .15, {
-		scaleX:1.5,
-		scaleY:1.5,
-		x:x2-300,
-		ease:ez.Qin,
-		onComplete:function(){
-			T.to(e1, 2, {
-				startAt:{
-					alpha:.2
-				},
-				alpha:0,
-				onComplete:function(){
-					cRem(5, e1);
-				}
-			});
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, .15, {
+			scaleX:1.5,
+			scaleY:1.5,
+			x:x2-300,
+			ease:ez.Qin,
+			onComplete:function(){
+				T.to(e1, 2, {
+					startAt:{
+						alpha:.2
+					},
+					alpha:0,
+					onComplete:function(){
+						cRem(5, e1);
+					}
+				});
+			}
+		});
+	}
 	var e2 = can('decisiveBlow', 5, x2, y2, 0, 0);
-	T.to(e2, .1, {
-		scaleX:1.5,
-		scaleY:1.5,
-		x:x2-300,
-		ease:ez.Qin,
-		onComplete:function(){
-			T.to(e2, .1, {
-				y:y2+300,
-				scaleX:0,
-				scaleY:0,
-				onComplete:function(){
-					cRem(5, e2);
-				}
-			});
-		}
-	});
+	e2.image.onload = function(){
+		T.to(e2, .1, {
+			scaleX:1.5,
+			scaleY:1.5,
+			x:x2-300,
+			ease:ez.Qin,
+			onComplete:function(){
+				T.to(e2, .1, {
+					y:y2+300,
+					scaleX:0,
+					scaleY:0,
+					onComplete:function(){
+						cRem(5, e2);
+					}
+				});
+			}
+		});
+	}
 	function tremor(count){
 		T.delayedCall(.1, animateTremor, [x2-150, 600]);
 		count++;
@@ -3860,14 +3884,16 @@ function animateRampage(){
 			var Y2 = 700;
 		}
 		var p1 = can('redparticle50', 5, X1, Y1, 1280, 200);
-		p1.alpha=.1;
-		T.to(p1, 1.5, {
-			y:Y2,
-			x:X2,
-			onComplete:function(){
-				cRem(5, p1);
-			}
-		});
+		p1.image.onload = function(){
+			p1.alpha=.1;
+			T.to(p1, 1.5, {
+				y:Y2,
+				x:X2,
+				onComplete:function(){
+					cRem(5, p1);
+				}
+			});
+		}
 		if(interval<20){ 
 			T.delayedCall(interval/1000, function(){
 				Pgo(++interval);
@@ -3928,10 +3954,14 @@ function animateDebuff(color){
 		}
 		if(sX<15){
 			var p1 = can(color+"particle50", 7, X1, Y1, sX, sX);
-			debuffPart(p1, 7, .2, Y2);
+			p1.image.onload = function(){
+				debuffPart(p1, 7, .2, Y2);
+			}
 		}else{
 			var p1 = can(color+"particle50", 5, X1, Y1, sX, sX);
-			debuffPart(p1, 5, .4, Y2);
+			p1.image.onload = function(){
+				debuffPart(p1, 5, .4, Y2);
+			}
 		}
 	}
 }
@@ -4113,16 +4143,18 @@ function bulwark(){
 function animateBulwark(){
 	flashScreen("#00f",.3,2);
 	var e1 = can('bulwark', 5, 418, 227, 444, 500, true);
-	T.to(e1, 3, {
-		y:667,
-		alpha:0,
-		scaleX:.5,
-		scaleY:.5,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
-	animateBuffRings();
+	e1.image.onload = function(){
+		T.to(e1, 3, {
+			y:667,
+			alpha:0,
+			scaleX:.5,
+			scaleY:.5,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+		animateBuffRings();
+	}
 }
 $(function(){
 	$NG.window3.on('mouseenter','#bulwarkId',function(){
@@ -4218,40 +4250,44 @@ function animateIntrepidMight(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX+150);
 	var y2 = (MOB[Slot].offsetTop+mob[Slot].cY-150);
 	var e1 = can('intrepidMight', 5, x2, y2, 0, 0);
-	T.to(e1, .15, {
-		scaleX:1.5,
-		scaleY:1.5,
-		x:x2-300,
-		ease:ez.Qin,
-		onComplete:function(){
-			T.to(e1, 2, {
-				startAt:{
-					alpha:.2
-				},
-				alpha:0,
-				onComplete:function(){
-					cRem(5, e1);
-				}
-			});
-		}
-	});	
+	e1.image.onload = function(){
+		T.to(e1, .15, {
+			scaleX:1.5,
+			scaleY:1.5,
+			x:x2-300,
+			ease:ez.Qin,
+			onComplete:function(){
+				T.to(e1, 2, {
+					startAt:{
+						alpha:.2
+					},
+					alpha:0,
+					onComplete:function(){
+						cRem(5, e1);
+					}
+				});
+			}
+		});	
+	}
 	var e2 = can('intrepidMight', 5, x2, y2, 0, 0);
-	T.to(e2, .1, {
-		scaleX:1.5,
-		scaleY:1.5,
-		x:x2-300,
-		ease:ez.Qin,
-		onComplete:function(){
-			T.to(e2, .1, {
-				y:y2+300,
-				scaleX:0,
-				scaleY:0,
-				onComplete:function(){
-					cRem(5, e2);
-				}
-			});
-		}
-	});
+	e2.image.onload = function(){
+		T.to(e2, .1, {
+			scaleX:1.5,
+			scaleY:1.5,
+			x:x2-300,
+			ease:ez.Qin,
+			onComplete:function(){
+				T.to(e2, .1, {
+					y:y2+300,
+					scaleX:0,
+					scaleY:0,
+					onComplete:function(){
+						cRem(5, e2);
+					}
+				});
+			}
+		});
+	}
 }
 $(function(){
 	$NG.window3.on('mouseenter','#intrepidmightId',function(){
@@ -4279,22 +4315,24 @@ function animateShadowStrike(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX+100);
 	var y2 = (MOB[Slot].offsetTop+mob[Slot].cY-100);
 	var e1 = can('shadowStrike', 5, x2, y2, 0, 0);
-	T.to(e1, .125, {
-		scaleX:1,
-		scaleY:1,
-		x:x2-200,
-		ease:ez.Qin,
-		onComplete:function(){
-			T.to(e1, .125, {
-				scaleX:0,
-				scaleY:0,
-				y:y2+200,
-				onComplete:function(){
-					cRem(5, e1);
-				}
-			});
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, .125, {
+			scaleX:1,
+			scaleY:1,
+			x:x2-200,
+			ease:ez.Qin,
+			onComplete:function(){
+				T.to(e1, .125, {
+					scaleX:0,
+					scaleY:0,
+					y:y2+200,
+					onComplete:function(){
+						cRem(5, e1);
+					}
+				});
+			}
+		});
+	}
 }
 $(function(){
 	$NG.window3.on('mouseenter','#shadowstrikeId',function(){
@@ -4356,56 +4394,62 @@ function animateLacerate(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX+100);
 	var y2 = (MOB[Slot].offsetTop+mob[Slot].cY-100);
 	var e1 = can('lacerate', 5, x2, y2, 0, 0);
-	T.to(e1, .125, {
-		scaleX:1,
-		scaleY:1,
-		x:x2-200,
-		ease:ez.Qin,
-		onComplete:function(){
-			T.to(e1, .15, {
-				scaleX:0,
-				scaleY:0,
-				y:y2+200,
-				onComplete:function(){
-					cRem(5, e1);
-				}
-			});
-		}
-	});	
+	e1.image.onload = function(){
+		T.to(e1, .125, {
+			scaleX:1,
+			scaleY:1,
+			x:x2-200,
+			ease:ez.Qin,
+			onComplete:function(){
+				T.to(e1, .15, {
+					scaleX:0,
+					scaleY:0,
+					y:y2+200,
+					onComplete:function(){
+						cRem(5, e1);
+					}
+				});
+			}
+		});	
+	}
 	var e2 = can('lacerate', 5, x2-40, y2, 0, 0);
-	T.to(e2, .125, {
-		scaleY:1,
-		scaleX:1,
-		x:x2-240,
-		ease:ez.Qin,
-		onComplete:function(){
-			T.to(e2, .15, {
-				scaleX:0,
-				scaleY:0,
-				y:y2+200,
-				onComplete:function(){
-					cRem(5, e2);
-				}
-			});
-		}
-	});	
+	e2.image.onload = function(){
+		T.to(e2, .125, {
+			scaleY:1,
+			scaleX:1,
+			x:x2-240,
+			ease:ez.Qin,
+			onComplete:function(){
+				T.to(e2, .15, {
+					scaleX:0,
+					scaleY:0,
+					y:y2+200,
+					onComplete:function(){
+						cRem(5, e2);
+					}
+				});
+			}
+		});	
+	}
 	var e3 = can('lacerate', 5, x2+40, y2, 0, 0);
-	T.to(e3, .125, {
-		scaleX:1,
-		scaleY:1,
-		x:x2-160,
-		ease:ez.Qin,
-		onComplete:function(){
-			T.to(e3, .125, {
-				scaleX:0,
-				scaleY:0,
-				y:y2+200,
-				onComplete:function(){
-					cRem(5, e1);
-				}
-			});
-		}
-	});
+	e3.image.onload = function(){
+		T.to(e3, .125, {
+			scaleX:1,
+			scaleY:1,
+			x:x2-160,
+			ease:ez.Qin,
+			onComplete:function(){
+				T.to(e3, .125, {
+					scaleX:0,
+					scaleY:0,
+					y:y2+200,
+					onComplete:function(){
+						cRem(5, e1);
+					}
+				});
+			}
+		});
+	}
 	for(var i=0;i<=(~~(M.random()*(3)+2));i++){
 		animateBloodDrop(Slot);
 	}
@@ -4478,15 +4522,17 @@ function animateEvade(color){
 			var X2 = 960;
 		}
 		var p1 = can(color+'particle50', 5, X1, 360, 1280, 200);
-		p1.alpha=.1;
-		T.to(p1, 1.5, {
-			y:-100,
-			x:X2,
-			alpha:0,
-			onComplete:function(){
-				cRem(5, p1);
-			}
-		});
+		p1.image.onload = function(){
+			p1.alpha=.1;
+			T.to(p1, 1.5, {
+				y:-100,
+				x:X2,
+				alpha:0,
+				onComplete:function(){
+					cRem(5, p1);
+				}
+			});
+		}
 		if(count<30){ 
 			T.delayedCall(.02, function(){ 
 				doit(++count); 
@@ -4553,27 +4599,31 @@ function animateSonicStrike(Slot){
 	var y2 = (MOB[Slot].offsetTop+mob[Slot].cY-75);
 	animateBurst(Slot);
 	var p3 = can('tremorFG', 5, x2+75, y2+75, 0, 0);
-	T.to(p3, .8, {
-		y:y2+50,
-		x:x2-425,
-		scaleX:2.5,
-		scaleY:.5,
-		alpha:0,
-		onComplete:function(){
-			cRem(5, p3);
-		}
-	});
+	p3.image.onload = function(){
+		T.to(p3, .8, {
+			y:y2+50,
+			x:x2-425,
+			scaleX:2.5,
+			scaleY:.5,
+			alpha:0,
+			onComplete:function(){
+				cRem(5, p3);
+			}
+		});
+	}
 	var p4 = can('tremorBG', 7, x2+75, y2+75, 0, 0);
-	T.to(p4, .8, {
-		y:y2+50,
-		x:x2-425,
-		scaleX:2.5,
-		scaleY:.5,
-		alpha:0,
-		onComplete:function(){
-			cRem(7, p4);
-		}
-	});
+	p4.image.onload = function(){
+		T.to(p4, .8, {
+			y:y2+50,
+			x:x2-425,
+			scaleX:2.5,
+			scaleY:.5,
+			alpha:0,
+			onComplete:function(){
+				cRem(7, p4);
+			}
+		});
+	}
 }
 function animateBossExplodeSonicRing(total){
 	var x2 = (MOB[2].offsetLeft+mob[2].cX);
@@ -5268,19 +5318,23 @@ function animateRings(Slot, total){
 	//execute
 	function doIt(count){
 		var p5 = can('tremorFG', 5, x2-xWidth, y2-50, xWidth*2, 50);
-		T.to(p5, .5, {
-			y:y2-250,
-			onComplete:function(){
-				cRem(5, p5);
-			}
-		});
+		p5.image.onload = function(){
+			T.to(p5, .5, {
+				y:y2-250,
+				onComplete:function(){
+					cRem(5, p5);
+				}
+			});
+		}
 		var p4 = can('tremorBG', 7, x2-xWidth, y2-50, xWidth*2, 50);
-		T.to(p4, .5, {
-			y:y2-250,
-			onComplete:function(){
-				cRem(7, p4);
-			}
-		});
+		p4.image.onload = function(){
+			T.to(p4, .5, {
+				y:y2-250,
+				onComplete:function(){
+					cRem(7, p4);
+				}
+			});
+		}
 		count++;
 		if(count<total){ 
 			T.delayedCall(.05, function(){ 
@@ -5377,16 +5431,18 @@ function animateAncientWill(){
 		var x = M.random()*(1290);
 		var y = M.random()*(50)+497;
 		var p1 = can('yellowparticle50', 5, x, y, size, size);
-		T.to(p1, .5, {
-			scaleX:0,
-			scaleY:0,
-			x:"+="+(size/2),
-			y:"+="+(50+(size/2)),
-			ease:ez.Qin,
-			onComplete:function(){
-				cRem(5, p1);
-			}
-		});
+		p1.image.onload = function(){
+			T.to(p1, .5, {
+				scaleX:0,
+				scaleY:0,
+				x:"+="+(size/2),
+				y:"+="+(50+(size/2)),
+				ease:ez.Qin,
+				onComplete:function(){
+					cRem(5, p1);
+				}
+			});
+		}
 		if(count<40){ 
 			T.delayedCall(.025, function(){ 
 				doIt(++count);
@@ -5471,22 +5527,24 @@ function animateMirageStrike(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX+100);
 	var y2 = (MOB[Slot].offsetTop+mob[Slot].cY-100);
 	var e1 = can('mirageStrike', 5, x2, y2, 0, 0);
-	T.to(e1, .1, {
-		scaleY:1,
-		scaleX:1,
-		x:x2-200,
-		ease:ez.Qin,
-		onComplete:function(){
-			T.to(e1, .1, {
-				scaleX:0,
-				scaleY:0,
-				y:y2+200,
-				onComplete:function(){
-					cRem(5, e1);
-				}
-			});
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, .1, {
+			scaleY:1,
+			scaleX:1,
+			x:x2-200,
+			ease:ez.Qin,
+			onComplete:function(){
+				T.to(e1, .1, {
+					scaleX:0,
+					scaleY:0,
+					y:y2+200,
+					onComplete:function(){
+						cRem(5, e1);
+					}
+				});
+			}
+		});
+	}
 }
 function animateMirageStrike2(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX+100);
@@ -5494,22 +5552,24 @@ function animateMirageStrike2(Slot){
 	var x3 = M.random()*(600)-300;
 	var y3 = M.random()*(100)-50;
 	var e1 = can('mirageStrike', 5, x2+x3, y2+y3, 0, 0);
-	T.to(e1, .1, {
-		scaleX:1,
-		scaleY:1,
-		x:x2-200+x3,
-		ease:ez.Qin,
-		onComplete:function(){
-			T.to(e1, .1, {
-				scaleX:0,
-				scaleY:0,
-				y:y2+200+y3,
-				onComplete:function(){
-					cRem(5, e1);
-				}
-			});
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, .1, {
+			scaleX:1,
+			scaleY:1,
+			x:x2-200+x3,
+			ease:ez.Qin,
+			onComplete:function(){
+				T.to(e1, .1, {
+					scaleX:0,
+					scaleY:0,
+					y:y2+200+y3,
+					onComplete:function(){
+						cRem(5, e1);
+					}
+				});
+			}
+		});
+	}
 }
 $(function(){
 	$NG.window3.on('mouseenter','#miragestrikeId',function(){
@@ -5597,33 +5657,37 @@ function animateProwlingGash(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX+200);
 	var y2 = (MOB[Slot].offsetTop+mob[Slot].cY-200);
 	var e1 = can('prowlingGash', 5, x2, y2, 0, 0);
-	T.to(e1, .1, {
-		scaleX:2,
-		scaleY:2,
-		x:x2-400,
-		ease:ez.Qin,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, .1, {
+			scaleX:2,
+			scaleY:2,
+			x:x2-400,
+			ease:ez.Qin,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+	}
 	var e2 = can('prowlingGash', 5, x2, y2, 0, 0);
-	T.to(e2, .1, {
-		scaleX:2,
-		scaleY:2,
-		x:x2-400,
-		ease:ez.Qin,
-		onComplete:function(){
-			T.to(e2, 1, {
-				startAt:{
-					alpha:.2
-				},
-				alpha:0,
-				onComplete:function(){
-					cRem(5, e2);
-				}
-			});
-		}
-	});
+	e2.image.onload = function(){
+		T.to(e2, .1, {
+			scaleX:2,
+			scaleY:2,
+			x:x2-400,
+			ease:ez.Qin,
+			onComplete:function(){
+				T.to(e2, 1, {
+					startAt:{
+						alpha:.2
+					},
+					alpha:0,
+					onComplete:function(){
+						cRem(5, e2);
+					}
+				});
+			}
+		});
+	}
 }
 
 function tigerStrike(){
@@ -5648,22 +5712,24 @@ function animateTigerStrike(Slot){
 		var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX+100);
 		var y2 = (MOB[Slot].offsetTop+mob[Slot].cY-(150-(count*50)));
 		var e1 = can('tigerStrike', 5, x2, y2, 0, 0);
-		T.to(e1, .125, {
-			x:x2-200,
-			scaleX:1,
-			scaleY:1,
-			ease:ez.Qin,
-			onComplete:function(){
-				T.to(e1, .125, {
-					y:y2+200,
-					scaleX:0,
-					scaleY:0,
-					onComplete:function(){
-						cRem(5, e1);
-					}
-				});
-			}
-		});
+		e1.image.onload = function(){
+			T.to(e1, .125, {
+				x:x2-200,
+				scaleX:1,
+				scaleY:1,
+				ease:ez.Qin,
+				onComplete:function(){
+					T.to(e1, .125, {
+						y:y2+200,
+						scaleX:0,
+						scaleY:0,
+						onComplete:function(){
+							cRem(5, e1);
+						}
+					});
+				}
+			});
+		}
 		count++;
 		if(count<3){ 
 			T.delayedCall(.025, function(){ 
@@ -5722,22 +5788,24 @@ function animateCraneKick(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX-150);
 	var y2 = (MOB[Slot].offsetTop+mob[Slot].cY+150);
 	var e1 = can('craneKick', 5, x2, y2, 0, 0);
-	T.to(e1, .15, {
-		scaleY:1.5,
-		scaleX:1.5,
-		y:y2-300,
-		ease:ez.Qin,
-		onComplete:function(){
-			T.to(e1, .1, {
-				scaleX:0,
-				scaleY:0,
-				x:x2+300,
-				onComplete:function(){
-					cRem(5, e1);
-				}
-			});
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, .15, {
+			scaleY:1.5,
+			scaleX:1.5,
+			y:y2-300,
+			ease:ez.Qin,
+			onComplete:function(){
+				T.to(e1, .1, {
+					scaleX:0,
+					scaleY:0,
+					x:x2+300,
+					onComplete:function(){
+						cRem(5, e1);
+					}
+				});
+			}
+		});
+	}
 }
 $(function(){
 	$NG.window3.on('mouseenter','#cranekickId',function(){
@@ -5853,37 +5921,41 @@ function animateEagleStrike(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX);
 	var y2 = (MOB[Slot].offsetTop+mob[Slot].cY);
 	var e1 = can('whiteLight3', 5, x2-200, y2-720, 400, 400, true);
-	e1.alpha = .2;
-	T.to(e1, .5, {
-		y:y2-175,
-		ease:ez.xout,
-		onComplete:function(){
-			T.to(e1, .25, {
-				scaleX:0,
-				scaleY:0,
-				onComplete:function(){
-					cRem(5, e1);
-				}
-			});
-		}
-	});
+	e1.image.onload = function(){
+		e1.alpha = .2;
+		T.to(e1, .5, {
+			y:y2-175,
+			ease:ez.xout,
+			onComplete:function(){
+				T.to(e1, .25, {
+					scaleX:0,
+					scaleY:0,
+					onComplete:function(){
+						cRem(5, e1);
+					}
+				});
+			}
+		});
+	}
 	var p4 = can('eagleStrike', 5, x2-60, y2-352, 0, 0, true);
-	T.to(p4, .5, {
-		scaleX:1,
-		scaleY:1,
-		y:"+="+100,
-		ease:ez.xout,
-		onComplete:function(){
-			T.to(p4, .25, {
-				scaleX:0,
-				scaleY:0,
-				onComplete:function(){
-					cRem(5, p4);
-				}
-			});
-		}
-	});
-	animateBurst(Slot);
+	p4.image.onload = function(){
+		T.to(p4, .5, {
+			scaleX:1,
+			scaleY:1,
+			y:"+="+100,
+			ease:ez.xout,
+			onComplete:function(){
+				T.to(p4, .25, {
+					scaleX:0,
+					scaleY:0,
+					onComplete:function(){
+						cRem(5, p4);
+					}
+				});
+			}
+		});
+		animateBurst(Slot);
+	}
 }
 $(function(){
 	$NG.window3.on('mouseenter','#eaglestrikeId',function(){
@@ -5952,40 +6024,44 @@ function animateWindmillKick(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX-150);
 	var y2 = 670;
 	var p4 = can('windmillKick', 7, x2-600, y2, 1500, 0);
-	p4.alpha = .3;
-	T.to(p4, .2, {
-		scaleY:3.5,
-		y:y2-900,
-		ease:ez.Qin,
-		onComplete:function(){
-			T.to(p4, .5, {
-				alpha:0,
-				scaleX:10.5,
-				scaleY:1,
-				x:x2-900,
-				onComplete:function(){
-					cRem(7, p4);
-				}
-			});
-		}
-	});
+	p4.image.onload = function(){
+		p4.alpha = .3;
+		T.to(p4, .2, {
+			scaleY:3.5,
+			y:y2-900,
+			ease:ez.Qin,
+			onComplete:function(){
+				T.to(p4, .5, {
+					alpha:0,
+					scaleX:10.5,
+					scaleY:1,
+					x:x2-900,
+					onComplete:function(){
+						cRem(7, p4);
+					}
+				});
+			}
+		});
+	}
 	var p3 = can('windmillKick', 5, x2, y2, 300, 0);
-	T.to(p3, .2, {
-		scaleY:3.5,
-		y:y2-900,
-		ease:ez.Qin,
-		onComplete:function(){
-			T.to(p3, .5, {
-				alpha:0,
-				scaleY:1,
-				onComplete:function(){
-					cRem(5, p3);
-				}
-			});
-		}
-	});
-	
-	T.delayedCall(.15, animateTremor, [x2+150, 600, 5]);
+	p3.image.onload = function(){
+		T.to(p3, .2, {
+			scaleY:3.5,
+			y:y2-900,
+			ease:ez.Qin,
+			onComplete:function(){
+				T.to(p3, .5, {
+					alpha:0,
+					scaleY:1,
+					onComplete:function(){
+						cRem(5, p3);
+					}
+				});
+			}
+		});
+		
+		T.delayedCall(.15, animateTremor, [x2+150, 600, 5]);
+	}
 }
 $(function(){
 	$NG.window3.on('mouseenter','#windmillkickId',function(){
@@ -6103,32 +6179,36 @@ function animateCheetahStrike(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX);
 	var y2 = (MOB[Slot].offsetTop+mob[Slot].cY);
 	var p3 = can('whiteLight3', 7, x2-1280, y2-720, 2560, 994);
-	p3.alpha = .1;
-	T.to(p3, .5, {
-		y:y2-636,
-		x:x2-1280,
-		ease:ez.xout,
-		onComplete:function(){
-			cRem(7, p3);
-		}
-	});
+	p3.image.onload = function(){
+		p3.alpha = .1;
+		T.to(p3, .5, {
+			y:y2-636,
+			x:x2-1280,
+			ease:ez.xout,
+			onComplete:function(){
+				cRem(7, p3);
+			}
+		});
+	}
 	var p4 = can('cheetahStrike', 5, x2-75, y2-300, 0, 0, true);
-	T.to(p4, .5, {
-		y:"+="+100,
-		scaleX:1,
-		scaleY:1,
-		ease:ez.xout,
-		onComplete:function(){
-			T.to(p4, .25, {
-				scaleX:0,
-				scaleY:0,
-				onComplete:function(){
-					cRem(5, p4);
-				}
-			});
-		}
-	});
-	animateBurst(Slot);
+	p4.image.onload = function(){
+		T.to(p4, .5, {
+			y:"+="+100,
+			scaleX:1,
+			scaleY:1,
+			ease:ez.xout,
+			onComplete:function(){
+				T.to(p4, .25, {
+					scaleX:0,
+					scaleY:0,
+					onComplete:function(){
+						cRem(5, p4);
+					}
+				});
+			}
+		});
+		animateBurst(Slot);
+	}
 }
 $(function(){
 	$NG.window3.on('mouseenter','#cheetahstrikeId',function(){
@@ -6194,32 +6274,38 @@ function animateAncestralFlurry(Slot){
 	var x3 = ranX+x2;
 	var y3 = ranY+y2;
 	var e2 = can('smoke', 5, x3, y3, 0, 0, true);
-	e2.alpha=.2;
-	T.to(e2, .5, {
-		delay:.2,
-		alpha:0,
-		scaleX:6,
-		scaleY:6,
-		onComplete:function(){
-			cRem(5, e2);
-		}
-	});
+	e2.image.onload = function(){
+		e2.alpha=.2;
+		T.to(e2, .5, {
+			delay:.2,
+			alpha:0,
+			scaleX:6,
+			scaleY:6,
+			onComplete:function(){
+				cRem(5, e2);
+			}
+		});
+	}
 	var e3 = can('ancestralFlurry', 5, x3, y3, 0, 0, true);
-	T.to(e3, .125, {
-		scaleY:2,
-		scaleX:2,
-		onComplete:function(){
-			cRem(5, e3);
-		}
-	});
+	e3.image.onload = function(){
+		T.to(e3, .125, {
+			scaleY:2,
+			scaleX:2,
+			onComplete:function(){
+				cRem(5, e3);
+			}
+		});
+	}
 	var e1 = can('ancestralFlurry2', 5, x3, y3, 0, 0, true);
-	T.to(e1, .033, {
-		scaleX:2,
-		scaleY:2,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, .033, {
+			scaleX:2,
+			scaleY:2,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+	}
 }
 $(function(){
 	$NG.window3.on('mouseenter','#ancestralflurryId',function(){
@@ -6268,25 +6354,29 @@ function animateStoneFists(){
 		var y1 = (M.random()*(80)-40+440);
 		var y2 = (M.random()*(80)-40+440);
 		var p2 = can('redparticle50', 5, x1, 720, size, size);
-		T.to(p2, 1, {
-			x:(x1+(size/2)),
-			y:(y1+25+(size/2)),
-			scaleX:0,
-			scaleY:0,
-			onComplete:function(){
-				cRem(5, p2);
-			}
-		});
+		p2.image.onload = function(){
+			T.to(p2, 1, {
+				x:(x1+(size/2)),
+				y:(y1+25+(size/2)),
+				scaleX:0,
+				scaleY:0,
+				onComplete:function(){
+					cRem(5, p2);
+				}
+			});
+		}
 		var p1 = can('redparticle50', 5, x2, 720, size, size);
-		T.to(p1, 1.2, {
-			x:(x2+(size/2)),
-			y:(y2+25+(size/2)),
-			scaleX:0,
-			scaleY:0,
-			onComplete:function(){
-				cRem(5, p1);
-			}
-		});
+		p1.image.onload = function(){
+			T.to(p1, 1.2, {
+				x:(x2+(size/2)),
+				y:(y2+25+(size/2)),
+				scaleX:0,
+				scaleY:0,
+				onComplete:function(){
+					cRem(5, p1);
+				}
+			});
+		}
 		if(count<25){ 
 			T.delayedCall(.1, function(){ 
 				doIt(++count);
@@ -6346,32 +6436,36 @@ function animateCobraStrike(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX);
 	var y2 = (MOB[Slot].offsetTop+mob[Slot].cY);
 	var p2 = can('whiteLight3', 7, x2-1280, y2-720, 2560, 994);
-	p2.alpha = .1;
-	T.to(p2, .5, {
-		y:y2-619,
-		x:x2-1280,
-		ease:ez.xout,
-		onComplete:function(){
-			cRem(7, p2);
-		}
-	});
+	p2.image.onload = function(){
+		p2.alpha = .1;
+		T.to(p2, .5, {
+			y:y2-619,
+			x:x2-1280,
+			ease:ez.xout,
+			onComplete:function(){
+				cRem(7, p2);
+			}
+		});
+	}
 	var p4 = can('cobraStrike', 5, x2-70, y2-307, 0, 0, true);
-	T.to(p4, .5, {
-		y:"+="+100,
-		scaleX:1,
-		scaleY:1,
-		ease:ez.xout,
-		onComplete:function(){
-			T.to(p4, .25, {
-				scaleX:0,
-				scaleY:0,
-				onComplete:function(){
-					cRem(5, p4);
-				}
-			});
-		}
-	});
-	animateBurst(Slot);
+	p4.image.onload = function(){
+		T.to(p4, .5, {
+			y:"+="+100,
+			scaleX:1,
+			scaleY:1,
+			ease:ez.xout,
+			onComplete:function(){
+				T.to(p4, .25, {
+					scaleX:0,
+					scaleY:0,
+					onComplete:function(){
+						cRem(5, p4);
+					}
+				});
+			}
+		});
+		animateBurst(Slot);
+	}
 }
 function animateBurst(Slot, size, img){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX-100);
@@ -6379,14 +6473,16 @@ function animateBurst(Slot, size, img){
 	if(!size){ size = 250; }
 	if(!img){ img = 'burst'; }
 	var e1 = can(img, 5, x2, y2, 0, 0, true);
-	T.to(e1, .125, {
-		scaleX:size/200,
-		scaleY:size/200,
-		alpha:0,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, .125, {
+			scaleX:size/200,
+			scaleY:size/200,
+			alpha:0,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+	}
 }
 $(function(){
 	$NG.window3.on('mouseenter','#cobrastrikeId',function(){
@@ -6434,32 +6530,36 @@ function animateChakraBlast(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX);
 	var y2 = (MOB[Slot].offsetTop+mob[Slot].cY);
 	var e1 = can('chakraBlast', 5, x2, 530, 0, 0);
-	T.to(e1, .25, {
-		scaleY:2,
-		scaleX:2,
-		y:405,
-		x:x2-300,
-		alpha:.25,
-		onComplete:function(){
-			T.to(e1, 1.2, {
-				alpha:0,
-				onComplete:function(){
-					cRem(5, e1);
-				}
-			});
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, .25, {
+			scaleY:2,
+			scaleX:2,
+			y:405,
+			x:x2-300,
+			alpha:.25,
+			onComplete:function(){
+				T.to(e1, 1.2, {
+					alpha:0,
+					onComplete:function(){
+						cRem(5, e1);
+					}
+				});
+			}
+		});
+	}
 	var e2 = can('chakraBlast', 5, x2, 530, 0, 0);
-	T.to(e2, .2, {
-		scaleY:2,
-		scaleX:2,
-		y:405,
-		x:x2-300,
-		alpha:0,
-		onComplete:function(){
-			cRem(5, e2);
-		}
-	});
+	e2.image.onload = function(){
+		T.to(e2, .2, {
+			scaleY:2,
+			scaleX:2,
+			y:405,
+			x:x2-300,
+			alpha:0,
+			onComplete:function(){
+				cRem(5, e2);
+			}
+		});
+	}
 	function doIt(count){
 		var size = (M.random()*(20)+5);
 		var x = (M.random()*(500)-250+x2);
@@ -6470,15 +6570,17 @@ function animateChakraBlast(Slot){
 			var x3 = x*.99+12;
 		}
 		var p1 = can('greenparticle50', 5, x, y, 25, 25);
-		T.to(p1, .75, {
-			scaleX:0,
-			scaleY:0,
-			x:x3,
-			y:y+37,
-			onComplete:function(){
-				cRem(5, p1);
-			}
-		});
+		p1.image.onload = function(){
+			T.to(p1, .75, {
+				scaleX:0,
+				scaleY:0,
+				x:x3,
+				y:y+37,
+				onComplete:function(){
+					cRem(5, p1);
+				}
+			});
+		}
 		if(count<40){ 
 			T.delayedCall(.015, function(){ 
 				doIt(++count);
@@ -6598,38 +6700,42 @@ function animateFlyingKick(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX);
 	var y2 = (MOB[Slot].offsetTop+mob[Slot].cY);
 	var p4 = can('flyingKick', 5, x2+150, y2+150, 0, 0);
-	T.to(p4, .15, {
-		scaleX:1.5,
-		scaleY:1.5,
-		y:y2-150,
-		x:x2-150,
-		onComplete:function(){
-			T.to(p4, .25, {
-				alpha:0,
-				ease:ez.lin,
-				onComplete:function(){
-					cRem(5, p4);
-				}
-			});
-		}
-	});
+	p4.image.onload = function(){
+		T.to(p4, .15, {
+			scaleX:1.5,
+			scaleY:1.5,
+			y:y2-150,
+			x:x2-150,
+			onComplete:function(){
+				T.to(p4, .25, {
+					alpha:0,
+					ease:ez.lin,
+					onComplete:function(){
+						cRem(5, p4);
+					}
+				});
+			}
+		});
+	}
 	var p3 = can('lineNova', 7, x2-200, y2-200, 400, 400, true);
-	T.to(p3, .15, {
-		alpha:.3,
-		scaleX:1.25,
-		scaleY:1.25,
-		onComplete:function(){
-			T.to(p3, .45, {
-				alpha:0,
-				scaleX:2,
-				scaleY:2,
-				ease:ez.lin,
-				onComplete:function(){
-					cRem(7, p3);
-				}
-			});
-		}
-	});
+	p3.image.onload = function(){
+		T.to(p3, .15, {
+			alpha:.3,
+			scaleX:1.25,
+			scaleY:1.25,
+			onComplete:function(){
+				T.to(p3, .45, {
+					alpha:0,
+					scaleX:2,
+					scaleY:2,
+					ease:ez.lin,
+					onComplete:function(){
+						cRem(7, p3);
+					}
+				});
+			}
+		});
+	}
 }
 $(function(){
 	$NG.window3.on('mouseenter','#flyingkickId',function(){
@@ -6721,32 +6827,36 @@ function animateDragonStrike(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX);
 	var y2 = (MOB[Slot].offsetTop+mob[Slot].cY);
 	var p2 = can('whiteLight3', 5, x2-1280, y2-720, 2560, 994);
-	p2.alpha = .2;
-	T.to(p2, .5, {
-		y:y2-601,
-		x:x2-1280,
-		ease:ez.xout,
-		onComplete:function(){
-			cRem(5, p2);
-		}
-	});
+	p2.image.onload = function(){
+		p2.alpha = .2;
+		T.to(p2, .5, {
+			y:y2-601,
+			x:x2-1280,
+			ease:ez.xout,
+			onComplete:function(){
+				cRem(5, p2);
+			}
+		});
+	}
 	var p4 = can('dragonStrike', 5, x2-65, y2-326, 0, 0, true);
-	T.to(p4, .5, {
-		scaleX:1,
-		scaleY:1,
-		y:"+="+100,
-		ease:ez.xout,
-		onComplete:function(){
-			T.to(p4, .25, {
-				scaleX:0,
-				scaleY:0,
-				onComplete:function(){
-					cRem(5, p4);
-				}
-			});
-		}
-	});
-	animateBurst(Slot, 250, 'burstRed');
+	p4.image.onload = function(){
+		T.to(p4, .5, {
+			scaleX:1,
+			scaleY:1,
+			y:"+="+100,
+			ease:ez.xout,
+			onComplete:function(){
+				T.to(p4, .25, {
+					scaleX:0,
+					scaleY:0,
+					onComplete:function(){
+						cRem(5, p4);
+					}
+				});
+			}
+		});
+		animateBurst(Slot, 250, 'burstRed');
+	}
 }
 
 function resetinnerPeaceBonus(){
@@ -6788,27 +6898,31 @@ function innerPeace(){
 }
 function animateInnerPeace(){
 	var e1 = can('whiteRays', 5, -384, -384, 2560, 2560, true);
-	T.to(e1,1.5,{
-		alpha:0,
-		ease:ez.Qin
-	});
-	var s1 = M.random()*(45)+45;
-	var z1 = s1+120;
-	var s2 = M.random()*(22);
-	var z2 = s2+60;
-	T.set(e1,{rotation:s1});
-	T.to(e1,1.5,{
-		rotation:z1,
-		ease:ez.lin,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1,1.5,{
+			alpha:0,
+			ease:ez.Qin
+		});
+		var s1 = M.random()*(45)+45;
+		var z1 = s1+120;
+		var s2 = M.random()*(22);
+		var z2 = s2+60;
+		T.set(e1,{rotation:s1});
+		T.to(e1,1.5,{
+			rotation:z1,
+			ease:ez.lin,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+	}
 	var e2 = can('whiteRays', 5, -384, -384, 2560, 2560, true);
-	T.to(e2,1.5,{
-		alpha:0,
-		ease:ez.Qin
-	});
+	e2.image.onload = function(){
+		T.to(e2,1.5,{
+			alpha:0,
+			ease:ez.Qin
+		});
+	}
 	T.set(e2,{rotation:s2});
 	T.to(e2,1.5,{
 		rotation:z2,
@@ -6818,11 +6932,13 @@ function animateInnerPeace(){
 		}
 	});
 	var e5 = can('whiteLight3', 5, 440, 442, 400, 400, true);
-	T.to(e5, 1.25,{
-		scaleX:0,
-		scaleY:0,
-		alpha:0
-	});
+	e5.image.onload = function(){
+		T.to(e5, 1.25,{
+			scaleX:0,
+			scaleY:0,
+			alpha:0
+		});
+	}
 }
 
 $(function(){
@@ -6949,80 +7065,88 @@ function animateRebuke(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX+100);
 	var y2 = (MOB[Slot].offsetTop+mob[Slot].cY-100);
 	var e2 = can('rebuke', 5, x2, y2, 0, 0);
-	T.to(e2, .1, {
-		scaleX:1,
-		scaleY:1,
-		x:x2-200,
-		ease:ez.Qin,
-		onComplete:function(){
-			T.to(e2, .1, {
-				scaleX:0,
-				scaleY:0,
-				y:y2+200,
-				onComplete:function(){
-					cRem(5, e2);
-				}
-			});
-		}
-	});
+	e2.image.onload = function(){
+		T.to(e2, .1, {
+			scaleX:1,
+			scaleY:1,
+			x:x2-200,
+			ease:ez.Qin,
+			onComplete:function(){
+				T.to(e2, .1, {
+					scaleX:0,
+					scaleY:0,
+					y:y2+200,
+					onComplete:function(){
+						cRem(5, e2);
+					}
+				});
+			}
+		});
+	}
 	var e1 = can('rebuke', 5, x2, y2, 0, 0);
-	T.to(e1, .1, {
-		scaleX:1,
-		scaleY:1,
-		x:x2-200,
-		alpha:.2,
-		ease:ez.Qin,
-		onComplete:function(){
-			T.to(e1, .5, {
-				alpha:0,
-				onComplete:function(){
-					cRem(5, e1);
-				}
-			});
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, .1, {
+			scaleX:1,
+			scaleY:1,
+			x:x2-200,
+			alpha:.2,
+			ease:ez.Qin,
+			onComplete:function(){
+				T.to(e1, .5, {
+					alpha:0,
+					onComplete:function(){
+						cRem(5, e1);
+					}
+				});
+			}
+		});
+	}
 }
 function animateRepudiation(Slot){
 	if(GLB.videoSetting!=="High"){ return; }
 	var x3 = (MOB[Slot].offsetLeft+mob[Slot].cX);
 	var y3 = (MOB[Slot].offsetTop+mob[Slot].cY-60);	
 	var e1 = can('retribution', 5, x3-100, y3-565, 200, 0);
-	T.to(e1,.15,{
-		scaleY:1.5,
-		ease:ez.sin
-	});
-	T.to(e1,.15,{
-		delay:.125,
-		scaleY:0,
-		y:MOB[Slot].offsetTop+mob[Slot].cY-30,
-		ease:ez.sout,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1,.15,{
+			scaleY:1.5,
+			ease:ez.sin
+		});
+		T.to(e1,.15,{
+			delay:.125,
+			scaleY:0,
+			y:MOB[Slot].offsetTop+mob[Slot].cY-30,
+			ease:ez.sout,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+	}
 	function doit(count){
 		var finalX = x3 + (M.random()*(1000)-500);
 		var finalY = M.random()*(70)+640;
 		var p1 = can('yellowparticle50', 7, x3, y3, 12, 12);
-		var t=M.random()*(1)+.5;
-		T.to(p1, t, {
-			y:finalY,
-			ease:ez.bout
-		});
-		T.to(p1, t, {
-			x:finalX
-		});	
-		T.to(p1,M.random()*(1)+3,{
-			delay:1.5,
-			ease:ez.qin,
-			x:"+="+6,
-			y:"+="+6,
-			scaleX:0,
-			scaleY:0,
-			onComplete:function(){
-				cRem(7, p1);
-			}
-		});
+		p1.image.onload = function(){
+			var t=M.random()*(1)+.5;
+			T.to(p1, t, {
+				y:finalY,
+				ease:ez.bout
+			});
+			T.to(p1, t, {
+				x:finalX
+			});	
+			T.to(p1,M.random()*(1)+3,{
+				delay:1.5,
+				ease:ez.qin,
+				x:"+="+6,
+				y:"+="+6,
+				scaleX:0,
+				scaleY:0,
+				onComplete:function(){
+					cRem(7, p1);
+				}
+			});
+		}
 		if(count<12){ doit(++count); }
 	}
 	T.delayedCall(.25, function(){ 
@@ -7056,22 +7180,24 @@ function animatePurge(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX+100);
 	var y2 = (MOB[Slot].offsetTop+mob[Slot].cY-100);
 	var e1 = can('purge', 5, x2, y2, 0, 0);
-	T.to(e1, .12, {
-		scaleX:1,
-		scaleY:1,
-		x:x2-200,
-		ease:ez.Qin,
-		onComplete:function(){
-			T.to(e1, .12, {
-				scaleX:0,
-				scaleY:0,
-				y:y2+200,
-				onComplete:function(){
-					cRem(5, e1);
-				}
-			});
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, .12, {
+			scaleX:1,
+			scaleY:1,
+			x:x2-200,
+			ease:ez.Qin,
+			onComplete:function(){
+				T.to(e1, .12, {
+					scaleX:0,
+					scaleY:0,
+					y:y2+200,
+					onComplete:function(){
+						cRem(5, e1);
+					}
+				});
+			}
+		});
+	}
 }
 $(function(){
 	$NG.window3.on('mouseenter','#purgeId',function(){
@@ -7177,56 +7303,62 @@ function animateVengeance(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX);
 	var y2 = (MOB[Slot].offsetTop+mob[Slot].cY);
 	var e1 = can('vengeance', 5, x2+100, y2-100, 0, 0);
-	T.to(e1, .12, {
-		scaleX:1,
-		scaleY:1,
-		x:x2-100,
-		ease:ez.Qin,
-		onComplete:function(){
-			T.to(e1, .12, {
-				scaleX:0,
-				scaleY:0,
-				y:y2+100,
-				onComplete:function(){
-					cRem(5, e1);
-				}
-			});
-		}
-	}); 
+	e1.image.onload = function(){
+		T.to(e1, .12, {
+			scaleX:1,
+			scaleY:1,
+			x:x2-100,
+			ease:ez.Qin,
+			onComplete:function(){
+				T.to(e1, .12, {
+					scaleX:0,
+					scaleY:0,
+					y:y2+100,
+					onComplete:function(){
+						cRem(5, e1);
+					}
+				});
+			}
+		}); 
+	}
 	var e2 = can('vengeanceL', 5, x2-100, y2-100, 0, 0);
-	T.to(e2, .12, {
-		scaleX:1,
-		scaleY:1,
-		ease:ez.Qin,
-		onComplete:function(){
-			T.to(e2, .12, {
-				scaleX:0,
-				scaleY:0,
-				x:x2+100,
-				y:y2+100,
-				onComplete:function(){
-					cRem(5, e2);
-				}
-			});
-		}
-	});
+	e2.image.onload = function(){
+		T.to(e2, .12, {
+			scaleX:1,
+			scaleY:1,
+			ease:ez.Qin,
+			onComplete:function(){
+				T.to(e2, .12, {
+					scaleX:0,
+					scaleY:0,
+					x:x2+100,
+					y:y2+100,
+					onComplete:function(){
+						cRem(5, e2);
+					}
+				});
+			}
+		});
+	}
 	var e3 = can('lineNovaPink', 5, x2-200, y2-200, 300, 300, true);
-	e3.alpha=.5;
-	T.to(e3, .12, {
-		scaleX:1,
-		scaleY:1,
-		ease:ez.Qin,
-		onComplete:function(){
-			T.to(e3, .25, {
-				alpha:0,
-				scaleX:1.25,
-				scaleY:1.25,
-				onComplete:function(){
-					cRem(5, e3);
-				}
-			});
-		}
-	});
+	e3.image.onload = function(){
+		e3.alpha=.5;
+		T.to(e3, .12, {
+			scaleX:1,
+			scaleY:1,
+			ease:ez.Qin,
+			onComplete:function(){
+				T.to(e3, .25, {
+					alpha:0,
+					scaleX:1.25,
+					scaleY:1.25,
+					onComplete:function(){
+						cRem(5, e3);
+					}
+				});
+			}
+		});
+	}
 }
 
 
@@ -7286,14 +7418,16 @@ function animateLayHands(){
 		var y = 0;
 		var ranY = (M.random()*(350)+150);
 		var p1 = can('yellowparticle50', 5, x, y, 15, 15);
-		T.to(p1, M.random()*(.5)+1, {
-			scaleX:0,
-			scaleY:0,
-			y:ranY,
-			onComplete:function(){
-				cRem(5, p1);
-			}
-		});
+		p1.image.onload = function(){
+			T.to(p1, M.random()*(.5)+1, {
+				scaleX:0,
+				scaleY:0,
+				y:ranY,
+				onComplete:function(){
+					cRem(5, p1);
+				}
+			});
+		}
 		if(count<50){ 
 			T.delayedCall(.033, function(){ 
 				doIt(++count);
@@ -7597,26 +7731,30 @@ function animateArdentJudgment(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX-100);
 	var y2 = -25;
 	var e1 = can('ardentJudgment', 5, x2, y2, 200, 0);
-	T.to(e1, .15, {
-		scaleY:725/600,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, .15, {
+			scaleY:725/600,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+	}
 	var e2 = can('ardentJudgment', 5, x2, y2, 200, 0);
-	T.to(e2, .15, {
-		scaleY:725/600,
-		alpha:.2,
-		onComplete:function(){
-			T.to(e2, 1, {
-				alpha:0,
-				onComplete:function(){
-					cRem(5, e2);
-				}
-			});
-		}
-	});
-	T.delayedCall(.15, animateTremor, [x2+100, 800]);
+	e2.image.onload = function(){
+		T.to(e2, .15, {
+			scaleY:725/600,
+			alpha:.2,
+			onComplete:function(){
+				T.to(e2, 1, {
+					alpha:0,
+					onComplete:function(){
+						cRem(5, e2);
+					}
+				});
+			}
+		});
+		T.delayedCall(.15, animateTremor, [x2+100, 800]);
+	}
 }
 
 function yaulpExpire(){
@@ -8184,37 +8322,43 @@ function animateRapidShot(Slot){
 	var ranX = x2+M.random()*(xWidth-(xWidth/2))-50;
 	var ranY = y2+M.random()*(xHeight-(xHeight/2))-50;
 	var e1 = can('rngSmoke', 5, ranX, ranY, 0, 0, true);
-	T.to(e1,.15,{
-		scaleX:1,
-		scaleY:1
-	});
-	T.to(e1,1.2,{
-		scaleX:3,
-		scaleY:3,
-		alpha:0,
-		delay:.15,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1,.15,{
+			scaleX:1,
+			scaleY:1
+		});
+		T.to(e1,1.2,{
+			scaleX:3,
+			scaleY:3,
+			alpha:0,
+			delay:.15,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+	}
 	var e2 = can('rngFire', 5, ranX-25, ranY-25, 50, 50, true);
-	T.to(e2,.125,{
-		scaleX:1,
-		scaleY:1,
-		alpha:0,
-		onComplete:function(){
-			cRem(5, e2);
-		}
-	});
+	e2.image.onload = function(){
+		T.to(e2,.125,{
+			scaleX:1,
+			scaleY:1,
+			alpha:0,
+			onComplete:function(){
+				cRem(5, e2);
+			}
+		});
+	}
 	var e3 = can('rngFireOut', 5, ranX-25, ranY-25, 50, 50, true);
-	T.to(e3,.15,{
-		scaleX:1,
-		scaleY:1,
-		alpha:0,
-		onComplete:function(){
-			cRem(5, e3);
-		}
-	});
+	e3.image.onload = function(){
+		T.to(e3,.15,{
+			scaleX:1,
+			scaleY:1,
+			alpha:0,
+			onComplete:function(){
+				cRem(5, e3);
+			}
+		});
+	}
 }
 
 $(function(){
@@ -8261,42 +8405,48 @@ function animateCounterShot(Slot){
 	var x2 = MOB[Slot].offsetLeft+mob[Slot].cX-50;
 	var y2 = MOB[Slot].offsetTop+mob[Slot].cY-50;
 	var e1 = can('counterShot', 5, x2, y2, 100, 100, true);
-	e1.alpha = .5;
-	T.to(e1, .25, {
-		scaleX:2,
-		scaleY:2,
-		alpha:0,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
+	e1.image.onload = function(){
+		e1.alpha = .5;
+		T.to(e1, .25, {
+			scaleX:2,
+			scaleY:2,
+			alpha:0,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+	}
 	var e2 = can('counterShot', 5, x2, y2, 100, 100, true);
-	e2.alpha = .5;
-	T.to(e2, .25, {
-		scaleX:.5,
-		scaleY:.5,
-		alpha:0,
-		onComplete:function(){
-			cRem(5, e2);
-		}
-	});
+	e2.image.onload = function(){
+		e2.alpha = .5;
+		T.to(e2, .25, {
+			scaleX:.5,
+			scaleY:.5,
+			alpha:0,
+			onComplete:function(){
+				cRem(5, e2);
+			}
+		});
+	}
 	var e3 = can('counterShot', 5, x2, y2, 100, 100, true);
-	e3.alpha = .5;
-	T.to(e3, .5, {
-		scaleX:3,
-		scaleY:3,
-		alpha:.1,
-		onComplete:function(){
-			T.to(e3, 1.125, {
-				scaleX:4,
-				scaleY:4,
-				alpha:0,
-				onComplete:function(){
-					cRem(5, e3);
-				}
-			});
-		}
-	});
+	e3.image.onload = function(){
+		e3.alpha = .5;
+		T.to(e3, .5, {
+			scaleX:3,
+			scaleY:3,
+			alpha:.1,
+			onComplete:function(){
+				T.to(e3, 1.125, {
+					scaleX:4,
+					scaleY:4,
+					alpha:0,
+					onComplete:function(){
+						cRem(5, e3);
+					}
+				});
+			}
+		});
+	}
 }
 
 function trueshotArrowReady(bypass){
@@ -8403,48 +8553,56 @@ function animateTrueshotArrow(Slot){
 	var ranX = x2+M.random()*(xWidth-(xWidth/2));
 	var ranY = y2+M.random()*(xHeight-(xHeight/2));
 	var p1 = can('rngSmoke', 5, ranX, ranY, 25, 25, true);
-	T.to(p1,.15,{
-		scaleX:3,
-		scaleY:3,
-		alpha:0
-	});
-	T.to(p1,1.2,{
-		scaleX:4,
-		scaleY:4,
-		alpha:0,
-		delay:.15,
-		onComplete:function(){
-			cRem(5, p1);
-		}
-	});
+	p1.image.onload = function(){
+		T.to(p1,.15,{
+			scaleX:3,
+			scaleY:3,
+			alpha:0
+		});
+		T.to(p1,1.2,{
+			scaleX:4,
+			scaleY:4,
+			alpha:0,
+			delay:.15,
+			onComplete:function(){
+				cRem(5, p1);
+			}
+		});
+	}
 	var p2 = can('rngFire', 5, ranX-50, ranY-50, 100, 100, true);
-	T.to(p2, .25,{
-		scaleX:3,
-		scaleY:3,
-		alpha:0,
-		onComplete:function(){
-			cRem(5, p2);
-		}
-	});
+	p2.image.onload = function(){
+		T.to(p2, .25,{
+			scaleX:3,
+			scaleY:3,
+			alpha:0,
+			onComplete:function(){
+				cRem(5, p2);
+			}
+		});
+	}
 	var p3 = can('rngFireOut', 5, ranX-50, ranY-50, 100, 100, true);
-	T.to(p3,.25,{
-		scaleX:3,
-		scaleY:3,
-		alpha:0,
-		onComplete:function(){
-			cRem(5, p3);
-		}
-	});
+	p3.image.onload = function(){
+		T.to(p3,.25,{
+			scaleX:3,
+			scaleY:3,
+			alpha:0,
+			onComplete:function(){
+				cRem(5, p3);
+			}
+		});
+	}
 	var p4 = can('lineNova', 5, x2-200, y2-200, 400, 400, true);
-	p4.alpha = .4;
-	T.to(p4,.5,{
-		alpha:0,
-		scaleX:1.25,
-		scaleY:1.25,
-		onComplete:function(){
-			cRem(5, p4);
-		}
-	});
+	p4.image.onload = function(){
+		p4.alpha = .4;
+		T.to(p4,.5,{
+			alpha:0,
+			scaleX:1.25,
+			scaleY:1.25,
+			onComplete:function(){
+				cRem(5, p4);
+			}
+		});
+	}
 }
 
 function volleyShotReady(){
@@ -8548,38 +8706,44 @@ function animateVolleyShot(Slot){
 	var ranX = x2+M.random()*(xWidth-(xWidth/2));
 	var ranY = y2+M.random()*(xHeight-(xHeight/2));
 	var e1 = can('arrow', 5, ranX-400, ranY-500, 50, 50);
-	T.to(e1,.15,{
-		x:ranX+25,
-		y:ranY+25,
-		ease:ez.lin,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1,.15,{
+			x:ranX+25,
+			y:ranY+25,
+			ease:ez.lin,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+	}
 	function doit(){
 		var e2 = can('rngSmoke', 5, ranX-50, ranY-50, 0, 0, true);
-		T.to(e2, .15, {
-			scaleX:1,
-			scaleY:1
-		});
-		T.to(e2, 1.2, {
-			delay:.15,
-			scaleX:3,
-			scaleY:3,
-			alpha:0,
-			onComplete:function(){
-				cRem(5, e2);
-			}
-		});
+		e2.image.onload = function(){
+			T.to(e2, .15, {
+				scaleX:1,
+				scaleY:1
+			});
+			T.to(e2, 1.2, {
+				delay:.15,
+				scaleX:3,
+				scaleY:3,
+				alpha:0,
+				onComplete:function(){
+					cRem(5, e2);
+				}
+			});
+		}
 		var e3 = can('rngFire', 5, ranX-50, ranY-50, 50, 50, true);
-		T.to(e3,.2,{
-			scaleX:1,
-			scaleY:1,
-			alpha:0,
-			onComplete:function(){
-				cRem(5, e3);
-			}
-		});
+		e3.image.onload = function(){
+			T.to(e3,.2,{
+				scaleX:1,
+				scaleY:1,
+				alpha:0,
+				onComplete:function(){
+					cRem(5, e3);
+				}
+			});
+		}
 	}
 	T.delayedCall(.15, doit);
 }
@@ -8882,6 +9046,7 @@ function unlockQuests(){
 			P.Q[i].PlaneofHate=2;
 			P.Q[i].PlaneofFear=2;
 		}
+		save.quests();
 	}
 }
 function snareReady(){
@@ -8964,17 +9129,19 @@ function animateSnare(Slot){
 		var ranX = M.random()*(200);
 		var ranY = M.random()*(60);
 		var p4 = can('snare', 7, x2+ranX, y2+ranY, 100, 100, true);
-		p4.alpha = .3;
-		T.to(p4, M.random()*(15)+5, {
-			y:"+="+25,
-			scaleX:6,
-			scaleY:2,
-			alpha:0,
-			ease:ez.lin,
-			onComplete:function(){
-				cRem(7, p4);
-			}
-		});
+		p4.image.onload = function(){
+			p4.alpha = .3;
+			T.to(p4, M.random()*(15)+5, {
+				y:"+="+25,
+				scaleX:6,
+				scaleY:2,
+				alpha:0,
+				ease:ez.lin,
+				onComplete:function(){
+					cRem(7, p4);
+				}
+			});
+		}
 		if(count<40){ 
 			T.delayedCall(.01, function(){ 
 				doit(++count);
@@ -9329,16 +9496,18 @@ function animateCrescentCleave(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX);
 	var y2 = (MOB[Slot].offsetTop+mob[Slot].cY);
 	var e1 = can('crescentCleave', 5, x2-100, y2-100, xWidth, xWidth, true);
-	e1.rotation = M.random()*(360);
-	T.to(e1, .25, {
-		rotation:"+=360",
-		scaleX:e1.scaleX*.4,
-		scaleY:e1.scaleY*.4,
-		ease:ez.sout,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
+	e1.image.onload = function(){
+		e1.rotation = M.random()*(360);
+		T.to(e1, .25, {
+			rotation:"+=360",
+			scaleX:e1.scaleX*.4,
+			scaleY:e1.scaleY*.4,
+			ease:ez.sout,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+	}
 }
 
 function deathStrikeReady(){
@@ -9383,21 +9552,23 @@ function animateDeathStrike(Slot){
 	function doit(count){
 		var y3 = (y2+(count*20));
 		var e1 = can('deathStrike', 5, x2, y3, 0, 0);
-		T.to(e1, .25, {
-			scaleX:1,
-			scaleY:1,
-			y:y3-200,
-			ease:ez.sin,
-			onComplete:function(){
-				T.to(e1, .25, {
-					alpha:0,
-					y:"+="+20,
-					onComplete:function(){
-						cRem(5, e1);
-					}
-				});
-			}
-		});
+		e1.image.onload = function(){
+			T.to(e1, .25, {
+				scaleX:1,
+				scaleY:1,
+				y:y3-200,
+				ease:ez.sin,
+				onComplete:function(){
+					T.to(e1, .25, {
+						alpha:0,
+						y:"+="+20,
+						onComplete:function(){
+							cRem(5, e1);
+						}
+					});
+				}
+			});
+		}
 		count++;
 		if(count<5){ 
 			T.delayedCall(.02, function(){ 
@@ -9533,18 +9704,20 @@ function animateHarmTouch(Slot){
 	var y2 = (MOB[Slot].offsetTop+mob[Slot].cY-50);
 	function doit(count){
 		var e1 = can('harmTouch', 5, x2-150, y2-150, 100, 100, true);
-		T.to(e1, .25, {
-			scaleY:1.5,
-			scaleX:1.5,
-			ease:ez.sout,
-			onComplete:function(){
-				cRem(5, e1);
-			}
-		});
-		T.to(e1, .2, {
-			alpha:0,
-			ease:ez.lin
-		});
+		e1.image.onload = function(){
+			T.to(e1, .25, {
+				scaleY:1.5,
+				scaleX:1.5,
+				ease:ez.sout,
+				onComplete:function(){
+					cRem(5, e1);
+				}
+			});
+			T.to(e1, .2, {
+				alpha:0,
+				ease:ez.lin
+			});
+		}
 		count++;
 		if(count<6){ 
 			T.delayedCall(.05, function(){ 
@@ -9702,19 +9875,21 @@ function animateShdLifeTap(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX);
 	var y2 = (MOB[Slot].offsetTop+mob[Slot].cY);
 	var e1 = can('lifeTap', 5, x2-150, y2-100, 300, 300, true);
-	T.to(e1, 1.2, {
-		scaleX:.75,
-		scaleY:.75,
-		alpha:0,
-		ease:ez.Qinout
-	});
-	T.to(e1, 1.2, {
-		rotation:1440,
-		ease:ez.lin,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, 1.2, {
+			scaleX:.75,
+			scaleY:.75,
+			alpha:0,
+			ease:ez.Qinout
+		});
+		T.to(e1, 1.2, {
+			rotation:1440,
+			ease:ez.lin,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+	}
 }
 
 function doomingDarkness(){
@@ -9905,20 +10080,22 @@ function strengthenDead(){
 		var x2 = (MOB[5].offsetLeft+(petWidth/2));
 		var y2 = (MOB[5].offsetTop+(petHeight/2));
 		var p4 = can('lineNovaRed', 7, x2-200, y2-200, 400, 400, true);
-		var tl=TM();
-		tl.to(p4, .15, {
-			alpha:.7,
-			width:1.25,
-			height:1.25,
-		}).to(p4, .45, {
-			alpha:0,
-			scaleX:2,
-			scaleY:2,
-			ease:ez.lin,
-			onComplete:function(){
-				cRem(7, p4);
-			}
-		});
+		p4.image.onload = function(){
+			var tl=TM();
+			tl.to(p4, .15, {
+				alpha:.7,
+				width:1.25,
+				height:1.25,
+			}).to(p4, .45, {
+				alpha:0,
+				scaleX:2,
+				scaleY:2,
+				ease:ez.lin,
+				onComplete:function(){
+					cRem(7, p4);
+				}
+			});
+		}
 	}
 	playAudio("skeleton_att");
 }
@@ -10127,16 +10304,18 @@ function animateSiphonStrength(Slot){
 		var y = 500;
 		var ranY = (M.random()*(300)+100);
 		var p1 = can('orangeparticle50', 5, x2, y2, 6, 6);
-		T.to(p1, M.random()*(1)+.25, {
-			scaleX:1,
-			scaleY:1,
-			x:x-13,
-			y:720,
-			ease:ez.Qin,
-			onComplete:function(){
-				cRem(5, p1);
-			}
-		});
+		p1.image.onload = function(){
+			T.to(p1, M.random()*(1)+.25, {
+				scaleX:1,
+				scaleY:1,
+				x:x-13,
+				y:720,
+				ease:ez.Qin,
+				onComplete:function(){
+					cRem(5, p1);
+				}
+			});
+		}
 		if(count<40){ 
 			doIt(++count);
 		}
@@ -10278,16 +10457,18 @@ function animateShadowVortex(Slot){
 		var y = 500;
 		var ranY = (M.random()*(300)+100);
 		var p1 = can('purpleparticle50', 5, x2, y2, 6, 6);
-		T.to(p1, M.random()*(1)+.25, {
-			x:x-13,
-			y:720,
-			ease:ez.Qin,
-			scaleX:1,
-			scaleY:1,
-			onComplete:function(){
-				cRem(5, p1);
-			}
-		});
+		p1.image.onload = function(){
+			T.to(p1, M.random()*(1)+.25, {
+				x:x-13,
+				y:720,
+				ease:ez.Qin,
+				scaleX:1,
+				scaleY:1,
+				onComplete:function(){
+					cRem(5, p1);
+				}
+			});
+		}
 		if(count<50){ doIt(++count); }
 	}
 	doIt(0);
@@ -10880,45 +11061,51 @@ function animateBoastfulBellow(Slot){
 	var x2 = MOB[Slot].offsetLeft+mob[Slot].cX-50;
 	var y2 = MOB[Slot].offsetTop+mob[Slot].cY-50;
 	var p4 = can('rngSmoke', 5, x2, y2, 0, 0, true);
-	T.to(p4, .15, {
-		scaleX:1,
-		scaleY:1,
-		onComplete:function(){
-			T.to(p4, 1.2, {
-				scaleX:3,
-				scaleY:3,
-				alpha:0,
-				onComplete:function(){
-					cRem(5, p4);
-				}
-			});
-		}
-	});
+	p4.image.onload = function(){
+		T.to(p4, .15, {
+			scaleX:1,
+			scaleY:1,
+			onComplete:function(){
+				T.to(p4, 1.2, {
+					scaleX:3,
+					scaleY:3,
+					alpha:0,
+					onComplete:function(){
+						cRem(5, p4);
+					}
+				});
+			}
+		});
+	}
 	var p2 = can('lineNovaMagenta', 5, x2-150, y2-150, 100, 100, true);
-	T.to(p2, .25, {
-		scaleX:.75,
-		scaleY:.75,
-		alpha:0,
-		onComplete:function(){
-			cRem(5, p2);
-		}
-	});
+	p2.image.onload = function(){
+		T.to(p2, .25, {
+			scaleX:.75,
+			scaleY:.75,
+			alpha:0,
+			onComplete:function(){
+				cRem(5, p2);
+			}
+		});
+	}
 	var p3 = can('lineNovaMagenta', 5, x2-150, y2-150, 100, 100, true);
-	T.to(p3, .15, {
-		scaleX:1,
-		scaleY:1,
-		alpha:.2,
-		onComplete:function(){
-			T.to(p3, 1.125, {
-				scaleX:.75,
-				scaleY:.75,
-				alpha:0,
-				onComplete:function(){
-					cRem(5, p3);
-				}
-			});
-		}
-	});
+	p3.image.onload = function(){
+		T.to(p3, .15, {
+			scaleX:1,
+			scaleY:1,
+			alpha:.2,
+			onComplete:function(){
+				T.to(p3, 1.125, {
+					scaleX:.75,
+					scaleY:.75,
+					alpha:0,
+					onComplete:function(){
+						cRem(5, p3);
+					}
+				});
+			}
+		});
+	}
 }
 
 function elementalRhythmsExpire(){
@@ -11227,23 +11414,27 @@ function animateDissension(Slot){
 	//execute
 	function doIt(count){
 		var p3 = can('drainFG', 5, x2-xWidth, y2-150, xWidth*2, 100);
-		T.to(p3, (800+(count*100))/1000, {
-			y:600,
-			alpha:0,
-			ease:ez.qout,
-			onComplete:function(){
-				cRem(5, p3);
-			}
-		});
+		p3.image.onload = function(){
+			T.to(p3, (800+(count*100))/1000, {
+				y:600,
+				alpha:0,
+				ease:ez.qout,
+				onComplete:function(){
+					cRem(5, p3);
+				}
+			});
+		}
 		var p4 = can('drainBG', 7, x2-xWidth, y2-150, xWidth*2, 100);
-		T.to(p4, (800+(count*100))/1000, {
-			y:600,
-			alpha:0,
-			ease:ez.qout,
-			onComplete:function(){
-				cRem(7, p4);
-			}
-		});
+		e1.image.onload = function(){
+			T.to(p4, (800+(count*100))/1000, {
+				y:600,
+				alpha:0,
+				ease:ez.qout,
+				onComplete:function(){
+					cRem(7, p4);
+				}
+			});
+		}
 		if(count<5){ 
 			T.delayedCall(.1, function(){ 
 				doIt(++count);
@@ -11255,15 +11446,17 @@ function animateDissension(Slot){
 		var x6 = (M.random()*(600)+340);
 		var ranY = (M.random()*(250)+100);
 		var p1 = can('tealparticle50', 5, x6, -25, 25, 25);
-		T.to(p1, 1.2, {
-			scaleX:0,
-			scaleY:0,
-			x:x6+12,
-			y:ranY,
-			onComplete:function(){
-				cRem(5, p1);
-			}
-		});
+		p1.image.onload = function(){
+			T.to(p1, 1.2, {
+				scaleX:0,
+				scaleY:0,
+				x:x6+12,
+				y:ranY,
+				onComplete:function(){
+					cRem(5, p1);
+				}
+			});
+		}
 		if(count2<20){ 
 			T.delayedCall(.02, function(){ 
 				gogo(++count2);
@@ -11272,12 +11465,14 @@ function animateDissension(Slot){
 	}
 	gogo(0);
 	var p2 = can('tealLight3', 5, -640, -827, 2560, 1544);
-	T.to(p2, 1.5, {
-		alpha:0,
-		onComplete:function(){
-			cRem(5, p2);
-		}
-	});
+	p2.image.onload = function(){
+		T.to(p2, 1.5, {
+			alpha:0,
+			onComplete:function(){
+				cRem(5, p2);
+			}
+		});
+	}
 }
 
 
@@ -11354,15 +11549,17 @@ function animateChorusOfClarity(){
 		var y = 0;
 		var ranY = (M.random()*(100)+50);
 		var p1 = can('blueparticle50', 5, x, y, 25, 25);
-		T.to(p1, 1.2, {
-			scaleX:0,
-			scaleY:0,
-			x:x+12,
-			y:ranY,
-			onComplete:function(){
-				cRem(5, p1);
-			}
-		});
+		p1.image.onload = function(){
+			T.to(p1, 1.2, {
+				scaleX:0,
+				scaleY:0,
+				x:x+12,
+				y:ranY,
+				onComplete:function(){
+					cRem(5, p1);
+				}
+			});
+		}
 		if(count<15){ 
 			T.delayedCall(.02, function(){ 
 				doit(++count);
@@ -11484,19 +11681,21 @@ function animateBardLight(img){
 		img = "yellowLight3";
 	}
 	var e1 = can(img, 5, 50, 68, 2560, 1594);
-	e1.alpha=.2;
-	T.to(e1, .25, {
-		x:-625,
-		y:0,
-		ease:ez.Qin,
-		onComplete:function(){
-			T.to(e1, .25, {
-				x:-1300,
-				y:200,
-				alpha:0
-			});
-		}
-	});
+	e1.image.onload = function(){
+		e1.alpha=.2;
+		T.to(e1, .25, {
+			x:-625,
+			y:0,
+			ease:ez.Qin,
+			onComplete:function(){
+				T.to(e1, .25, {
+					x:-1300,
+					y:200,
+					alpha:0
+				});
+			}
+		});
+	}
 }
 function desperateDirge(){
 	if(my.level<38){ return; }
@@ -11688,14 +11887,16 @@ function animateSongOfTheSirens(Slot){
 		var ranX = (M.random()*(150)-75);
 		var ranY = (M.random()*(60)-30);
 		var e1 = can('heart', 5, cX+ranX, cY+ranY, 50, 50);
-		T.to(e1, 1, {
-			y:"+="+100,
-			alpha:0,
-			ease:ez.Qin,
-			onComplete:function(){
-				cRem(5, e1);
-			}
-		});
+		e1.image.onload = function(){
+			T.to(e1, 1, {
+				y:"+="+100,
+				alpha:0,
+				ease:ez.Qin,
+				onComplete:function(){
+					cRem(5, e1);
+				}
+			});
+		}
 		count++;
 		if(count<8){ 
 			T.delayedCall(.05, function(){ 
@@ -11759,15 +11960,17 @@ function animateSmite(Slot, color){
 		x3 = radius * M.cos(rStep);
 		y3 = radius * M.sin(rStep);
 		var p1 = can(color+"particle50", 5, cX+x3, cY+y3, 25, 25);
-		T.to(p1,.75,{
-			scaleX:0,
-			scaleY:0,
-			x:cX+x3+11,
-			y:cY+y3+11,
-			onComplete:function(){
-				cRem(5, p1);
-			}
-		});
+		p1.image.onload = function(){
+			T.to(p1,.75,{
+				scaleX:0,
+				scaleY:0,
+				x:cX+x3+11,
+				y:cY+y3+11,
+				onComplete:function(){
+					cRem(5, p1);
+				}
+			});
+		}
 		if(count<countMax){
 			doit(++count,rStep,countMax,stepInc,radius);
 		}
@@ -12128,25 +12331,29 @@ g.expelCorruptionFinish=function(bypass){
 function animateExpelCorruption(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX-100);
 	var e1 = can('expelCorruption', 5, x2, -100, 200, 0);
-	T.to(e1, .15, {
-		scaleY:1.59,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, .15, {
+			scaleY:1.59,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+	}
 	var e2 = can('expelCorruption', 5, x2, -100, 200, 0);
-	T.to(e2, .15, {
-		scaleY:1.59,
-		alpha:.2
-	});
-	T.to(e2, 1.5, {
-		alpha:0,
-		ease:ez.lin,
-		delay:.15,
-		onComplete:function(){
-			cRem(5, e2);
-		}
-	});
+	e2.image.onload = function(){
+		T.to(e2, .15, {
+			scaleY:1.59,
+			alpha:.2
+		});
+		T.to(e2, 1.5, {
+			alpha:0,
+			ease:ez.lin,
+			delay:.15,
+			onComplete:function(){
+				cRem(5, e2);
+			}
+		});
+	}
 	T.delayedCall(.15, animateTremor, [x2+100, 800]);
 }
 
@@ -12230,14 +12437,16 @@ function animateSearingRevelation(Slot){
 	function doit(count){
 		var y=y2+(90*count)+200;
 		var e1 = can('yellowLight3', 5, x2-200, y, 1000, 1000, true);
-		T.to(e1, (1000+(count*200))/1000, {
-			alpha:0,
-			scaleX:0,
-			scaleY:0,
-			onComplete:function(){
-				cRem(5, e1);
-			}
-		});
+		e1.image.onload = function(){
+			T.to(e1, (1000+(count*200))/1000, {
+				alpha:0,
+				scaleX:0,
+				scaleY:0,
+				onComplete:function(){
+					cRem(5, e1);
+				}
+			});
+		}
 		if(count<5){ 
 			T.delayedCall(.05, function(){ 
 				doit(++count);
@@ -12315,34 +12524,38 @@ function animateMartyrsBlessing(){
 		var rWidth = M.random()*(200)+300;
 		var rHeight = 568+M.random()*(100)+50;
 		var p4 = can('martyrsBlessing', 7, x2, 0, 50, 720);
-		T.to(p4, 1.5, {
-			alpha:0,
-			scaleX:rWidth/300,
-			scaleY:rHeight/497,
-			x:x2-(rWidth/2),
-			y:0,
-			onComplete:function(){
-				cRem(7, p4);
-			}
-		});
+		p4.image.onload = function(){
+			T.to(p4, 1.5, {
+				alpha:0,
+				scaleX:rWidth/300,
+				scaleY:rHeight/497,
+				x:x2-(rWidth/2),
+				y:0,
+				onComplete:function(){
+					cRem(7, p4);
+				}
+			});
+		}
 		var ranY = M.random()*(90)+630;
 		var ranX = x2+M.random()*(400)-200;
 		var p1 = can('yellowparticle50', 7, x2-9, -30, 7, 7);
-		T.to(p1, 1.5, {
-			y:ranY,
-			ease:ez.bout
-		});
-		T.to(p1, 1.5, {
-			x:ranX,
-			ease:ez.sout
-		});
-		T.to(p1, M.random()*(12)+4, {
-			scaleX:0,
-			scaleY:0,
-			onComplete:function(){
-				cRem(7, p1);
-			}
-		});
+		p1.image.onload = function(){
+			T.to(p1, 1.5, {
+				y:ranY,
+				ease:ez.bout
+			});
+			T.to(p1, 1.5, {
+				x:ranX,
+				ease:ez.sout
+			});
+			T.to(p1, M.random()*(12)+4, {
+				scaleX:0,
+				scaleY:0,
+				onComplete:function(){
+					cRem(7, p1);
+				}
+			});
+		}
 		count++;
 		if(count<20){ 
 			T.delayedCall(.08, function(){ 
@@ -12352,13 +12565,15 @@ function animateMartyrsBlessing(){
 	}
 	doit(0);
 	var e1 = can('yellowLight3', 5, x2-175, -300, 2560, 1544, true);
-	T.to(e1, 3.5, {
-		alpha:0,
-		ease:ez.Qin,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, 3.5, {
+			alpha:0,
+			ease:ez.Qin,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+	}
 }
 
 function armorOfFaith(){
@@ -12636,15 +12851,17 @@ function guardianAngel(){
 function animateGuardianAngel(){
 	flashScreen("#ff0",.3,2);
 	var e1 = can('guardianAngel', 5, 415, 400, 0, 0, true);
-	T.to(e1, 3, {
-		alpha:0,
-		scaleX:1,
-		scaleY:1,
-		ease:ez.cout,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, 3, {
+			alpha:0,
+			scaleX:1,
+			scaleY:1,
+			ease:ez.cout,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+	}
 }
 
 
@@ -12727,34 +12944,38 @@ function animateHolyWrath(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX);
 	var y2 = (MOB[Slot].offsetTop+mob[Slot].cY);
 	var p3 = can('holyMight', 5, x2-100, y2-100, 200, 200);
-	T.to(p3, .25,{
-		alpha:0,
-		onComplete:function(){
-			cRem(5, p3);
-		}
-	});
+	p3.image.onload = function(){
+		T.to(p3, .25,{
+			alpha:0,
+			onComplete:function(){
+				cRem(5, p3);
+			}
+		});
+	}
 	var p4 = can('lineNova', 7, x2-200, y2-200, 400, 400);
-	p4.alpha = 0;
-	T.to(p4, .15,{
-		alpha:.3,
-		scaleX:1.25,
-		scaleY:1.25,
-		y:y2-250,
-		x:x2-250,
-		onComplete:function(){
-			T.to(p4, .45,{
-				alpha:0,
-				scaleX:2,
-				scaleY:2,
-				y:y2-400,
-				x:x2-400,
-				ease:ez.lin,
-				onComplete:function(){
-					cRem(7, p4);
-				}
-			});
-		}
-	});
+	p4.image.onload = function(){
+		p4.alpha = 0;
+		T.to(p4, .15,{
+			alpha:.3,
+			scaleX:1.25,
+			scaleY:1.25,
+			y:y2-250,
+			x:x2-250,
+			onComplete:function(){
+				T.to(p4, .45,{
+					alpha:0,
+					scaleX:2,
+					scaleY:2,
+					y:y2-400,
+					x:x2-400,
+					ease:ez.lin,
+					onComplete:function(){
+						cRem(7, p4);
+					}
+				});
+			}
+		});
+	}
 }
 
 
@@ -12924,37 +13145,43 @@ function animateBenediction(Slot, disable){
 	if(!mob[Slot].name){ return; }
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX-200);
 	var p5 = can('benediction', 5, x2, -100, 400, 0);
-	T.to(p5, .15, {
-		y:0,
-		scaleY:675/497,
-		onComplete:function(){
-			cRem(5, p5);
-		}
-	});
+	p5.image.onload = function(){
+		T.to(p5, .15, {
+			y:0,
+			scaleY:675/497,
+			onComplete:function(){
+				cRem(5, p5);
+			}
+		});
+	}
 	var p3 = can('benediction', 5, x2, -100, 400, 0);
-	T.to(p3, .15, {
-		y:0,
-		scaleY:675/497,
-		alpha:.2,
-		onComplete:function(){
-			T.to(p3, 1.5, {
-				alpha:0,
-				ease:ez.lin,
-				onComplete:function(){
-					cRem(5, p3);
-				}
-			});
-		}
-	});
+	p3.image.onload = function(){
+		T.to(p3, .15, {
+			y:0,
+			scaleY:675/497,
+			alpha:.2,
+			onComplete:function(){
+				T.to(p3, 1.5, {
+					alpha:0,
+					ease:ez.lin,
+					onComplete:function(){
+						cRem(5, p3);
+					}
+				});
+			}
+		});
+	}
 	T.delayedCall(.15, animateTremor, [x2+200, 1200]);
 	if(!disable){
 		var p4 = can('benedictionFloor', 7, 0, 397, 1280, 400);
-		T.to(p4, 3, {
-			alpha:0,
-			onComplete:function(){
-				cRem(7, p4);
-			}
-		});
+		p4.image.onload = function(){
+			T.to(p4, 3, {
+				alpha:0,
+				onComplete:function(){
+					cRem(7, p4);
+				}
+			});
+		}
 	}
 }
 
@@ -13005,15 +13232,17 @@ function animateStarfire(Slot){
 	var x2 = (cX-100);
 	var y2 = (cY-100);
 	var e1 = can('ignite', 5, x2, y2, 200, 200, true);
-	T.to(e1, .6, {
-		scaleX:2,
-		scaleY:2,
-		alpha:0,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
-	particleBurst(Slot,'orange','blank');
+	e1.image.onload = function(){
+		T.to(e1, .6, {
+			scaleX:2,
+			scaleY:2,
+			alpha:0,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+		particleBurst(Slot,'orange','blank');
+	}
 }
 
 function dronesOfDoomReady(){
@@ -13684,18 +13913,20 @@ function animateLightningBlast(Slot){
 	var cX = MOB[Slot].offsetLeft+mob[Slot].cX;
 	var x2 = (cX-175);
 	var e1 = can('lightningBlast', 5, x2, 100, 350, 697, true);
-	flipImg(e1);
-	T.to(e1, .25, {
-		alpha:.1,
-		onComplete:function(){
-			T.to(e1, 2.5, {
-				alpha:0,
-				onComplete:function(){
-					cRem(5, e1);
-				}
-			});
-		}
-	});
+	e1.image.onload = function(){
+		flipImg(e1);
+		T.to(e1, .25, {
+			alpha:.1,
+			onComplete:function(){
+				T.to(e1, 2.5, {
+					alpha:0,
+					onComplete:function(){
+						cRem(5, e1);
+					}
+				});
+			}
+		});
+	}
 }
 
 
@@ -14203,19 +14434,21 @@ g.volcanoFinish=function(){
 function animateVolcano(Slot){
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX);
 	var e2 = can('fissure', 7, x2-300, 668, 0, 0, true);
-	T.to(e2,1,{
-		scaleX:1.25,
-		scaleY:1.25
-	});
-	T.to(e2,1.5,{
-		scaleX:.5,
-		scaleY:.5,
-		alpha:0,
-		delay:1,
-		onComplete:function(){
-			cRem(7, e2);
-		}
-	});
+	e2.image.onload = function(){
+		T.to(e2,1,{
+			scaleX:1.25,
+			scaleY:1.25
+		});
+		T.to(e2,1.5,{
+			scaleX:.5,
+			scaleY:.5,
+			alpha:0,
+			delay:1,
+			onComplete:function(){
+				cRem(7, e2);
+			}
+		});
+	}
 	var x3 = (x2-25+M.random()*(800)-400);
 	var e1 = cacheAdd(cache.boulder, 5, x2-75, 720, 1, 1);
 	T.to(e1, .3,{
@@ -14307,14 +14540,16 @@ function animateFrostStrike(Slot){
 	var x2 = (cX-100);
 	var y2 = (cY-100);
 	var e1 = can('frostStrike', 5, x2, y2, 200, 200, true);
-	T.to(e1, .8, {
-		scaleY:2,
-		scaleX:2,
-		alpha:0,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, .8, {
+			scaleY:2,
+			scaleX:2,
+			alpha:0,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+	}
 	particleBurst(Slot,"teal");
 }
 
@@ -14479,13 +14714,15 @@ function animateHealing(color,orb,total){
 	doIt(0);
 	if(orb===true){
 		var e1 = can(color+"Light3", 5, 640, 720, 2560, 1544, true);
-		T.to(e1, 1.5, {
-			alpha:0,
-			ease:ez.Qin,
-			onComplete:function(){
-				cRem(5, e1);
-			}
-		});
+		e1.image.onload = function(){
+			T.to(e1, 1.5, {
+				alpha:0,
+				ease:ez.Qin,
+				onComplete:function(){
+					cRem(5, e1);
+				}
+			});
+		}
 	}
 }
 
@@ -14599,15 +14836,17 @@ function animateBuff(color, easing, startSize, endSize, total, d){
 	}
 	doIt(0);
 	var e1 = can(color+"Light3", 5, 640, 720, 2560, 1544, true);
-	T.to(e1, 2, {
-		scaleX:0,
-		scaleY:0,
-		alpha:0,
-		ease:ez.Qin,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, 2, {
+			scaleX:0,
+			scaleY:0,
+			alpha:0,
+			ease:ez.Qin,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+	}
 }
 function callOfTheAncientsExpire(){
 	callOfTheAncientsStatus=false;
@@ -14743,16 +14982,18 @@ function animateDot(Slot, color, spread, total, interval, distance, easeType, st
 		var x3 = x2+(M.random()*(spread)-(spread/2));
 		var y3 = y2+(M.random()*(spread)-(spread/2));
 		var p1 = can(color+"particle50", 5, x3, y3, startSize, startSize);
-		T.to(p1, d, {
-			scaleX:endSize/25,
-			scaleY:endSize/25,
-			x:x3-diff,
-			y:y3+distance,
-			ease:easeType,
-			onComplete:function(){
-				cRem(5, p1);
-			}
-		});
+		p1.image.onload = function(){
+			T.to(p1, d, {
+				scaleX:endSize/25,
+				scaleY:endSize/25,
+				x:x3-diff,
+				y:y3+distance,
+				ease:easeType,
+				onComplete:function(){
+					cRem(5, p1);
+				}
+			});
+		}
 		if(++count<total){ 
 			T.delayedCall(interval, function(){ 
 				doit(count);
@@ -15242,26 +15483,30 @@ function animateReclaimBlood(Slot){
 		}
 		if(sX<15){
 			var p1 = can('redparticle50', 5, X1, Y1, 25, 25);
-			T.to(p1,(M.random()*(2)+.5),{
-				y:Y2,
-				ease:ez.sinout,
-				scaleX:0,
-				scaleY:0,
-				onComplete:function(){
-					cRem(5, p1);
-				}
-			});
+			p1.image.onload = function(){
+				T.to(p1,(M.random()*(2)+.5),{
+					y:Y2,
+					ease:ez.sinout,
+					scaleX:0,
+					scaleY:0,
+					onComplete:function(){
+						cRem(5, p1);
+					}
+				});
+			}
 		}else{
 			var p1 = can('redparticle50', 5, X1, Y1, 25, 25);
-			T.to(p1,(M.random()*(2)+.5),{
-				y:Y2,
-				scaleX:0,
-				scaleY:0,
-				ease:ez.sinout,
-				onComplete:function(){
-					cRem(5, p1);
-				}
-			});
+			p1.image.onload = function(){
+				T.to(p1,(M.random()*(2)+.5),{
+					y:Y2,
+					scaleX:0,
+					scaleY:0,
+					ease:ez.sinout,
+					onComplete:function(){
+						cRem(5, p1);
+					}
+				});
+			}
 		}
 	}
 }
@@ -15901,14 +16146,16 @@ function animateCorpseExplosion(Slot, fire){
 		var img2='orange';
 	}
 	var e1 = can(img1, 5, x2-150, 580-68, 0, 0, true);
-	T.to(e1, .4, {
-		scaleY:4,
-		scaleX:4,
-		alpha:0,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, .4, {
+			scaleY:4,
+			scaleX:4,
+			alpha:0,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+	}
 	var c2 = img(img2+"particle50");
 	function doIt(count){
 		var x = (M.random()*(500)-250+x2);
@@ -16257,19 +16504,21 @@ function animateAugmentDeath(){
 		var x2 = (MOB[5].offsetLeft+(petWidth/2));
 		var y2 = (MOB[5].offsetTop+(petHeight/2));
 		var e1 = can('lineNovaRed', 5, x2-200, y2-200, 400, 400, true);
-		T.to(e1, .15, {
-			alpha:.7,
-			scaleX:1.25,
-			scaleY:1.25,
-			onComplete:function(){
-				T.to(e1, .45, {
-					alpha:0,
-					scaleX:2,
-					scaleY:2,
-					ease:ez.lin
-				});
-			}
-		});
+		e1.image.onload = function(){
+			T.to(e1, .15, {
+				alpha:.7,
+				scaleX:1.25,
+				scaleY:1.25,
+				onComplete:function(){
+					T.to(e1, .45, {
+						alpha:0,
+						scaleX:2,
+						scaleY:2,
+						ease:ez.lin
+					});
+				}
+			});
+		}
 	}
 }
 function augmentDeathExpire(){
@@ -16419,19 +16668,21 @@ function diamondSkin(){
 function animateDiamondSkin(){
 	flashScreen("#08f",.3,2);
 	var e1 = can('diamondSkin', 5, 440, 397, 400, 400, true);
-	T.to(e1, 3, {
-		y:667,
-		alpha:0,
-		scaleX:.5,
-		scaleY:.5,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
-	T.to(e1, 3, {
-		scaleX:1.5,
-		scaleY:1.5,
-	});
+	e1.image.onload = function(){
+		T.to(e1, 3, {
+			y:667,
+			alpha:0,
+			scaleX:.5,
+			scaleY:.5,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+		T.to(e1, 3, {
+			scaleX:1.5,
+			scaleY:1.5,
+		});
+	}
 	animateBuffRings();
 }
 function diamondSkinExpire(){
@@ -16740,28 +16991,32 @@ function animateExplosion(Slot, img){
 	}
 	var x2 = (MOB[Slot].offsetLeft+mob[Slot].cX);
 	var e1 = can(img, 5, x2-150, 490, 0, 0, true);
-	T.to(e1, .2, {
-		scaleY:2.66,
-		scaleX:2.66,
-		ease:ez.cout
-	});
-	T.to(e1, 1.3, {
-		alpha:0,
-		ease:ez.xout,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, .2, {
+			scaleY:2.66,
+			scaleX:2.66,
+			ease:ez.cout
+		});
+		T.to(e1, 1.3, {
+			alpha:0,
+			ease:ez.xout,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+	}
 	var e2 = can(img, 5, x2-150, 490, 0, 0, true);
-	T.to(e2, 1, {
-		scaleY:2.66,
-		scaleX:2.66,
-		alpha:0,
-		ease:ez.cout,
-		onComplete:function(){
-			cRem(5, e2);
-		}
-	});
+	e2.image.onload = function(){
+		T.to(e2, 1, {
+			scaleY:2.66,
+			scaleX:2.66,
+			alpha:0,
+			ease:ez.cout,
+			onComplete:function(){
+				cRem(5, e2);
+			}
+		});
+	}
 }
 function animateSoulExplosion(Slot){
 	if(mob[Slot].name===""){ return; }
@@ -16777,15 +17032,17 @@ function animateSoulExplosion(Slot){
 			var x3 = x*.99+12;
 		}
 		var p1 = can('greenparticle50', 5, x, y, 25, 25);
-		T.to(p1, .75, {
-			x:x3,
-			y:y+37,
-			scaleX:0,
-			scaleY:0,
-			onComplete:function(){
-				cRem(5, p1);
-			}
-		});
+		p1.image.onload = function(){
+			T.to(p1, .75, {
+				x:x3,
+				y:y+37,
+				scaleX:0,
+				scaleY:0,
+				onComplete:function(){
+					cRem(5, p1);
+				}
+			});
+		}
 		if(count<30){ 
 			T.delayedCall(.01, function(){ 
 				doIt(++count);
@@ -17334,20 +17591,22 @@ function animateMesmerize(Slot, size, color){
 		var randomLeft = MOB[Slot].offsetLeft+((mob[Slot].imageWidth)/2)+M.random()*(200)-100-(size/2);
 		var randomTop = cY+M.random()*(mob[Slot].cY)+10;
 		var p1 = can(color+"particle50", 5, randomLeft, randomTop, size, size);
-		var speed=M.random()*(2)+1;
-		T.to(p1, speed, {
-			scaleX:.1,
-			scaleY:.1,
-			x:randomLeft+diff,
-			ease:ez.qin,
-			onComplete:function(){
-				cRem(5, p1);
-			}
-		});
-		T.to(p1, speed, {
-			y:"+="+(M.random()*(mob[Slot].cY*2.5)+size),
-			ease:ez.sin
-		});
+		p1.image.onload = function(){
+			var speed=M.random()*(2)+1;
+			T.to(p1, speed, {
+				scaleX:.1,
+				scaleY:.1,
+				x:randomLeft+diff,
+				ease:ez.qin,
+				onComplete:function(){
+					cRem(5, p1);
+				}
+			});
+			T.to(p1, speed, {
+				y:"+="+(M.random()*(mob[Slot].cY*2.5)+size),
+				ease:ez.sin
+			});
+		}
 		count++;
 		if(count <= 40){ animateLoop(count); }
 	}
@@ -17363,20 +17622,22 @@ function animateJubilee(Slot, size, color){
 	function animateLoop(count){
 		var randomLeft = MOB[Slot].offsetLeft+((mob[Slot].imageWidth)/2)+M.random()*(200)-100-(size/2);
 		var randomTop = cY+M.random()*(mob[Slot].cY)+10;
-		var p1 = can(color+"particle50", 5, randomLeft, randomTop, 25, 25);
-		var speed=M.random()*(1.5)+.5;
-		T.to(p1, speed, {
-			x:randomLeft+diff,
-			scaleX:.1,
-			scaleY:.1,
-			onComplete:function(){
-				cRem(5, p1);
-			}
-		});
-		T.to(p1, speed, {
-			y:"+="+(M.random()*(mob[Slot].cY*2.5)+size),
-			ease:ez.Qin
-		});
+		var p1 = can(color+"particle50", 5, randomLeft, randomTop, 25, 25),
+			speed=M.random()*(1.5)+.5;
+		p1.image.onload = function(){
+			T.to(p1, speed, {
+				x:randomLeft+diff,
+				scaleX:.1,
+				scaleY:.1,
+				onComplete:function(){
+					cRem(5, p1);
+				}
+			});
+			T.to(p1, speed, {
+				y:"+="+(M.random()*(mob[Slot].cY*2.5)+size),
+				ease:ez.Qin
+			});
+		}
 		if(count <= 60){ animateLoop(++count); }
 	}
 	animateLoop(0);
@@ -17876,33 +18137,37 @@ function animatePsychicBeam(Slot,total){
 			mob[Slot].charmStatus===true||
 			mob[Slot].name===''){ return; }
 		var p5 = can('windmillKick', 7, x2, y2, 300, 0);
-		T.to(p5, .2, {
-			scaleY:1300/200,
-			ease:ez.Qin
-		});
-		T.to(p5, .2, {
-			scaleY:0,
-			alpha:0,
-			y:560,
-			delay:.2,
-			onComplete:function(){
-				cRem(7, p5);
-			}
-		});	
+		p5.image.onload = function(){
+			T.to(p5, .2, {
+				scaleY:1300/200,
+				ease:ez.Qin
+			});
+			T.to(p5, .2, {
+				scaleY:0,
+				alpha:0,
+				y:560,
+				delay:.2,
+				onComplete:function(){
+					cRem(7, p5);
+				}
+			});	
+		}
 		var p4 = can('windmillKick', 7, x2-600, y2, 1500, 0);
-		T.to(p4, .2, {
-			scaleY:1300/200,
-			ease:ez.Qin
-		});
-		T.to(p4, .75, {
-			alpha:0,
-			scaleX:2100/200,
-			x:x2-900,
-			delay:.2,
-			onComplete:function(){
-				cRem(7, p4);
-			}
-		});
+		p4.image.onload = function(){
+			T.to(p4, .2, {
+				scaleY:1300/200,
+				ease:ez.Qin
+			});
+			T.to(p4, .75, {
+				alpha:0,
+				scaleX:2100/200,
+				x:x2-900,
+				delay:.2,
+				onComplete:function(){
+					cRem(7, p4);
+				}
+			});
+		}
 		animateTremor();
 		var max = M.ceil(evocationTotal()/8);
 		g.myMagicDamage("magic", minMax(max, .2), Slot, false, "Psychic Beam");	
@@ -17974,14 +18239,16 @@ g.mysticRuneFinish=function(){
 function animateMysticRune(){
 	flashScreen("#08f", .3, 2);
 	var e1 = can('mysticRune', 5, 440, 297, 400, 400, true);
-	T.to(e1, 3, {
-		y:720,
-		alpha:0, 
-		rotation:1440,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, 3, {
+			y:720,
+			alpha:0, 
+			rotation:1440,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+	}
 	animateBuffRings();
 }
 function animateBuffRings(img, total){
@@ -17993,13 +18260,15 @@ function animateBuffRings(img, total){
 	}
 	function goRings(count){
 		var p1 = can(img, 6, 0, -60, 1280, 50);
-		T.to(p1, .8, {
-			y:720,
-			ease:ez.sout,
-			onComplete:function(){
-				cRem(6, p1);
-			}
-		});
+		p1.image.onload = function(){
+			T.to(p1, .8, {
+				y:720,
+				ease:ez.sout,
+				onComplete:function(){
+					cRem(6, p1);
+				}
+			});
+		}
 		count++;
 		if(count<total){ 
 			T.delayedCall(.1, function(){ 
@@ -18247,14 +18516,16 @@ function animateLavaBolt(Slot){
 	var x2 = (cX-100);
 	var y2 = (cY-100);
 	var e1 = can('lavaBolt', 5, x2, y2, 200, 200, true);
-	T.to(e1, .8, {
-		scaleX:2,
-		scaleY:2,
-		alpha:0,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, .8, {
+			scaleX:2,
+			scaleY:2,
+			alpha:0,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+	}
 	particleBurst(Slot,'orange','blank');
 }
 
@@ -18856,23 +19127,25 @@ g.frozenOrbFinish=function(){
 function animateFrozenOrb(Slot){
 	var cX = MOB[Slot].offsetLeft+mob[Slot].cX-320;
 	var e1 = can('frozenOrb', 5, cX, -640, 640, 640, true);
-	T.to(e1, .75, {
-		y:470,
-		onComplete:function(){
-			T.to(e1, 1, {
-				y:540,
-				alpha:0,
-				ease:ez.lin
-			});
-		}
-	});
-	T.to(e1, 2, {
-		rotation:-1800,
-		ease:ez.cin,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, .75, {
+			y:470,
+			onComplete:function(){
+				T.to(e1, 1, {
+					y:540,
+					alpha:0,
+					ease:ez.lin
+				});
+			}
+		});
+		T.to(e1, 2, {
+			rotation:-1800,
+			ease:ez.cin,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+	}
 	var c2 = img("tealparticle50");
 	function doit(count){
 		x2 = (M.random()*1330-25);
@@ -18951,14 +19224,16 @@ function animateBurnout(){
 		var x3 = x2+(M.random()*(300)-150)-(size/2);
 		var y3 = y2+(M.random()*(100)-200);
 		var p1 = can('fireparticle50', 6, x2-100, y3, size, size);
-		T.to(p1, .6, {
-			alpha:0,
-			y:(y3+75),
-			ease:ez.Qin,
-			onComplete:function(){
-				cRem(6, p1);
-			}
-		});
+		p1.image.onload = function(){
+			T.to(p1, .6, {
+				alpha:0,
+				y:(y3+75),
+				ease:ez.Qin,
+				onComplete:function(){
+					cRem(6, p1);
+				}
+			});
+		}
 		count++;
 		if(count<12){ 
 			T.delayedCall(.01, function(){ 
@@ -18969,13 +19244,15 @@ function animateBurnout(){
 	doit(0);
 	function doFlash(count2){
 		var p2 = can('orangeLight3', 5, x2-1280, y2-827, 2560, 1544);
-		T.to(p2, .8, {
-			alpha:0,
-			ease:ez.Qin,
-			onComplete:function(){
-				cRem(5, p2);
-			}
-		});
+		p2.image.onload = function(){
+			T.to(p2, .8, {
+				alpha:0,
+				ease:ez.Qin,
+				onComplete:function(){
+					cRem(5, p2);
+				}
+			});
+		}
 		count2++;
 		if(count2<3){ doFlash(count2); }
 	}
@@ -19099,16 +19376,18 @@ function manaShield(){
 function animateManaShield(){
 	flashScreen("#08f",.3,2);
 	var e1 = can('manaShield', 5, 440, 397, 400, 400, true);
-	T.to(e1, 3, {
-		y:797,
-		alpha:0
-	});
-	T.to(e1, 1.5, {
-		rotation:720,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, 3, {
+			y:797,
+			alpha:0
+		});
+		T.to(e1, 1.5, {
+			rotation:720,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+	}
 	animateBuffRings();
 }
 function manaShieldExpire(){
@@ -19205,15 +19484,17 @@ function animatePsionicStorm(Slot){
 		var y3 = y2 + (M.random()*(200)-100);
 		var img1 = "psionic"+(~~(M.random()*(4)+1));
 		var e1 = can(img1, 5, x3, y3, 100, 100, true);
-		T.to(e1, .5, {
-			scaleX:0,
-			scaleY:0,
-			rotation:(M.random()*(180)-90),
-			onComplete:function(){
-				cRem(5, e1);
-			
-			}
-		});
+		e1.image.onload = function(){
+			T.to(e1, .5, {
+				scaleX:0,
+				scaleY:0,
+				rotation:(M.random()*(180)-90),
+				onComplete:function(){
+					cRem(5, e1);
+				
+				}
+			});
+		}
 		if(count<12){ 
 			T.delayedCall(.033, function(){ 
 				doit(++count);
@@ -19286,20 +19567,22 @@ function animateReclaimElements(){
 	var y2 = (MOB[5].offsetTop+(petHeight/2)-100);
 	function doit(count){
 		var p1 = can('yellowOrb', 6, x2, y2, 200, 200);
-		T.to(p1, .2, {
-			y:660,
-			x:540,
-			ease:ez.Qin,
-			onComplete:function(){
-				T.to(p1, .5, {
-					alpha:0,
-					ease:ez.lin,
-					onComplete:function(){
-						cRem(6, p1);
-					}
-				});
-			}
-		});
+		p1.image.onload = function(){
+			T.to(p1, .2, {
+				y:660,
+				x:540,
+				ease:ez.Qin,
+				onComplete:function(){
+					T.to(p1, .5, {
+						alpha:0,
+						ease:ez.lin,
+						onComplete:function(){
+							cRem(6, p1);
+						}
+					});
+				}
+			});
+		}
 		count++;
 		if(count<10){ 
 			T.delayedCall(.05, function(){ 
@@ -19526,15 +19809,17 @@ function animateArmageddon(Slot){
 	}
 	var y2 = 467;
 	var e1 = can('armageddon', 5, x2-1500, y2-1500, 400, 400);
-	T.to(e1, .5, {
-		x:(x2-300),
-		y:(y2-200),
-		ease:ez.lin,
-		onComplete:function(){
-			cRem(5, e1);
-			animateTremor(x2, 800);
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, .5, {
+			x:(x2-300),
+			y:(y2-200),
+			ease:ez.lin,
+			onComplete:function(){
+				cRem(5, e1);
+				animateTremor(x2, 800);
+			}
+		});
+	}
 }
 
 function stasisFieldReady(){
@@ -19815,17 +20100,19 @@ function animateIceBolt(Slot,mType){
 		color='orange';
 	}
 	var e1 = can(img1, 5, 540, 618, 300, 300, true);
-	T.to(e1, .2, {
-		rotation:540,
-		scaleX:.4,
-		scaleY:.4,
-		x:cX+100,
-		y:cY+100,
-		onComplete:function(){
-			cRem(5, e1);
-			particleBurst(Slot,color,'blank');
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, .2, {
+			rotation:540,
+			scaleX:.4,
+			scaleY:.4,
+			x:cX+100,
+			y:cY+100,
+			onComplete:function(){
+				cRem(5, e1);
+				particleBurst(Slot,color,'blank');
+			}
+		});
+	}
 }
 
 function chargedBoltsReady(){
@@ -19882,12 +20169,14 @@ function chargedBolts(){
 	}
 	function doit(count){
 		var e1 = can('whiteLight3', 5, -640, 0, 2560, 1597);
-		T.to(e1, .75, {
-			startAt:{
-				alpha:.3
-			},
-			alpha:0
-		});
+		e1.image.onload = function(){
+			T.to(e1, .75, {
+				startAt:{
+					alpha:.3
+				},
+				alpha:0
+			});
+		}
 		count++;
 		if(count<4){ 
 			doit(count);
@@ -19921,25 +20210,27 @@ function animateChargedBolts(Slot,left){
 		img1='chargedBolts2';
 	}
 	var e1 = can(img1, 5, 590, 655, 100, 100);
-	T.to(e1, .75, {
-		scaleX:.8,
-		scaleY:.8,
-		y:550,
-		x:left,
-		onComplete:function(){
-			cRem(5, e1);
+	e1.image.onload = function(){
+		T.to(e1, .75, {
+			scaleX:.8,
+			scaleY:.8,
+			y:550,
+			x:left,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+		function doit(count){
+			count-=50;
+			flipImg(e1);
+			if(count>0){ 
+				T.delayedCall(.1, function(){ 
+					doit(count);
+				}); 
+			}
 		}
-	});
-	function doit(count){
-		count-=50;
-		flipImg(e1);
-		if(count>0){ 
-			T.delayedCall(.1, function(){ 
-				doit(count);
-			}); 
-		}
+		doit(750);
 	}
-	doit(750);
 }
 
 
@@ -20073,40 +20364,42 @@ function animateMagicMissile(Slot){
 	var cX = MOB[Slot].offsetLeft+mob[Slot].cX-100;
 	var cY = MOB[Slot].offsetTop+mob[Slot].cY-100;
 	var e1 = can('magicMissile', 5, 490, 618, 300, 300, true);
-	T.to(e1, .25, {
-		startAt:{
-			rotation:(M.random()*(360))
-		},
-		rotation:"+=540",
-		ease:ez.lin
-	});
-	T.to(e1, .25, {
-		scaleX:.25,
-		scaleY:.25,
-		x:cX-38+125,
-		y:cY-38+125,
-		onComplete:function(){
-			cRem(5, e1);
-			var c2 = img("purpleparticle50");
-			function doit(count){
-				var ranX = cX+88+ (M.random()*(300)-150);
-				var ranY = cY+88+ (M.random()*(250)-175);
-				var p1 = cacheAdd(c2, 5, ranX, ranY, 1, 1, true);
-				T.to(p1, 1, {
-					y:"+="+(M.random()*(30)+10),
-					scaleX:0,
-					scaleY:0,
-					onComplete:function(){
-						cRem(5, p1);
-					}
-				});
-				count++;
-				if(count<15){ doit(count); }
+	e1.image.onload = function(){
+		T.to(e1, .25, {
+			startAt:{
+				rotation:(M.random()*(360))
+			},
+			rotation:"+=540",
+			ease:ez.lin
+		});
+		T.to(e1, .25, {
+			scaleX:.25,
+			scaleY:.25,
+			x:cX-38+125,
+			y:cY-38+125,
+			onComplete:function(){
+				cRem(5, e1);
+				var c2 = img("purpleparticle50");
+				function doit(count){
+					var ranX = cX+88+ (M.random()*(300)-150);
+					var ranY = cY+88+ (M.random()*(250)-175);
+					var p1 = cacheAdd(c2, 5, ranX, ranY, 1, 1, true);
+					T.to(p1, 1, {
+						y:"+="+(M.random()*(30)+10),
+						scaleX:0,
+						scaleY:0,
+						onComplete:function(){
+							cRem(5, p1);
+						}
+					});
+					count++;
+					if(count<15){ doit(count); }
+				}
+				doit(0);
+				
 			}
-			doit(0);
-			
-		}
-	});
+		});
+	}
 }
 function viziersShielding(){
 	if(btn.d.viziersshielding===true||my.level<7){ return;}
@@ -20267,17 +20560,19 @@ function animateFireball(Slot){
 	var cY = MOB[Slot].offsetTop+mob[Slot].cY-400;
 	var speed = 250;
 	var e1 = can('fireball', 5, 240, 130, 800, 800, true);
-	T.to(e1, speed/1000, {
-		rotation:360,
-		scaleX:.375,
-		scaleY:.375,
-		x:cX+400,
-		y:cY+400,
-		ease:ez.lin,
-		onComplete:function(){
-			cRem(5, e1);
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, speed/1000, {
+			rotation:360,
+			scaleX:.375,
+			scaleY:.375,
+			x:cX+400,
+			y:cY+400,
+			ease:ez.lin,
+			onComplete:function(){
+				cRem(5, e1);
+			}
+		});
+	}
 	var particles = 50;
 	var c2 = img("orangeparticle50");
 	function doit(count){
@@ -20585,37 +20880,39 @@ function animateChainLightning(Slot){
 	var cX = MOB[Slot].offsetLeft+mob[Slot].cX;
 	var cY = MOB[Slot].offsetTop+mob[Slot].cY;
 	var e1 = can('chainLightning', 5, cX+M.random()*(50)-125, -100, 200, 720);
-	flipImg(e1);
-	T.to(e1, .15, {
-		alpha:1,
-		onComplete:function(){
-			T.to(e1, .15, {
-				alpha:0,
-				ease:ez.Qin,
-				onComplete:function(){
-					cRem(5, e1);
-				}
-			});
-		}
-	});
-	function doit(count){
-		var ranX = cX+ (M.random()*(400)-200);
-		var ranY = cY+ (M.random()*(450)-375);
-		var p1 = can('whiteparticle50', 5, ranX, ranY, 25, 25);
-		T.to(p1, 1, {
-			top:(ranY+M.random()*(40)-20),
-			left:(ranX+4+M.random()*(40)-20),
-			scaleX:0,
-			scaleY:0,
+	e1.image.onload = function(){
+		flipImg(e1);
+		T.to(e1, .15, {
+			alpha:1,
 			onComplete:function(){
-				cRem(5, p1);
-			},
-			ease:ez.cinout
+				T.to(e1, .15, {
+					alpha:0,
+					ease:ez.Qin,
+					onComplete:function(){
+						cRem(5, e1);
+					}
+				});
+			}
 		});
-		count++;
-		if(count<8){ doit(count); }
+		function doit(count){
+			var ranX = cX+ (M.random()*(400)-200);
+			var ranY = cY+ (M.random()*(450)-375);
+			var p1 = can('whiteparticle50', 5, ranX, ranY, 25, 25);
+			T.to(p1, 1, {
+				top:(ranY+M.random()*(40)-20),
+				left:(ranX+4+M.random()*(40)-20),
+				scaleX:0,
+				scaleY:0,
+				onComplete:function(){
+					cRem(5, p1);
+				},
+				ease:ez.cinout
+			});
+			count++;
+			if(count<8){ doit(count); }
+		}
+		doit(0);
 	}
-	doit(0);
 }
 
 
@@ -20747,33 +21044,35 @@ function animateGlacialSpike(Slot){
 	var cY = MOB[Slot].offsetTop+mob[Slot].cY-400;
 	var e1 = can('glacialSpike', 5, 240, 368, 800, 800, true);
 	var c2 = img("tealparticle50");
-	T.to(e1, .25, {
-		scaleX:.375,
-		scaleY:.375,
-		x:(cX+400),
-		y:(cY+400),
-		rotation:360,
-		ease:ez.lin,
-		onComplete:function(){
-			cRem(5, e1);
-			function doit(count){
-				var ranX = (cX+388+(M.random()*(700)-350));
-				var ranY = (cY+388+(M.random()*(350)-225));
-				var e2 = cacheAdd(c2, 5, ranX, ranY);
-				T.to(e2, .75, {
-					x:(ranX+12+M.random()*(20)-10),
-					y:(ranY+50),
-					scaleX:0,
-					scaleY:0,
-					onComplete:function(){
-						cRem(5, e2);
-					}
-				});
-				if(count<40){ doit(++count); }
+	e1.image.onload = function(){
+		T.to(e1, .25, {
+			scaleX:.375,
+			scaleY:.375,
+			x:(cX+400),
+			y:(cY+400),
+			rotation:360,
+			ease:ez.lin,
+			onComplete:function(){
+				cRem(5, e1);
+				function doit(count){
+					var ranX = (cX+388+(M.random()*(700)-350));
+					var ranY = (cY+388+(M.random()*(350)-225));
+					var e2 = cacheAdd(c2, 5, ranX, ranY);
+					T.to(e2, .75, {
+						x:(ranX+12+M.random()*(20)-10),
+						y:(ranY+50),
+						scaleX:0,
+						scaleY:0,
+						onComplete:function(){
+							cRem(5, e2);
+						}
+					});
+					if(count<40){ doit(++count); }
+				}
+				doit(0);
 			}
-			doit(0);
-		}
-	});
+		});
+	}
 }
 
 function iceBlockReady(){
@@ -20946,16 +21245,18 @@ function animateIceComet(Slot){
 	}
 	function blam(count){
 		var e3 = can('tealLight3', 5, x2-1980, -1077, 2560, 1844);
-		T.to(e3, 2, {
-			startAt:{
-				alpha:0
-			},
-			alpha:.4,
-			ease:ez.Qin,
-			onComplete:function(){
-				cRem(5, e3);
-			}
-		});
+		e3.image.onload = function(){
+			T.to(e3, 2, {
+				startAt:{
+					alpha:0
+				},
+				alpha:.4,
+				ease:ez.Qin,
+				onComplete:function(){
+					cRem(5, e3);
+				}
+			});
+		}
 		count++;
 		if(count<4){ 
 			T.delayedCall(0, function(){ 
@@ -20986,21 +21287,23 @@ function animateIceComet(Slot){
 		}
 	}
 	var e1 = can('iceComet', 5, x2-2000, y2-2000, 600, 600);
-	T.to(e1, .5, {
-		startAt:{
-			alpha:1
-		},
-		delay:1.5,
-		x:(x2-450),
-		y:(y2-300),
-		ease:ez.lin,
-		onComplete:function(){
-			cRem(5, e1);
-			doit(0);
-			screenShake(1, 20, 0, 25);
-			animateTremor(x2, 1000);
-		}
-	});
+	e1.image.onload = function(){
+		T.to(e1, .5, {
+			startAt:{
+				alpha:1
+			},
+			delay:1.5,
+			x:(x2-450),
+			y:(y2-300),
+			ease:ez.lin,
+			onComplete:function(){
+				cRem(5, e1);
+				doit(0);
+				screenShake(1, 20, 0, 25);
+				animateTremor(x2, 1000);
+			}
+		});
+	}
 }
 function animateTremor(left, width, loops, img){
 	left = left || 640;
@@ -21015,16 +21318,18 @@ function animateTremor(left, width, loops, img){
 	var sy = height/100;
 	function doit(count){
 		var p4 = can(img, 7, left, (floorT-20), 0, 0);
-		T.to(p4, .3, {
-			scaleX:sx,
-			scaleY:sy,
-			x:left2,
-			y:floor2,
-			alpha:0,
-			onComplete:function(){
-				cRem(7, p4);
-			}
-		});
+		p4.image.onload = function(){
+			T.to(p4, .3, {
+				scaleX:sx,
+				scaleY:sy,
+				x:left2,
+				y:floor2,
+				alpha:0,
+				onComplete:function(){
+					cRem(7, p4);
+				}
+			});
+		}
 		if(++count<loops){
 			T.delayedCall(.033, function(){
 				doit(count);
@@ -21104,33 +21409,37 @@ function animateCounterspell(Slot){
 	//execute
 	function doIt(count){
 		var p8 = can('chainFG', 5, x2-xWidth, y2-150, xWidth*2, 100);
-		T.to(p8, (800+(count*100))/1000, {
-			y:600-(count*40),
-			ease:ez.qout,
-			onComplete:function(){
-				T.to(p8, .5, {
-					alpha:0,
-					ease:ez.lin,
-					onComplete:function(){
-						cRem(5, p8);
-					}
-				});
-			}
-		});
+		p8.image.onload = function(){
+			T.to(p8, (800+(count*100))/1000, {
+				y:600-(count*40),
+				ease:ez.qout,
+				onComplete:function(){
+					T.to(p8, .5, {
+						alpha:0,
+						ease:ez.lin,
+						onComplete:function(){
+							cRem(5, p8);
+						}
+					});
+				}
+			});
+		}
 		var p9 = can('chainBG', 7, x2-xWidth, y2-150, xWidth*2, 100);
-		T.to(p9, (800+(count*100))/1000, {
-			y:600-(count*40),
-			ease:ez.qout,
-			onComplete:function(){
-				T.to(p9, .5, {
-					alpha:0,
-					ease:ez.lin,
-					onComplete:function(){
-						cRem(7, p9);
-					}
-				});
-			}
-		});
+		p9.image.onload = function(){
+			T.to(p9, (800+(count*100))/1000, {
+				y:600-(count*40),
+				ease:ez.qout,
+				onComplete:function(){
+					T.to(p9, .5, {
+						alpha:0,
+						ease:ez.lin,
+						onComplete:function(){
+							cRem(7, p9);
+						}
+					});
+				}
+			});
+		}
 		count++;
 		if(count<5){ 
 			T.delayedCall(.1, function(){ 
@@ -21281,67 +21590,73 @@ function animateMeteor(stop){
 	var y2 = 440;
 	function blam(count){
 		var e2 = can('orangeLight3', 5, x2-1780, -1497, 1844, 2560);
-		T.to(e2,2.5,{
-			startAt:{
-				alpha:0,
-			},
-			alpha:.4,
-			ease:ez.Qin,
-			onComplete:function(){
-				cRem(5, e2);
-			}
-		});
+		e2.image.onload = function(){
+			T.to(e2,2.5,{
+				startAt:{
+					alpha:0,
+				},
+				alpha:.4,
+				ease:ez.Qin,
+				onComplete:function(){
+					cRem(5, e2);
+				}
+			});
+		}
 		if(count<3){ 
 			blam(++count);
 		}
 	}
 	blam(0);
 	var e1 = can('meteor', 5, x2-2000, y2-2000, 600, 600);
-	T.to(e1, 2, {
-		startAt:{
-			alpha:0
-		},
-		alpha:1,
-		onComplete:function(){
-			T.to(e1, .5, {
-				x:(x2-350),
-				y:(y2-125),
-				ease:ez.Qin,
-				onComplete:function(){
-					cRem(5, e1);
-					if(stop){ return; }
-					screenShake(1, 20, 0, 25);
-					function goFissure(count){
-						var p5 = can('fissure', 6, 640, 1068, 1280, 0, true);
-						T.to(p5, .25, {
-							alpha:.5,
-							scaleX:1.38,
-							scaleY:1.38,
-							y:720-100,
-							x:M.random()*(800)-400+640,
-							onComplete:function(){
-								T.to(p5, 1, {
-									y:720,
-									scaleX:1,
-									scaleY:.5,
-									alpha:0,
+	e1.image.onload = function(){
+		T.to(e1, 2, {
+			startAt:{
+				alpha:0
+			},
+			alpha:1,
+			onComplete:function(){
+				T.to(e1, .5, {
+					x:(x2-350),
+					y:(y2-125),
+					ease:ez.Qin,
+					onComplete:function(){
+						cRem(5, e1);
+						if(stop){ return; }
+						screenShake(1, 20, 0, 25);
+						function goFissure(count){
+							var p5 = can('fissure', 6, 640, 1068, 1280, 0, true);
+							p5.image.onload = function(){
+								T.to(p5, .25, {
+									alpha:.5,
+									scaleX:1.38,
+									scaleY:1.38,
+									y:720-100,
+									x:M.random()*(800)-400+640,
 									onComplete:function(){
-										cRem(6, p5);
+										T.to(p5, 1, {
+											y:720,
+											scaleX:1,
+											scaleY:.5,
+											alpha:0,
+											onComplete:function(){
+												cRem(6, p5);
+											}
+										});
 									}
 								});
 							}
-						});
-						if(count<=70){ 
-							T.delayedCall(.1, function(){ 
-								goFissure(++count);
-							}); 
+							if(count<=70){ 
+								T.delayedCall(.1, function(){ 
+									goFissure(++count);
+								}); 
+							}
 						}
+						goFissure(0);
 					}
-					goFissure(0);
-				}
-			});
-		}
-	});
+				});
+			}
+		});
+	}
 }
 
 function mirrorImagesReady(){
@@ -21722,6 +22037,8 @@ function checkLevelUp(){
 				job: my.job,
 				race: my.race,
 				exp: 0,
+				mobExp: 0,
+				Slot: 0,
 				gold: 0,
 				name: my.name
 				

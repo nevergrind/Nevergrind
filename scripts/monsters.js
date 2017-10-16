@@ -5227,63 +5227,65 @@ function castProjectile(spellColor, spellSize, Slot, attackCharmedMob, charmPetA
     var centerPointx = MOB[Slot].offsetLeft + mob[Slot].cX;
     var centerPointy = MOB[Slot].offsetTop + mob[Slot].cY;
     var e1 = can(img1, 5, centerPointx - (imgsize / 2), centerPointy - (imgsize / 2), spellSize, spellSize, true, true);
-    if (attackCharmedMob === undefined && attackPet === undefined) { // hitting me
-        T.to(e1, .5, {
-            y: 720,
-            x: 640,
-            scaleX: (spellSize / imgsize) * 3,
-            scaleY: (spellSize / imgsize) * 3,
-            ease: ez.sin,
-            onComplete: function() {
-                cRem(5, e1);
-            }
-        });
-        return;
-    }
-    if (attackPet === true) { // pet
-        var x2 = MOB[5].offsetLeft + (petWidth / 2);
-        var y2 = MOB[5].offsetTop + (petHeight / 2);
-        T.to(e1, .4, {
-            y: y2,
-            x: x2,
-            scaleX: (spellSize / imgsize) * 1.5,
-            scaleY: (spellSize / imgsize) * 1.5,
-            ease: ez.sin,
-            onComplete: function() {
-                cRem(5, e1);
-            }
-        });
-        return;
-    }
-    if (attackCharmedMob && charmPetAttack === undefined) { //mobs attack my charmed pet
-        var x2 = MOB[charmSlot].offsetLeft + (mob[charmSlot].imageWidth / 2);
-        var y2 = MOB[charmSlot].offsetTop + (mob[charmSlot].imageHeight / 2);
-        T.to(e1, .4, {
-            y: y2,
-            x: x2,
-            scaleX: (spellSize / imgsize) * 1.5,
-            scaleY: (spellSize / imgsize) * 1.5,
-            ease: ez.sin,
-            onComplete: function() {
-                cRem(5, e1);
-            }
-        });
-        return;
-    }
-    if (attackCharmedMob && charmPetAttack !== undefined) { //charmed pet attacks my target
-        var x2 = MOB[TGT].offsetLeft + (mob[TGT].imageWidth / 2);
-        var y2 = MOB[TGT].offsetTop + (mob[TGT].imageHeight / 2);
-        T.to(e1, .4, {
-            y: y2,
-            x: x2,
-            scaleX: (spellSize / imgsize) * 1.5,
-            scaleY: (spellSize / imgsize) * 1.5,
-            ease: ez.sin,
-            onComplete: function() {
-                cRem(5, e1);
-            }
-        });
-    }
+	e1.image.onload = function(){
+		if (attackCharmedMob === undefined && attackPet === undefined) { // hitting me
+			T.to(e1, .5, {
+				y: 720,
+				x: 640,
+				scaleX: (spellSize / imgsize) * 3,
+				scaleY: (spellSize / imgsize) * 3,
+				ease: ez.sin,
+				onComplete: function() {
+					cRem(5, e1);
+				}
+			});
+			return;
+		}
+		if (attackPet === true) { // pet
+			var x2 = MOB[5].offsetLeft + (petWidth / 2);
+			var y2 = MOB[5].offsetTop + (petHeight / 2);
+			T.to(e1, .4, {
+				y: y2,
+				x: x2,
+				scaleX: (spellSize / imgsize) * 1.5,
+				scaleY: (spellSize / imgsize) * 1.5,
+				ease: ez.sin,
+				onComplete: function() {
+					cRem(5, e1);
+				}
+			});
+			return;
+		}
+		if (attackCharmedMob && charmPetAttack === undefined) { //mobs attack my charmed pet
+			var x2 = MOB[charmSlot].offsetLeft + (mob[charmSlot].imageWidth / 2);
+			var y2 = MOB[charmSlot].offsetTop + (mob[charmSlot].imageHeight / 2);
+			T.to(e1, .4, {
+				y: y2,
+				x: x2,
+				scaleX: (spellSize / imgsize) * 1.5,
+				scaleY: (spellSize / imgsize) * 1.5,
+				ease: ez.sin,
+				onComplete: function() {
+					cRem(5, e1);
+				}
+			});
+			return;
+		}
+		if (attackCharmedMob && charmPetAttack !== undefined) { //charmed pet attacks my target
+			var x2 = MOB[TGT].offsetLeft + (mob[TGT].imageWidth / 2);
+			var y2 = MOB[TGT].offsetTop + (mob[TGT].imageHeight / 2);
+			T.to(e1, .4, {
+				y: y2,
+				x: x2,
+				scaleX: (spellSize / imgsize) * 1.5,
+				scaleY: (spellSize / imgsize) * 1.5,
+				ease: ez.sin,
+				onComplete: function() {
+					cRem(5, e1);
+				}
+			});
+		}
+	}
 }
 
 function mobDotFinish(spellColor, spellSize, spellCount, Slot, targetCharm, targetPet) {
@@ -5298,61 +5300,69 @@ function mobDotFinish(spellColor, spellSize, spellCount, Slot, targetCharm, targ
             var centerPointx = (M.random() * (1290) - 5);
             var centerPointy = (M.random() * (250)) + 25;
             var p1 = can(spellColor + "particle50", 6, centerPointx, centerPointy, 25, 25);
-            T.to(p1, .75, {
-                x: "+=12",
-                y: "+=" + 155,
-                scaleX: 0,
-                scaleY: 0,
-                ease: ez.Qin,
-                onComplete: function() {
-                    cRem(6, p1);
-                }
-            });
+			p1.image.onload = function(){
+				T.to(p1, .75, {
+					x: "+=12",
+					y: "+=" + 155,
+					scaleX: 0,
+					scaleY: 0,
+					ease: ez.Qin,
+					onComplete: function() {
+						cRem(6, p1);
+					}
+				});
+			}
         } else if (targetPet === true) {
             var randomLeft = (M.random() * (200)) - 100;
             var randomBottom = (M.random() * (50)) - 25;
             var centerPointx = leftAdjust + randomLeft;
             var centerPointy = topAdjust + randomBottom;
             var p1 = can(spellColor + "particle50", 6, centerPointx, centerPointy, 25, 25);
-            T.to(p1, .75, {
-                y: '+=100',
-                scaleX: 0,
-                scaleY: 0,
-                ease: ez.Qin,
-                onComplete: function() {
-                    cRem(6, p1);
-                }
-            });
+			e1.image.onload = function(){
+				T.to(p1, .75, {
+					y: '+=100',
+					scaleX: 0,
+					scaleY: 0,
+					ease: ez.Qin,
+					onComplete: function() {
+						cRem(6, p1);
+					}
+				});
+			}
         } else if (targetCharm === true) { //charmed mob is target
             var randomLeft = (M.random() * mob[charmSlot].imageWidth) - halfWidth;
             var randomBottom = (M.random() * (50)) - 25;
             var centerPointx = leftAdjust + randomLeft;
             var centerPointy = topAdjust + randomBottom;
             var p1 = can(spellColor + "particle50", 6, centerPointx, centerPointy, 25, 25);
-            T.to(p1, .75, {
-                y: '+=100',
-                scaleX: 0,
-                scaleY: 0,
-                ease: ez.Qin,
-                onComplete: function() {
-                    cRem(6, p1);
-                }
-            });
+			p1.image.onload = function(){
+				T.to(p1, .75, {
+					y: '+=100',
+					scaleX: 0,
+					scaleY: 0,
+					ease: ez.Qin,
+					onComplete: function() {
+						cRem(6, p1);
+					}
+				});
+			}
         } else { // charmed pet targets mob
             var randomLeft = (M.random() * (mob[targetCharm].imageWidth)) - halfWidth;
             var randomBottom = (M.random() * (50)) - 25;
             var centerPointx = leftAdjust + randomLeft;
             var centerPointy = topAdjust + randomBottom;
             var p1 = can(spellColor + "particle50", 6, centerPointx, centerPointy, 25, 25);
-            T.to(p1, .75, {
-                y: '+=100',
-                scaleX: 0,
-                scaleY: 0,
-                ease: ez.Qin,
-                onComplete: function() {
-                    cRem(6, p1);
-                }
-            });
+			p1.image.onload = function(){
+				T.to(p1, .75, {
+					y: '+=100',
+					scaleX: 0,
+					scaleY: 0,
+					ease: ez.Qin,
+					onComplete: function() {
+						cRem(6, p1);
+					}
+				});
+			}
         }
         if (spellCount > 0) {
             T.delayedCall(.015, function() {
@@ -5490,14 +5500,16 @@ function animateBlindSmoke(Slot) {
     var topAdj = (MOB[Slot].offsetTop + randomBottom);
     var leftAdjust = (MOB[Slot].offsetLeft + targetsWidth + randomLeft);
     var e1 = can('blindImage', 5, leftAdjust, topAdj, 50, 50, true);
-    T.to(e1, 1.5, {
-        startAt: {
-            alpha: .7
-        },
-        alpha: 0,
-        scaleX: 4,
-        scaleY: 4
-    });
+	e1.image.onload = function(){
+		T.to(e1, 1.5, {
+			startAt: {
+				alpha: .7
+			},
+			alpha: 0,
+			scaleX: 4,
+			scaleY: 4
+		});
+	}
 }
 
 function animateFear(Slot, fearDuration, triggerFlag, opacityFlag) {
@@ -5807,22 +5819,24 @@ function sleepAnimation(Slot) {
     var finalBottom = (M.random() * (10) + 50);
     var leftAdjust = (MOB[Slot].offsetLeft + targetsWidth - 10);
     var p4 = can('sleepImage', 5, leftAdjust, topAdj, 20, 20);
+	p4.image.onload = function(){
+		if (GLB.videoSetting !== "Low") {
+			var tl = TM();
+			tl.to(p4, .1, {
+				y: "-=10"
+			}).to(p4, 1, {
+				y: "-=" + finalBottom,
+				x: "+=" + leftJitter,
+				alpha: 0,
+				onComplete: function() {
+					cRem(5, p4);
+				}
+			});
+		}
+	}
     mob[Slot].sleepTimer = T.delayedCall(.5, function() {
         sleepAnimation(Slot);
     });
-    if (GLB.videoSetting !== "Low") {
-        var tl = TM();
-        tl.to(p4, .1, {
-            y: "-=10"
-        }).to(p4, 1, {
-            y: "-=" + finalBottom,
-            x: "+=" + leftJitter,
-            alpha: 0,
-            onComplete: function() {
-                cRem(5, p4);
-            }
-        });
-    }
 }
 
 //monsters.js
@@ -5987,7 +6001,7 @@ function getMonster(count, rareMobFlag) {
                         delayedMonsterTimer();
                     }
                 }
-                if ((P.Q[df].CastleMistmoore === 3 && _SZ === 3) || (P.Q[df].CastleMistmoore > 3 && P.Q[df].repeatCm3 === false && _SZ === 3)) {
+                if ((P.Q[df].CastleMistmoore === 3 && _SZ === 3) || (P.Q[df].CastleMistmoore > 3 && !P.Q[df].repeatCm3 && _SZ === 3)) {
                     if (z2 > .75) {
                         x = 5;
                     } else if (z2 > .5) {
@@ -6383,7 +6397,7 @@ function getMonster(count, rareMobFlag) {
                         x = 10;
                     }
                 }
-                if (P.Q[df].Crushbone >= 3 && P.Q[df].repeatCB === false && _SZ === 3) {
+                if (P.Q[df].Crushbone >= 3 && !P.Q[df].repeatCB && _SZ === 3) {
                     var z2 = M.random();
                     if (z2 > .58) {
                         x = 6;
@@ -6555,7 +6569,7 @@ function getMonster(count, rareMobFlag) {
                         delayedMonsterTimer();
                     }
                 }
-                if (P.Q[df].EstateofUnrest >= 3 && P.Q[df].repeatER === false && _SZ === 3) {
+                if (P.Q[df].EstateofUnrest >= 3 && !P.Q[df].repeatER && _SZ === 3) {
                     if (z2 > .69) {
                         x = 4;
                     } else if (z2 > .38) {
@@ -7013,7 +7027,7 @@ function getMonster(count, rareMobFlag) {
                             delayedMonsterTimer();
                         }
                     }
-                    if (P.Q[df].KedgeKeep === 3 && _SZ === 3 || (P.Q[df].KedgeKeep > 3 && P.Q[df].repeatKk3 === false && _SZ === 3)) {
+                    if (P.Q[df].KedgeKeep === 3 && _SZ === 3 || (P.Q[df].KedgeKeep > 3 && !P.Q[df].repeatKk3 && _SZ === 3)) {
                         if (z2 > .64) {
                             x = 18;
                         } else if (z2 > .29) {
@@ -7264,13 +7278,6 @@ function getMonster(count, rareMobFlag) {
                 Mimg = "phinigel autropos";
                 Mrare = 3;
             }
-            /*
-            if(P.Q[df].repeatKk4===true){
-                Chat("The zone has been cleared.");
-                Mname="";
-                return;
-            }
-			*/
         }
         var a = 1;
         if (_SZ === 1) {
@@ -7975,7 +7982,9 @@ function getMonster(count, rareMobFlag) {
                         }
                     }
                 }
-                if ((P.Q[df].CazicThule === 3 && _SZ === 3) || (P.Q[df].CazicThule > 3 && P.Q[df].repeatCt3 === false && _SZ === 3)) {
+                if ((P.Q[df].CazicThule === 3 && 
+					_SZ === 3) || (P.Q[df].CazicThule > 3 && 
+					!P.Q[df].repeatCt3 && _SZ === 3)) {
                     if (z2 > .64) {
                         x = 17;
                     } else if (z2 < .36) {
@@ -8252,7 +8261,7 @@ function getMonster(count, rareMobFlag) {
                         }
                     }
                 }
-                if (P.Q[df].LowerGuk === 3 && _SZ === 3 || (P.Q[df].LowerGuk > 3 && P.Q[df].repeatLg3 === false && _SZ === 3)) {
+                if (P.Q[df].LowerGuk === 3 && _SZ === 3 || (P.Q[df].LowerGuk > 3 && !P.Q[df].repeatLg3 && _SZ === 3)) {
                     if (z2 > .6) {
                         x = 2;
                     } else if (z2 > .27) {
@@ -8779,7 +8788,7 @@ function getMonster(count, rareMobFlag) {
                             }
                         }
                     }
-                    if (P.Q[df].NagafensLair === 3 && _SZ === 3 || (P.Q[df].NagafensLair > 3 && P.Q[df].repeatNl3 === false && _SZ === 3)) {
+                    if (P.Q[df].NagafensLair === 3 && _SZ === 3 || (P.Q[df].NagafensLair > 3 && !P.Q[df].repeatNl3 && _SZ === 3)) {
                         if (z2 > .6) {
                             x = 8;
                         } else {
@@ -9034,13 +9043,6 @@ function getMonster(count, rareMobFlag) {
                 Mimg = "a red dragon";
                 Mrare = 3;
             }
-            /*
-            if(P.Q[df].repeatNl4===true){
-                Chat("The zone has been cleared.");
-                Mname="";
-                return;
-            }
-			*/
         }
         var a = 1;
         if (_SZ === 1) {
@@ -12871,7 +12873,7 @@ function loadSlotData(Slot, summoned) {
     if (diff() === 2) {
         mob[x].xp = ~~(mob[x].xp * 1.15)
     }
-    if (location.protocol === 'https:' && mob[x].name) {
+    if (mob[x].name) {
         $.ajax({
             url: 'php/game1.php',
             data: {

@@ -782,16 +782,16 @@ function initQ() {
 			ToxxuliaForest: 0,
 			PlaneofFear: 0,
 			PlaneofHate: 0,
-			repeatCm3: false,
-			repeatCt3: false,
-			repeatKk3: false,
-			repeatNl3: false,
-			repeatLg3: false,
-			repeatKk4: false,
-			repeatNl4: false,
-			repeatPk4: false,
-			repeatCB: false,
-			repeatER: false,
+			repeatCm3: 0,
+			repeatCt3: 0,
+			repeatKk3: 0,
+			repeatNl3: 0,
+			repeatLg3: 0,
+			repeatKk4: 0,
+			repeatNl4: 0,
+			repeatPk4: 0,
+			repeatCB: 0,
+			repeatER: 0,
 			CM1: 0,
 			CM2: 0,
 			CM3: 0,
@@ -911,50 +911,50 @@ initQ();
 function resetRepeatableQuests() {
     var df = diff();
     if (P.Q[df].repeatCm3) {
-        P.Q[df].repeatCm3 = false;
+        P.Q[df].repeatCm3 = 0;
         for (var i = 1; i <= 6; i++) {
             P.Q[df]['CM' + i] = 0;
         }
     }
     if (P.Q[df].repeatCt3) {
-        P.Q[df].repeatCt3 = false;
+        P.Q[df].repeatCt3 = 0;
         P.Q[df].CazicThule = 4;
         for (var i = 1; i <= 3; i++) {
             P.Q[df]['CT' + i] = 0;
         }
     }
     if (P.Q[df].repeatKk3) {
-        P.Q[df].repeatKk3 = false;
+        P.Q[df].repeatKk3 = 0;
         for (var i = 1; i <= 5; i++) {
             P.Q[df]['KK' + i] = 0;
         }
     }
     if (P.Q[df].repeatKk4) {
-        P.Q[df].repeatKk4 = false;
+        P.Q[df].repeatKk4 = 0;
         for (var i = 6; i <= 8; i++) {
             P.Q[df]['KK' + i] = 0;
         }
     }
     if (P.Q[df].repeatNl3) {
-        P.Q[df].repeatNl3 = false;
+        P.Q[df].repeatNl3 = 0;
         for (var i = 1; i <= 2; i++) {
             P.Q[df]['NL' + i] = 0;
         }
     }
     if (P.Q[df].repeatLg3) {
-        P.Q[df].repeatLg3 = false;
+        P.Q[df].repeatLg3 = 0;
         for (var i = 1; i <= 5; i++) {
             P.Q[df]['LG' + i] = 0;
         }
     }
     if (P.Q[df].repeatNl4 || P.Q[df].NL12 >= 2) {
-        P.Q[df].repeatNl4 = false;
+        P.Q[df].repeatNl4 = 0;
         for (var i = 7; i <= 12; i++) {
             P.Q[df]['NL' + i] = 0;
         }
     }
     if (P.Q[df].repeatPk4) {
-        P.Q[df].repeatPk4 = false;
+        P.Q[df].repeatPk4 = 0;
         for (var i = 1; i <= 9; i++) {
             P.Q[df]['PK' + i] = 0;
         }
@@ -986,22 +986,20 @@ function resetRepeatableQuests() {
         P.Q[df].PlaneofHate = 2;
     }
     if (P.Q[df].Crushbone > 4 || P.Q[df].repeatCB || P.Q[df].CB5 >= 2) {
-        P.Q[df].repeatCB = false;
+        P.Q[df].repeatCB = 0;
         P.Q[df].Crushbone = 4;
         for (var i = 1; i <= 5; i++) {
             P.Q[df]['CB' + i] = 0;
         }
     }
     if (P.Q[df].EstateofUnrest > 4 || P.Q[df].repeatER) {
-        P.Q[df].repeatER = false;
+        P.Q[df].repeatER = 0;
         P.Q[df].EstateofUnrest = 4;
         for (var i = 1; i <= 5; i++) {
             P.Q[df]['ER' + i] = 0;
         }
     }
-    if (location.protocol === 'https:') {
-        save.quests();
-    }
+	save.quests();
 }
 
 function resetBosses() {
@@ -1184,7 +1182,6 @@ function initMY() {
         comboPlaneofFear: 0,
         comboPlaneofHate: 0,
         comboOverall: 0,
-        ID: false,
         subzone: 1,
         zoneN: "",
         zoneH: "",
@@ -2195,42 +2192,6 @@ var dragStatus = false,
 
 // player variables
 function initializeEQ(foo) {
-    if (location.protocol === "http:") {
-        if (foo !== 1) {
-            initMY();
-        }
-        for (var i = 0; i <= 14; i++) {
-            P.eq[i] = {};
-            for (var x = 0, len = g.key.length; x < len; x++) {
-                P.eq[i][g.key[x]] = g.val[x];
-            }
-        };
-        if (foo !== 1) {
-            setEquipValues();
-        }
-    }
-}
-
-function initializeInventory() {
-    if (location.protocol === "http:") {
-        for (var i = 0; i <= 43; i++) {
-            P.item[i] = {};
-            for (var x = 0, len = g.key.length; x < len; x++) {
-                P.item[i][g.key[x]] = g.val[x];
-            }
-        };
-    }
-}
-
-function initializeBank() {
-    if (location.protocol === "http:") {
-        for (var i = 0; i <= 125; i++) {
-            P.bank[i] = {};
-            for (var x = 0, len = g.key.length; x < len; x++) {
-                P.bank[i][g.key[x]] = g.val[x];
-            }
-        };
-    }
 }
 var MOB = [],
     MOBNAME = [],
@@ -4515,9 +4476,6 @@ function cLog(foo) {
 			if (g.view === "Game") {
 				Chat(foo, 2);
 			}
-			console.log(foo);
-		} else {
-			console.log(foo);
 		}
     }
 }
@@ -5463,10 +5421,26 @@ function ccUpdates(foo, mute) {
     statGenerate(mute);
     $NG.joblist.removeClass("ccActive").addClass("ccDisabled");
     D.getElementById(foo).className = 'raceClassButtonsOff joblist strongShadow ccActive';
+	initJob();
+	my.level = 1;
+	g.staEquip = 0;
+	staBuff = 0;
+	g.allStatsEquip = 0;
+	g.hpEquip = 0;
+	maxHpBuff = 0;
+	g.mpEquip = 0;
+	g.intelEquip = 0;
+	intelBuff = 0;
+	g.wisEquip = 0;
+	wisBuff = 0;
+	my.hp = g.maxHpFunct();
+	my.maxHp = my.hp;
+	my.mp = g.maxMpFunct();
+	my.maxMp = my.mp;
 }
 // my.gender info update panel
 function maleInfo(mute) {
-    D.getElementById("creationInfo").innerHTML = ("Males receive a bonus to strength and stamina.");
+    D.getElementById("creationInfo").innerHTML = "Males receive a bonus to strength and stamina.";
     my.gender = "Male";
     Gstr = 5;
     Gsta = 5;
@@ -5934,9 +5908,6 @@ function loadingScreen() {
     if (x === 79) {
         y = "Agility helps dodge, parry, and riposte work more often.";
     }
-    if (location.protocol === 'http:') {
-        y = "You're playing the trial version. Sign up for an account for more character slots, leaderboards, more content, and reliable data storage!";
-    }
     var k = D.getElementById('loadingmessage');
     k.innerHTML = y;
     Chat(y);
@@ -5998,17 +5969,10 @@ function loadingScreen() {
 }
 
 function showChar() {
-    if (location.protocol === "http:") {
-        if (firstEmptyCharacterSlot === 0) {
-            Error("You cannot create anymore characters!");
-            return;
-        }
-    } else {
-        if ($(".characterActive:visible, .characterDisabled:visible").length >= 16) {
-            Error("You cannot create anymore characters!");
-            return;
-        }
-    }
+	if ($(".characterActive:visible, .characterDisabled:visible").length >= 16) {
+		Error("You cannot create anymore characters!");
+		return;
+	}
     characterslot = firstEmptyCharacterSlot;
     maleInfo(true);
     humanInfo(true);
@@ -6062,32 +6026,12 @@ function hideChar() {
         display: 'block',
         opacity: 0
     });
-    if (location.protocol === "http:") {
-        loadAllCharacters();
-        T.to("#characterSelectScreen", .5, {
-            opacity: 1,
-            ease: ez.lin,
-            onComplete: function() {
-                g.view = "Main";
-            }
-        });
-    } else {
-        loadCharacterSlot(firstEmptyCharacterSlot);
-        loadServerCharacters();
-    }
+	loadCharacterSlot(firstEmptyCharacterSlot);
+	loadServerCharacters();
 }
 
 function createChar() {
     playAudio('button_2');
-    if (location.protocol === 'http:') {
-        if (!dev) {
-            if (charactersFound >= 1) {
-                QMsg("You can only have one character in local play.");
-                QMsg("Try server mode to create more characters.");
-                return;
-            }
-        }
-    }
     resetCharButtons();
     my.difficulty = 1;
     my.lastName = "";
@@ -6146,95 +6090,6 @@ function createChar() {
     my.comboPlaneofHate = 0;
     for (var i = 1; i <= 12; i++) {
         my['talent' + i] = 0;
-    }
-    //init equip/inventory
-    initializeEQ(1);
-    initializeInventory();
-    //starting equipment
-    if (location.protocol === "http:") {
-        for (var i = 0; i <= 14; i++) {
-            P.eq[i].req = 0;
-            P.eq[i].flavorText = "";
-        }
-        if (my.job !== "Monk") {
-            P.eq[12].damage = 3;
-            P.eq[12].delay = 3600;
-            P.eq[12].type = "slashed";
-            P.eq[12].rarity = 0;
-            P.eq[12].itemSlot = "weapons";
-            P.eq[12].xPos = -576;
-            P.eq[12].yPos = 0;
-            P.eq[12].name = "Rusty Blade";
-        }
-        P.eq[13].damage = 1;
-        P.eq[13].delay = 3000;
-        P.eq[13].type = "punched";
-        P.eq[13].armor = 0;
-        P.eq[14].damage = 1;
-        P.eq[14].delay = 30000;
-        my.gold = 0;
-        P.eq[6].rarity = 0;
-        P.eq[6].type = "cloth";
-        P.eq[6].itemSlot = "chest";
-        P.eq[6].xPos = -256;
-        P.eq[6].yPos = -256;
-        P.eq[6].name = "Training Tunic";
-        P.eq[6].armor = 1;
-        if (my.job === "Warrior" || my.job === "Paladin" || my.job === "Shadow Knight") {
-            P.eq[13].rarity = 0;
-            P.eq[13].type = "shield";
-            P.eq[13].itemSlot = "shield";
-            P.eq[13].xPos = -768;
-            P.eq[13].yPos = 0;
-            P.eq[13].name = "Wooden Shield";
-            P.eq[13].armor = 1;
-        }
-        if (my.job === "Necromancer" || my.job === "Enchanter" || my.job === "Magician" || my.job === "Wizard" || my.job === "Rogue") {
-            P.eq[12].damage = 2;
-            P.eq[12].delay = 2600;
-            P.eq[12].type = "pierced";
-            P.eq[12].rarity = 0;
-            P.eq[12].itemSlot = "weapons";
-            P.eq[12].xPos = -704;
-            P.eq[12].yPos = 0;
-            P.eq[12].name = "Rusty Dagger";
-            if (my.job !== "Rogue") {
-                P.eq[6].rarity = 0;
-                P.eq[6].itemSlot = "chest";
-                P.eq[6].xPos = -256;
-                P.eq[6].yPos = -64;
-                P.eq[6].name = "Apprentice Robe";
-                P.eq[6].armor = 1;
-            }
-        }
-        if (my.job === "Cleric" || my.job === "Druid" || my.job === "Shaman") {
-            P.eq[12].type = "crushed";
-            P.eq[12].damage = 4;
-            P.eq[12].delay = 4400;
-            P.eq[12].rarity = 0;
-            P.eq[12].itemSlot = "weapons";
-            P.eq[12].xPos = -640;
-            P.eq[12].yPos = 0;
-            P.eq[12].name = "Rusty Mace";
-        }
-        if (my.job === "Ranger") {
-            P.eq[14].damage = 4;
-            P.eq[14].delay = 4500;
-            P.eq[14].type = "range";
-            P.eq[14].rarity = 0;
-            P.eq[14].itemSlot = "range";
-            P.eq[14].xPos = -704;
-            P.eq[14].yPos = -512;
-            P.eq[14].name = "Cracked Bow";
-        }
-        if (my.job === "Monk") {
-            P.eq[12].type = "punched";
-            P.eq[13].type = "punched";
-            P.eq[12].damage = 3 + (my.level * (7 / 50));
-            P.eq[13].damage = 3 + (my.level * (7 / 50));
-            P.eq[12].delay = 3000;
-            P.eq[13].delay = 3000;
-        }
     }
     // initialize my weapon skills
     if (my.job === "Warrior" || my.job === "Ranger" || my.job === "Paladin" || my.job === "Shadow Knight") {
@@ -6329,7 +6184,6 @@ function createChar() {
     for (var i = 0; i <= 23; i++) {
         Lmy['C' + i] = "";
     }
-    my.ID = 0;
     if ($("#normalId").hasClass('ccActive') === true) {
         my.hardcoreMode = "false";
     } else {
@@ -6341,9 +6195,7 @@ function createChar() {
 
 function getUniqueID() {
     function do1() {
-        if (location.protocol === "https:") {
-            loadServerCharacters();
-        }
+		loadServerCharacters();
         T.to('#ccBg', .5, {
             opacity: 0,
             onComplete: function() {
@@ -6353,49 +6205,28 @@ function getUniqueID() {
                     opacity: 0
                 });
                 T.to("#characterSelectScreen", .5, {
-                    opacity: 1,
-                    onComplete: function() {
-                        if (location.protocol === "http:") {
-                            loadAllCharacters();
-                        }
-                    }
+                    opacity: 1
                 });
             }
         });
     }
     QMsg("Creating Character...");
     D.getElementById('ccBg').style.display = 'none';
-    if (location.protocol === "http:") {
-        $.ajax({
-            url: "php/characterID.php",
-            data: {
-                charID: my.ID
-            }
-        }).done(function(data) {
-            my.ID = data; //assigned from characterID.php
-            initQ();
-            saveGame();
-            do1();
-        }).fail(function() {
-            Error('Unable to communicate with the server.<br>Please try again later.');
-        });
-    } else {
-        $.ajax({
-            data: {
-                run: "createCharacter",
-                my: my
-            }
-        }).done(function(data) {
-            if (data !== '') { //error
-                D.getElementById('ccBg').style.display = 'block';
-				QMsg(data);
-            } else {
-                do1();
-            }
-        }).fail(function() {
-            Error('Unable to communicate with the server.<br>Please try again later.');
-        });
-    }
+	$.ajax({
+		data: {
+			run: "createCharacter",
+			my: my
+		}
+	}).done(function(data) {
+		if (data !== '') { //error
+			D.getElementById('ccBg').style.display = 'block';
+			QMsg(data);
+		} else {
+			do1();
+		}
+	}).fail(function() {
+		Error('Unable to communicate with the server.<br>Please try again later.');
+	});
 }
 $('#window3').on('mouseenter', '#window3a > li', function() {
     if (combatButtonDragMode === true) {
@@ -6909,15 +6740,6 @@ function setHighestElement() {
     return high;
 }
 
-function increaseBank() {
-    for (var i = 900; i < 1080; i++) {
-        P.bank[i] = {};
-        for (var x = 0, len = g.key.length; x < len; x++) {
-            P.bank[i][g.key[x]] = g.val[x];
-        }
-    }
-}
-
 function normalizedDamage(minDamage, skillName, multiplier) {
     //1h calc
     if (P.eq[12].type === "slashed" || P.eq[12].type === "crushed" || P.eq[12].type === "punched" || P.eq[12].type === "pierced") {
@@ -7155,46 +6977,7 @@ function showIntro() {
 
 var ng,
     JOB;
-
-function enterWorld() {
-    if (my.name == "" || my.name == null) {
-        QMsg("You should create a character first.");
-        return;
-    }
-    if ($("#enterworld").hasClass("disabled") === true) {
-        return;
-    }
-    g.view = "Game";
-    startTime = new Date();
-    if (my.hardcoreMode === "true") {
-        if (localStorage.getItem("HCbank4") === null) {
-            initializeBank();
-        } else {
-            var zig = localStorage.getItem("HCbank4");
-            P.bank = JSON.parse(zig);
-            if (P.bank.length < 1080) {
-                increaseBank();
-            }
-        }
-    } else {
-        if (localStorage.getItem("bank4") === null) {
-            initializeBank();
-        } else {
-            var zig = localStorage.getItem("bank4");
-            P.bank = JSON.parse(zig);
-            if (P.bank.length < 1080) {
-                increaseBank();
-            }
-        }
-    }
-    if (my.job === "Bard") {
-        D.getElementById('spellbarlabel').innerHTML = "SINGING";
-    }
-    // quick variables
-    noSpaceClass = my.job.replace(/ /g, '');
-    ng = {};
-    ng.zone = myZone();
-    ng.subZone = mySubzone();
+function initJob(){
     JOB = {};
     JOB.hpTier = hpTier();
     JOB.mpTier = mpTier();
@@ -7207,6 +6990,23 @@ function enterWorld() {
     JOB.MagEnh = noSpaceClass + "MagEnh";
     JOB.DotEnh = noSpaceClass + "DotEnh";
     JOB.CheckSkills = "check" + noSpaceClass + "Skills";
+}
+function enterWorld() {
+    if (my.name == "" || my.name == null) {
+        QMsg("You should create a character first.");
+        return;
+    }
+    if ($("#enterworld").hasClass("disabled") === true) {
+        return;
+    }
+    g.view = "Game";
+    startTime = new Date();
+    if (my.job === "Bard") {
+        D.getElementById('spellbarlabel').innerHTML = "SINGING";
+    }
+    // quick variables
+	initJob();
+    noSpaceClass = my.job.replace(/ /g, '');
     // other stuff
     checkUndefined();
     loadClassSounds();
@@ -7215,11 +7015,7 @@ function enterWorld() {
     NG.mobTraits.innerHTML = "";
     updateCombatPanel();
     my.title = checkTitle();
-    if (location.protocol === 'http:') {
-        g.difficulty = my.difficulty;
-    } else {
-        g.difficulty = srv.difficulty;
-    }
+	g.difficulty = srv.difficulty;
     indoorStatus = checkDungeon(myZone());
     $NG.enterWorld2.css("display", "block");
     D.getElementById("myhpbardiv").style.visibility = "visible";
@@ -7293,12 +7089,7 @@ function enterWorld() {
     if (GLB.hideMenu === "On") {
         D.getElementById('window5Id').style.opacity = 0;
     }
-    if (location.protocol === 'http:') {
-        resetRepeatableQuests();
-        maxBankSlots = 1080;
-    } else {
-		keepSessionAlive();
-	}
+	keepSessionAlive();
     if (my.job === "Rogue" || my.job === "Monk") {
         mpType = "TP";
     } else if (my.job === "Warrior") {
@@ -7329,10 +7120,6 @@ function enterWorld() {
         showIntro();
     }
     flashTalentNotify();
-    if (location.protocol === 'http:') {
-        loadWeaponSlashes();
-        loadSkillImages();
-    }
     g.leechRatio = .24;
     g.wraithRatio = .16;
     if (g.difficulty === 2) {
@@ -7403,19 +7190,11 @@ $(function() {
 });
 
 function classColor() {
-    if (location.protocol === "http:") {
-        if (my.job !== "Shadow Knight") {
-            return my.job;
-        } else {
-            return "ShadowKnight";
-        }
-    } else {
-        if ($("#myjob" + characterslot).text() !== "Shadow Knight") {
-            return $("#myjob" + characterslot).text();
-        } else {
-            return "ShadowKnight";
-        }
-    }
+	if ($("#myjob" + characterslot).text() !== "Shadow Knight") {
+		return $("#myjob" + characterslot).text();
+	} else {
+		return "ShadowKnight";
+	}
 }
 
 function parseItem(d, len, a) {
@@ -7532,177 +7311,142 @@ function reloadPage(d){
 }
 $(function() {
     $("#characterSelectScreen").on('click', '#enterworld', function() {
-        if (location.protocol === "http:") {
-            if (my.hardcoreMode === "true") {
-                if (my.deaths > 0) {
-                    QMsg(my.name + " has been slain.");
-                } else {
-                    enterWorld();
-                }
-            } else {
-                enterWorld();
-            }
-        } else { // server loads character then enters world
-            var name = $("#characterslot" + characterslot).children().first().text();
-			if(!name){
-				return;
+		// server loads character then enters world
+		var name = $("#characterslot" + characterslot).children().first().text();
+		if(!name){
+			return;
+		}
+		$('#characterSelectScreen').remove();
+		QMsg("Loading data: "+name+"");
+		$.ajax({
+			url: 'php/loadData1.php',
+			data: {
+				run: "loadItem",
+				name: name
 			}
-            $('#characterSelectScreen').remove();
-            QMsg("Loading data: "+name+"");
-            $.ajax({
-                url: 'php/loadData1.php',
-                data: {
-                    run: "loadItem",
-                    name: name
-                }
-            }).done(function(data) {
-				if (typeof data === 'string'){
-					if (data == 'false'){
-						QMsg("Your previous character has not timed out yet.", 0, 0, 15000);
-						QMsg("Use Camp when you're done playing your character.", 0, 0, 15000);
+		}).done(function(data) {
+			if (typeof data === 'string'){
+				if (data == 'false'){
+					QMsg("Your previous character has not timed out yet.", 0, 0, 15000);
+					QMsg("Use Camp when you're done playing your character.", 0, 0, 15000);
+				}
+			} else {
+				data.forEach(function(item, i){
+					P.item[i].name = item.name;
+					var o = JSON.parse(item.json);
+					for (var key in o){
+						P.item[i][key] = o[key];
 					}
-				} else {
-					data.forEach(function(item, i){
-						console.info('item ', i, item);
-						P.item[i].name = item.name;
-						if (item.json){
-							var o = JSON.parse(item.json);
+				});
+				srv.item = true;
+				// load character data
+				$.ajax({
+					url: 'php/loadData1.php',
+					data: {
+						run: "loadMy",
+						name: name,
+						ng: 'false'
+					}
+				}).done(function(data) {
+					if(data == "Your session has expired."){
+						Error(data);
+						reloadPage();
+						return;
+					}
+					if (data == 'down') {
+						Error("The server is down for maintenance. Please try again later.");
+						reloadPage();
+						return;
+					}
+					if (data == "DEAD") {
+						Error("This character was slain and cannot be revived.");
+						Error("Rest in peace, " + name + ".");
+						reloadPage();
+						return;
+					}
+					if (data == "Account has been suspended.") {
+						Error(data);
+						reloadPage();
+						return;
+					}
+					if (data == "Account has been banned.") {
+						Error(data);
+						reloadPage();
+						return;
+					}
+					var json = JSON.parse(JSON.stringify(data.json));
+					delete data.json;
+					my = data;
+					for (var key in json){
+						my[key] = json[key];
+					}
+					save.my('local');
+					srv.my = true;
+					checkEnterWorld();
+					loadClassSkillImages();
+				}).fail(function() {
+					QMsg("Server Error! Failed to load character values.");
+				});
+				// load equipment
+				$.ajax({
+					url: 'php/loadData1.php',
+					data: {
+						run: "loadEq",
+						name: name
+					}
+				}).done(function(data) {
+					data.forEach(function(eq, i){
+						P.eq[i].name = eq.name;
+						if (eq.json){
+							var o = JSON.parse(eq.json);
 							for (var key in o){
-								P.item[i][key] = o[key];
+								P.eq[i][key] = o[key];
 							}
 						}
 					});
-                    srv.item = true;
-                    // load character data
-                    $.ajax({
-                        url: 'php/loadData1.php',
-                        data: {
-                            run: "loadMy",
-                            name: name,
-                            ng: 'false'
-                        }
-                    }).done(function(data) {
-						if(data == "Your session has expired."){
-							Error(data);
-                            reloadPage();
-							return;
+					srv.eq = true;
+					checkEnterWorld();
+					loadWeaponSlashes();
+				}).fail(function() {
+					QMsg("Server Error! Failed to load equipment values.");
+				});
+				initQ();
+				$.ajax({
+					url: 'php/loadData1.php',
+					data: {
+						run: "loadQ",
+						diff: (my.difficulty - 1),
+						name: name
+					}
+				}).done(function(data) {
+					for (var i = 0; i <= 2; i++) {
+						var x = JSON.parse(data[i]);
+						for (var key in x){
+							P.Q[i][key] = x[key];
 						}
-                        if (data == 'down') {
-                            Error("The server is down for maintenance. Please try again later.");
-                            reloadPage();
-                            return;
-                        }
-                        if (data == "DEAD") {
-                            Error("This character was slain and cannot be revived.");
-                            Error("Rest in peace, " + name + ".");
-                            reloadPage();
-                            return;
-                        }
-                        if (data == "Account has been suspended.") {
-                            Error(data);
-                            reloadPage();
-                            return;
-                        }
-                        if (data == "Account has been banned.") {
-                            Error(data);
-                            reloadPage();
-                            return;
-                        }
-                        my.title = data.title;
-                        my.name = data.name;
-                        my.views = data.views * 1;
-                        my.exp = data.exp * 1;
-                        my.gender = data.gender;
-                        my.gold = data.gold * 1;
-                        my.hardcoreMode = data.hardcoreMode;
-                        my.difficulty = srv.difficulty;
-                        my.race = data.race;
-                        my.job = data.job;
-                        my.lastName = data.lastName;
-                        my.level = data.level * 1;
-                        my.zone = data.zone;
-                        my.zoneH = data.zoneH;
-                        my.zoneN = data.zoneN;
-                        my.subzone = data.subzone * 1;
-                        my.subzoneN = data.subzoneN * 1;
-                        my.subzoneH = data.subzoneH * 1;
-                        my.comboOverall = data.comboOverall * 1;
-						
-						var o = JSON.parse(data.json);
-						for (var key in o){
-							P.my[key] = o[key];
-						}
-                        save.my('local');
-                        srv.my = true;
-                        checkEnterWorld();
-                        loadSkillImages();
-                    }).fail(function() {
-                        QMsg("Server Error! Failed to load character values.");
-                    });
-                    // load equipment
-                    $.ajax({
-                        url: 'php/loadData1.php',
-                        data: {
-                            run: "loadEq",
-                            name: name
-                        }
-                    }).done(function(data) {
-						data.forEach(function(eq, i){
-							console.info('eq ', i, eq);
-							P.eq[i].name = eq.name;
-							if (eq.json){
-								var o = JSON.parse(eq.json);
-								for (var key in o){
-									P.eq[i][key] = o[key];
-								}
-							}
-						});
-                        srv.eq = true;
-                        checkEnterWorld();
-                        loadWeaponSlashes();
-                    }).fail(function() {
-                        QMsg("Server Error! Failed to load equipment values.");
-                    });
-					initQ();
-                    $.ajax({
-                        url: 'php/loadData1.php',
-                        data: {
-                            run: "loadQ",
-                            diff: (my.difficulty - 1),
-                            name: name
-                        }
-                    }).done(function(data) {
-                        for (var i = 0; i <= 2; i++) {
-							if (data[i] !== ''){
-								var x = JSON.parse(data[i]);
-								for (var key in x){
-									P.Q[i][key] = x[key];
-								}
-							}
-                        }
-                        //ok!
-                        g.difficulty = srv.difficulty;
-                        srv.q = true;
-                        resetRepeatableQuests();
-                        checkEnterWorld();
-                    }).fail(function() {
-                        QMsg("Server Error! Failed to load quest values.");
-						reloadPage();
-                    });
-                }
-            }).fail(function() {
-                QMsg("Server Error! Failed to load item values.");
-            });
+					}
+					//ok!
+					g.difficulty = srv.difficulty;
+					srv.q = true;
+					resetRepeatableQuests();
+					checkEnterWorld();
+				}).fail(function() {
+					QMsg("Server Error! Failed to load quest values.");
+					reloadPage();
+				});
+			}
+		}).fail(function() {
+			QMsg("Server Error! Failed to load item values.");
+		});
 
-            function checkEnterWorld() {
-                if (srv.my === true &&
-                    srv.item === true &&
-                    srv.eq === true &&
-                    srv.q === true) {
-                    enterWorld();
-                }
-            }
-        }
+		function checkEnterWorld() {
+			if (srv.my === true &&
+				srv.item === true &&
+				srv.eq === true &&
+				srv.q === true) {
+				enterWorld();
+			}
+		}
     }).on('click', '#createcharacter', function() {
         showChar();
     }).on('mousedown', '#characterslot1', function() {
@@ -7747,48 +7491,44 @@ $(function() {
         cancelCharDelete();
     });
     $("#createWindowId").on('click', '#createbuttonId', function() {
-        if (location.protocol === "http:") {
-            createChar();
-        } else {
-			var name = $("#charnameinput").val().replace(/[^ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz]/g, '');
-			my.name = name.charAt(0).toUpperCase() + name.slice(1);
-			if (my.name==='') {
-				$("#charnameinput").focus();
-				$('#creationInfo').html("Enter your character's name!");
-				return;
-			}
-			if (my.name.length < 2) {
-				$("#charnameinput").focus();
-				$('#creationInfo').html("Your name must be at least two characters long!");
-				return;
-			}
-            if (buttonLock === false) {
-                g.lockScreen();
-                QMsg("Contacting server...");
-                $.ajax({
-                    data: {
-                        run: "addCharacterSlot"
-                    }
-                }).done(function(data) {
-                    if (data == 'maxed') {
-                        QMsg("You cannot have more than 16 character slots per account.");
-                    } else if (data == 'buyCrystals') {
-                        QMsg("Please purchase Never Crystals to unlock additional character slots.");
-                    } else if (data == 'pay150') {
-                        playAudio("buyitem");
-                        QMsg("Character slot purchased for 150 Never Crystals.");
-                        var oldCrystals = $("#crystalCount").text() * 1;
-                        $("#crystalCount").text(oldCrystals - 150);
-                        createChar();
-                    } else if (data == 'create') {
-                        createChar();
-                    }
-                    g.unlockScreen();
-                }).fail(function() {
-                    failToCommunicate();
-                });
-            }
-        }
+		var name = $("#charnameinput").val().replace(/[^ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz]/g, '');
+		my.name = name.charAt(0).toUpperCase() + name.slice(1);
+		if (my.name==='') {
+			$("#charnameinput").focus();
+			$('#creationInfo').html("Enter your character's name!");
+			return;
+		}
+		if (my.name.length < 2) {
+			$("#charnameinput").focus();
+			$('#creationInfo').html("Your name must be at least two characters long!");
+			return;
+		}
+		if (buttonLock === false) {
+			g.lockScreen();
+			QMsg("Contacting server...");
+			$.ajax({
+				data: {
+					run: "addCharacterSlot"
+				}
+			}).done(function(data) {
+				if (data == 'maxed') {
+					QMsg("You cannot have more than 16 character slots per account.");
+				} else if (data == 'buyCrystals') {
+					QMsg("Please purchase Never Crystals to unlock additional character slots.");
+				} else if (data == 'pay150') {
+					playAudio("buyitem");
+					QMsg("Character slot purchased for 150 Never Crystals.");
+					var oldCrystals = $("#crystalCount").text() * 1;
+					$("#crystalCount").text(oldCrystals - 150);
+					createChar();
+				} else if (data == 'create') {
+					createChar();
+				}
+				g.unlockScreen();
+			}).fail(function() {
+				failToCommunicate();
+			});
+		}
     }).on('click', '#cancelbuttonId', function() {
         hideChar();
     }).on('click', '#humanId', function() {
@@ -7869,11 +7609,6 @@ $(function() {
         cost = M.ceil(M.pow(my.level, 1.6));
         $("#upgradePrompt").html("Reset all talents?");
         var s1 = "<div class='cityCostAmount goldIcon'>" + cost + "</div>";
-        /*
-        if(location.protocol==='https:'){
-        	s1+="<div class='cityCostAmount crystalIcon'>25</div>";
-        }
-        */
         $("#upgradeConfirm2").html(s1);
     });
     $("#charsheetId").on('click', function() {
@@ -7996,35 +7731,8 @@ function loadCharacterSlot(Slot) {
         var kek = localStorage.getItem("Lmy" + (lsKey + characterslot));
         Lmy = JSON.parse(kek);
     }
-    if (location.protocol === "http:") {
-        if (localStorage.getItem("my" + (lsKey + Slot)) === null) {
-            // initializeEQ();
-        } else {
-            var foo = localStorage.getItem("my" + (lsKey + Slot));
-            my = JSON.parse(foo);
-            if (location.protocol === 'http:') {
-                var qux = localStorage.getItem("eq" + (lsKey + Slot));
-                P.eq = JSON.parse(qux);
-            }
-        }
-        if (localStorage.getItem("inv" + (lsKey + Slot + 10)) === null) {
-            initializeInventory();
-        } else {
-            var bar = localStorage.getItem("inv" + (lsKey + Slot + 10));
-            P.item = JSON.parse(bar);
-        }
-        if (localStorage.getItem("Q" + (lsKey + Slot)) === null) {
-            initQ();
-        } else {
-            var bar = localStorage.getItem("Q" + (lsKey + Slot));
-            P.Q = JSON.parse(bar);
-        }
-    }
     for (var i = 1; i <= 16; i++) {
         D.getElementById('characterslot' + i).className = "characterDisabled";
-    }
-    if (location.protocol === "http:") {
-        D.getElementById("characterSelectScreen").style.display = 'block';
     }
     $('#characterslot' + Slot).removeClass().addClass("characterActive " + classColor());
     setZoneDifficultyIndicators(true);
@@ -8069,43 +7777,27 @@ function setZoneDifficultyIndicators(reset) {
 }
 
 function updateZoneIndicator() {
-    if (location.protocol === "http:") {
-        checkZoneExists();
-        var x = mySubzone();
-        if (x === 0) {
-            D.getElementById("zoneIndicator").innerHTML = myZone();
-        } else {
-            D.getElementById("zoneIndicator").innerHTML = myZone() + " " + x;
-        }
-    } else {
-        var x = mySubzone();
-        if (x === 0) {
-            $("#zoneIndicator").html(myZone());
-        } else {
-            $("#zoneIndicator").html(myZone() + " " + x);
-        }
-    }
+	var x = mySubzone();
+	if (x === 0) {
+		$("#zoneIndicator").html(myZone());
+	} else {
+		$("#zoneIndicator").html(myZone() + " " + x);
+	}
 }
 $(document).ready(function() {
     $("#normalLabel").on('click', function() {
         my.difficulty = 1;
-        if (location.protocol === 'https:') {
-            srv.difficulty = 1;
-        }
+		srv.difficulty = 1;
         setZoneDifficultyIndicators();
     });
     $("#nightmareLabel").on('click', function() {
         my.difficulty = 2;
-        if (location.protocol === 'https:') {
-            srv.difficulty = 2;
-        }
+		srv.difficulty = 2;
         setZoneDifficultyIndicators();
     });
     $("#hellLabel").on('click', function() {
         my.difficulty = 3;
-        if (location.protocol === 'https:') {
-            srv.difficulty = 3;
-        }
+		srv.difficulty = 3;
         setZoneDifficultyIndicators();
     });
 });
@@ -8998,119 +8690,6 @@ function checkUndefined() {
     if (my.window6Y !== undefined) {
         delete my.window6Y;
     }
-    if (P.Q[0].ButcherblockMountains !== undefined) {
-        for (var i = 0; i <= 2; i++) {
-            delete P.Q[i].ButcherblockMountains;
-            delete P.Q[i].DagnorsCauldron;
-            delete P.Q[i].SteamfontMountains;
-            delete P.Q[i].Beholders;
-            delete P.Q[i].ClanRunnyeye;
-            delete P.Q[i].EastCommonlands;
-            delete P.Q[i].EastKarana;
-            delete P.Q[i].EverfrostPeaks;
-            delete P.Q[i].HighpassHold;
-            delete P.Q[i].InnothuleSwamp;
-            delete P.Q[i].KithicorForest;
-            delete P.Q[i].LakeRathetear;
-            delete P.Q[i].LavastormMountains;
-            delete P.Q[i].MistyThicket;
-            delete P.Q[i].NektulosForest;
-            delete P.Q[i].NorthKarana;
-            delete P.Q[i].OasisofMarr;
-            delete P.Q[i].OceanofTears;
-            delete P.Q[i].QeynosHills;
-            delete P.Q[i].RatheMountains;
-            delete P.Q[i].SouthKarana;
-            delete P.Q[i].SouthRo;
-            delete P.Q[i].SoluseksEye;
-            delete P.Q[i].SplitpawLair;
-            delete P.Q[i].TheFeerrott;
-            delete P.Q[i].WestCommonlands;
-            delete P.Q[i].WestKarana;
-            delete P.Q[i].ErudsCrossing;
-            delete P.Q[i].ToxxuliaForest;
-            delete P.Q[i].BBM1;
-            delete P.Q[i].DC1;
-            delete P.Q[i].DC2;
-            delete P.Q[i].SM1;
-            delete P.Q[i].BM1;
-            delete P.Q[i].BM2;
-            delete P.Q[i].CR1;
-            delete P.Q[i].CR2;
-            delete P.Q[i].CR3;
-            delete P.Q[i].CR4;
-            delete P.Q[i].CR5;
-            delete P.Q[i].EC1;
-            delete P.Q[i].EK1;
-            delete P.Q[i].EK2;
-            delete P.Q[i].EK3;
-            delete P.Q[i].EK4;
-            delete P.Q[i].EP1;
-            delete P.Q[i].HH1;
-            delete P.Q[i].HH2;
-            delete P.Q[i].HH3;
-            delete P.Q[i].HH4;
-            delete P.Q[i].IS1;
-            delete P.Q[i].KF1;
-            delete P.Q[i].KF2;
-            delete P.Q[i].LR1;
-            delete P.Q[i].LR2;
-            delete P.Q[i].LR3;
-            delete P.Q[i].LM1;
-            delete P.Q[i].LM2;
-            delete P.Q[i].LM3;
-            delete P.Q[i].LM4;
-            delete P.Q[i].MT1;
-            delete P.Q[i].NF1;
-            delete P.Q[i].NK1;
-            delete P.Q[i].NK2;
-            delete P.Q[i].NK3;
-            delete P.Q[i].NK4;
-            delete P.Q[i].OM1;
-            delete P.Q[i].OM2;
-            delete P.Q[i].OM3;
-            delete P.Q[i].OM4;
-            delete P.Q[i].OT1;
-            delete P.Q[i].OT2;
-            delete P.Q[i].OT3;
-            delete P.Q[i].OT4;
-            delete P.Q[i].QH1;
-            delete P.Q[i].RM1;
-            delete P.Q[i].RM2;
-            delete P.Q[i].RM3;
-            delete P.Q[i].RM4;
-            delete P.Q[i].SK1;
-            delete P.Q[i].SK2;
-            delete P.Q[i].SK3;
-            delete P.Q[i].SK4;
-            delete P.Q[i].SK5;
-            delete P.Q[i].SR1;
-            delete P.Q[i].SR2;
-            delete P.Q[i].SR3;
-            delete P.Q[i].SE1;
-            delete P.Q[i].SE2;
-            delete P.Q[i].SE3;
-            delete P.Q[i].SE4;
-            delete P.Q[i].SE5;
-            delete P.Q[i].SL1;
-            delete P.Q[i].SL2;
-            delete P.Q[i].SL3;
-            delete P.Q[i].SL4;
-            delete P.Q[i].SL5;
-            delete P.Q[i].SL6;
-            delete P.Q[i].TF1;
-            delete P.Q[i].WC1;
-            delete P.Q[i].WC2;
-            delete P.Q[i].WC3;
-            delete P.Q[i].WK1;
-            delete P.Q[i].WK2;
-            delete P.Q[i].WK3;
-            delete P.Q[i].ECX1;
-            delete P.Q[i].ECX2;
-            delete P.Q[i].ECX3;
-            delete P.Q[i].TXF1;
-        }
-    }
     if (GLB.autoHide !== undefined) {
         delete GLB.autoHide;
     }
@@ -9180,8 +8759,8 @@ function checkUndefined() {
     }
     if (P.Q[0].repeatCB === undefined) {
         for (var i = 0; i <= 2; i++) {
-            P.Q[i].repeatCB = false;
-            P.Q[i].repeatER = false;
+            P.Q[i].repeatCB = 0;
+            P.Q[i].repeatER = 0;
         }
     }
     if (P.Q[0].PlaneofFear === undefined) {
@@ -9192,13 +8771,13 @@ function checkUndefined() {
     }
     if (P.Q[0].repeatCm3 === undefined) {
         for (var i = 0; i <= 2; i++) {
-            P.Q[i].repeatCm3 = false;
-            P.Q[i].repeatCt3 = false;
-            P.Q[i].repeatKk3 = false;
-            P.Q[i].repeatNl3 = false;
-            P.Q[i].repeatLg3 = false;
-            P.Q[i].repeatKk4 = false;
-            P.Q[i].repeatNl4 = false;
+            P.Q[i].repeatCm3 = 0;
+            P.Q[i].repeatCt3 = 0;
+            P.Q[i].repeatKk3 = 0;
+            P.Q[i].repeatNl3 = 0;
+            P.Q[i].repeatLg3 = 0;
+            P.Q[i].repeatKk4 = 0;
+            P.Q[i].repeatNl4 = 0;
             P.Q[i].KK6 = 0;
             P.Q[i].KK7 = 0;
             P.Q[i].KK8 = 0;
@@ -9327,7 +8906,7 @@ function checkUndefined() {
     }
     if (P.Q[0].repeatPk4 === undefined) {
         for (var i = 0; i <= 2; i++) {
-            P.Q[i].repeatPk4 = true;
+            P.Q[i].repeatPk4 = 1;
         }
     }
     if (my.title === undefined) {
@@ -9335,9 +8914,6 @@ function checkUndefined() {
     }
     if (my.difficulty === undefined) {
         my.difficulty = 1;
-    }
-    if (my.ID === undefined) {
-        my.ID = 0;
     }
     for (var i = 0; i <= 125; i++) {
         if (P.bank[i].cold === undefined) {
@@ -9487,7 +9063,7 @@ save.item = function(Slot) {
 		url: 'php/game1.php',
 		data: {
 			run: "updateItem",
-			json: json,
+			json: JSON.stringify(json),
 			itemName: P.item[Slot].name,
 			Slot: Slot,
 			slotType: 'item',
@@ -9507,7 +9083,7 @@ save.eq = function(Slot) {
 		url: 'php/game1.php',
 		data: {
 			run: "updateItem",
-			json: json,
+			json: JSON.stringify(json),
 			itemName: P.eq[Slot].name,
 			Slot: Slot,
 			slotType: 'eq',
@@ -9527,7 +9103,7 @@ save.bank = function(Slot) {
 		url: 'php/game1.php',
 		data: {
 			run: "updateItem",
-			json: json,
+			json: JSON.stringify(json),
 			itemName: P.bank[Slot].name,
 			Slot: Slot,
 			slotType: 'bank',
@@ -9584,15 +9160,19 @@ save.my = function(loc) {
 			'comboOverall',
 			'views'
 		];
-		keys.forEach(function(key){
-			delete json[key];
-		});
-		my.json = json;
+		var json = {};
+		for (var key in my){
+			// not one of these keys? add it to json
+			if (keys.indexOf(key) === -1){
+				json[key] = my[key];
+			}
+		}
 		$.ajax({
 			url: 'php/game1.php',
 			data: {
 				run: "updateMy",
-				my: my
+				my: my,
+				json: JSON.stringify(json)
 			}
 		}).done(function(data) {
 			if (campStatus === true) {
@@ -9608,29 +9188,7 @@ save.Lmy = function() {
     localStorage.setItem('Lmy' + (lsKey + characterslot), JSON.stringify(Lmy));
 }
 save.quests = function() {
-	function convert(foo) {
-		if (foo === true) {
-			return 1;
-		} else {
-			return 0;
-		}
-	}
-	var qq = jQuery.extend(true, {}, P.Q[diff()]); //deep copy
-	qq.repeatCB = convert(qq.repeatCB);
-	qq.repeatCm3 = convert(qq.repeatCm3);
-	qq.repeatCt3 = convert(qq.repeatCt3);
-	qq.repeatER = convert(qq.repeatER);
-	qq.repeatKk3 = convert(qq.repeatKk3);
-	qq.repeatKk4 = convert(qq.repeatKk4);
-	qq.repeatLg3 = convert(qq.repeatLg3);
-	qq.repeatNl3 = convert(qq.repeatNl3);
-	qq.repeatNl4 = convert(qq.repeatNl4);
-	qq.repeatPk4 = convert(qq.repeatPk4);
-	var data = {};
-	for (var key in qq) {
-		data[key] = qq[key];
-	}
-	qq.data = JSON.stringify(data);
+	var qq = JSON.stringify(P.Q[diff()]);
 	$.ajax({
 		url: 'php/game1.php',
 		data: {
@@ -9647,26 +9205,13 @@ save.quests = function() {
 function saveGame() {
     save.Lmy();
     save.my();
-    if (location.protocol === "http:") {
-        save.GLB();
-        save.quests();
-        save.bank();
-        save.item();
-        save.eq();
-    }
 }
 
 function delChar() {
     playAudio('button_2');
-    if (location.protocol === "http:") {
-        if (my.name == "" || my.name == null || foundCharacter === false) {
-            return;
-        }
-    } else {
-        if ($("#characterslot" + characterslot).children().first().text() === "") {
-            return;
-        }
-    }
+	if ($("#characterslot" + characterslot).children().first().text() === "") {
+		return;
+	}
     $("#deletecharfade")
         .css({
             opacity: 0,
@@ -9683,11 +9228,10 @@ function delChar() {
         .animate({
             opacity: 1
         }, 311, "easeOutQuad");
-    if (location.protocol === "http:") {
-        $("#deleteconfirmmsg").html("Delete " + my.name + "?<br>Are You Sure?");
-    } else {
-        $("#deleteconfirmmsg").html("Delete " + $("#characterslot" + characterslot).children().first().text() + "?<br>Are You Sure?");
-    }
+	$("#deleteconfirmmsg").html("Delete " + $("#characterslot" + characterslot)
+		.children()
+		.first()
+		.text() + "?<br>Are You Sure?");
     $("#deleteConfirm").removeClass("disabled");
 }
 
@@ -9716,29 +9260,25 @@ function deleteCharSlot() {
             localStorage.removeItem("Q" + (lsKey + characterslot));
             T.delayedCall(.125, loadAllCharacters);
         }
-        if (location.protocol === "http:") {
-            do1();
-        } else {
-            $.ajax({
-                data: {
-                    run: "deleteCharacter",
-                    name: $("#characterslot" + characterslot).children().first().text()
-                }
-            }).done(function(data) {
-                D.getElementById('characterslot' + characterslot).style.display = 'none';
-                for (var i = 1; i <= 16; i++) {
-                    if (D.getElementById('characterslot' + i).style.display === "inline-block") {
-                        loadCharacterSlot(i);
-                        continue;
-                    }
-                }
-                charactersFound -= 1;
-                setCharacterSelectPanel();
-                loadServerCharacters();
-            }).fail(function() {
-                QMsg("Failed to contact the server.");
-            });
-        }
+		$.ajax({
+			data: {
+				run: "deleteCharacter",
+				name: $("#characterslot" + characterslot).children().first().text()
+			}
+		}).done(function(data) {
+			D.getElementById('characterslot' + characterslot).style.display = 'none';
+			for (var i = 1; i <= 16; i++) {
+				if (D.getElementById('characterslot' + i).style.display === "inline-block") {
+					loadCharacterSlot(i);
+					continue;
+				}
+			}
+			charactersFound -= 1;
+			setCharacterSelectPanel();
+			loadServerCharacters();
+		}).fail(function() {
+			QMsg("Failed to contact the server.");
+		});
     }
     playAudio('button_2');
     $("#deleteConfirm").addClass("disabled");
@@ -9918,7 +9458,7 @@ function loadMiscImages() {
     }
 }
 
-function loadSkillImages() {
+function loadClassSkillImages() {
     var foo = [];
     if (my.job === "Warrior") {
         foo = ['kick', 'slam', 'punchedRed', 'hemorrhage', 'bloodDrop', 'shockwave', 'subjugate', 'decisiveBlow', 'tremor', 'absorbSpell', 'bulwark', 'buffRings', 'intrepidMight', 'kick', 'yellowLight3', 'burst', 'blueNova'];
@@ -9964,8 +9504,9 @@ function loadSkillImages() {
     }
     foo.push("bloodSpray");
     for (var i = 0, len = foo.length; i < len; i++) {
-        asset[i] = new Image();
-        asset[i].src = "images1/" + foo[i] + ".png";
+		var x = new Image();
+		x.src = "images1/" + foo[i] + ".png";
+		asset[400 + i] = x;
     }
 }
 
@@ -10137,12 +9678,12 @@ function travelZone(zone, sz) {
     } else if (g.difficulty === 2) {
         my.zoneN = zone;
         my.subzoneN = sz;
-    } else if (g.difficulty === 3) {
+    } else {
         my.zoneH = zone;
         my.subzoneH = sz;
     }
     indoorStatus = checkDungeon(zone);
-    if (travelStatus === 0) {
+    if (!travelStatus) {
         var e = D.getElementById("travelId");
         e.className = "buttonsManage";
         e.style.backgroundPosition = "-80px 0";
@@ -10157,13 +9698,12 @@ function travelZone(zone, sz) {
         MOBNAME[i].style.color = '#00FA9A';
         MOBNAME[i].innerHTML = '';
     }
-    $("#window2dawn, #window2zoneday")
-        .css({
-            display: 'block',
-            opacity: 0
-        }).animate({
-            opacity: 1
-        }, 0, "easeOutQuad");
+    $("#window2dawn, #window2zoneday").css({
+		display: 'block',
+		opacity: 0
+	}).animate({
+		opacity: 1
+	}, 0, "easeOutQuad");
     travelToggle();
     D.getElementById('questJournal').style.display = "none";
     questJournalBlock = 1;
@@ -10171,10 +9711,10 @@ function travelZone(zone, sz) {
 }
 
 function myZone() {
-    if (location.protocol === "http:" || g.view === "Game" || g.view === "Intro") {
-        if (my.difficulty === 1) {
+    if (g.view !== "Main") {
+        if (g.difficulty === 1) {
             return my.zone;
-        } else if (my.difficulty === 2) {
+        } else if (g.difficulty === 2) {
             return my.zoneN;
         } else {
             return my.zoneH;
@@ -10197,8 +9737,7 @@ function myZone() {
 }
 
 function mySubzone() {
-    if (location.protocol === "http:" ||
-        g.view === "Game") {
+    if (g.view === "Game") {
         if (my.difficulty === 1) {
             return my.subzone;
         } else if (my.difficulty === 2) {
@@ -10253,7 +9792,7 @@ function loadZone() {
     cancelMySpell();
     enteredWorld = false;
     $("#characterSelectScreen").css('display', 'none');
-    Chat(("Loading... please wait."));
+    Chat("Loading... please wait.");
     attackStatus = 1;
     for (var i = 0; i <= 4; i++) {
         mob[i].attackStatus = 1;
@@ -10649,7 +10188,7 @@ function loadZone() {
         mobs[i].src = 'images1/' + zig[i] + '.png';
     }
     imagesLoaded = 0;
-    $("#window2zoneday").attr("src", 'backgrounds/' + foo + '?v1');
+    $("#window2zoneday").attr("src", 'backgrounds/' + foo);
     if (cityStatus === true) {
         $NG2.city.attr("src", "//" + itemSprite);
         $NG2.cityBG.css("background", "url('//" + itemSprite + "')").css({
@@ -10679,13 +10218,11 @@ function writeCityHtml() {
         '</div>' +
         '<div id="cityGold" class="strongShadow">' +
         '<div id="goldIcon" class="goldIcon">0</div>' +
-        '</div>';
-    if (location.protocol === 'https:') {
-        z += '<div id="cityCrystal" class="strongShadow">' +
-            '<div id="cityCrystalIcon" class="crystalIcon"></div>' +
-            '<span id="cityCrystalAmount">0</span>' +
-            '</div>';
-    }
+        '</div>' +
+		'<div id="cityCrystal" class="strongShadow">' +
+		'<div id="cityCrystalIcon" class="crystalIcon"></div>' +
+		'<span id="cityCrystalAmount">0</span>' +
+		'</div>';
     z += '</div>' +
         '<div id="cityNPCdiv">' +
         '<img id="cityNPCshadow" src="//i.imgur.com/7bn79bN.png">' +
@@ -10885,7 +10422,6 @@ function loadServerCharacters() {
             run: "loadAllCharacters"
         }
     }).done(function(data) {
-		console.info("loadAllCharacters: ", data);
         var email = data.email.toLowerCase();
         foundCharacter = false;
         var Slot = 1;
@@ -11156,12 +10692,10 @@ function enterZoneSuccess2(instant) {
         T.delayedCall(.033, enterZoneSuccess2, [true]);
         return;
     }
-    if (location.protocol === "https:") {
-        drawExpBar();
-        if (cityStatus) {
-            setCrystals();
-        }
-    }
+	drawExpBar();
+	if (cityStatus) {
+		setCrystals();
+	}
     g.view = "Game";
     show(['window3', 'chatId', 'combatId', 'window5Id', 'window6']);
     imagesLoaded = 0;
@@ -11230,7 +10764,6 @@ function enterZoneSuccess2(instant) {
     // one-time actions upon login
     if (enteredWorldOnce === false) {
         checkSessionActive();
-		// chatInit();
 		Chat2("Hit Enter to begin chatting",3);
 		Chat2("Type /help for chat commands",3);
 		Chat2("You have joined [1. General Chat]",3);
@@ -11376,29 +10909,11 @@ function showTutorial() {
 $(function() {
     initNG();
     loadAllCharacters(); // load webpage init webpage
-    T.delayedCall(1.5, function() {
-        if ($("#createWindowId").length === 1) {
-            if (location.protocol === "http:") {
-                if (g.view === "Main" || g.view === "Create") {
-                    D.getElementById('currencyIndicator').style.display = 'block';
-                }
-            }
-        }
-    });
-    if (location.protocol === "http:") {
-        if (GLB.gold === undefined) {
-            $('#globalGoldCount').text(0);
-        } else {
-            $('#globalGoldCount').text(GLB.gold);
-        }
-        block(['leftPaneBG']);
-    } else {
-        setTimeout(function() {
-            focusLogin();
-        }, 1500);
-		rememberEmail();
-		titleScreenMusicPlaying = true;
-	}
+	setTimeout(function() {
+		focusLogin();
+	}, 1500);
+	rememberEmail();
+	titleScreenMusicPlaying = true;
 	function do1(){
 		$.ajax({
 			url: "php/keepAlive.php"

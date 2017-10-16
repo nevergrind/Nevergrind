@@ -548,30 +548,25 @@ function monsterKilledMe(){
 			g.lostGold = z;
 			g.oldExp = my.exp;
 			if(expPenalty>0&&lvl>=6){
-				if(location.protocol==='https:'){
-					$.ajax({
-						url: 'php/game1.php',
-						data:{
-							run: "updateExpGold", // death
-							lastName: my.lastName,
-							title: my.title,
-							level: my.level,
-							job: my.job,
-							race: my.race,
-							exp: expPenalty*-1,
-							gold: z*-1,
-							name: my.name
-						}
-					}).done(function(data){
-						my.exp -= expPenalty;
-						my.gold -= z;
-					}).fail(function(data){
-						failToCommunicate();
-					});
-				}else{
+				$.ajax({
+					url: 'php/game1.php',
+					data:{
+						run: "updateExpGold", // death
+						lastName: my.lastName,
+						title: my.title,
+						level: my.level,
+						job: my.job,
+						race: my.race,
+						exp: expPenalty*-1,
+						gold: z*-1,
+						name: my.name
+					}
+				}).done(function(data){
 					my.exp -= expPenalty;
 					my.gold -= z;
-				}
+				}).fail(function(data){
+					failToCommunicate();
+				});
 			}
 			my.deaths+=1;
 			saveGame();
@@ -3932,114 +3927,126 @@ function animateSlash(cX, cY){
 		img1="smashed";
 	}
 	var p1 = can(img1, 5, cX, cY, 0, 0);
-	T.to(p1,.125,{
-		x:cX-200,
-		scaleX:1,
-		scaleY:1,
-		ease:ez.sin
-	});
-	T.to(p1,.125,{
-		scaleX:0,
-		scaleY:0,
-		y:cY+200,
-		ease:ez.sout,
-		delay:.125,
-		onComplete:function(){
-			cRem(5, p1);
-		}
-	});
+	p1.image.onload = function(){
+		T.to(p1,.125,{
+			x:cX-200,
+			scaleX:1,
+			scaleY:1,
+			ease:ez.sin
+		});
+		T.to(p1,.125,{
+			scaleX:0,
+			scaleY:0,
+			y:cY+200,
+			ease:ez.sout,
+			delay:.125,
+			onComplete:function(){
+				cRem(5, p1);
+			}
+		});
+	}
 }
 function animateSlashL(cX, cY){
 	if(GLB.videoSetting!=="High"){return;}
 	var p1 = can(P.eq[13].type+"L", 5, cX, cY, 0, 0);
-	T.to(p1,.125,{
-		scaleX:1,
-		scaleY:1,
-		ease:ez.sin
-	});
-	T.to(p1,.125,{
-		scaleX:.25,
-		scaleY:.25,
-		x:cX+200,
-		y:cY+200,
-		ease:ez.sout,
-		delay:.125,
-		onComplete:function(){
-			cRem(5, p1);
-		}
-	});
+	p1.image.onload = function(){
+		T.to(p1,.125,{
+			scaleX:1,
+			scaleY:1,
+			ease:ez.sin
+		});
+		T.to(p1,.125,{
+			scaleX:.25,
+			scaleY:.25,
+			x:cX+200,
+			y:cY+200,
+			ease:ez.sout,
+			delay:.125,
+			onComplete:function(){
+				cRem(5, p1);
+			}
+		});
+	}
 }
 function animatePierce(cX, cY){
 	if(GLB.videoSetting!=="High"){return;}
 	var p1 = can(P.eq[12].type, 5, cX, cY, 0, 200);
-	T.to(p1,.1,{
-		x:cX-200,
-		scaleX:1
-	});
-	T.to(p1, .1, {
-		scaleX:.25,
-		ease:ez.Qin,
-		delay:.1,
-		onComplete:function(){
-			cRem(5, p1);
-		}
-	});
+	p1.image.onload = function(){
+		T.to(p1,.1,{
+			x:cX-200,
+			scaleX:1
+		});
+		T.to(p1, .1, {
+			scaleX:.25,
+			ease:ez.Qin,
+			delay:.1,
+			onComplete:function(){
+				cRem(5, p1);
+			}
+		});
+	}
 }
 function animatePierceL(cX, cY){
 	if(GLB.videoSetting!=="High"){return;}
 	var p1 = can(P.eq[13].type+"L", 5, cX, cY, 0, 200);
-	T.to(p1,.1,{
-		scaleX:1
-	});
-	T.to(p1,.1,{
-		x:cX+150,
-		scaleX:.25,
-		ease:ez.Qin,
-		delay:.1,
-		onComplete:function(){
-			cRem(5, p1);
-		}
-	});
+	p1.image.onload = function(){
+		T.to(p1,.1,{
+			scaleX:1
+		});
+		T.to(p1,.1,{
+			x:cX+150,
+			scaleX:.25,
+			ease:ez.Qin,
+			delay:.1,
+			onComplete:function(){
+				cRem(5, p1);
+			}
+		});
+	}
 }
 function animatePunch(cX, cY){
 	if(GLB.videoSetting!=="High"){return;}
 	var p1 = can(P.eq[12].type, 5, cX, cY, 60, 60, true);
-	T.to(p1, .1, {
-		scaleX:1.6, 
-		scaleY:1.6, 
-		rotation:90,
-		ease:ez.sin,
-		onComplete:function(){
-			T.to(p1, .2, {
-				scaleX:0,
-				scaleY:0,
-				rotation:180,
-				ease:ez.sout,
-				onComplete:function(){
-					cRem(5, p1);
-				}
-			});
-		}
-	});
+	p1.image.onload = function(){
+		T.to(p1, .1, {
+			scaleX:1.6, 
+			scaleY:1.6, 
+			rotation:90,
+			ease:ez.sin,
+			onComplete:function(){
+				T.to(p1, .2, {
+					scaleX:0,
+					scaleY:0,
+					rotation:180,
+					ease:ez.sout,
+					onComplete:function(){
+						cRem(5, p1);
+					}
+				});
+			}
+		});
+	}
 }
 function animatePunchL(cX, cY){
 	if(GLB.videoSetting!=="High"){return;}
 	var p1 = can(P.eq[13].type, 5, cX, cY, 60, 60, true);
-	T.to(p1, .1, {
-		scaleX:1.6, 
-		scaleY:1.6, 
-		rotation:90,
-		onComplete:function(){
-			T.to(p1, .2, {
-				scaleX:0,
-				scaleY:0,
-				rotation:180,
-				onComplete:function(){
-					cRem(5, p1);
-				}
-			});
-		}
-	});
+	p1.image.onload = function(){
+		T.to(p1, .1, {
+			scaleX:1.6, 
+			scaleY:1.6, 
+			rotation:90,
+			onComplete:function(){
+				T.to(p1, .2, {
+					scaleX:0,
+					scaleY:0,
+					rotation:180,
+					onComplete:function(){
+						cRem(5, p1);
+					}
+				});
+			}
+		});
+	}
 }
 
 
@@ -4402,45 +4409,34 @@ function attackOff(){
 				popupCombo(i,chainCounter,expBonus);
 				// enhance
 				mob[i].xp = M.round(mob[i].xp * percentBonus);
-				if(location.protocol==='https:'){
-					$.ajax({
-						url: 'php/game1.php',
-						data:{
-							run: "updateExpGold", // add exp
-							lastName: my.lastName,
-							title: my.title,
-							level: x,
-							job: my.job,
-							race: my.race,
-							mobExp: mobExp,
-							Slot: i,
-							exp: mob[i].xp,
-							gold: goldFound,
-							name: my.name
-						}
-					}).done(function(data){
-						var x = data*1;
-						my.exp += x;
-						if(my.exp>103835784){
-							my.exp=103835784;
-						}
-						Chat("You have earned "+x+" experience!",2);
-						battleExperienceTotal+= x;
-						checkLevelUp();
-						drawExpBar();
-					}).fail(function(data){
-						failToCommunicate();
-					});
-				}else{
-					my.exp += mob[i].xp;
+				$.ajax({
+					url: 'php/game1.php',
+					data:{
+						run: "updateExpGold", // add exp
+						lastName: my.lastName,
+						title: my.title,
+						level: x,
+						job: my.job,
+						race: my.race,
+						mobExp: mobExp,
+						Slot: i,
+						exp: mob[i].xp,
+						gold: goldFound,
+						name: my.name
+					}
+				}).done(function(data){
+					var x = data*1;
+					my.exp += x;
 					if(my.exp>103835784){
 						my.exp=103835784;
 					}
-					Chat("You have earned "+mob[i].xp+" experience!",2);
-					battleExperienceTotal+= mob[i].xp;
+					Chat("You have earned "+x+" experience!",2);
+					battleExperienceTotal+= x;
 					checkLevelUp();
 					drawExpBar();
-				}
+				}).fail(function(data){
+					failToCommunicate();
+				});
 			}
 			if(x===99){
 				popupCombo(i,chainCounter,0);
@@ -4572,19 +4568,17 @@ function reportBattleStats(){
 	}
 	if(bardSingStatus===true){ bardSinging(); }
 	checkZoneCombo();
-	if(location.protocol==='https:'){
-		$.ajax({
-			url: 'php/game1.php',
-			data:{
-				run: "updateCombo",
-				rating: comboRating,
-				name:my.name
-				
-			}
-		}).fail(function(data){
-			failToCommunicate();
-		});
-	}
+	$.ajax({
+		url: 'php/game1.php',
+		data:{
+			run: "updateCombo",
+			rating: comboRating,
+			name:my.name
+			
+		}
+	}).fail(function(data){
+		failToCommunicate();
+	});
 }
 function hpKillAbsorb(){
 	g.popupHeal(M.ceil(g.hpKillEquip));
@@ -5177,13 +5171,15 @@ function animateDrain(Slot){
 	var p1 = can('yellowparticle50', 6, 640, 720, 25, 25);
 	var x1 = (MOB[Slot].offsetLeft+mob[Slot].cX-12);
 	var y1 = (MOB[Slot].offsetTop+mob[Slot].cY-12);
-	T.to(p1, .5, {
-		x:x1,
-		y:y1,
-		onComplete:function(){
-			cRem(6, p1);
-		}
-	});
+	p1.image.onload = function(){
+		T.to(p1, .5, {
+			x:x1,
+			y:y1,
+			onComplete:function(){
+				cRem(6, p1);
+			}
+		});
+	}
 }
 function executeRiposte(Slot){
 	var I = P.eq[12].type;
