@@ -549,7 +549,7 @@ function monsterKilledMe(){
 			g.oldExp = my.exp;
 			if(expPenalty>0&&lvl>=6){
 				$.ajax({
-					url: 'php/game1.php',
+					url: '/classic/php/game1.php',
 					data:{
 						run: "updateExpGold", // death
 						lastName: my.lastName,
@@ -4410,7 +4410,7 @@ function attackOff(){
 				// enhance
 				mob[i].xp = M.round(mob[i].xp * percentBonus);
 				$.ajax({
-					url: 'php/game1.php',
+					url: '/classic/php/game1.php',
 					data:{
 						run: "updateExpGold", // add exp
 						lastName: my.lastName,
@@ -4569,7 +4569,7 @@ function reportBattleStats(){
 	if(bardSingStatus===true){ bardSinging(); }
 	checkZoneCombo();
 	$.ajax({
-		url: 'php/game1.php',
+		url: '/classic/php/game1.php',
 		data:{
 			run: "updateCombo",
 			rating: comboRating,

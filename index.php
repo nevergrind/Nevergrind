@@ -18,7 +18,7 @@
 <html lang="en"> 
 <head>
 	<script>
-		patchVersion="1-0-109";
+		patchVersion="2-0-2";
 	</script>
 	<title>Nevergrind | Browser RPG | Free Online Game</title>
 	<meta name="keywords" content="fantasy, online, browser, free, game, rpg">
@@ -27,13 +27,22 @@
 	<meta name="google-signin-client_id" content="1015425037202-g5ri6qnj14b8vrk33lnu130ver9f43ef.apps.googleusercontent.com">
 	<meta name="google-site-verification" content="iC9l4midOGIXERCwagfpkef9ifunV-aZd_zlUUOPjIU" />
 	<link rel='stylesheet' type='text/css' href="css/global.css">
-	<link rel='stylesheet' type='text/css' href="css/nevergrind.css?v=1-0-109">
+	<link rel='stylesheet' type='text/css' href="css/nevergrind.css?v=2-0-2">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="shortcut icon" href="/images/favicon.png">
 	<?php
 		include($_SERVER['DOCUMENT_ROOT'] . "/includes/head.html");
 	?>
 </head>
+<script>
+	(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=737706186279455";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+</script>
 
 <body id="curtain">
 	<div id="window2">
@@ -181,22 +190,6 @@
 				</div>
 				<div id="rightPaneBG">
 					<nav id="nglogo" class="strongShadow">
-						<?php
-						if($_SERVER["SERVER_NAME"] !== "localhost"){
-						?>
-						<div style="margin: 6px 0">
-							<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-							<!-- Nevergrind ads -->
-							<ins class="adsbygoogle"
-								 style="display:block"
-								 data-ad-client="ca-pub-8697751823759563"
-								 data-ad-slot="5248467388"
-								 data-ad-format="auto"></ins>
-							<script>
-							(adsbygoogle = window.adsbygoogle || []).push({});
-							</script>
-						</div>
-						<?php } ?>
 						<h1>
 							<div>Nevergrind | Fantasy Browser RPG</div>
 							<div>a free online game</div>
@@ -214,7 +207,7 @@
 						<marquee class="red">Season 2 of Nevergrind coming soon... date to be decided</marquee-->
 						
 						<hr class="fancyHR">
-						<p>Other Games I Made:</p>
+						<div>Other Games I Made:</div>
 						<a href="/games/firmament-wars" title="Firmament Wars | Real-Time Multiplayer Grand Strategy Browser Game" class="links">Firmament Wars | Free Multiplayer Risk-Like Strategy Game</a>
 						
 						<hr class="fancyHR">

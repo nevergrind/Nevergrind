@@ -6,7 +6,7 @@
 })();
 $.ajaxSetup({
     type: 'POST',
-    url: 'php/master1.php'
+    url: '/classic/php/master1.php'
 });
 var M = Math,
     T = TweenMax,
@@ -1117,7 +1117,7 @@ function initMY() {
     my = {
         name: "",
         lastName: "",
-        gender: "",
+        gender: "Male",
         job: "",
         race: "",
         level: null,
@@ -6978,6 +6978,7 @@ function showIntro() {
 var ng,
     JOB;
 function initJob(){
+    noSpaceClass = my.job.replace(/ /g, '');
     JOB = {};
     JOB.hpTier = hpTier();
     JOB.mpTier = mpTier();
@@ -7006,7 +7007,6 @@ function enterWorld() {
     }
     // quick variables
 	initJob();
-    noSpaceClass = my.job.replace(/ /g, '');
     // other stuff
     checkUndefined();
     loadClassSounds();
@@ -7316,10 +7316,11 @@ $(function() {
 		if(!name){
 			return;
 		}
+		console.info("Loading data for: ", name);
 		$('#characterSelectScreen').remove();
 		QMsg("Loading data: "+name+"");
 		$.ajax({
-			url: 'php/loadData1.php',
+			url: '/classic/php/loadData1.php',
 			data: {
 				run: "loadItem",
 				name: name
@@ -7331,6 +7332,7 @@ $(function() {
 					QMsg("Use Camp when you're done playing your character.", 0, 0, 15000);
 				}
 			} else {
+				console.info('loadItem', data);
 				data.forEach(function(item, i){
 					P.item[i].name = item.name;
 					var o = JSON.parse(item.json);
@@ -7341,13 +7343,14 @@ $(function() {
 				srv.item = true;
 				// load character data
 				$.ajax({
-					url: 'php/loadData1.php',
+					url: '/classic/php/loadData1.php',
 					data: {
 						run: "loadMy",
 						name: name,
 						ng: 'false'
 					}
 				}).done(function(data) {
+					console.info('loadMy', data);
 					if(data == "Your session has expired."){
 						Error(data);
 						reloadPage();
@@ -7395,6 +7398,7 @@ $(function() {
 						name: name
 					}
 				}).done(function(data) {
+					console.info('loadEq', data);
 					data.forEach(function(eq, i){
 						P.eq[i].name = eq.name;
 						if (eq.json){
@@ -7412,13 +7416,14 @@ $(function() {
 				});
 				initQ();
 				$.ajax({
-					url: 'php/loadData1.php',
+					url: '/classic/php/loadData1.php',
 					data: {
 						run: "loadQ",
 						diff: (my.difficulty - 1),
 						name: name
 					}
 				}).done(function(data) {
+					console.info('loadQ', data);
 					for (var i = 0; i <= 2; i++) {
 						var x = JSON.parse(data[i]);
 						for (var key in x){
@@ -7440,10 +7445,7 @@ $(function() {
 		});
 
 		function checkEnterWorld() {
-			if (srv.my === true &&
-				srv.item === true &&
-				srv.eq === true &&
-				srv.q === true) {
+			if (srv.my && srv.item && srv.eq && srv.q) {
 				enterWorld();
 			}
 		}
@@ -9037,7 +9039,7 @@ save.itemSwap = function(itemDragType, dragSlot, itemDropType, dropSlot) {
 	var data2 = JSON.stringify(item2);
 	
     $.ajax({
-        url: 'php/itemSwap2.php',
+        url: '/classic/php/itemSwap2.php',
         data: {
             name1: P[itemDragType][dragSlot].name,
             name2: P[itemDropType][dropSlot].name,
@@ -9060,7 +9062,7 @@ save.item = function(Slot) {
 	var json = JSON.parse(JSON.stringify(P.item[Slot]));
 	delete json.name;
 	$.ajax({
-		url: 'php/game1.php',
+		url: '/classic/php/game1.php',
 		data: {
 			run: "updateItem",
 			json: JSON.stringify(json),
@@ -9080,7 +9082,7 @@ save.eq = function(Slot) {
 	var json = JSON.parse(JSON.stringify(P.eq[Slot]));
 	delete json.name;
 	$.ajax({
-		url: 'php/game1.php',
+		url: '/classic/php/game1.php',
 		data: {
 			run: "updateItem",
 			json: JSON.stringify(json),
@@ -9100,7 +9102,7 @@ save.bank = function(Slot) {
 	var json = JSON.parse(JSON.stringify(P.bank[Slot]));
 	delete json.name;
 	$.ajax({
-		url: 'php/game1.php',
+		url: '/classic/php/game1.php',
 		data: {
 			run: "updateItem",
 			json: JSON.stringify(json),
@@ -9117,7 +9119,7 @@ save.bank = function(Slot) {
 }
 save.GLB = function() {
 	$.ajax({
-		url: 'php/game1.php',
+		url: '/classic/php/game1.php',
 		data: {
 			run: "updateGLB",
 			GLB: GLB
@@ -9128,7 +9130,7 @@ save.GLB = function() {
 }
 function serverLogout(){
 	$.ajax({
-		url: 'php/game1.php',
+		url: '/classic/php/game1.php',
 		data: {
 			run: "camp"
 		}
@@ -9168,7 +9170,7 @@ save.my = function(loc) {
 			}
 		}
 		$.ajax({
-			url: 'php/game1.php',
+			url: '/classic/php/game1.php',
 			data: {
 				run: "updateMy",
 				my: my,
@@ -9190,7 +9192,7 @@ save.Lmy = function() {
 save.quests = function() {
 	var qq = JSON.stringify(P.Q[diff()]);
 	$.ajax({
-		url: 'php/game1.php',
+		url: '/classic/php/game1.php',
 		data: {
 			run: "updateQuests",
 			diff: diff(),
@@ -10493,7 +10495,7 @@ function loadServerCharacters() {
         }
         setCharacterSelectPanel();
         $.ajax({
-            url: 'php/loadData1.php',
+            url: '/classic/php/loadData1.php',
             data: {
                 run: "loadGlb"
             }
@@ -10548,7 +10550,7 @@ function loadServerCharacters() {
 								}
 							});
 						$.ajax({
-							url: 'php/master1.php',
+							url: '/classic/php/master1.php',
 							data: {
 								run: "sendEmailConfirmation"
 							}
@@ -10916,7 +10918,7 @@ $(function() {
 	titleScreenMusicPlaying = true;
 	function do1(){
 		$.ajax({
-			url: "php/keepAlive.php"
+			url: "/classic/php/keepAlive.php"
 		}).always(function(){
 			setTimeout(function(){
 				do1();
@@ -11387,40 +11389,54 @@ function setCharacterSelectPanel() {
 
 function logout() {
 	
-	function nwLogout(){
-		$.ajax({
-			data: {
-				run: "logout"
-			}
-		}).done(function(data) {
-			QMsg("Logout successful");
-			for (var i = 1; i < 16; i++) {
-				$('#characterslot' + i).css('display', "none");
-			}
-			$("#createcharacter, #deletecharacter").remove();
-			$('#enterWorldWrap').css('display', "none");
-			$('#logout').html('');
-			$("#loginPassword").val('');
-			location.reload();
-		}).fail(function() {
-			QMsg("Logout failed.");
-			$('#logout').html("[ " + GLB.account.split("")[0].toUpperCase() + GLB.account.slice(1) + "&nbsp;Logout&nbsp;]");
-		});
-	}
-	
     g.lockScreen();
-	localStorage.removeItem('email');
-	localStorage.removeItem('token');
+	var ssoFailLogins = 0;
+	
     $('#logout').html("Logging Out");
     QMsg("Logging out...");
 	
-	var auth2 = gapi.auth2.getAuthInstance();
-	if (auth2 === null){
-		nwLogout();
-	} else {
-		auth2.signOut().then(function () {
+	FB.getLoginStatus(function(ret) {
+		if (ret.authResponse) {
+			FB.logout(function(response) {
+				nwLogout(1);
+			});
+		} else {
+			ssoFailLogins++;
 			nwLogout();
-		});
+		}
+	});
+	
+	var auth2 = gapi.auth2.getAuthInstance();
+	auth2.signOut().then(function(){
+		ssoFailLogins++;
+		nwLogout();
+	});
+	
+	localStorage.removeItem('email');
+	localStorage.removeItem('token');
+	
+	function nwLogout(bypass){
+		// successful SSO logout or 2 fails triggers logout
+		if (bypass || ssoFailLogins >= 2){
+			$.ajax({
+				data: {
+					run: "logout"
+				}
+			}).done(function(data) {
+				QMsg("Logout successful");
+				for (var i = 1; i < 16; i++) {
+					$('#characterslot' + i).css('display', "none");
+				}
+				$("#createcharacter, #deletecharacter").remove();
+				$('#enterWorldWrap').css('display', "none");
+				$('#logout').html('');
+				$("#loginPassword").val('');
+				location.reload();
+			}).fail(function() {
+				QMsg("Logout failed.");
+				$('#logout').html("[ " + GLB.account.split("")[0].toUpperCase() + GLB.account.slice(1) + "&nbsp;Logout&nbsp;]");
+			});
+		}
 	}
 }
 $("#gameView").on('click', '#logout', function() {
@@ -11431,7 +11447,7 @@ $("#addBankSlots").on('click', function() {
         g.lockScreen(true);
         QMsg("Contacting server...");
         $.ajax({
-            url: 'php/town1.php',
+            url: '/classic/php/town1.php',
             data: {
                 run: "addBankSlots"
             }
@@ -11513,7 +11529,7 @@ function checkSessionActive() {
 
 function keepSessionAlive() {
     $.ajax({
-        url: "php/ping.php",
+        url: "/classic/php/ping.php",
         data: {
             my: my,
 			zone: myZone()

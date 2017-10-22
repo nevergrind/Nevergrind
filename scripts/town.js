@@ -224,7 +224,7 @@ $("#cityWrap").on('click','#trainOK',function(){
 	}
 	buttonLock=true;
 	$.ajax({
-		url: 'php/town1.php',
+		url: '/classic/php/town1.php',
 		data:{
 			run:"trainSkill",
 			cost:trainSkillCost,
@@ -267,7 +267,7 @@ $("#cityWrap").on('click','#trainOK',function(){
 		}
 		g.lockScreen();
 		$.ajax({
-			url: 'php/town1.php',
+			url: '/classic/php/town1.php',
 			data:{
 				run:"resetTalents",
 				cost:cost,
@@ -344,7 +344,7 @@ $("#cityWrap").on('click','#trainOK',function(){
 		}
 		if(P.item[dragSlot].name){
 			$.ajax({
-				url: 'php/town1.php',
+				url: '/classic/php/town1.php',
 				data:{
 					run:"buyItem",
 					cost:cost,
@@ -485,7 +485,7 @@ function upgradeItem(){
 			save.my();
 		}
 		$.ajax({
-			url: 'php/town1.php',
+			url: '/classic/php/town1.php',
 			data:{
 				run:"buyUpgrade",
 				cost:cost,
@@ -616,7 +616,7 @@ function sellItem(){
 			var baz = logItemName(z.name,z.rarity);
 			Chat(('You sold '+baz+' for '+kek+' gold.'),5);
 			$.ajax({
-				url: 'php/town1.php',
+				url: '/classic/php/town1.php',
 				data:{
 					run:"sellItem",
 					cost:kek,

@@ -4438,7 +4438,7 @@ $("#gameView").on('click', '.transferGold', function(){
 			if(amount<=my.gold){
 				g.lockScreen(true);
 				$.ajax({
-					url: 'php/town1.php',
+					url: '/classic/php/town1.php',
 					data:{
 						run:"depositGold",
 						amount:amount,
@@ -4458,7 +4458,7 @@ $("#gameView").on('click', '.transferGold', function(){
 			if(amount<=GLB.gold){
 				g.lockScreen(true);
 				$.ajax({
-					url: 'php/town1.php',
+					url: '/classic/php/town1.php',
 					data:{
 						run:"withdrawGold",
 						amount:amount,
@@ -4480,7 +4480,7 @@ $("#gameView").on('click', '.transferGold', function(){
 });
 function setCrystals(){
 	$.ajax({
-		url: 'php/town1.php',
+		url: '/classic/php/town1.php',
 		data:{
 			run:"setCrystals"
 		}
@@ -5554,7 +5554,7 @@ function bankToggle(){
 				if($("#bank").css("display")==="none"){
 					$("#bankContainer").empty();
 					$.ajax({
-						url: 'php/loadData1.php',
+						url: '/classic/php/loadData1.php',
 						data:{
 							run: "loadBank"
 						}
@@ -6594,7 +6594,7 @@ function swapItems(){
 		QMsg("You cannot sort items while shopping at the merchant.");
 		return;
 	}
-	//set the drops and swap1
+	//set the drops and swap2
 	cacheClassDrag = classDrag;
 	cacheClassDrop = classDrop;
 	cacheDragSlot = dragSlot;
@@ -6861,7 +6861,7 @@ function destroyItem(){
 		var baz = logItemName(P.item[dragSlot].name,P.item[dragSlot].rarity);
 		Chat(('You sold '+baz+' for '+kek+' gold.'),5);
 		$.ajax({
-			url: 'php/town1.php',
+			url: '/classic/php/town1.php',
 			data:{
 				run:"sellItem",
 				cost:kek,

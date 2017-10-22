@@ -22028,7 +22028,7 @@ function checkLevelUp(){
 		NG.myexpbarId.style.width = '0px';
 		drawExpBar();
 		$.ajax({
-			url: 'php/game1.php',
+			url: '/classic/php/game1.php',
 			data:{
 				run: "updateExpGold", // level up
 				lastName: my.lastName,
