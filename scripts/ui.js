@@ -4434,6 +4434,7 @@ $("#gameView").on('click', '.transferGold', function(){
 	D.getElementById('goldInputWrap').style.display="none";
 	var amount = parseInt(D.getElementById('goldInput').value, 10);
 	if(amount>0){
+		console.info(goldTransferMode, amount, my.gold);
 		if(goldTransferMode==="deposit"){
 			if(amount<=my.gold){
 				g.lockScreen(true);
@@ -6231,13 +6232,14 @@ function camp(){
 			if(mobsFound()===true){
 				Error(("You cannot camp during a battle!"));
 				return;
+			} else {
+				window.onbeforeunload = null;
+				campStatus=true;
+				QMsg("Saving Game... Please Wait");
+				saveButtonPositions();
+				saveGame();
 			}
 		}
-		window.onbeforeunload = null;
-		campStatus=true;
-		QMsg("Saving Game... Please Wait");
-		saveButtonPositions();
-		saveGame();
 	}
 }
 

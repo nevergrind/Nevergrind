@@ -3952,17 +3952,19 @@ function animateDebuff(color){
 		}else{
 			Y2 = 615;
 		}
-		if(sX<15){
-			var p1 = can(color+"particle50", 7, X1, Y1, sX, sX);
-			p1.image.onload = function(){
-				debuffPart(p1, 7, .2, Y2);
+		(function(){
+			if(sX<15){
+				var p1 = can(color+"particle50", 7, X1, Y1, sX, sX);
+				p1.image.onload = function(){
+					debuffPart(p1, 7, .2, Y2);
+				}
+			}else{
+				var p1 = can(color+"particle50", 5, X1, Y1, sX, sX);
+				p1.image.onload = function(){
+					debuffPart(p1, 5, .4, Y2);
+				}
 			}
-		}else{
-			var p1 = can(color+"particle50", 5, X1, Y1, sX, sX);
-			p1.image.onload = function(){
-				debuffPart(p1, 5, .4, Y2);
-			}
-		}
+		})();
 	}
 }
 function debuffPart(e, plane, scale, Y2){
@@ -15442,7 +15444,7 @@ $(function(){
 g.reclaimBloodFinish=function(){
 	if(endSpell()===false){ return; }
 	playAudio("spellDoneHeal");
-	if(GLB.videoSetting==="High"){ animateReclaimBlood(TGT); }
+	if(GLB.videoSetting==="High"){ animateReclaimBlood(); }
     setD('reclaimblood', true);
     BGP('reclaimblood', "-1100% -100%");
 	T.delayedCall(45, reclaimBloodTimer);
@@ -15467,47 +15469,50 @@ g.reclaimBloodFinish=function(){
 		});
 	}
 }
-function animateReclaimBlood(Slot){
+function animateReclaimBlood(){
 	for(var i=0;i<=50;i++){
-		var X1 = ~~(M.random()*(1280));
-		var Y2 = ~~(M.random()*(50)+300);
-		var sX = ~~(M.random()*(20)+5);
-		if(sX<10){
-			Y1 = 510;
-		} else if(sX>=10&&sX<15){
-			Y1 = 530;
-		} else if(sX>=15&&sX<20){
-			Y1 = 560;
-		}else{
-			Y1 = 595;
-		}
-		if(sX<15){
-			var p1 = can('redparticle50', 5, X1, Y1, 25, 25);
-			p1.image.onload = function(){
-				T.to(p1,(M.random()*(2)+.5),{
-					y:Y2,
-					ease:ez.sinout,
-					scaleX:0,
-					scaleY:0,
-					onComplete:function(){
-						cRem(5, p1);
-					}
-				});
+        (function(){
+			var X1 = ~~(M.random()*(1280));
+			var Y2 = ~~(M.random()*(50)+300);
+			var sX = ~~(M.random()*(20)+5);
+			if(sX<10){
+				Y1 = 510;
+			} else if(sX>=10&&sX<15){
+				Y1 = 530;
+			} else if(sX>=15&&sX<20){
+				Y1 = 560;
+			}else{
+				Y1 = 595;
 			}
-		}else{
-			var p1 = can('redparticle50', 5, X1, Y1, 25, 25);
-			p1.image.onload = function(){
-				T.to(p1,(M.random()*(2)+.5),{
-					y:Y2,
-					scaleX:0,
-					scaleY:0,
-					ease:ez.sinout,
-					onComplete:function(){
-						cRem(5, p1);
-					}
-				});
+			if(sX<15){
+				var p1 = can('redparticle50', 5, X1, Y1, 25, 25);
+				p1.image.onload = function(){
+					T.to(p1,(M.random()*(2)+.5),{
+						y:Y2,
+						ease:ez.sinout,
+						scaleX:0,
+						scaleY:0,
+						onComplete:function(){
+							cRem(5, p1);
+						}
+					});
+				}
 			}
-		}
+			else {
+				var p1 = can('redparticle50', 5, X1, Y1, 25, 25);
+				p1.image.onload = function(){
+					T.to(p1,(M.random()*(2)+.5),{
+						y:Y2,
+						scaleX:0,
+						scaleY:0,
+						ease:ez.sinout,
+						onComplete:function(){
+							cRem(5, p1);
+						}
+					});
+				}
+			}
+        })();
 	}
 }
 function reclaimBloodTick(healAmount){

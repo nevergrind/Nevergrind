@@ -6,7 +6,7 @@
 })();
 $.ajaxSetup({
     type: 'POST',
-    url: '/classic/php/master1.php'
+    url: '/classic/php/ng1.php'
 });
 var M = Math,
     T = TweenMax,
@@ -814,6 +814,9 @@ function initQ() {
 			KK3: 0,
 			KK4: 0,
 			KK5: 0,
+			KK6: 0,
+			KK7: 0,
+			KK8: 0,
 			LF1: 0,
 			LF2: 0,
 			BF1: 0,
@@ -2398,7 +2401,10 @@ function block(e) {
     } else {
         var len = e.length;
         for (var i = 0; i < len; i++) {
-            D.getElementById(e[i]).style.display = 'block';
+            var z = D.getElementById(e[i]);
+			if (z !== null){
+				z.style.display = 'block';
+			}
         }
     }
 }
@@ -6012,7 +6018,10 @@ function showChar() {
 
 function resetCharButtons() {
     for (var i = 1; i <= 15; i++) {
-        D.getElementById('characterslot' + i).className = "characterDisabled ";
+        var e = D.getElementById('characterslot' + i);
+		if (e !== null){
+			e.className = "characterDisabled ";
+		}
     }
 }
 
@@ -7361,7 +7370,7 @@ $(function() {
 						reloadPage();
 						return;
 					}
-					if (data == "DEAD") {
+					if (data.dead) {
 						Error("This character was slain and cannot be revived.");
 						Error("Rest in peace, " + name + ".");
 						reloadPage();
@@ -9265,7 +9274,7 @@ function deleteCharSlot() {
 		$.ajax({
 			data: {
 				run: "deleteCharacter",
-				name: $("#characterslot" + characterslot).children().first().text()
+				name: name
 			}
 		}).done(function(data) {
 			D.getElementById('characterslot' + characterslot).style.display = 'none';
@@ -9282,9 +9291,10 @@ function deleteCharSlot() {
 			QMsg("Failed to contact the server.");
 		});
     }
+	var name = $("#characterslot" + characterslot).children().first().text();
     playAudio('button_2');
     $("#deleteConfirm").addClass("disabled");
-    $("#deleteconfirmmsg").html("Deleting " + my.name + ". Please Wait.");
+    $("#deleteconfirmmsg").html("Deleting " + name + ". Please Wait.");
     T.delayedCall(.1, deleteMyChar);
 }
 
@@ -9740,9 +9750,9 @@ function myZone() {
 
 function mySubzone() {
     if (g.view === "Game") {
-        if (my.difficulty === 1) {
+        if (srv.difficulty === 1) {
             return my.subzone;
-        } else if (my.difficulty === 2) {
+        } else if (srv.difficulty === 2) {
             return my.subzoneN;
         } else {
             return my.subzoneH;
@@ -10417,6 +10427,7 @@ function loadAllCharacters() {
 }
 
 function loadServerCharacters() {
+	if (!$("#leftPaneBG").length) return; // player not logged in
     QMsg('Loading account data');
     D.getElementById('zoneIndicator').textContent = '';
     $.ajax({
@@ -10519,10 +10530,29 @@ function loadServerCharacters() {
             GLB.ks = a.shift() * 1;
             GLB.account = a.shift();
 			GLB.confirmed = a.shift()*1;
+			/*
+			if (isset($_SESSION['email'])){
+				echo 
+				'<div class="accountDetails">
+					<div id="globalGold" class="accountValues"></div>
+					<div id="globalGoldCount" class="accountValueText2">0</div>
+				</div>
+				<div class="accountDetails">
+					<div id="crystals" class="crystalIcon accountValues"></div>
+					<div id="crystalCount" class="accountValueText2">0</div>
+				</div>
+				<div class="accountValueText accountDetails">
+					Character Slots: <span id="characterSlots">0</span>
+				</div>
+				<div class="accountValueText accountDetails">
+					Bank Slots: <span id="bankSlots">0</span>
+				</div>';
+			}
             $('#globalGoldCount').text(GLB.gold + " / " + GLB.hcgold);
             $('#crystalCount').text(crystals);
             $('#bankSlots').text(bankSlots +" / "+ hcBankSlots);
             $('#characterSlots').text(characterSlots);
+			*/
             $('#logout').html("[ " + GLB.account.split("")[0].toUpperCase() + GLB.account.slice(1) + "&nbsp;Logout&nbsp;]");
             D.getElementById('bgmusic').volume = (M.round(((.5 * (GLB.musicStatus / 100)) * 1) * 100) / 100);
             if (g.view === "Main" || g.view === "Create") {
@@ -10550,7 +10580,6 @@ function loadServerCharacters() {
 								}
 							});
 						$.ajax({
-							url: '/classic/php/master1.php',
 							data: {
 								run: "sendEmailConfirmation"
 							}
@@ -10585,7 +10614,7 @@ function loadServerCharacters() {
 				x.nightmare = nm.PlaneofFear;
 			}
 			if (z.hell){
-				var h = JSON.parse(z.nightmare);
+				var h = JSON.parse(z.hell);
 				x.hell = h.PlaneofFear;
 			}
 			$("#characterslot" + i).data({
@@ -11390,54 +11419,48 @@ function setCharacterSelectPanel() {
 function logout() {
 	
     g.lockScreen();
-	var ssoFailLogins = 0;
 	
     $('#logout').html("Logging Out");
     QMsg("Logging out...");
 	
-	FB.getLoginStatus(function(ret) {
-		if (ret.authResponse) {
-			FB.logout(function(response) {
-				nwLogout(1);
-			});
-		} else {
-			ssoFailLogins++;
-			nwLogout();
-		}
-	});
+	try {
+		FB.getLoginStatus(function(ret) {
+			ret.authResponse && FB.logout(function(response) {});
+		});
+	} catch (err){
+		console.info('Facebook error: ', err);
+	}
 	
-	var auth2 = gapi.auth2.getAuthInstance();
-	auth2.signOut().then(function(){
-		ssoFailLogins++;
-		nwLogout();
-	});
+	try {
+		var auth2 = gapi.auth2.getAuthInstance();
+		auth2.signOut().then(function(){});
+	} catch (err){
+		console.info('Google error: ', err);
+	}
 	
 	localStorage.removeItem('email');
 	localStorage.removeItem('token');
 	
-	function nwLogout(bypass){
-		// successful SSO logout or 2 fails triggers logout
-		if (bypass || ssoFailLogins >= 2){
-			$.ajax({
-				data: {
-					run: "logout"
-				}
-			}).done(function(data) {
-				QMsg("Logout successful");
-				for (var i = 1; i < 16; i++) {
-					$('#characterslot' + i).css('display', "none");
-				}
-				$("#createcharacter, #deletecharacter").remove();
-				$('#enterWorldWrap').css('display', "none");
-				$('#logout').html('');
-				$("#loginPassword").val('');
-				location.reload();
-			}).fail(function() {
-				QMsg("Logout failed.");
-				$('#logout').html("[ " + GLB.account.split("")[0].toUpperCase() + GLB.account.slice(1) + "&nbsp;Logout&nbsp;]");
-			});
-		}
-	}
+	setTimeout(function(){
+		$.ajax({
+			data: {
+				run: "logout"
+			}
+		}).done(function(data) {
+			QMsg("Logout successful");
+			for (var i = 1; i < 16; i++) {
+				$('#characterslot' + i).css('display', "none");
+			}
+			$("#createcharacter, #deletecharacter").remove();
+			$('#enterWorldWrap').css('display', "none");
+			$('#logout').html('');
+			$("#loginPassword").val('');
+			location.reload();
+		}).fail(function() {
+			QMsg("Logout failed.");
+			$('#logout').html("[ " + GLB.account.split("")[0].toUpperCase() + GLB.account.slice(1) + "&nbsp;Logout&nbsp;]");
+		});
+	}, 1000);
 }
 $("#gameView").on('click', '#logout', function() {
     logout();

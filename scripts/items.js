@@ -501,7 +501,7 @@ function getArmor(Slot, newItem, newTier) {
 			if (qux === 1) {
 				foo = 8;
 				yPos = -768;
-				name = "Dragon Cape";
+				name = "Burnt Cape";
 			}
 			if (qux === 2) {
 				foo = 9;

@@ -309,7 +309,7 @@ $("#cityWrap").on('click','#trainOK',function(){
 }).on('click','#sellOK',function(){
 	sellItem();
 }).on('click','#buyOK',function(){
-	function do1(){
+	function do1(slot){
 		buyMode=false;
 		playAudio("buyitem");
 		my.gold-=cost;
@@ -319,9 +319,9 @@ $("#cityWrap").on('click','#trainOK',function(){
 		Chat(('You purchased '+baz+' for '+cost+' gold.'),5);
 		//copy item
 		for(var x in P.item[dragSlot]){
-			P.item[dropSlot][x] = P.item[dragSlot][x];
+			P.item[slot][x] = P.item[dragSlot][x];
 		}
-		updateInvDrop(dropSlot);
+		updateInvDrop(slot);
 		//clear image
 		P.item[dragSlot].name="";
 		P.item[dragSlot].xPos=0;
@@ -330,11 +330,12 @@ $("#cityWrap").on('click','#trainOK',function(){
 		//clear selected border
 		cancelDragging();
 		buyMode=false;
-		save.item(dropSlot);
+		save.item(slot);
 	}
 	if(buyMode){
 		dropSlot = findFirstInvSlot();
-		if(dropSlot===false){
+		var slot = dropSlot;
+		if(slot===false){
 			Error("There is no room in your inventory.");
 			return;
 		}
@@ -351,7 +352,7 @@ $("#cityWrap").on('click','#trainOK',function(){
 					name:my.name
 				}
 			}).done(function(data){
-				do1();
+				do1(slot);
 			});
 		}
 	}else{

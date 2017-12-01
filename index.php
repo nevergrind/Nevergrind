@@ -17,32 +17,31 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-	<script>
-		patchVersion="2-0-2";
-	</script>
-	<title>Nevergrind | Browser RPG | Free Online Game</title>
-	<meta name="keywords" content="fantasy, online, browser, free, game, rpg">
-	<meta name="description" content="Nevergrind is a free fantasy browser RPG created by Neverworks Games. Nevergrind is a single-player web game with leaderboards and player profiles.">
-	<meta name="viewport" content="width=1280,user-scalable=no">
+	<title>Nevergrind | Web Browser RPG | Free Online Game</title>
+	<meta name="keywords" content="web, online, browser, free, game, rpg">
+	<meta name="description" content="Nevergrind is a free web browser RPG created by Neverworks Games. Nevergrind is a single-player web game with leaderboards and player profiles.">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes">
 	<meta name="google-signin-client_id" content="1015425037202-g5ri6qnj14b8vrk33lnu130ver9f43ef.apps.googleusercontent.com">
 	<meta name="google-site-verification" content="iC9l4midOGIXERCwagfpkef9ifunV-aZd_zlUUOPjIU" />
 	<link rel='stylesheet' type='text/css' href="css/global.css">
-	<link rel='stylesheet' type='text/css' href="css/nevergrind.css?v=2-0-2">
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<?php
+	$version = '2-0-12';
+	?>
+	<script>
+		patchVersion=<?php echo $version; ?>;
+	</script>
+	<link rel='stylesheet' type='text/css' href="css/nevergrind.<?php
+		echo $_SERVER["SERVER_NAME"] === "localhost" ? '' : 'min.'; ?>css?v=<?php echo $version;
+	?>">
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
 	<link rel="shortcut icon" href="/images/favicon.png">
 	<?php
 		include($_SERVER['DOCUMENT_ROOT'] . "/includes/head.html");
+		if (!isset($_SESSION['email'])){
+			require $_SERVER['DOCUMENT_ROOT'] . "/includes/loginCss.html";
+		}
 	?>
 </head>
-<script>
-	(function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) return;
-		js = d.createElement(s); js.id = id;
-		js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=737706186279455";
-		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
-</script>
 
 <body id="curtain">
 	<div id="window2">
@@ -60,24 +59,8 @@
 		<div id="gameView">
 				<header id="currencyIndicator" class="strongShadow">
 				<?php
-				if (isset($_SESSION['email'])){
-					echo 
-					'<div class="accountDetails">
-						<div id="globalGold" class="accountValues"></div>
-						<div id="globalGoldCount" class="accountValueText2">0</div>
-					</div>
-					<div class="accountDetails">
-						<div id="crystals" class="crystalIcon accountValues"></div>
-						<div id="crystalCount" class="accountValueText2">0</div>
-					</div>
-					<div class="accountValueText accountDetails">
-						Character Slots: <span id="characterSlots">0</span>
-					</div>
-					<div class="accountValueText accountDetails">
-						Bank Slots: <span id="bankSlots">0</span>
-					</div>';
-				} else {
-					echo '<a id="Login" class="btn btn-responsive strongShadow" href="/login.php?back=/">Login</a>';
+				if (isset($_SESSION['account'])){
+					echo '<a id="manage-account" title="Manage Account" href="/account/?back=/" class="btn "> '. ucfirst($_SESSION['account']) .'</a>';
 				}
 				
 				echo '<div class="modePanel">
@@ -87,15 +70,15 @@
 					<a href="//youtube.com/c/Maelfyn" target="_blank">
 						<i class="fa fa-youtube text-primary pointer"></i>
 					</a>
-					<a href="//www.facebook.com/neverworksgames" target="_blank">
+					<a href="//discord.gg/n2gp8rC" target="_blank">
+						<i class="fa fa-discord text-primary pointer"></i>
+					</a>
+					<a href="//www.facebook.com/maelfyn" target="_blank">
 						<i class="fa fa-facebook text-primary pointer"></i>
 					</a>
 					<a href="//twitter.com/maelfyn" target="_blank">
 						<i class="fa fa-twitter text-primary pointer"></i>
 					</a>'; 
-				if (isset($_SESSION['email'])){
-					echo '<a title="Manage Account" href="/account/?back=/">Account</a>';
-				}
 				echo '</div>';
 				?>
 				</header>;
@@ -148,6 +131,8 @@
 			<div id="spellblind"></div>
 			
 			<div id="characterSelectScreen">
+				<img style="position: absolute; bottom: 0; left: 0; width: 140px" 
+				src="/images/neverworks.png">
 				<?php
 				if (isset($_SESSION['email'])){
 					echo '<div id="leftPaneBG">
@@ -191,7 +176,7 @@
 				<div id="rightPaneBG">
 					<nav id="nglogo" class="strongShadow">
 						<h1>
-							<div>Nevergrind | Fantasy Browser RPG</div>
+							<div>Nevergrind | Web-Based Browser RPG</div>
 							<div>a free online game</div>
 							<div>by <a href="https://www.linkedin.com/company/neverworks-games-llc">Neverworks Games</a></div>
 						</h1>
@@ -208,13 +193,13 @@
 						
 						<hr class="fancyHR">
 						<div>Other Games I Made:</div>
-						<a href="/games/firmament-wars" title="Firmament Wars | Real-Time Multiplayer Grand Strategy Browser Game" class="links">Firmament Wars | Free Multiplayer Risk-Like Strategy Game</a>
+						<a href="/games/firmament-wars" title="Firmament Wars | Risk-Like Multiplayer Grand Strategy Browser Game" class="links">Firmament Wars</a>
 						
 						<hr class="fancyHR">
 						
 						<div>In Development:</div>
 						<div>
-							<a href="//nevergrind.com/blog/nevergrind-2/">Nevergrind 2 Featuring Multiplayer Real-time Combat!</a>
+							<a href="//nevergrind.com/blog/nevergrind-2/">Nevergrind 2 - Co-op Multiplayer <br>Real-Time Browser RPG!</a>
 						</div>
 						<?php
 						if($_SERVER["SERVER_NAME"] !== "localhost"){
@@ -247,6 +232,12 @@
 						<div id="hellLabel" class='strongShadow'>Hell</div>
 					</div>
 				</div>
+	<?php
+	if (!isset($_SESSION['email'])){
+		require $_SERVER['DOCUMENT_ROOT'] . "/includes/loginModal.php";
+		require $_SERVER['DOCUMENT_ROOT'] . "/includes/loginRefer.php";
+	}
+	?>
 			</div>
 
 			<div id="createWindowId">
@@ -525,25 +516,26 @@
 			</div>
 		</div> <!-- gameView -->
 	</div><!-- window 2 -->
-	<script>
-	function googleSsoSignIn(){
-		gapi.load('auth2', function() {
-			gapi.auth2.init();
-		});
-	}
-	</script>
+	
 	<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/EaselJS/0.7.1/easeljs.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/plugins/EaselPlugin.min.js"></script>
-	<script src="//apis.google.com/js/platform.js?onload=googleSsoSignIn" async defer></script>
-	<?php
-		require "includes/ga.html";
-		if (!isset($_SESSION['email'])){
-			exit();
-		}
-	?>
+	<script src='//cdn1.kongregate.com/javascripts/kongregate_api.js'></script>
+	
+<?php
+require $_SERVER['DOCUMENT_ROOT'] . "/includes/loginJs.php";
+?>
+<script src="//apis.google.com/js/platform.js?onload=loginRenderButton" async defer></script>
+
+<?php
+require $_SERVER['DOCUMENT_ROOT'] . "/includes/ga.html";
+if (!isset($_SESSION['account'])){
+	require $_SERVER['DOCUMENT_ROOT'] . "/includes/loginKong.html";
+}
+?>
+	
 	<script>
 	(function(d){
 		if(location.host==='localhost'){
@@ -560,12 +552,12 @@
 			];
 		}else{
 			var _scriptLoader = [
-				'nevergrind'
+				'nevergrind.min'
 			];
 		}
 		if (location.hash !== ""){
 			var _scriptLoader = [
-				'nevergrind'
+				'nevergrind.min'
 			];
 		}
 		var target = d.getElementsByTagName('script')[0];

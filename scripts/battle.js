@@ -4307,9 +4307,11 @@ function attackOff(){
 			var goldFound = 0;
 			if(mob[i].gold){
 				goldFound = M.round(mob[i].gold+(mob[i].gold*(g.goldFindEquip/100)));
-				if(goldFound>0){ Chat(("You have found "+ goldFound +" gold."),5); }
-				my.gold=M.ceil(my.gold+goldFound);
-				my.totalGold+=M.ceil(goldFound);
+				if(goldFound>0){ 
+					Chat(("You have found "+ goldFound +" gold."),5); 
+					my.gold=M.ceil(my.gold+goldFound);
+					my.totalGold+=M.ceil(goldFound);
+				}
 			}
 			my.mobsSlain+=1;
 			if(mob[i].rare===0){ 
@@ -4382,50 +4384,55 @@ function attackOff(){
 			}else{
 				earned = 1;
 			}
-			if(x<99&&earned!==0){
-				var percentBonus = 1;
-				var chainPercentBonus = 0;
-				var expBonus = 0;
-				var mobExp = mob[i].xp;
-				if(chainCounter>1){
-					//bonus exp only here
-					if(my.level - mob[i].level < 30){
-						var chainBonus = chainCounter;
-						// more than 150% bonus exp is not possible
-						if(chainBonus>100){ chainBonus=100; }
-						chainPercentBonus = chainBonus/66.66;
-						percentBonus += chainPercentBonus;
-					}
+			// figure out exp bonuses
+			var percentBonus = 1;
+			var chainPercentBonus = 0;
+			var expBonus = 0;
+			var mobExp = mob[i].xp;
+			if (chainCounter>1){
+				//bonus exp only here
+				if (my.level - mob[i].level < 30){
+					var chainBonus = chainCounter;
+					// more than 150% bonus exp is not possible
+					if(chainBonus>100){ chainBonus=100; }
+					chainPercentBonus = chainBonus/66.66;
+					percentBonus += chainPercentBonus;
 				}
-				if(my.race==="Halfling"){ 
-					percentBonus += .05; 
-				}
-				percentBonus += g.expFindEquip/100;
-				g.oldExp = my.exp;
-				// reduce
-				mob[i].xp = (mob[i].xp * earned);
-				// popup bonus
-				expBonus = M.round(chainPercentBonus * mob[i].xp);
-				popupCombo(i,chainCounter,expBonus);
-				// enhance
+			}
+			if(my.race==="Halfling"){ 
+				percentBonus += .05; 
+			}
+			percentBonus += g.expFindEquip/100;
+			g.oldExp = my.exp;
+			// reduce
+			mob[i].xp = (mob[i].xp * earned);
+			// popup bonus
+			expBonus = M.round(chainPercentBonus * mob[i].xp);
+			popupCombo(i,chainCounter,expBonus);
+			// enhance
+			if (x === 99 || earned === 0){
+				mob[i].xp = 0;
+			} else {
 				mob[i].xp = M.round(mob[i].xp * percentBonus);
-				$.ajax({
-					url: '/classic/php/game1.php',
-					data:{
-						run: "updateExpGold", // add exp
-						lastName: my.lastName,
-						title: my.title,
-						level: x,
-						job: my.job,
-						race: my.race,
-						mobExp: mobExp,
-						Slot: i,
-						exp: mob[i].xp,
-						gold: goldFound,
-						name: my.name
-					}
-				}).done(function(data){
-					var x = data*1;
+			}
+			$.ajax({
+				url: '/classic/php/game1.php',
+				data:{
+					run: "updateExpGold", // add exp
+					lastName: my.lastName,
+					title: my.title,
+					level: x,
+					job: my.job,
+					race: my.race,
+					mobExp: mobExp,
+					Slot: i,
+					exp: mob[i].xp,
+					gold: goldFound,
+					name: my.name
+				}
+			}).done(function(data){
+				var x = data*1;
+				if (x){
 					my.exp += x;
 					if(my.exp>103835784){
 						my.exp=103835784;
@@ -4434,16 +4441,14 @@ function attackOff(){
 					battleExperienceTotal+= x;
 					checkLevelUp();
 					drawExpBar();
-				}).fail(function(data){
-					failToCommunicate();
-				});
-			}
-			if(x===99){
-				popupCombo(i,chainCounter,0);
-			}
+				}
+			}).fail(function(data){
+				failToCommunicate();
+			});
 		}
 	}
 	if(my.gold>999999999){ my.gold=999999999; }
+	$('#inventoryGoldAmount').text(my.gold);
 	CStat();
 	my.title=checkTitle();
 	QupdateJournal(undefined, mySubzone(), true);
