@@ -145,12 +145,12 @@ i{
 	padding-right:1%;
 }
 .crystalIcon{
-	background:url('../images1/currency.png') 100% 0 / 200% 100%;
+	background:url('/classic/images1/currency.png') 100% 0 / 200% 100%;
 	width:30px;
 	height:30px;
 }
 .crystals{
-	background:url('../images1/currency.png') 100% 0 / 200% 100%;
+	background:url('/classic/images1/currency.png') 100% 0 / 200% 100%;
 	width:30px;
 	height:30px;
 	position:absolute;
@@ -170,11 +170,11 @@ i{
 .goldIcon{
 	width:30px;
 	height:30px;
-	background:url('../images1/currency.png') 0 0 / 200% 100%;
+	background:url('/classic/images1/currency.png') 0 0 / 200% 100%;
 	background-size:60px 30px;
 }
 #globalGold{
-	background:url('../images1/currency.png') 0 0 / 200% 100%;
+	background:url('/classic/images1/currency.png') 0 0 / 200% 100%;
 	width:30px;
 	height:30px;
 }
@@ -238,7 +238,7 @@ i{
 	width:200px;
 	height:40px;
 	line-height:40px;
-	background:url('../images1/buyButtons.png') 0 100% / 100% 200%;
+	background:url('/classic/images1/buyButtons.png') 0 100% / 100% 200%;
 	text-indent:25px;
 	margin: 5px auto;
 }
@@ -386,7 +386,7 @@ audio{ display:none; }
 	cursor:pointer;
 	color:#f2f2f2;
 	background:#143b74;
-	background: url('../images1/NGbutton.png');
+	background: url('/classic/images1/NGbutton.png');
 	background-size:100% 200%;
 }
 .NGhardcore{
@@ -397,7 +397,7 @@ audio{ display:none; }
 	background:#331111;
 	cursor:pointer;
 	color:#f2f2f2;
-	background: url('../images1/NGbutton.png') 0 100%;
+	background: url('/classic/images1/NGbutton.png') 0 100%;
 	background-size:100% 200%;
 }
 #forgotPasswordWrap{
@@ -420,13 +420,13 @@ audio{ display:none; }
 	float:left;
 	width:25%;
 	margin:0 4%;
-	background:url('../images1/buyButtons.png') 0 0 / 100% 200%;
+	background:url('/classic/images1/buyButtons.png') 0 0 / 100% 200%;
 }
 .floater:hover{
 	cursor:pointer;
 }
 .purchase{
-	background:url('../images1/buyButtons.png') 0 100% / 100% 200%;
+	background:url('/classic/images1/buyButtons.png') 0 100% / 100% 200%;
 }
 #last-credit-card{
 	background:#777;
@@ -453,7 +453,7 @@ audio{ display:none; }
 	display: inline-block; 
 	width:36px;
 	height:36px; 
-	background:url('../images1/social-icons.png') ;
+	background:url('/classic/images1/social-icons.png') ;
 	padding:0; 
 	border:none; 
 	box-shadow:none;

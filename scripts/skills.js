@@ -3033,7 +3033,7 @@ function animateBloodDrop(Slot){
 function IMG(x,y,w,h,img){
 	var H1=D.createElement('img');
 	H1.style.cssText = "position:absolute; left:"+x+"px; top:"+y+"px; width:"+w+"px; height:"+h+"px;";
-	H1.src="images1/"+img+".png";
+	H1.src="/classic/images1/"+img+".png";
 	return H1;
 }
 function DIV(x,y,w,h){
@@ -9807,7 +9807,7 @@ g.summonDeadFinish=function(){
 	$("#pethpbardiv").css('display','block');
     BGP('summondeadId', "-1600% -100%");
 	g.drawMyHp();
-	$NG.petImage.attr("src","images1/a dark skeleton.png").width(petWidth+"px");
+	$NG.petImage.attr("src","/classic/images1/a dark skeleton.png").width(petWidth+"px");
 	$NG.mob5.stop(true,true).height(petHeight).width(petWidth+"px")
 		.css({"left":leftAdjust,"bottom":60,opacity:1,display:"block"});
 	var leftAdjust = 190+((290-petWidth)/2);
@@ -15838,7 +15838,7 @@ g.guardianSpiritFinish=function(){
 	BGP('guardianspirit', "-1500% -100%");
 	g.drawMyHp();
 	var leftAdjust = 190+((290-petWidth)/2);
-	$NG.petImage.attr("src","images1/a wolf.png").width(petWidth);
+	$NG.petImage.attr("src","/classic/images1/a wolf.png").width(petWidth);
 	$NG.mob5.stop(true,true).height(petHeight).width(petWidth+"px")
 		.css({"left":leftAdjust,"bottom":60,opacity:1,display:"block"});
 	var nameWid=$("#petName").width();
@@ -16035,7 +16035,7 @@ g.invokeDeathFinish=function(proc){
 	BGP('invokedeath', "-1600% -100%");
 	g.drawMyHp();
 	var leftAdjust = 190+((290-petWidth)/2);
-	$NG.petImage.attr("src","images1/a dark skeleton.png").width(petWidth);
+	$NG.petImage.attr("src","/classic/images1/a dark skeleton.png").width(petWidth);
 	$NG.mob5.stop(true,true).height(petHeight).width(petWidth)
 		.css({"left":leftAdjust,"bottom":60,opacity:1,display:"block"});
 	var nameWid=$("#petName").width();
@@ -18600,7 +18600,7 @@ g.earthElementalFinish=function(proc){
 	BGP('earthelemental', "-200% -100%");
 	g.drawMyHp();
 	var leftAdjust = 190+((290-petWidth)/2);
-	$NG.petImage.attr("src","images1/an earth elemental.png").width(petWidth+"px");
+	$NG.petImage.attr("src","/classic/images1/an earth elemental.png").width(petWidth+"px");
 	$NG.mob5.stop(true,true).height(petHeight).width(petWidth+"px")
 		.css({"left":leftAdjust,"bottom":60,opacity:1,display:"block"});
 	var nameWid=$("#petName").width();
@@ -18672,7 +18672,7 @@ g.airElementalFinish=function(proc){
 	BGP('airelemental', "-200% -100%");
 	g.drawMyHp();
 	var leftAdjust = 190+((290-petWidth)/2);
-	$NG.petImage.attr("src","images1/an air elemental.png").width(petWidth+"px");
+	$NG.petImage.attr("src","/classic/images1/an air elemental.png").width(petWidth+"px");
 	$NG.mob5.stop(true,true).height(petHeight).width(petWidth+"px")
 		.css({"left":leftAdjust,"bottom":60,opacity:1,display:"block"});
 	var nameWid=$("#petName").width();
@@ -18744,7 +18744,7 @@ g.fireElementalFinish=function(proc){
 	BGP('fireelemental', "-200% -100%");
 	g.drawMyHp();
 	var leftAdjust = 190+((290-petWidth)/2);
-	$NG.petImage.attr("src","images1/a fire elemental.png").width(petWidth+"px");
+	$NG.petImage.attr("src","/classic/images1/a fire elemental.png").width(petWidth+"px");
 	$NG.mob5.stop(true,true).height(petHeight).width(petWidth+"px")
 		.css({"left":leftAdjust,"bottom":60,opacity:1,display:"block"});
 	var nameWid=$("#petName").width();
@@ -18817,7 +18817,7 @@ g.frostElementalFinish=function(proc){
 	BGP('frostelemental', "-200% -100%");
 	g.drawMyHp();
 	var leftAdjust = 190+((290-petWidth)/2);
-	$NG.petImage.attr("src","images1/a frost elemental.png").width(petWidth+"px");
+	$NG.petImage.attr("src","/classic/images1/a frost elemental.png").width(petWidth+"px");
 	$NG.mob5.stop(true,true).height(petHeight).width(petWidth+"px")
 		.css({"left":leftAdjust,"bottom":60,opacity:1,display:"block"});
 	var nameWid=$("#petName").width();

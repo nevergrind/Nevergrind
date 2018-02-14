@@ -1097,7 +1097,7 @@ function getArmor(Slot, newItem, newTier) {
 				name = "Chausses";
 			}
 			if (qux == 4) {
-				foo = 11;
+				foo = 18;
 				yPos = -832;
 				name = "Iron Legplates";
 			}
@@ -3719,7 +3719,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 				I.allResist = 9;
 				I.req = 21;
 			}
-			if (N === "Dragon Cape") {
+			if (N === "Burnt Cape") {
 				if (M.random() > .5) {
 					I.name = "Cloak of Qalon";
 					I.dex = 9;
@@ -7235,7 +7235,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 				I.resistPoison = 12;
 				I.req = 44;
 			}
-			if (N === "Dragon Cape") {
+			if (N === "Burnt Cape") {
 				I.name = "Rukishna Cloak";
 				I.channeling = 5;
 				I.evocation = 5;
@@ -11156,7 +11156,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 					I.req = 62;
 				}
 			}
-			if (N === "Dragon Cape") {
+			if (N === "Burnt Cape") {
 				I.name = "Cloak of Piety";
 				I.wis = 18;
 				I.dex = 18;
@@ -15017,7 +15017,7 @@ function getLoot(Slot, Qitem, weaponType, rarity, armorType) {
 	var mobY = MOB[Slot].offsetTop + (mob[Slot].imageHeight / 2) - 32
 			+ M.random() * (100) - 50;
 	var e1 = DIV(mobX, mobY, 64, 64);
-	e1.style.background = "url('//" + itemSprite + "') " + P.item[NI].xPos
+	e1.style.background = "url('" + itemSprite + "') " + P.item[NI].xPos
 			+ "px " + P.item[NI].yPos + "px";
 	NG.eWin.appendChild(e1);
 	var m1 = 200;

@@ -88,7 +88,7 @@ table{
 	opacity:1;
 	z-index:100001;
 	white-space:nowrap;
-	background:url('../images1/stats.png');
+	background:url('/classic/images1/stats.png');
 	background-size:100% 100%;
 }
 #statContent{
@@ -123,7 +123,7 @@ table{
 	left:0;
 	cursor:pointer;
 	background:#5a5a38;
-	background:url('../images1/statButton.png');
+	background:url('/classic/images1/statButton.png');
 	background-size:100% 200%;
 }
 #offenseStat{ 
@@ -446,7 +446,7 @@ hr{
 	top:0;
 	left:0;
 	z-index:9998;
-	background:url('../backgrounds/home.jpg');
+	background:url('/classic/backgrounds/home.jpg');
 }
 
 #deletecharfade{
@@ -636,7 +636,7 @@ label{
 	height:96px;
 	border:1px solid #222;
 	border-radius:4px;
-	background:url('../images1/portraits.png') 0 0;
+	background:url('/classic/images1/portraits.png') 0 0;
 	cursor:pointer;
 }
 .spanLore{
@@ -826,13 +826,13 @@ label{
 }
 #bankHeader{
 	line-height:34px;
-	background:url('../images1/wideHead.png') 0 0 / 100% 100%;
+	background:url('/classic/images1/wideHead.png') 0 0 / 100% 100%;
 }
 #invHeader{
 	line-height:45px;
 }
 #questHeader{
-	background:url('../images1/wideHead.png');
+	background:url('/classic/images1/wideHead.png');
 	line-height:30px;
 }
 #inventoryWindow{
@@ -843,7 +843,7 @@ label{
 	padding:5px;
 	border:1px #025 solid;
 	background:#040a1a;
-	background:url('../images1/equipment.png');
+	background:url('/classic/images1/equipment.png');
 	background-size:100% 100%;
 	width:550px;
 	height:550px;
@@ -875,7 +875,7 @@ label{
 	text-shadow: 1px 1px #000;
 	line-height:64px;
 	font-size:9px;
-	background:url('//i.imgur.com/gxfvcyu.png');
+	background:url('/classic/images1/item-ng.png');
 }
 #destroyItem{
 	font-family:Times New Roman,serif;
@@ -889,7 +889,7 @@ label{
 	line-height:30px;
 	width:97px;
 	cursor:pointer;
-	background:url('../images1/statButton.png') 0 100% / 100% 200%;
+	background:url('/classic/images1/statButton.png') 0 100% / 100% 200%;
 }
 #helmetBG{ top:10px; left:96px; }
 #neckBG{ top:84px; left:96px; }
@@ -920,7 +920,7 @@ label{
 	text-shadow: 1px 1px #000;
 	line-height:64px;
 	font-size:9px;
-	background:url('//i.imgur.com/gxfvcyu.png');
+	background:url('/classic/images1/item-ng.png');
 }
 #inv0BG{top:0; left:0; }
 #inv1BG{top:0; left:68px; }
@@ -976,7 +976,7 @@ label{
 	width:360px;
 	padding:30px;
 	background:#1a1a1a;
-	background:url('../images1/rock380-430.jpg');
+	background:url('/classic/images1/rock380-430.jpg');
 	background-size:100% 100%;
 }
 #createCharCrystalIcon{
@@ -1018,7 +1018,7 @@ label{
 	padding:1px;
 	cursor:pointer;	
 	background:#775;
-	background:url('../images1/NGbutton.png');
+	background:url('/classic/images1/NGbutton.png');
 	background-size:100% 200%;
 }
 #entername{
@@ -1033,7 +1033,7 @@ label{
 	padding-right:2px;
 	padding-bottom:1px;
 	overflow:hidden;
-	background:url('../images1/entername.png');
+	background:url('/classic/images1/entername.png');
 	background-size:100% 100%;
 }
 #charnameinput{
@@ -1055,7 +1055,7 @@ label{
 	left:480px;
 	top:400px;
 	color:#eec;
-	background:url('../images1/smallFrame.png');
+	background:url('/classic/images1/smallFrame.png');
 	background-size:100% 100%;
 	width:168px;
 	padding-bottom:2px;
@@ -1065,14 +1065,14 @@ label{
 	left:480px;
 	top:527px;
 	color:#eec;
-	background:url('../images1/smallFrame.png');
+	background:url('/classic/images1/smallFrame.png');
 	background-size:100% 100%;
 	width:168px;
 	padding-bottom:2px;
 }
 #statBox{
 	position:absolute;
-	background:url('../images1/statFrame.png');
+	background:url('/classic/images1/statFrame.png');
 	background-size:100% 100%;
 	color:#eec;
 	width:164px;
@@ -1095,12 +1095,12 @@ label{
 	top:115px;
 	width:222px;
 	color:#eec;
-	background:url('../images1/ccFrame.png');
+	background:url('/classic/images1/ccFrame.png');
 	background-size:100% 100%;
 	padding-bottom:8px;
 }
 #classHeader{
-	background:url('../images1/ccFrame.png');
+	background:url('/classic/images1/ccFrame.png');
 	background-size:100% 2200%;
 }
 #classBox{
@@ -1110,7 +1110,7 @@ label{
 	top:115px;
 	width:222px;
 	color:#eec;
-	background:url('../images1/ccFrame.png');
+	background:url('/classic/images1/ccFrame.png');
 	background-size:100% 477px;
 	padding-bottom:8px;
 }
@@ -1120,7 +1120,7 @@ label{
 	left:0;
 	width:100%;
 	height:32px;
-	background:url('../images1/ccFrame.png') 0 35px;
+	background:url('/classic/images1/ccFrame.png') 0 35px;
 	background-size:100% 477px;
 }
 #ccBg{
@@ -1131,20 +1131,20 @@ label{
 	width:1280px;
 	height:720px;
 	color:#eec;
-	background:url('../backgrounds/home.jpg');
+	background:url('/classic/backgrounds/home.jpg');
 }
 .ccActive{
 	padding:0;
 	margin:0;
 	color:#e3e3ba;
-	background:#000 url('../images1/raceButtons.png') 0 100%;
+	background:#000 url('/classic/images1/raceButtons.png') 0 100%;
 	background-size:100% 200%;
 }
 .ccDisabled{
 	padding:0;
 	margin:0;
 	color:#886;	
-	background:#000 url('../images1/raceButtons.png') 0 0;
+	background:#000 url('/classic/images1/raceButtons.png') 0 0;
 	background-size:100% 200%;
 }
 #maleId{
@@ -1295,16 +1295,16 @@ ul{
 	background-size:50px 50px;
 }
 /* racial icons */
-#secondwindId{ background: url("../images1/spriteHuman2.png") 0 0; }
-#divineaegisId{ background: url("../images1/spriteErudite2.png") 0 0; }
-#ancestralrampageId{ background: url("../images1/spriteBarbarian2.png") 0 0; }
-#tunaresglowId{ background: url("../images1/spriteWood Elf2.png") 0 0; }
-#karanasinfusionId{ background: url("../images1/spriteHalf Elf2.png") 0 0; }
-#sanguinetormentId{ background: url("../images1/spriteDark Elf2.png") 0 0; }
-#granitevisageId{ background: url("../images1/spriteDwarf2.png") 0 0; }
-#halflinghideId{ background: url("../images1/spriteHalfling2.png") 0 0; }
-#shortcircuitId{ background: url("../images1/spriteGnome2.png") 0 0; }
-#togglepetattackId{ background: url("../images1/spritePetAttack2.png") 0 0; }
+#secondwindId{ background: url("/classic/images1/spriteHuman2.png") 0 0; }
+#divineaegisId{ background: url("/classic/images1/spriteErudite2.png") 0 0; }
+#ancestralrampageId{ background: url("/classic/images1/spriteBarbarian2.png") 0 0; }
+#tunaresglowId{ background: url("/classic/images1/spriteWood Elf2.png") 0 0; }
+#karanasinfusionId{ background: url("/classic/images1/spriteHalf Elf2.png") 0 0; }
+#sanguinetormentId{ background: url("/classic/images1/spriteDark Elf2.png") 0 0; }
+#granitevisageId{ background: url("/classic/images1/spriteDwarf2.png") 0 0; }
+#halflinghideId{ background: url("/classic/images1/spriteHalfling2.png") 0 0; }
+#shortcircuitId{ background: url("/classic/images1/spriteGnome2.png") 0 0; }
+#togglepetattackId{ background: url("/classic/images1/spritePetAttack2.png") 0 0; }
 
 #lastNameWrap{
 	position:absolute;
@@ -1319,7 +1319,7 @@ ul{
 	text-align:center;
 	font-size:18px;
 	z-index:250;
-	background:url('../images1/rock380-430.jpg');
+	background:url('/classic/images1/rock380-430.jpg');
 	background-size:100% 100%;
 }
 #lastName{
@@ -1328,7 +1328,7 @@ ul{
 	width:162px;
 	border:transparent;
 	text-transform:capitalize;
-	background:url('../images1/entername.png');
+	background:url('/classic/images1/entername.png');
 	background-repeat:'no-repeat';
 	background-position:0 -22px;
 	text-indent:10px;
@@ -1377,7 +1377,7 @@ ul{
 	z-index:75;
 	display:none;
 	border:1px solid #222;
-	background:url("../images1/myhpbardiv.png") 0 0 / 100% 100%;
+	background:url("/classic/images1/myhpbardiv.png") 0 0 / 100% 100%;
 }
 #myhpbarbg{
 	position:absolute;
@@ -1483,7 +1483,7 @@ ul{
 	z-index:75;
 	display:none;
 	border:1px solid #222;
-	background:url("../images1/myhpbardiv.png") 0 0 / 100% 100%;
+	background:url("/classic/images1/myhpbardiv.png") 0 0 / 100% 100%;
 }
 #pethpbarbg{
 	position:absolute;
@@ -1675,7 +1675,7 @@ ul{
 	position:relative;
 	float:left;
 	cursor:pointer;
-	background: url('../images1/win5.png');
+	background: url('/classic/images1/win5.png');
 	display:none;
 	color:#fff;
 	height:40px;
@@ -1692,7 +1692,7 @@ ul{
 	float:left;
 	width:40px;
 	height:40px;
-	background: url('../images1/win5.png') 0 0;
+	background: url('/classic/images1/win5.png') 0 0;
 	border:0;
 	margin:0;
 	padding:0;
@@ -1953,7 +1953,7 @@ ul{
 	bottom:-40px;
 	left:190px;
 	pointer-events:none;
-	background: url("../images1/blank.png");
+	background: url("/classic/images1/blank.png");
 	text-align:center;
 }
 
@@ -2165,7 +2165,7 @@ ul{
 	padding-bottom:4px;
 	text-align:center;
 	margin:0;
-	background:url('../images1/itemtt.png') 0 0 / 100% 100%;
+	background:url('/classic/images1/itemtt.png') 0 0 / 100% 100%;
 }
 #tooltipButton{
 	position:absolute;
@@ -2216,7 +2216,7 @@ th,td{
     background-image: -o-radial-gradient(center center, contain, #7a6d25 0%, #1a1406 100%);
 }
 #itemIconImg{
-	background:url('//i.imgur.com/gxfvcyu.png');
+	background:url('/classic/images1/item-ng.png');
 	width:64px;
 	height:64px;
 }
@@ -2245,7 +2245,7 @@ th,td{
 	text-align:center;
 	margin:2px;
 	padding:2px 24px;
-	background:url('../images1/itemtt.png') 0 0 / 100% 100%;
+	background:url('/classic/images1/itemtt.png') 0 0 / 100% 100%;
 }
 #ttItemMsg{
 	position:relative;
@@ -2360,7 +2360,7 @@ th,td{
 	text-shadow: 1px 1px #000;
 	line-height:64px;
 	font-size:9px;
-	background:url('//i.imgur.com/gxfvcyu.png');
+	background:url('/classic/images1/item-ng.png');
 }
 .bank{
 	position:absolute;
@@ -2401,7 +2401,7 @@ th,td{
 	font-size:20px;
 	line-height:24px;
 	color:#fff;
-	background:url('../images1/wideHead.png');
+	background:url('/classic/images1/wideHead.png');
 	background-size:100% 100%;
 	cursor:pointer;
 }
@@ -2486,7 +2486,7 @@ th,td{
 	font-size:20px;
 	line-height:24px;
 	color:#fff;
-	background:url('../images1/wideHead.png');
+	background:url('/classic/images1/wideHead.png');
 	background-size:100% 100%;
 }
 .controlLeft{
@@ -2529,7 +2529,7 @@ th,td{
 	font-family:Times New Roman,serif;
 	font-size:25px;
 	color:#fff;
-	background:#000 url('../images1/raceButtons.png') 30% 0 / 120% 200%;
+	background:#000 url('/classic/images1/raceButtons.png') 30% 0 / 120% 200%;
 	cursor:pointer;
 }
 #battleReportContent{
@@ -2640,7 +2640,7 @@ th,td{
 	width:100px;
 	cursor:pointer;
 	z-index:76;	
-	background:url("../images1/myhpbardiv.png") 0 0 / 100% 100%;
+	background:url("/classic/images1/myhpbardiv.png") 0 0 / 100% 100%;
 	border:4px double #1a1a1a;
 	box-shadow:
 		0 0 5px #443 inset,
@@ -2654,7 +2654,7 @@ th,td{
 }
 #upgradePrompt{
 	margin:5px;
-	background:#000 url("../images1/raceButtons.png") repeat scroll 0 0 / 100% 200%;
+	background:#000 url("/classic/images1/raceButtons.png") repeat scroll 0 0 / 100% 200%;
 }
 #upgradeConfirm{
 	position:absolute;
@@ -2668,7 +2668,7 @@ th,td{
 	font-size:14px;
 	text-align:center;
 	line-height:19px;
-	background:url("../images1/myhpbardiv.png") 0 0 / 100% 100%;
+	background:url("/classic/images1/myhpbardiv.png") 0 0 / 100% 100%;
 }
 #upgradeConfirm2{
 	position:absolute;
@@ -2692,7 +2692,7 @@ th,td{
 	width:100px;
 	border:1px solid #885;
 	cursor:pointer;
-	background:url("../images1/NGbutton.png") 0 0 / 100% 200%;
+	background:url("/classic/images1/NGbutton.png") 0 0 / 100% 200%;
 }
 #upgradeCANCEL{
 	position:absolute;
@@ -2707,10 +2707,10 @@ th,td{
 	width:100px;
 	border:1px solid #885;
 	cursor:pointer;
-	background:url("../images1/NGbutton.png") 0 0 / 100% 200%;
+	background:url("/classic/images1/NGbutton.png") 0 0 / 100% 200%;
 }
 .trainingButton{
-	background:#000 url('../images1/raceButtons.png') 0 0 / 100% 200%;
+	background:#000 url('/classic/images1/raceButtons.png') 0 0 / 100% 200%;
 	background-size:100% 200%;
 }
 #merchantContainer{
@@ -2723,7 +2723,7 @@ th,td{
 	padding:2px;
 	z-index:76;
 	overflow:hidden;
-	background:url("../images1/rock380-430.jpg") 0 0 / 100% 100%;
+	background:url("/classic/images1/rock380-430.jpg") 0 0 / 100% 100%;
 	
 }
 #itemsForSale{
@@ -2789,7 +2789,7 @@ th,td{
 		0 1px #cca inset,
 		-1px 0 #cca inset,
 		0 -1px #cca inset;
-	background:url('../images1/myhpbardiv.png') 0 0 / 100% 100%;
+	background:url('/classic/images1/myhpbardiv.png') 0 0 / 100% 100%;
 	border:4px double #1a1a1a;
 }
 #sellOK{
@@ -2813,7 +2813,7 @@ th,td{
 		-1px 0 #cca inset,
 		0 -1px #cca inset;
 	border:4px double #1a1a1a;
-	background:url('../images1/myhpbardiv.png') 0 0 / 100% 100%;
+	background:url('/classic/images1/myhpbardiv.png') 0 0 / 100% 100%;
 }
 
 #blackOverlay{
@@ -2890,7 +2890,7 @@ th,td{
 	padding:2px 6px;
 	text-align:right;
 	overflow:hidden;
-	background:#000 url('../images1/raceButtons.png') 0 0 / 100% 200%;
+	background:#000 url('/classic/images1/raceButtons.png') 0 0 / 100% 200%;
 }
 #cityCrystal{
 	position:absolute;
@@ -2906,7 +2906,7 @@ th,td{
 	padding:2px 6px;
 	text-align:right;
 	overflow:hidden;
-	background:#000 url('../images1/raceButtons.png') 0 0 / 100% 200%;
+	background:#000 url('/classic/images1/raceButtons.png') 0 0 / 100% 200%;
 }
 #cityCrystalIcon{
 	position:absolute;
@@ -2939,7 +2939,7 @@ th,td{
 	border-left:1px groove #885511;
 	width:50px;
 	cursor:pointer;
-	background:url('../images1/NGbutton.png') 0 0 / 100% 200%;
+	background:url('/classic/images1/NGbutton.png') 0 0 / 100% 200%;
 }
 #goldInput{
 	top:0;
@@ -3003,7 +3003,7 @@ th,td{
 	line-height:34px;
 	width:200px;
 	cursor:pointer;
-	background:url('../images1/NGbutton.png') 0 0 / 100% 200%;
+	background:url('/classic/images1/NGbutton.png') 0 0 / 100% 200%;
 }
 #inventoryGoldIcon, #bankGoldIcon{
 	float:left;
@@ -3021,14 +3021,14 @@ th,td{
 	font-family:Times New Roman,serif;
 	margin:1px;
 	font-size:30px;
-	background:#000 url("../images1/raceButtons.png") 0 100% / 100% 200%;
+	background:#000 url("/classic/images1/raceButtons.png") 0 100% / 100% 200%;
 }
 #shopList{
 	background: #111;
 }
 .cityButtons{
 	font-family:Times New Roman,serif;
-	background:#000 url("../images1/raceButtons.png") 0 0 / 100% 200%;
+	background:#000 url("/classic/images1/raceButtons.png") 0 0 / 100% 200%;
 	padding:3px;
 }
 .cityButtons:hover{
@@ -3366,72 +3366,72 @@ th,td{
 }
 .Warrior{
 	background:#3a220a; 
-	background:url('../images1/classPlate.png') 0 0;
+	background:url('/classic/images1/classPlate.png') 0 0;
 	text-shadow:inherit;
 }
 .Rogue{
 	background:#3d353d; 
-	background:url('../images1/classPlate.png') 0 -100%;
+	background:url('/classic/images1/classPlate.png') 0 -100%;
 	text-shadow:inherit;
 }
 .Monk{
 	background:#44441a; 
-	background:url('../images1/classPlate.png') 0 -200%;
+	background:url('/classic/images1/classPlate.png') 0 -200%;
 	text-shadow:inherit;
 }
 .Paladin{
 	background:#620582; 
-	background:url('../images1/classPlate.png') 0 -300%;
+	background:url('/classic/images1/classPlate.png') 0 -300%;
 	text-shadow:inherit;
 }
 .ShadowKnight{
 	background:#48043a; 
-	background:url('../images1/classPlate.png') 0 -400%;
+	background:url('/classic/images1/classPlate.png') 0 -400%;
 	text-shadow:inherit;
 }
 .Ranger{
 	background:#0a2b00; 
-	background:url('../images1/classPlate.png') 0 -500%;
+	background:url('/classic/images1/classPlate.png') 0 -500%;
 	text-shadow:inherit;
 }
 .Bard{
 	background:#1a006a; 
-	background:url('../images1/classPlate.png') 0 -600%;
+	background:url('/classic/images1/classPlate.png') 0 -600%;
 	text-shadow:inherit;
 }
 .Druid{
 	background:#1a5b0a; 
-	background:url('../images1/classPlate.png') 0 -700%;
+	background:url('/classic/images1/classPlate.png') 0 -700%;
 	text-shadow:inherit;
 }
 .Cleric{
 	background:#77770a; 
-	background:url('../images1/classPlate.png') 0 -800%;
+	background:url('/classic/images1/classPlate.png') 0 -800%;
 	text-shadow:inherit;
 }
 .Shaman{
 	background:#001a7a; 
-	background:url('../images1/classPlate.png') 0 -900%;
+	background:url('/classic/images1/classPlate.png') 0 -900%;
 	text-shadow:inherit;
 }
 .Necromancer{
 	background:#482a5a; 
-	background:url('../images1/classPlate.png') 0 -1000%;
+	background:url('/classic/images1/classPlate.png') 0 -1000%;
 	text-shadow:inherit;
 }
 .Enchanter{
 	background:#123a6a; 
-	background:url('../images1/classPlate.png') 0 -1100%;
+	background:url('/classic/images1/classPlate.png') 0 -1100%;
 	text-shadow:inherit;
 }
 .Magician{
 	background:#7a4a12;
-	background:url('../images1/classPlate.png') 0 -1200%; 
+	background:url('/classic/images1/classPlate.png') 0 -1200%;
 	text-shadow:inherit;
 }
 .Wizard{
 	background:#5a0111; 
-	background:url('../images1/classPlate.png') 0 -1300%;
+	background:url('/classic/images1/classPlate.png') 0 -1300%;
 	text-shadow:inherit;
 }
 .Warrior-chat{

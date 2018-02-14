@@ -6056,15 +6056,15 @@ var srv = {
     //key release data
 var lsKey = 40,
     dev = false,
-    itemSprite = "i.imgur.com/gxfvcyu.png";
+    itemSprite = "/classic/images1/item-ng.png";
 if (location.hostname === 'localhost') {
     dev = true;
 }
 var CLR = {
     martyr: false
 }
-var soundLocation = 'sound1/',
-    musicLocation = 'music1/',
+var soundLocation = '/classic/sound1/',
+    musicLocation = '/classic/music1/',
     timers = {},
     portalStatus = false,
     loreTimer = TDC(),
@@ -7671,7 +7671,7 @@ function initMOB() {
         stage[i] = new C.Stage(canvas[i]);
         stage[i].snapToPixelEnabled = true;
         TweenLite.ticker.addEventListener("tick", stage[i].update, stage[i]);
-        bmp[i] = new C.Bitmap("images1/blank.png");
+        bmp[i] = new C.Bitmap("/classic/images1/blank.png");
         tintTimer[i] = {};
         tintTimer[i].poison = TDC();
         tintTimer[i].magic = TDC();
@@ -7680,11 +7680,11 @@ function initMOB() {
         tintTimer[i].cold = TDC();
         blurTimer[i] = TDC();
         bmpTint[i] = {};
-        bmpTint[i].poison = new C.Bitmap("images1/blank.png");
-        bmpTint[i].magic = new C.Bitmap("images1/blank.png");
-        bmpTint[i].lightning = new C.Bitmap("images1/blank.png");
-        bmpTint[i].fire = new C.Bitmap("images1/blank.png");
-        bmpTint[i].cold = new C.Bitmap("images1/blank.png");
+        bmpTint[i].poison = new C.Bitmap("/classic/images1/blank.png");
+        bmpTint[i].magic = new C.Bitmap("/classic/images1/blank.png");
+        bmpTint[i].lightning = new C.Bitmap("/classic/images1/blank.png");
+        bmpTint[i].fire = new C.Bitmap("/classic/images1/blank.png");
+        bmpTint[i].cold = new C.Bitmap("/classic/images1/blank.png");
         pulsate[i] = TDC();
     }
     // cWin canvas
@@ -12251,25 +12251,25 @@ function loadProcImage() {
     asset[213] = D.createElement('audio');
     for (var i = 12; i <= 13; i++) {
         var x = asset[100 + i];
-        x.src = "images1/blank.png";
+        x.src = "/classic/images1/blank.png";
         var N = P.eq[i].name;
         if (N === "Ebony Blade" || N === "Spriggan's Blade") {
-            x.src = "images1/rootImage.png";
+            x.src = "/classic/images1/rootImage.png";
         } else if (N === "Baezil's Vortex" ||
             N === "Rathmonan's Vortex") {
-            x.src = "images1/lightningNova.png";
+            x.src = "/classic/images1/lightningNova.png";
         } else if (N === "Flamebellow") {
-            x.src = "images1/fireNova.png";
+            x.src = "/classic/images1/fireNova.png";
         } else if (N === "Scimitar of the Mistwalker" ||
             N === "Scimitar of the Grovecaller" ||
             N === "Jysin's Blade of the Darkwind") {
             asset[114] = D.createElement('img');
-            asset[114].src = "images1/a white wolf.png";
+            asset[114].src = "/classic/images1/a white wolf.png";
         } else if (N === "Plankton Laced Greatsword") {
-            x.src = "images1/frostNova.png";
+            x.src = "/classic/images1/frostNova.png";
             asset[200 + i].src = soundLocation + "novaice." + audioExt;
         } else if (N === "Megnemon's Glacial Crook") {
-            x.src = "images1/glacialSpike.png";
+            x.src = "/classic/images1/glacialSpike.png";
             asset[200 + i].src = soundLocation + "icespike1." + audioExt;
         }
     }
@@ -12349,7 +12349,7 @@ function showIntro() {
 
         function intro2() {
             D.getElementById('introText2').style.display = 'none';
-            canWorldMap = new C.Bitmap("//i.imgur.com/d1iYz2W.jpg");
+            canWorldMap = new C.Bitmap("/classic/images1/worldMap.jpg");
             canWorldMap.image.onload = function() {
                 canWorldMap.setTransform(640, 384, 1, 1, 0, 0, 0, 640, 384);
                 canWorldMap.alpha = 0;
@@ -12474,7 +12474,7 @@ function enterWorld() {
     drawExpBar(0);
     classSpriteLoaded = false;
     var classSprite = new Image();
-    classSprite.src = "images1/sprite" + my.job + "3.png";
+    classSprite.src = "/classic/images1/sprite" + my.job + "3.png";
     classSprite.onload = function() {
             classSpriteLoaded = true;
         }
@@ -12574,7 +12574,7 @@ function enterWorld() {
         g.wraithRatio = .025;
     }
 	$("#tooltipname, #ttItemName, .buttonsManage, .buttonsManageOff").css('display','block');
-	$(".shadows").attr('src','//i.imgur.com/7bn79bN.png');
+	$(".shadows").attr('src','/classic/images1/mobShadow.png');
 	loadMiscImages();
 	if(!dev){
 		window.onbeforeunload = function(){ 
@@ -13266,7 +13266,7 @@ function setClassStyles() {
             backgroundPosition: "-100% -200%"
         });
     initTalentStyles();
-    $NG.equipmentBG.css("background", "url('//" + itemSprite + "')")
+    $NG.equipmentBG.css("background", "url('" + itemSprite + "')")
         .css({
             backgroundPosition: "0 0"
         });
@@ -14773,37 +14773,38 @@ function checkCity(foo) {
 }
 
 function loadWeaponSlashes() {
+    var p = '/classic/images1/';
     if (P.eq[12].type === "slashed") {
         asset[109] = D.createElement('img');
-        asset[109].src = "images1/slashed.png";
+        asset[109].src = p + "slashed.png";
     } else if (P.eq[12].type === "crushed") {
         asset[107] = D.createElement('img');
-        asset[107].src = "images1/crushed.png";
+        asset[107].src = p + "crushed.png";
     } else if (P.eq[12].type === "pierced") {
         asset[105] = D.createElement('img');
-        asset[105].src = "images1/pierced.png";
+        asset[105].src = p + "pierced.png";
     } else if (P.eq[12].type === "punched") {
         asset[103] = D.createElement('img');
-        asset[103].src = "images1/punched.png";
+        asset[103].src = p + "punched.png";
     } else if (P.eq[12].type === "smashed" || "staff" === P.eq[12].type) {
         asset[101] = D.createElement('img');
-        asset[101].src = "images1/smashed.png";
+        asset[101].src = p + "smashed.png";
     } else if (P.eq[12].type === "cleaved") {
         asset[100] = D.createElement('img');
-        asset[100].src = "images1/cleaved.png";
+        asset[100].src = p + "cleaved.png";
     }
     if (P.eq[13].type === "crushed") {
         asset[106] = D.createElement('img');
-        asset[106].src = "images1/crushedL.png";
+        asset[106].src = p + "crushedL.png";
     } else if (P.eq[13].type === "pierced") {
         asset[104] = D.createElement('img');
-        asset[104].src = "images1/piercedL.png";
+        asset[104].src = p + "piercedL.png";
     } else if (P.eq[13].type === "punched") {
         asset[102] = D.createElement('img');
-        asset[102].src = "images1/punched.png";
+        asset[102].src = p + "punched.png";
     } else if (P.eq[13].type === "slashed") {
         asset[108] = D.createElement('img');
-        asset[108].src = "images1/slashedL.png";
+        asset[108].src = p + "slashedL.png";
     }
 }
 
@@ -14814,74 +14815,75 @@ function preload(arrayOfImages) {
 }
 
 function loadMiscImages() {
+	var p = '/classic/images1/';
     asset[115] = D.createElement("img");
-    asset[115].src = '//i.imgur.com/hqFEnqI.png';
+    asset[115].src = p + 'spriteMobs2.png';
     asset[116] = D.createElement('img');
-    asset[116].src = "//" + itemSprite;
+    asset[116].src = itemSprite;
     asset[117] = D.createElement('img');
-    asset[117].src = "images1/NGbutton.png";
+    asset[117].src = p + "NGbutton.png";
     asset[118] = D.createElement('img');
-    asset[118].src = "images1/classPlate.png";
+    asset[118].src = p + "classPlate.png";
     asset[119] = D.createElement('img');
-    asset[119].src = "images1/rock380-430.jpg";
+    asset[119].src = p + "rock380-430.jpg";
     asset[120] = D.createElement('img');
-    asset[120].src = "images1/win5.png";
+    asset[120].src = p + "win5.png";
     asset[121] = D.createElement('img');
-    asset[121].src = "images1/ng_logo_532x428.png";
+    asset[121].src = p + "ng_logo_532x428.png";
     asset[122] = D.createElement('img');
-    asset[122].src = "images1/entername.png";
+    asset[122].src = p + "entername.png";
     asset[122] = D.createElement('img');
-    asset[122].src = "images1/ccFrame.png";
+    asset[122].src = p + "ccFrame.png";
     asset[123] = D.createElement('img');
-    asset[123].src = "images1/statFrame.png";
+    asset[123].src = p + "statFrame.png";
     asset[124] = D.createElement('img');
-    asset[124].src = 'images1/blank.png';
+    asset[124].src = p + 'blank.png';
     asset[125] = D.createElement('img');
-    asset[125].src = '//i.imgur.com/d1iYz2W.jpg';
+    asset[125].src = p + 'worldMap.jpg';
     asset[126] = D.createElement('img');
-    asset[126].src = "images1/raceButtons.png";
+    asset[126].src = p + "raceButtons.png";
     asset[127] = D.createElement('img');
-    asset[127].src = "images1/myhpbardiv.png";
+    asset[127].src = p + "myhpbardiv.png";
     asset[128] = D.createElement('img');
-    asset[128].src = "images1/bossPlate.png";
+    asset[128].src = p + "bossPlate.png";
     asset[129] = D.createElement('img');
-    asset[129].src = "images1/championPlate.png";
+    asset[129].src = p + "championPlate.png";
     asset[130] = D.createElement('img');
-    asset[130].src = "images1/rarePlate.png";
+    asset[130].src = p + "rarePlate.png";
     asset[131] = D.createElement('img');
-    asset[131].src = "images1/normalPlate.png";
+    asset[131].src = p + "normalPlate.png";
     asset[132] = D.createElement('img');
-    asset[132].src = "images1/statButton.png";
+    asset[132].src = p + "statButton.png";
     asset[133] = D.createElement('img');
-    asset[133].src = "images1/greyButton.png";
+    asset[133].src = p + "greyButton.png";
     asset[134] = D.createElement('img');
-    asset[134].src = "images1/equipment.png";
+    asset[134].src = p + "equipment.png";
     asset[135] = D.createElement('img');
-    asset[135].src = "images1/stats.png";
+    asset[135].src = p + "stats.png";
     asset[136] = D.createElement('img');
-    asset[136].src = "images1/tile.png";
+    asset[136].src = p + "tile.png";
     asset[137] = D.createElement('img');
-    asset[137].src = "images1/wideHead.png";
+    asset[137].src = p + "wideHead.png";
     asset[139] = D.createElement('img');
-    asset[139].src = "images1/itemtt.png";
+    asset[139].src = p + "itemtt.png";
     asset[140] = D.createElement('img');
-    asset[140].src = "images1/portal.png";
+    asset[140].src = p + "portal.png";
     asset[141] = D.createElement('img');
-    asset[141].src = "images1/portraits.png";
+    asset[141].src = p + "portraits.png";
     asset[142] = D.createElement('img');
-    asset[142].src = 'images1/greenparticle200.png';
+    asset[142].src = p + 'greenparticle200.png';
     asset[143] = D.createElement('img');
-    asset[143].src = 'images1/magentaparticle200.png';
+    asset[143].src = p + 'magentaparticle200.png';
     asset[144] = D.createElement('img');
-    asset[144].src = 'images1/yellowparticle200.png';
+    asset[144].src = p + 'yellowparticle200.png';
     asset[145] = D.createElement('img');
-    asset[145].src = 'images1/glacialSpike.png';
+    asset[145].src = p + 'glacialSpike.png';
     asset[146] = D.createElement('img');
-    asset[146].src = 'images1/fireball.png';
+    asset[146].src = p + 'fireball.png';
     asset[147] = D.createElement('img');
-    asset[147].src = 'images1/bossPlate.png';
+    asset[147].src = p + 'bossPlate.png';
     asset[148] = D.createElement('img');
-    asset[148].src = '//i.imgur.com/7bn79bN.png';
+    asset[148].src = p + 'mobShadow.png';
     asset[201] = D.createElement('audio');
     asset[201].src = soundLocation + "button_2." + audioExt;
     var foo = [];
@@ -14901,7 +14903,7 @@ function loadMiscImages() {
     }
     for (var i = 150, len = foo.length + 150; i < len; i++) {
         asset[i] = D.createElement('img');
-        asset[i].src = "images1/" + foo[i - 150] + ".png";
+        asset[i].src = "/classic/images1/" + foo[i - 150] + ".png";
     }
 }
 
@@ -14952,7 +14954,7 @@ function loadClassSkillImages() {
     foo.push("bloodSpray");
     for (var i = 0, len = foo.length; i < len; i++) {
 		var x = new Image();
-		x.src = "images1/" + foo[i] + ".png";
+		x.src = "/classic/images1/" + foo[i] + ".png";
 		asset[400 + i] = x;
     }
 }
@@ -15081,7 +15083,7 @@ function renderBank(max) {
     for (var i = start; i < end; i++) {
         z += "<li class='bankBG' id='bank" + i + "BG'>BANK";
         if (P.bank[i].name) {
-            z += "<img id='bank" + i + "' src='//" + itemSprite + "' class='bank' style='left:" + P.bank[i].xPos + "px;top:" + P.bank[i].yPos + "px'>";
+            z += "<img id='bank" + i + "' src='" + itemSprite + "' class='bank' style='left:" + P.bank[i].xPos + "px;top:" + P.bank[i].yPos + "px'>";
         } else {
             z += "<img id='bank" + i + "' src='images1/blank.png' class='bank'>";
         }
@@ -15609,7 +15611,7 @@ function loadZone() {
             }
         }
         doit(0);
-        $NG2.bankBG.css("background", "url('//" + itemSprite + "')")
+        $NG2.bankBG.css("background", "url('" + itemSprite + "')")
             .css({
                 backgroundPosition: "0 0"
             });
@@ -15635,10 +15637,10 @@ function loadZone() {
         mobs[i].src = 'images1/' + zig[i] + '.png';
     }
     imagesLoaded = 0;
-    $("#window2zoneday").attr("src", 'backgrounds/' + foo);
+    $("#window2zoneday").attr("src", '/classic/backgrounds/' + foo);
     if (cityStatus === true) {
-        $NG2.city.attr("src", "//" + itemSprite);
-        $NG2.cityBG.css("background", "url('//" + itemSprite + "')").css({
+        $NG2.city.attr("src", itemSprite);
+        $NG2.cityBG.css("background", "url('" + itemSprite + "')").css({
             backgroundPosition: "0 0"
         });
         D.getElementById('cityGold').innerHTML = "<div id='goldIcon' class='goldIcon'></div> " + my.gold;
@@ -15672,9 +15674,9 @@ function writeCityHtml() {
 		'</div>';
     z += '</div>' +
         '<div id="cityNPCdiv">' +
-        '<img id="cityNPCshadow" src="//i.imgur.com/7bn79bN.png">' +
+        '<img id="cityNPCshadow" src="/classic/images1/mobShadow.png">' +
         '<div id="cityNPCname" class="strongShadow"></div>' +
-        '<img id="cityNPC" src="images1/blank.png">' +
+        '<img id="cityNPC" src="/classic/images1/blank.png">' +
         '</div>' +
         '<div id="trainingOptions" class="strongShadow">' +
         '<div id="training1">' +
@@ -16455,11 +16457,11 @@ function updateEquipment() {
         if (e1 != null) {
             var o = P.eq[i];
             if (o.name) {
-                e1.src = "//" + itemSprite;
+                e1.src = itemSprite;
                 e1.style.left = o.xPos + 'px';
                 e1.style.top = o.yPos + 'px';
             } else {
-                e1.src = "images1/blank.png";
+                e1.src = "/classic/images1/blank.png";
             }
         }
     }
@@ -16471,11 +16473,11 @@ function updateInventory() {
         if (e1 !== null) {
             var o = P.item[i];
             if (o.name) {
-                e1.src = "//" + itemSprite;
+                e1.src = itemSprite;
                 e1.style.left = o.xPos + 'px';
                 e1.style.top = o.yPos + 'px';
             } else {
-                e1.src = "images1/blank.png";
+                e1.src = "/classic/images1/blank.png";
             }
         }
     }
@@ -16487,11 +16489,11 @@ function updateBank() {
         if (e1 !== null) {
             var o = P.bank[i];
             if (o.name) {
-                e1.src = "//" + itemSprite;
+                e1.src = itemSprite;
                 e1.style.left = o.xPos + 'px';
                 e1.style.top = o.yPos + 'px';
             } else {
-                e1.src = "images1/blank.png";
+                e1.src = "/classic/images1/blank.png";
             }
         }
     }
@@ -16588,7 +16590,7 @@ $(function() {
             dragSlot = that.parent().index();
             var X = P.item[dragSlot];
             classDrag = "inventory";
-            if (that.attr("src") === "images1/blank.png") { //clicked an empty slot
+            if (that.attr("src") === "/classic/images1/blank.png") { //clicked an empty slot
                 dragID = "";
                 dragStatus = false;
                 Error("There seems to be nothing there.");
@@ -16793,7 +16795,7 @@ $(function() {
                 classDrag = "bank";
                 dragSlot = dragSlot + (activeBankTab * 90);
             }
-            if (that.attr("src") === "images1/blank.png") { //clicked an empty slot
+            if (that.attr("src") === "/classic/images1/blank.png") { //clicked an empty slot
                 dragID = "";
                 dragStatus = false;
             } else { // transfer data to dragged object
@@ -17034,7 +17036,7 @@ function keepSessionAlive() {
 }
 (function() {
     var e = new Image();
-    e.src = 'backgrounds/home.jpg';
+    e.src = '/classic/backgrounds/home.jpg';
 })();
 //battle.js
 function run(){
@@ -18393,7 +18395,7 @@ function summonWolfFamiliar(name, maxDam, minDam){
 		left:-50,
 		opacity:0,
 		width:400
-	}).attr("src","images1/a white wolf.png")
+	}).attr("src","/classic/images1/a white wolf.png")
 	.appendTo($NG.eWin2);
 	T.to(familiar[familiarId], .5, {
 		opacity:1
@@ -21218,7 +21220,7 @@ function killAllMonsters(){
 function playEnding(){
 	window.onbeforeunload = null;
 	playMusic("Heroic Demise (2013 - With Choir)");
-	var w4 = new C.Bitmap('backgrounds/nimgaul.jpg');
+	var w4 = new C.Bitmap('/classic/backgrounds/nimgaul.jpg');
 	stage[8].addChild(w4);
 	w4.image.onload = function(){
 		var e = w4.getBounds();
@@ -21267,11 +21269,11 @@ function killBoss(){
 		}
 	});
 	var s1 = new Audio();
-	s1.src = "sound1/explode1."+audioExt;
+	s1.src = "/classic/sound1/explode1."+audioExt;
 	var s2 = new Audio();
-	s2.src = "sound1/explode2."+audioExt;
+	s2.src = "/classic/sound1/explode2."+audioExt;
 	var s3 = new Audio();
-	s3.src = "sound1/explode3."+audioExt;
+	s3.src = "/classic/sound1/explode3."+audioExt;
 	var p1 = new Image();
 	p1.src = 'images1/tremorFG.png';
 	var p2 = new Image();
@@ -23368,19 +23370,19 @@ function battle(){
 		NG['mobIcons'+newSlotNumber].style.display="block";
 		if(mob[TGT].rare===0){
 			NG.mobBar.className="ui-draggable";
-			NG.mobPlate.src = "images1/rarePlate.png";
+			NG.mobPlate.src = "/classic/images1/rarePlate.png";
 			NG.mobPlate.className = "nameplateGold";
 		}else if(mob[TGT].rare==2){
 			NG.mobBar.className="ui-draggable";
-			NG.mobPlate.src = "images1/championPlate.png";
+			NG.mobPlate.src = "/classic/images1/championPlate.png";
 			NG.mobPlate.className = "nameplateBlue";
 		}else if(mob[TGT].rare==3){
 			NG.mobBar.className="ui-draggable";
-			NG.mobPlate.src = "images1/bossPlate.png";
+			NG.mobPlate.src = "/classic/images1/bossPlate.png";
 			NG.mobPlate.className = "nameplateRed";
 		}else if(mob[TGT].rare===1){
 			NG.mobBar.className="ui-draggable";
-			NG.mobPlate.src = "images1/normalPlate.png";
+			NG.mobPlate.src = "/classic/images1/normalPlate.png";
 			NG.mobPlate.className = "nameplateBlack";
 		}
 		NG.mobTraits.innerHTML=mob[newSlotNumber].traits;
@@ -24107,12 +24109,12 @@ function toggleAutoAttackStatus(){
 	}
 	if(g.autoAttackStatus===0){
 		D.getElementById('mobName'+TGT).style.color="#ff0";
-		D.getElementById('mobShadow'+TGT).src="//i.imgur.com/7bn79bN.png";
+		D.getElementById('mobShadow'+TGT).src="/classic/images1/mobShadow.png";
 		g.autoAttackStatus=1;
 		autoAttackTimer(0);
 	}else{
 		D.getElementById('mobName'+TGT).style.color="#ff3333";
-		D.getElementById('mobShadow'+TGT).src="//i.imgur.com/fnHtalN.png";
+		D.getElementById('mobShadow'+TGT).src="/classic/images1/mobShadowRed.png";
 		g.autoAttackStatus=0;
 		myAttack.kill();
 		myAttack2.kill();
@@ -24164,7 +24166,7 @@ function addBuffRaceIcon(skillName,buffId,duration,spriteX){
 			top:0,
 			left:spriteX,
 			position:"absolute"
-		}).attr("src", "images1/sprite"+my.race+"2.png");
+		}).attr("src", "/classic/images1/sprite"+my.race+"2.png");
 	var newBuff1 = $('<div>').css({
 			width:32,
 			height:32,
@@ -24202,7 +24204,7 @@ function addBuffIcon(skillName,buffId,duration,spriteX,spriteY){ //buff myself
 			top:spriteY,
 			left:spriteX,
 			position:"absolute"
-		}).attr("src", "images1/sprite"+my.job+"3.png");
+		}).attr("src", "/classic/images1/sprite"+my.job+"3.png");
 	var newBuff1 = $('<div>').css({
 			width:32,
 			height:32,
@@ -24249,12 +24251,12 @@ function addMobBuffIcon(skillName,Slot,buffId,duration,spriteX,spriteY,proc,stac
 	var w1 = 576;
 	var h1 = 128;
 	if(spriteX===9999){
-		img = "images1/spriteGnome2.png";
+		img = "/classic/images1/spriteGnome2.png";
 		spriteX=0;
 		var w1 = 32;
 		var h1 = 64;
 	}else{
-		img = "images1/sprite"+my.job+"3.png";
+		img = "/classic/images1/sprite"+my.job+"3.png";
 	}
 	var newBuff2 = $('<img>').css({
 			width:w1,
@@ -24270,7 +24272,7 @@ function addMobBuffIcon(skillName,Slot,buffId,duration,spriteX,spriteY,proc,stac
 			top:0,
 			left:0,
 			position:"absolute"
-		}).attr("src","images1/"+proc+"Icon.png");
+		}).attr("src","/classic/images1/"+proc+"Icon.png");
 	}
 	var newBuff1 = $('<div>').css({
 		width:32,
@@ -24302,7 +24304,7 @@ function mobBuffIcon(skillName,buffId,duration,spriteX){ //mob hits me
 			margin:0,
 			padding:0,
 			position:"absolute"
-		}).attr("src","//i.imgur.com/hqFEnqI.png");
+		}).attr("src","/classic/images1/spriteMobs2.png");
 	var newBuff1 = $('<div>').css({
 		width:32,
 		height:32,
@@ -24339,7 +24341,7 @@ function mobSelfBuffIcon(skillName,buffId,duration,spriteX,Slot){ //mob self buf
 			top:0,
 			left:spriteX,
 			position:"absolute"
-		}).attr("src","//i.imgur.com/hqFEnqI.png");
+		}).attr("src","/classic/images1/spriteMobs2.png");
 	var bar = $('<div>').css({
 		width:32,
 		height:32,
@@ -27482,7 +27484,7 @@ function animateBloodDrop(Slot){
 function IMG(x,y,w,h,img){
 	var H1=D.createElement('img');
 	H1.style.cssText = "position:absolute; left:"+x+"px; top:"+y+"px; width:"+w+"px; height:"+h+"px;";
-	H1.src="images1/"+img+".png";
+	H1.src="/classic/images1/"+img+".png";
 	return H1;
 }
 function DIV(x,y,w,h){
@@ -34256,7 +34258,7 @@ g.summonDeadFinish=function(){
 	$("#pethpbardiv").css('display','block');
     BGP('summondeadId', "-1600% -100%");
 	g.drawMyHp();
-	$NG.petImage.attr("src","images1/a dark skeleton.png").width(petWidth+"px");
+	$NG.petImage.attr("src","/classic/images1/a dark skeleton.png").width(petWidth+"px");
 	$NG.mob5.stop(true,true).height(petHeight).width(petWidth+"px")
 		.css({"left":leftAdjust,"bottom":60,opacity:1,display:"block"});
 	var leftAdjust = 190+((290-petWidth)/2);
@@ -40287,7 +40289,7 @@ g.guardianSpiritFinish=function(){
 	BGP('guardianspirit', "-1500% -100%");
 	g.drawMyHp();
 	var leftAdjust = 190+((290-petWidth)/2);
-	$NG.petImage.attr("src","images1/a wolf.png").width(petWidth);
+	$NG.petImage.attr("src","/classic/images1/a wolf.png").width(petWidth);
 	$NG.mob5.stop(true,true).height(petHeight).width(petWidth+"px")
 		.css({"left":leftAdjust,"bottom":60,opacity:1,display:"block"});
 	var nameWid=$("#petName").width();
@@ -40484,7 +40486,7 @@ g.invokeDeathFinish=function(proc){
 	BGP('invokedeath', "-1600% -100%");
 	g.drawMyHp();
 	var leftAdjust = 190+((290-petWidth)/2);
-	$NG.petImage.attr("src","images1/a dark skeleton.png").width(petWidth);
+	$NG.petImage.attr("src","/classic/images1/a dark skeleton.png").width(petWidth);
 	$NG.mob5.stop(true,true).height(petHeight).width(petWidth)
 		.css({"left":leftAdjust,"bottom":60,opacity:1,display:"block"});
 	var nameWid=$("#petName").width();
@@ -43049,7 +43051,7 @@ g.earthElementalFinish=function(proc){
 	BGP('earthelemental', "-200% -100%");
 	g.drawMyHp();
 	var leftAdjust = 190+((290-petWidth)/2);
-	$NG.petImage.attr("src","images1/an earth elemental.png").width(petWidth+"px");
+	$NG.petImage.attr("src","/classic/images1/an earth elemental.png").width(petWidth+"px");
 	$NG.mob5.stop(true,true).height(petHeight).width(petWidth+"px")
 		.css({"left":leftAdjust,"bottom":60,opacity:1,display:"block"});
 	var nameWid=$("#petName").width();
@@ -43121,7 +43123,7 @@ g.airElementalFinish=function(proc){
 	BGP('airelemental', "-200% -100%");
 	g.drawMyHp();
 	var leftAdjust = 190+((290-petWidth)/2);
-	$NG.petImage.attr("src","images1/an air elemental.png").width(petWidth+"px");
+	$NG.petImage.attr("src","/classic/images1/an air elemental.png").width(petWidth+"px");
 	$NG.mob5.stop(true,true).height(petHeight).width(petWidth+"px")
 		.css({"left":leftAdjust,"bottom":60,opacity:1,display:"block"});
 	var nameWid=$("#petName").width();
@@ -43193,7 +43195,7 @@ g.fireElementalFinish=function(proc){
 	BGP('fireelemental', "-200% -100%");
 	g.drawMyHp();
 	var leftAdjust = 190+((290-petWidth)/2);
-	$NG.petImage.attr("src","images1/a fire elemental.png").width(petWidth+"px");
+	$NG.petImage.attr("src","/classic/images1/a fire elemental.png").width(petWidth+"px");
 	$NG.mob5.stop(true,true).height(petHeight).width(petWidth+"px")
 		.css({"left":leftAdjust,"bottom":60,opacity:1,display:"block"});
 	var nameWid=$("#petName").width();
@@ -43266,7 +43268,7 @@ g.frostElementalFinish=function(proc){
 	BGP('frostelemental', "-200% -100%");
 	g.drawMyHp();
 	var leftAdjust = 190+((290-petWidth)/2);
-	$NG.petImage.attr("src","images1/a frost elemental.png").width(petWidth+"px");
+	$NG.petImage.attr("src","/classic/images1/a frost elemental.png").width(petWidth+"px");
 	$NG.mob5.stop(true,true).height(petHeight).width(petWidth+"px")
 		.css({"left":leftAdjust,"bottom":60,opacity:1,display:"block"});
 	var nameWid=$("#petName").width();
@@ -53687,7 +53689,7 @@ function animateFear(Slot, fearDuration, triggerFlag, opacityFlag) {
             bottom: bottomAdjust,
             left: leftAdjust,
             opacity: .7
-        }).attr("src", "images1/fearImage2.png");
+        }).attr("src", "/classic/images1/fearImage2.png");
         if (Slot <= 4) {
             if (GLB.videoSetting === "High") {
                 $NG.eWin.append(myH1.css({
@@ -53832,7 +53834,7 @@ function animateRoot(Slot, rootFlag) {
                 bottom: bottomAdjust,
                 left: leftAdjust,
                 opacity: 1
-            }).attr("src", "images1/rootImage.png");
+            }).attr("src", "/classic/images1/rootImage.png");
         } else {
             var myH1 = $('<img>', {
                 id: 'rootIcon' + Slot
@@ -53842,7 +53844,7 @@ function animateRoot(Slot, rootFlag) {
                 bottom: bottomAdjust,
                 left: leftAdjust,
                 opacity: .7
-            }).attr("src", "images1/freezeRoot.png");
+            }).attr("src", "/classic/images1/freezeRoot.png");
         }
         $NG.eWin.append(myH1);
     }
@@ -53873,7 +53875,7 @@ function encaseAnimation(Slot, freezeDuration) {
         width: spellSize,
         bottom: bottomAdjust,
         left: leftAdjust
-    }).attr("src", "images1/iceIcon.png");
+    }).attr("src", "/classic/images1/iceIcon.png");
     $NG.eWin.append(myH1);
     playAudio('blue3')
 }
@@ -53886,7 +53888,7 @@ function freezeAnimation(Slot, freezeDuration) {
         return;
     }
     var H1 = D.createElement('img');
-    H1.src = "images1/freezeRoot.png";
+    H1.src = "/classic/images1/freezeRoot.png";
     H1.className = 'freezeIcon' + Slot;
     var w = mob[Slot].imageWidth * .6;
     if (w < 200) {
@@ -53922,7 +53924,7 @@ function freezeAnimation(Slot, freezeDuration) {
 function animateIceBlock() {
     var H1 = D.createElement('img');
     H1.style.cssText = "position:absolute; height: 797px; width: 1880px; bottom: -50px; left: -225px; opacity:0;";
-    H1.src = "images1/iceIcon.png";
+    H1.src = "/classic/images1/iceIcon.png";
     H1.id = 'iceBlock';
     NG.eWin2.appendChild(H1);
     T.to(H1, 1, {
@@ -60748,7 +60750,7 @@ function loadSlotData(Slot, summoned) {
         TGT = x;
         mob[x].attackStatus = 1;
         MOBNAME[x].style.color = '#ffff00';
-        D.getElementById('mobShadow' + x).src = "//i.imgur.com/fnHtalN.png";
+        D.getElementById('mobShadow' + x).src = "/classic/images1/mobShadowRed.png";
     }
     // monster slot data will get loaded here
     MOB[x].style.display = 'block';
@@ -60853,19 +60855,19 @@ function loadSlotData(Slot, summoned) {
     for (var i = 1; i <= 4; i++) {
         if (Mskill[i] === "poison cloud") {
             asset[240 + i + (x * 4)] = new Image();
-            asset[240 + i + (x * 4)].src = "images1/greenparticle200.png";
+            asset[240 + i + (x * 4)].src = "/classic/images1/greenparticle200.png";
         } else if (Mskill[i] === "smite") {
             asset[240 + i + (x * 4)] = new Image();
-            asset[240 + i + (x * 4)].src = "images1/magentaparticle200.png";
+            asset[240 + i + (x * 4)].src = "/classic/images1/magentaparticle200.png";
         } else if (Mskill[i] === "energy bolt") {
             asset[240 + i + (x * 4)] = new Image();
-            asset[240 + i + (x * 4)].src = "images1/yellowparticle200.png";
+            asset[240 + i + (x * 4)].src = "/classic/images1/yellowparticle200.png";
         } else if (Mskill[i] === "ice shard") {
             asset[240 + i + (x * 4)] = new Image();
-            asset[240 + i + (x * 4)].src = "images1/glacialSpike.png";
+            asset[240 + i + (x * 4)].src = "/classic/images1/glacialSpike.png";
         } else if (Mskill[i] === "fireball") {
             asset[240 + i + (x * 4)] = new Image();
-            asset[240 + i + (x * 4)].src = "images1/fireball.png";
+            asset[240 + i + (x * 4)].src = "/classic/images1/fireball.png";
         }
     }
 
@@ -60882,12 +60884,12 @@ function loadSlotData(Slot, summoned) {
     canvas[x].width = Mwidth;
     canvas[x].height = mobHeight;
     stage[x].removeAllChildren();
-    bmp[x] = new C.Bitmap("images1/" + Mimg + ".png");
-    bmpTint[x].poison = new C.Bitmap("images1/" + Mimg + ".png");
-    bmpTint[x].magic = new C.Bitmap("images1/" + Mimg + ".png");
-    bmpTint[x].lightning = new C.Bitmap("images1/" + Mimg + ".png");
-    bmpTint[x].fire = new C.Bitmap("images1/" + Mimg + ".png");
-    bmpTint[x].cold = new C.Bitmap("images1/" + Mimg + ".png");
+    bmp[x] = new C.Bitmap("/classic/images1/" + Mimg + ".png");
+    bmpTint[x].poison = new C.Bitmap("/classic/images1/" + Mimg + ".png");
+    bmpTint[x].magic = new C.Bitmap("/classic/images1/" + Mimg + ".png");
+    bmpTint[x].lightning = new C.Bitmap("/classic/images1/" + Mimg + ".png");
+    bmpTint[x].fire = new C.Bitmap("/classic/images1/" + Mimg + ".png");
+    bmpTint[x].cold = new C.Bitmap("/classic/images1/" + Mimg + ".png");
     bmp[x].image.onload = function() {
         var e = bmp[x].getBounds();
         var t = bmp[x].image.width / 2;
@@ -80264,7 +80266,7 @@ function getLoot(Slot, Qitem, weaponType, rarity, armorType) {
 	var mobY = MOB[Slot].offsetTop + (mob[Slot].imageHeight / 2) - 32
 			+ M.random() * (100) - 50;
 	var e1 = DIV(mobX, mobY, 64, 64);
-	e1.style.background = "url('//" + itemSprite + "') " + P.item[NI].xPos
+	e1.style.background = "url('" + itemSprite + "') " + P.item[NI].xPos
 			+ "px " + P.item[NI].yPos + "px";
 	NG.eWin.appendChild(e1);
 	var m1 = 200;
@@ -86507,12 +86509,12 @@ function cacheAdd(s2, target, x, y, scaleX, scaleY, regCenter, first){
 function img(img, w, h){
     if(w===undefined){ w = 25; }
     if(h===undefined){ h = 25; }
-    s1 = new C.Bitmap("images1/"+img+".png");
+    s1 = new C.Bitmap("/classic/images1/"+img+".png");
     s1.cache(0, 0, w, h);
     return s1.cacheCanvas;
 }
 function can(img, target, x, y, w, h, regCenter, first){ 
-	var e = new C.Bitmap("images1/"+img+".png");
+	var e = new C.Bitmap("/classic/images1/"+img+".png");
 	var imgW = e.image.width;
 	var imgH = e.image.height;
 	var scaleX = w/imgW;
@@ -87810,7 +87812,7 @@ function writeMapHtml(){
 		map.style.width='1280px';
 		map.style.height='720px';
 		map.id = 'NGmap';
-		map.style.background = "url('//i.imgur.com/d1iYz2W.jpg')";
+		map.style.background = "url('/classic/images1/worldMap.jpg')";
 		$("#travelMap").prepend(map);
 		var marker = D.createElement('div');
 		marker.style.top='0px';
@@ -88354,12 +88356,12 @@ function updateTargetedMob(drawHp){
 	for(var i=0;i<=4;i++){
 		if(i!==TGT){
 			MOBNAME[i].style.color='#00FA9A';
-			MOBSHADOW[i].src="//i.imgur.com/7bn79bN.png";
+			MOBSHADOW[i].src="/classic/images1/mobShadow.png";
 		}
 	}
 	if(g.autoAttackStatus===0){
 		MOBNAME[TGT].style.color="#f33";
-		MOBSHADOW[TGT].src="//i.imgur.com/fnHtalN.png";
+		MOBSHADOW[TGT].src="/classic/images1/mobShadowRed.png";
 	}else{
 		MOBNAME[TGT].style.color="#ff0";
 	}
@@ -88370,19 +88372,19 @@ function updateTargetedMob(drawHp){
 	var c1="ui-draggable";
 	if(mob[TGT].rare===0){
 		NG.mobBar.className=c1;
-		NG.mobPlate.src = "images1/rarePlate.png";
+		NG.mobPlate.src = "/classic/images1/rarePlate.png";
 		NG.mobPlate.className = "nameplateGold";
 	}else if(mob[TGT].rare===2){
 		NG.mobBar.className=c1;
-		NG.mobPlate.src = "images1/championPlate.png";
+		NG.mobPlate.src = "/classic/images1/championPlate.png";
 		NG.mobPlate.className = "nameplateBlue";
 	}else if(mob[TGT].rare===3){
 		NG.mobBar.className=c1;
-		NG.mobPlate.src = "images1/bossPlate.png";
+		NG.mobPlate.src = "/classic/images1/bossPlate.png";
 		NG.mobPlate.className = "nameplateRed";
 	}else if(mob[TGT].rare===1){
 		NG.mobBar.className=c1;
-		NG.mobPlate.src = "images1/normalPlate.png";
+		NG.mobPlate.src = "/classic/images1/normalPlate.png";
 		NG.mobPlate.className = "nameplateBlack";
 	}
 	NG.mobTraits.innerHTML=mob[TGT].traits;
@@ -88392,12 +88394,12 @@ function updateTargetedMob(drawHp){
 	if(my.job==="Warrior"){ checkDecisiveBlow(); }
 }
 function updateCitySlot(Slot){
-	$("#inv"+Slot).attr("src","//"+itemSprite);
+	$("#inv"+Slot).attr("src",itemSprite);
 	if(P.item[Slot]!==undefined){
 		if(P.item[Slot].name){
 			$("#inv"+Slot).css({"left":P.item[Slot].xPos,"top":P.item[Slot].yPos});
 		}else{
-			$("#inv"+Slot).attr("src","images1/blank.png");
+			$("#inv"+Slot).attr("src","/classic/images1/blank.png");
 		}
 	}
 }
@@ -88657,11 +88659,11 @@ function updateInvDrag(Slot){
 	var e = document.getElementById('inv'+Slot);
 	if(e!==null){
 		if(P.item[Slot].name){
-			e.src = "//"+itemSprite;
+			e.src = itemSprite;
 			e.style.left = P.item[Slot].xPos+'px';
 			e.style.top = P.item[Slot].yPos+'px';
 		}else{
-			e.src = "images1/blank.png";
+			e.src = "/classic/images1/blank.png";
 		}
 	}
 }
@@ -88669,11 +88671,11 @@ function updateInvDrop(Slot){
 	var e = document.getElementById('inv'+Slot);
 	if(e!==null){
 		if(P.item[Slot].name){
-			e.src = "//"+itemSprite;
+			e.src = itemSprite;
 			e.style.left = P.item[Slot].xPos+'px';
 			e.style.top = P.item[Slot].yPos+'px';
 		}else{
-			e.src = "images1/blank.png";
+			e.src = "/classic/images1/blank.png";
 		}
 	}
 }
@@ -88681,11 +88683,11 @@ function updateEqDrag(id,Slot){
 	var e = document.getElementById(id);
 	if(e!==null){
 		if(P.eq[Slot].name){
-			e.src = "//"+itemSprite;
+			e.src = itemSprite;
 			e.style.left = P.eq[Slot].xPos+'px';
 			e.style.top = P.eq[Slot].yPos+'px';
 		}else{
-			e.src = "images1/blank.png";
+			e.src = "/classic/images1/blank.png";
 		}
 	}
 }
@@ -88693,11 +88695,11 @@ function updateEqDrop(id,Slot){
 	var e = document.getElementById(id);
 	if(e!==null){
 		if(P.eq[Slot].name){
-			e.src = "//"+itemSprite;
+			e.src = itemSprite;
 			e.style.left = P.eq[Slot].xPos+'px';
 			e.style.top = P.eq[Slot].yPos+'px';
 		}else{
-			e.src = "images1/blank.png";
+			e.src = "/classic/images1/blank.png";
 		}
 	}
 }
@@ -88705,11 +88707,11 @@ function updateBankDrag(Slot){
 	var e = document.getElementById("bank"+Slot);
 	if(e!==null){
 		if(P.bank[Slot].name){
-			e.src = "//"+itemSprite;
+			e.src = itemSprite;
 			e.style.left = P.bank[Slot].xPos+'px';
 			e.style.top = P.bank[Slot].yPos+'px';
 		}else{
-			e.src = "images1/blank.png";
+			e.src = "/classic/images1/blank.png";
 		}
 	}
 }
@@ -88717,11 +88719,11 @@ function updateBankDrop(Slot){
 	var e = document.getElementById("bank"+Slot);
 	if(e!==null){
 		if(P.bank[Slot].name){
-			e.src = "//"+itemSprite;
+			e.src = itemSprite;
 			e.style.left = P.bank[Slot].xPos+'px';
 			e.style.top = P.bank[Slot].yPos+'px';
 		}else{
-			e.src = "images1/blank.png";
+			e.src = "/classic/images1/blank.png";
 		}
 	}
 }

@@ -5563,7 +5563,7 @@ function animateFear(Slot, fearDuration, triggerFlag, opacityFlag) {
             bottom: bottomAdjust,
             left: leftAdjust,
             opacity: .7
-        }).attr("src", "images1/fearImage2.png");
+        }).attr("src", "/classic/images1/fearImage2.png");
         if (Slot <= 4) {
             if (GLB.videoSetting === "High") {
                 $NG.eWin.append(myH1.css({
@@ -5708,7 +5708,7 @@ function animateRoot(Slot, rootFlag) {
                 bottom: bottomAdjust,
                 left: leftAdjust,
                 opacity: 1
-            }).attr("src", "images1/rootImage.png");
+            }).attr("src", "/classic/images1/rootImage.png");
         } else {
             var myH1 = $('<img>', {
                 id: 'rootIcon' + Slot
@@ -5718,7 +5718,7 @@ function animateRoot(Slot, rootFlag) {
                 bottom: bottomAdjust,
                 left: leftAdjust,
                 opacity: .7
-            }).attr("src", "images1/freezeRoot.png");
+            }).attr("src", "/classic/images1/freezeRoot.png");
         }
         $NG.eWin.append(myH1);
     }
@@ -5749,7 +5749,7 @@ function encaseAnimation(Slot, freezeDuration) {
         width: spellSize,
         bottom: bottomAdjust,
         left: leftAdjust
-    }).attr("src", "images1/iceIcon.png");
+    }).attr("src", "/classic/images1/iceIcon.png");
     $NG.eWin.append(myH1);
     playAudio('blue3')
 }
@@ -5762,7 +5762,7 @@ function freezeAnimation(Slot, freezeDuration) {
         return;
     }
     var H1 = D.createElement('img');
-    H1.src = "images1/freezeRoot.png";
+    H1.src = "/classic/images1/freezeRoot.png";
     H1.className = 'freezeIcon' + Slot;
     var w = mob[Slot].imageWidth * .6;
     if (w < 200) {
@@ -5798,7 +5798,7 @@ function freezeAnimation(Slot, freezeDuration) {
 function animateIceBlock() {
     var H1 = D.createElement('img');
     H1.style.cssText = "position:absolute; height: 797px; width: 1880px; bottom: -50px; left: -225px; opacity:0;";
-    H1.src = "images1/iceIcon.png";
+    H1.src = "/classic/images1/iceIcon.png";
     H1.id = 'iceBlock';
     NG.eWin2.appendChild(H1);
     T.to(H1, 1, {
@@ -11247,7 +11247,7 @@ function getMonster(count, rareMobFlag) {
         cX = 105;
         cY = 110;
         Maud1 = "ghostatt";
-        Maud2 = "giosthit";
+        Maud2 = "ghosthit";
         Maud3 = "ghostdie";
         Mstr *= 1.2;
         Mmagic = 67;
@@ -12624,7 +12624,7 @@ function loadSlotData(Slot, summoned) {
         TGT = x;
         mob[x].attackStatus = 1;
         MOBNAME[x].style.color = '#ffff00';
-        D.getElementById('mobShadow' + x).src = "//i.imgur.com/fnHtalN.png";
+        D.getElementById('mobShadow' + x).src = "/classic/images1/mobShadowRed.png";
     }
     // monster slot data will get loaded here
     MOB[x].style.display = 'block';
@@ -12729,19 +12729,19 @@ function loadSlotData(Slot, summoned) {
     for (var i = 1; i <= 4; i++) {
         if (Mskill[i] === "poison cloud") {
             asset[240 + i + (x * 4)] = new Image();
-            asset[240 + i + (x * 4)].src = "images1/greenparticle200.png";
+            asset[240 + i + (x * 4)].src = "/classic/images1/greenparticle200.png";
         } else if (Mskill[i] === "smite") {
             asset[240 + i + (x * 4)] = new Image();
-            asset[240 + i + (x * 4)].src = "images1/magentaparticle200.png";
+            asset[240 + i + (x * 4)].src = "/classic/images1/magentaparticle200.png";
         } else if (Mskill[i] === "energy bolt") {
             asset[240 + i + (x * 4)] = new Image();
-            asset[240 + i + (x * 4)].src = "images1/yellowparticle200.png";
+            asset[240 + i + (x * 4)].src = "/classic/images1/yellowparticle200.png";
         } else if (Mskill[i] === "ice shard") {
             asset[240 + i + (x * 4)] = new Image();
-            asset[240 + i + (x * 4)].src = "images1/glacialSpike.png";
+            asset[240 + i + (x * 4)].src = "/classic/images1/glacialSpike.png";
         } else if (Mskill[i] === "fireball") {
             asset[240 + i + (x * 4)] = new Image();
-            asset[240 + i + (x * 4)].src = "images1/fireball.png";
+            asset[240 + i + (x * 4)].src = "/classic/images1/fireball.png";
         }
     }
 
@@ -12758,12 +12758,12 @@ function loadSlotData(Slot, summoned) {
     canvas[x].width = Mwidth;
     canvas[x].height = mobHeight;
     stage[x].removeAllChildren();
-    bmp[x] = new C.Bitmap("images1/" + Mimg + ".png");
-    bmpTint[x].poison = new C.Bitmap("images1/" + Mimg + ".png");
-    bmpTint[x].magic = new C.Bitmap("images1/" + Mimg + ".png");
-    bmpTint[x].lightning = new C.Bitmap("images1/" + Mimg + ".png");
-    bmpTint[x].fire = new C.Bitmap("images1/" + Mimg + ".png");
-    bmpTint[x].cold = new C.Bitmap("images1/" + Mimg + ".png");
+    bmp[x] = new C.Bitmap("/classic/images1/" + Mimg + ".png");
+    bmpTint[x].poison = new C.Bitmap("/classic/images1/" + Mimg + ".png");
+    bmpTint[x].magic = new C.Bitmap("/classic/images1/" + Mimg + ".png");
+    bmpTint[x].lightning = new C.Bitmap("/classic/images1/" + Mimg + ".png");
+    bmpTint[x].fire = new C.Bitmap("/classic/images1/" + Mimg + ".png");
+    bmpTint[x].cold = new C.Bitmap("/classic/images1/" + Mimg + ".png");
     bmp[x].image.onload = function() {
         var e = bmp[x].getBounds();
         var t = bmp[x].image.width / 2;

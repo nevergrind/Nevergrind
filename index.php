@@ -1,43 +1,42 @@
 <?php
-	// git test 1234
-	session_start();
-	if($_SERVER["SERVER_NAME"] === "localhost"){
-		error_reporting(E_ALL);
-		ini_set('display_errors', true);
-	}
-	require('php/values.php');
-	if(isset($_SESSION['email'])){
-		// nothing
-	}else{ 
-		unset($_SESSION['email']);
-		unset($_SESSION['account']);
-		unset($_SESSION['customerId']);
-	}
+session_start();
+$_SESSION['referPath'] = '/classic';
+include($_SERVER['DOCUMENT_ROOT'] . "/includes/head.html");
+if($_SERVER["SERVER_NAME"] === "localhost"){
+	error_reporting(E_ALL);
+	ini_set('display_errors', true);
+}
+require('php/values.php');
+if(!empty($_SESSION['account'])){
+	// nothing
+}else{
+	unset($_SESSION['email']);
+	unset($_SESSION['account']);
+	unset($_SESSION['customerId']);
+}
 ?>
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
 	<title>Nevergrind | Web Browser RPG | Free Online Game</title>
 	<meta name="keywords" content="web, online, browser, free, game, rpg">
-	<meta name="description" content="Nevergrind is a free web browser RPG created by Neverworks Games. Nevergrind is a single-player web game with leaderboards and player profiles.">
+	<meta name="description" content="Nevergrind is a free web browser RPG created by Neverworks Games. Select from 12 races, 14 classes, and 12 talents as you fight your way to level 99!">
 	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes">
 	<meta name="google-signin-client_id" content="1015425037202-g5ri6qnj14b8vrk33lnu130ver9f43ef.apps.googleusercontent.com">
 	<meta name="google-site-verification" content="iC9l4midOGIXERCwagfpkef9ifunV-aZd_zlUUOPjIU" />
-	<link rel='stylesheet' type='text/css' href="css/global.css">
+	<link rel='stylesheet' type='text/css' href="/classic/css/global.css">
 	<?php
-	$version = '2-0-12';
+	$version = '2-0-15';
 	?>
 	<script>
-		patchVersion=<?php echo $version; ?>;
+		patchVersion='<?php echo $version ?>';
 	</script>
-	<link rel='stylesheet' type='text/css' href="css/nevergrind.<?php
+	<link rel='stylesheet' type='text/css' href="/classic/css/nevergrind.<?php
 		echo $_SERVER["SERVER_NAME"] === "localhost" ? '' : 'min.'; ?>css?v=<?php echo $version;
 	?>">
-	<link rel="stylesheet" href="/css/font-awesome.min.css">
-	<link rel="shortcut icon" href="/images/favicon.png">
+	<link rel="stylesheet" href="/classic/css/font-awesome.min.css">
 	<?php
-		include($_SERVER['DOCUMENT_ROOT'] . "/includes/head.html");
-		if (!isset($_SESSION['email'])){
+		if (empty($_SESSION['account'])){
 			require $_SERVER['DOCUMENT_ROOT'] . "/includes/loginCss.html";
 		}
 	?>
@@ -59,7 +58,7 @@
 		<div id="gameView">
 				<header id="currencyIndicator" class="strongShadow">
 				<?php
-				if (isset($_SESSION['account'])){
+				if (!empty($_SESSION['account'])){
 					echo '<a id="manage-account" title="Manage Account" href="/account/?back=/" class="btn "> '. ucfirst($_SESSION['account']) .'</a>';
 				}
 				
@@ -124,7 +123,7 @@
 				<div id="loadingwait">Loading... Please Wait</div>
 				<div id="bgWrap">
 					<div id='bglogowrap'></div>
-					<img id='bglogo' src="images1/ng_logo_532x428.png" alt="Nevergrind Logo" title="Nevergrind">
+					<img id='bglogo' src="/classic/images1/ng_logo_532x428.png" alt="Nevergrind Logo" title="Nevergrind">
 				</div>
 			</div>
 			<canvas id="spellcurtain" width="1280" height="720"></canvas>
@@ -132,9 +131,9 @@
 			
 			<div id="characterSelectScreen">
 				<img style="position: absolute; bottom: 0; left: 0; width: 140px" 
-				src="/images/neverworks.png">
+				src="/classic/images1/neverworks.png">
 				<?php
-				if (isset($_SESSION['email'])){
+				if (!empty($_SESSION['account'])){
 					echo '<div id="leftPaneBG">
 						<a id="showCrystalWrap" target="_blank" href="/store/">
 							<div id="showCrystals" class="strongShadow2 NGgradient">
@@ -180,9 +179,10 @@
 							<div>a free online game</div>
 							<div>by <a href="https://www.linkedin.com/company/neverworks-games-llc">Neverworks Games</a></div>
 						</h1>
-						<img id="nevergrind" src="images1/ng_logo_532x428.png" alt="Nevergrind Logo" title="Nevergrind">
-						
-						<a href="//discord.gg/n2gp8rC" title="Join the Nevergrind Discord Server">Discord Server</a> | 
+						<img id="nevergrind" src="/classic/images1/ng_logo_532x428.png" alt="Nevergrind Logo" title="Nevergrind">
+
+						<a href="/forums" title="Nevergrind Forums">Forums</a> |
+						<a href="//discord.gg/n2gp8rC" title="Join the Nevergrind Discord Server">Discord Server</a> |
 						<a href="/leaderboards/" class="links" title="Nevergrind Leaderboards">Leaderboards</a> | 
 						<a href="/nevergrounds/" class="links" title="Character Profiles, Items, and More">Nevergrounds</a> | 
 						<a href="//nevergrind.com/wiki" class="links" title="Nevergrind Wiki">Wiki</a> | 
@@ -199,24 +199,8 @@
 						
 						<div>In Development:</div>
 						<div>
-							<a href="//nevergrind.com/blog/nevergrind-2/">Nevergrind 2 - Co-op Multiplayer <br>Real-Time Browser RPG!</a>
+							<a href="//nevergrind.com/ng2-test-server/">Nevergrind 2<br>Cooperative Multiplayer RPG<br>Coming to multiple platforms!</a>
 						</div>
-						<?php
-						if($_SERVER["SERVER_NAME"] !== "localhost"){
-						?>
-						<div style="margin: 6px 0">
-							<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-							<!-- Nevergrind ads -->
-							<ins class="adsbygoogle"
-								 style="display:block"
-								 data-ad-client="ca-pub-8697751823759563"
-								 data-ad-slot="5248467388"
-								 data-ad-format="auto"></ins>
-							<script>
-							(adsbygoogle = window.adsbygoogle || []).push({});
-							</script>
-						</div>
-						<?php } ?>
 						
 					</nav>
 				</div>
@@ -233,7 +217,7 @@
 					</div>
 				</div>
 	<?php
-	if (!isset($_SESSION['email'])){
+	if (empty($_SESSION['account'])){
 		require $_SERVER['DOCUMENT_ROOT'] . "/includes/loginModal.php";
 		require $_SERVER['DOCUMENT_ROOT'] . "/includes/loginRefer.php";
 	}
@@ -346,7 +330,7 @@
 			</div>
 
 			<div id="window2scrollsky"></div>
-			<img id="window2zoneday" src="images1/blank.png" alt="Blank image placeholder">
+			<img id="window2zoneday" src="/classic/images1/blank.png" alt="Blank image placeholder">
 				<!-- Travel Window -->
 
 
@@ -387,7 +371,7 @@
 				<div id="monsterhpbarbg" class="barbg">
 					<canvas id="monsterhpbarId" width="300" height="24"></canvas>
 				</div>
-				<img id="mobPlate" src="images1/blank.png" alt="Blank image placeholder">
+				<img id="mobPlate" src="/classic/images1/blank.png" alt="Blank image placeholder">
 				<div id="mobDetails">
 					<div id="mobTraits" class="strongShadow"></div>
 					<div id="mobIcons0" class="mobIcons"></div>
@@ -399,36 +383,36 @@
 			</div>
 
 			<div id="mob2">
-				<img id="mobShadow2" class="shadows" src="images1/blank.png" alt="Blank image placeholder">
+				<img id="mobShadow2" class="shadows" src="/classic/images1/blank.png" alt="Blank image placeholder">
 				<div id="mobName2" class="strongShadow"></div>
 				<canvas id="mobPic2" width="1280" height="720"></canvas>
 			</div>
 			<div id="mob1">
-				<img id="mobShadow1" class="shadows" src="images1/blank.png" alt="Blank image placeholder">
+				<img id="mobShadow1" class="shadows" src="/classic/images1/blank.png" alt="Blank image placeholder">
 				<div id="mobName1" class="strongShadow"></div>
 				<canvas id="mobPic1"></canvas>
 			</div>
 			<div id="mob4">
-				<img id="mobShadow4" class="shadows" src="images1/blank.png" alt="Blank image placeholder">
+				<img id="mobShadow4" class="shadows" src="/classic/images1/blank.png" alt="Blank image placeholder">
 				<div id="mobName4" class="strongShadow"></div>
 				<canvas id="mobPic4"></canvas>
 			</div>
 			<div id="mob0">
-				<img id="mobShadow0" class="shadows" src="images1/blank.png" alt="Blank image placeholder">
+				<img id="mobShadow0" class="shadows" src="/classic/images1/blank.png" alt="Blank image placeholder">
 				<div id="mobName0" class="strongShadow"></div>
 				<canvas id="mobPic0"></canvas>
 			</div><
 			<div id="mob3">
-				<img id="mobShadow3" class="shadows" src="images1/blank.png" alt="Blank image placeholder">
+				<img id="mobShadow3" class="shadows" src="/classic/images1/blank.png" alt="Blank image placeholder">
 				<div id="mobName3" class="strongShadow"></div>
 				<canvas id="mobPic3"></canvas>
 			</div>
 
 
 			<div id="mob5">
-				<img id="petShadow" class="shadows" src="images1/blank.png" alt="Blank image placeholder">
+				<img id="petShadow" class="shadows" src="/classic/images1/blank.png" alt="Blank image placeholder">
 				<div id="petName" class="strongShadow"></div>
-				<img id="petImage" src="images1/blank.png" alt="Blank image placeholder">
+				<img id="petImage" src="/classic/images1/blank.png" alt="Blank image placeholder">
 			</div>
 
 			<div id="window1" class="strongShadow noSelect">
@@ -505,7 +489,7 @@
 				<div id="optionsId" class="buttonsManage" title="(X) Options"></div>
 				<div id="campId" class="buttonsManage" title="Camp"></div>
 			</div>
-			<img class="hide" src="images1/neverworks.png" alt="Neverworks Logo" title="Neverworks">
+			<img class="hide" src="/classic/images1/neverworks.png" alt="Neverworks Logo" title="Neverworks">
 			
 			<div id="errorMsg" class="strongShadow">
 				<noscript>In order to play NeverGrind, you must enable JavaScript!</noscript>
@@ -516,12 +500,8 @@
 			</div>
 		</div> <!-- gameView -->
 	</div><!-- window 2 -->
-	
-	<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/EaselJS/0.7.1/easeljs.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/plugins/EaselPlugin.min.js"></script>
+
+	<script src='/classic/scripts/libs/all-libs.min.js'></script>
 	<script src='//cdn1.kongregate.com/javascripts/kongregate_api.js'></script>
 	
 <?php
@@ -531,7 +511,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/includes/loginJs.php";
 
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . "/includes/ga.html";
-if (!isset($_SESSION['account'])){
+if (empty($_SESSION['account'])){
 	require $_SERVER['DOCUMENT_ROOT'] . "/includes/loginKong.html";
 }
 ?>
@@ -563,7 +543,7 @@ if (!isset($_SESSION['account'])){
 		var target = d.getElementsByTagName('script')[0];
 		for(var i=0, len=_scriptLoader.length; i<len; i++){
 			var x=d.createElement('script');
-			x.src = 'scripts/'+_scriptLoader[i]+'.js?v=' + patchVersion;
+			x.src = '/classic/scripts/'+_scriptLoader[i]+'.js?v=' + patchVersion;
 			x.async=false;
 			target.parentNode.appendChild(x);
 		}

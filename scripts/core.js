@@ -621,15 +621,15 @@ var srv = {
     //key release data
 var lsKey = 40,
     dev = false,
-    itemSprite = "i.imgur.com/gxfvcyu.png";
+    itemSprite = "/classic/images1/item-ng.png";
 if (location.hostname === 'localhost') {
     dev = true;
 }
 var CLR = {
     martyr: false
 }
-var soundLocation = 'sound1/',
-    musicLocation = 'music1/',
+var soundLocation = '/classic/sound1/',
+    musicLocation = '/classic/music1/',
     timers = {},
     portalStatus = false,
     loreTimer = TDC(),
@@ -2236,7 +2236,7 @@ function initMOB() {
         stage[i] = new C.Stage(canvas[i]);
         stage[i].snapToPixelEnabled = true;
         TweenLite.ticker.addEventListener("tick", stage[i].update, stage[i]);
-        bmp[i] = new C.Bitmap("images1/blank.png");
+        bmp[i] = new C.Bitmap("/classic/images1/blank.png");
         tintTimer[i] = {};
         tintTimer[i].poison = TDC();
         tintTimer[i].magic = TDC();
@@ -2245,11 +2245,11 @@ function initMOB() {
         tintTimer[i].cold = TDC();
         blurTimer[i] = TDC();
         bmpTint[i] = {};
-        bmpTint[i].poison = new C.Bitmap("images1/blank.png");
-        bmpTint[i].magic = new C.Bitmap("images1/blank.png");
-        bmpTint[i].lightning = new C.Bitmap("images1/blank.png");
-        bmpTint[i].fire = new C.Bitmap("images1/blank.png");
-        bmpTint[i].cold = new C.Bitmap("images1/blank.png");
+        bmpTint[i].poison = new C.Bitmap("/classic/images1/blank.png");
+        bmpTint[i].magic = new C.Bitmap("/classic/images1/blank.png");
+        bmpTint[i].lightning = new C.Bitmap("/classic/images1/blank.png");
+        bmpTint[i].fire = new C.Bitmap("/classic/images1/blank.png");
+        bmpTint[i].cold = new C.Bitmap("/classic/images1/blank.png");
         pulsate[i] = TDC();
     }
     // cWin canvas
@@ -6816,25 +6816,25 @@ function loadProcImage() {
     asset[213] = D.createElement('audio');
     for (var i = 12; i <= 13; i++) {
         var x = asset[100 + i];
-        x.src = "images1/blank.png";
+        x.src = "/classic/images1/blank.png";
         var N = P.eq[i].name;
         if (N === "Ebony Blade" || N === "Spriggan's Blade") {
-            x.src = "images1/rootImage.png";
+            x.src = "/classic/images1/rootImage.png";
         } else if (N === "Baezil's Vortex" ||
             N === "Rathmonan's Vortex") {
-            x.src = "images1/lightningNova.png";
+            x.src = "/classic/images1/lightningNova.png";
         } else if (N === "Flamebellow") {
-            x.src = "images1/fireNova.png";
+            x.src = "/classic/images1/fireNova.png";
         } else if (N === "Scimitar of the Mistwalker" ||
             N === "Scimitar of the Grovecaller" ||
             N === "Jysin's Blade of the Darkwind") {
             asset[114] = D.createElement('img');
-            asset[114].src = "images1/a white wolf.png";
+            asset[114].src = "/classic/images1/a white wolf.png";
         } else if (N === "Plankton Laced Greatsword") {
-            x.src = "images1/frostNova.png";
+            x.src = "/classic/images1/frostNova.png";
             asset[200 + i].src = soundLocation + "novaice." + audioExt;
         } else if (N === "Megnemon's Glacial Crook") {
-            x.src = "images1/glacialSpike.png";
+            x.src = "/classic/images1/glacialSpike.png";
             asset[200 + i].src = soundLocation + "icespike1." + audioExt;
         }
     }
@@ -6914,7 +6914,7 @@ function showIntro() {
 
         function intro2() {
             D.getElementById('introText2').style.display = 'none';
-            canWorldMap = new C.Bitmap("//i.imgur.com/d1iYz2W.jpg");
+            canWorldMap = new C.Bitmap("/classic/images1/worldMap.jpg");
             canWorldMap.image.onload = function() {
                 canWorldMap.setTransform(640, 384, 1, 1, 0, 0, 0, 640, 384);
                 canWorldMap.alpha = 0;
@@ -7039,7 +7039,7 @@ function enterWorld() {
     drawExpBar(0);
     classSpriteLoaded = false;
     var classSprite = new Image();
-    classSprite.src = "images1/sprite" + my.job + "3.png";
+    classSprite.src = "/classic/images1/sprite" + my.job + "3.png";
     classSprite.onload = function() {
             classSpriteLoaded = true;
         }
@@ -7139,7 +7139,7 @@ function enterWorld() {
         g.wraithRatio = .025;
     }
 	$("#tooltipname, #ttItemName, .buttonsManage, .buttonsManageOff").css('display','block');
-	$(".shadows").attr('src','//i.imgur.com/7bn79bN.png');
+	$(".shadows").attr('src','/classic/images1/mobShadow.png');
 	loadMiscImages();
 	if(!dev){
 		window.onbeforeunload = function(){ 
@@ -7831,7 +7831,7 @@ function setClassStyles() {
             backgroundPosition: "-100% -200%"
         });
     initTalentStyles();
-    $NG.equipmentBG.css("background", "url('//" + itemSprite + "')")
+    $NG.equipmentBG.css("background", "url('" + itemSprite + "')")
         .css({
             backgroundPosition: "0 0"
         });
@@ -9338,37 +9338,38 @@ function checkCity(foo) {
 }
 
 function loadWeaponSlashes() {
+    var p = '/classic/images1/';
     if (P.eq[12].type === "slashed") {
         asset[109] = D.createElement('img');
-        asset[109].src = "images1/slashed.png";
+        asset[109].src = p + "slashed.png";
     } else if (P.eq[12].type === "crushed") {
         asset[107] = D.createElement('img');
-        asset[107].src = "images1/crushed.png";
+        asset[107].src = p + "crushed.png";
     } else if (P.eq[12].type === "pierced") {
         asset[105] = D.createElement('img');
-        asset[105].src = "images1/pierced.png";
+        asset[105].src = p + "pierced.png";
     } else if (P.eq[12].type === "punched") {
         asset[103] = D.createElement('img');
-        asset[103].src = "images1/punched.png";
+        asset[103].src = p + "punched.png";
     } else if (P.eq[12].type === "smashed" || "staff" === P.eq[12].type) {
         asset[101] = D.createElement('img');
-        asset[101].src = "images1/smashed.png";
+        asset[101].src = p + "smashed.png";
     } else if (P.eq[12].type === "cleaved") {
         asset[100] = D.createElement('img');
-        asset[100].src = "images1/cleaved.png";
+        asset[100].src = p + "cleaved.png";
     }
     if (P.eq[13].type === "crushed") {
         asset[106] = D.createElement('img');
-        asset[106].src = "images1/crushedL.png";
+        asset[106].src = p + "crushedL.png";
     } else if (P.eq[13].type === "pierced") {
         asset[104] = D.createElement('img');
-        asset[104].src = "images1/piercedL.png";
+        asset[104].src = p + "piercedL.png";
     } else if (P.eq[13].type === "punched") {
         asset[102] = D.createElement('img');
-        asset[102].src = "images1/punched.png";
+        asset[102].src = p + "punched.png";
     } else if (P.eq[13].type === "slashed") {
         asset[108] = D.createElement('img');
-        asset[108].src = "images1/slashedL.png";
+        asset[108].src = p + "slashedL.png";
     }
 }
 
@@ -9379,74 +9380,75 @@ function preload(arrayOfImages) {
 }
 
 function loadMiscImages() {
+	var p = '/classic/images1/';
     asset[115] = D.createElement("img");
-    asset[115].src = '//i.imgur.com/hqFEnqI.png';
+    asset[115].src = p + 'spriteMobs2.png';
     asset[116] = D.createElement('img');
-    asset[116].src = "//" + itemSprite;
+    asset[116].src = itemSprite;
     asset[117] = D.createElement('img');
-    asset[117].src = "images1/NGbutton.png";
+    asset[117].src = p + "NGbutton.png";
     asset[118] = D.createElement('img');
-    asset[118].src = "images1/classPlate.png";
+    asset[118].src = p + "classPlate.png";
     asset[119] = D.createElement('img');
-    asset[119].src = "images1/rock380-430.jpg";
+    asset[119].src = p + "rock380-430.jpg";
     asset[120] = D.createElement('img');
-    asset[120].src = "images1/win5.png";
+    asset[120].src = p + "win5.png";
     asset[121] = D.createElement('img');
-    asset[121].src = "images1/ng_logo_532x428.png";
+    asset[121].src = p + "ng_logo_532x428.png";
     asset[122] = D.createElement('img');
-    asset[122].src = "images1/entername.png";
+    asset[122].src = p + "entername.png";
     asset[122] = D.createElement('img');
-    asset[122].src = "images1/ccFrame.png";
+    asset[122].src = p + "ccFrame.png";
     asset[123] = D.createElement('img');
-    asset[123].src = "images1/statFrame.png";
+    asset[123].src = p + "statFrame.png";
     asset[124] = D.createElement('img');
-    asset[124].src = 'images1/blank.png';
+    asset[124].src = p + 'blank.png';
     asset[125] = D.createElement('img');
-    asset[125].src = '//i.imgur.com/d1iYz2W.jpg';
+    asset[125].src = p + 'worldMap.jpg';
     asset[126] = D.createElement('img');
-    asset[126].src = "images1/raceButtons.png";
+    asset[126].src = p + "raceButtons.png";
     asset[127] = D.createElement('img');
-    asset[127].src = "images1/myhpbardiv.png";
+    asset[127].src = p + "myhpbardiv.png";
     asset[128] = D.createElement('img');
-    asset[128].src = "images1/bossPlate.png";
+    asset[128].src = p + "bossPlate.png";
     asset[129] = D.createElement('img');
-    asset[129].src = "images1/championPlate.png";
+    asset[129].src = p + "championPlate.png";
     asset[130] = D.createElement('img');
-    asset[130].src = "images1/rarePlate.png";
+    asset[130].src = p + "rarePlate.png";
     asset[131] = D.createElement('img');
-    asset[131].src = "images1/normalPlate.png";
+    asset[131].src = p + "normalPlate.png";
     asset[132] = D.createElement('img');
-    asset[132].src = "images1/statButton.png";
+    asset[132].src = p + "statButton.png";
     asset[133] = D.createElement('img');
-    asset[133].src = "images1/greyButton.png";
+    asset[133].src = p + "greyButton.png";
     asset[134] = D.createElement('img');
-    asset[134].src = "images1/equipment.png";
+    asset[134].src = p + "equipment.png";
     asset[135] = D.createElement('img');
-    asset[135].src = "images1/stats.png";
+    asset[135].src = p + "stats.png";
     asset[136] = D.createElement('img');
-    asset[136].src = "images1/tile.png";
+    asset[136].src = p + "tile.png";
     asset[137] = D.createElement('img');
-    asset[137].src = "images1/wideHead.png";
+    asset[137].src = p + "wideHead.png";
     asset[139] = D.createElement('img');
-    asset[139].src = "images1/itemtt.png";
+    asset[139].src = p + "itemtt.png";
     asset[140] = D.createElement('img');
-    asset[140].src = "images1/portal.png";
+    asset[140].src = p + "portal.png";
     asset[141] = D.createElement('img');
-    asset[141].src = "images1/portraits.png";
+    asset[141].src = p + "portraits.png";
     asset[142] = D.createElement('img');
-    asset[142].src = 'images1/greenparticle200.png';
+    asset[142].src = p + 'greenparticle200.png';
     asset[143] = D.createElement('img');
-    asset[143].src = 'images1/magentaparticle200.png';
+    asset[143].src = p + 'magentaparticle200.png';
     asset[144] = D.createElement('img');
-    asset[144].src = 'images1/yellowparticle200.png';
+    asset[144].src = p + 'yellowparticle200.png';
     asset[145] = D.createElement('img');
-    asset[145].src = 'images1/glacialSpike.png';
+    asset[145].src = p + 'glacialSpike.png';
     asset[146] = D.createElement('img');
-    asset[146].src = 'images1/fireball.png';
+    asset[146].src = p + 'fireball.png';
     asset[147] = D.createElement('img');
-    asset[147].src = 'images1/bossPlate.png';
+    asset[147].src = p + 'bossPlate.png';
     asset[148] = D.createElement('img');
-    asset[148].src = '//i.imgur.com/7bn79bN.png';
+    asset[148].src = p + 'mobShadow.png';
     asset[201] = D.createElement('audio');
     asset[201].src = soundLocation + "button_2." + audioExt;
     var foo = [];
@@ -9466,7 +9468,7 @@ function loadMiscImages() {
     }
     for (var i = 150, len = foo.length + 150; i < len; i++) {
         asset[i] = D.createElement('img');
-        asset[i].src = "images1/" + foo[i - 150] + ".png";
+        asset[i].src = "/classic/images1/" + foo[i - 150] + ".png";
     }
 }
 
@@ -9517,7 +9519,7 @@ function loadClassSkillImages() {
     foo.push("bloodSpray");
     for (var i = 0, len = foo.length; i < len; i++) {
 		var x = new Image();
-		x.src = "images1/" + foo[i] + ".png";
+		x.src = "/classic/images1/" + foo[i] + ".png";
 		asset[400 + i] = x;
     }
 }
@@ -9646,7 +9648,7 @@ function renderBank(max) {
     for (var i = start; i < end; i++) {
         z += "<li class='bankBG' id='bank" + i + "BG'>BANK";
         if (P.bank[i].name) {
-            z += "<img id='bank" + i + "' src='//" + itemSprite + "' class='bank' style='left:" + P.bank[i].xPos + "px;top:" + P.bank[i].yPos + "px'>";
+            z += "<img id='bank" + i + "' src='" + itemSprite + "' class='bank' style='left:" + P.bank[i].xPos + "px;top:" + P.bank[i].yPos + "px'>";
         } else {
             z += "<img id='bank" + i + "' src='images1/blank.png' class='bank'>";
         }
@@ -10174,7 +10176,7 @@ function loadZone() {
             }
         }
         doit(0);
-        $NG2.bankBG.css("background", "url('//" + itemSprite + "')")
+        $NG2.bankBG.css("background", "url('" + itemSprite + "')")
             .css({
                 backgroundPosition: "0 0"
             });
@@ -10200,10 +10202,10 @@ function loadZone() {
         mobs[i].src = 'images1/' + zig[i] + '.png';
     }
     imagesLoaded = 0;
-    $("#window2zoneday").attr("src", 'backgrounds/' + foo);
+    $("#window2zoneday").attr("src", '/classic/backgrounds/' + foo);
     if (cityStatus === true) {
-        $NG2.city.attr("src", "//" + itemSprite);
-        $NG2.cityBG.css("background", "url('//" + itemSprite + "')").css({
+        $NG2.city.attr("src", itemSprite);
+        $NG2.cityBG.css("background", "url('" + itemSprite + "')").css({
             backgroundPosition: "0 0"
         });
         D.getElementById('cityGold').innerHTML = "<div id='goldIcon' class='goldIcon'></div> " + my.gold;
@@ -10237,9 +10239,9 @@ function writeCityHtml() {
 		'</div>';
     z += '</div>' +
         '<div id="cityNPCdiv">' +
-        '<img id="cityNPCshadow" src="//i.imgur.com/7bn79bN.png">' +
+        '<img id="cityNPCshadow" src="/classic/images1/mobShadow.png">' +
         '<div id="cityNPCname" class="strongShadow"></div>' +
-        '<img id="cityNPC" src="images1/blank.png">' +
+        '<img id="cityNPC" src="/classic/images1/blank.png">' +
         '</div>' +
         '<div id="trainingOptions" class="strongShadow">' +
         '<div id="training1">' +
@@ -11020,11 +11022,11 @@ function updateEquipment() {
         if (e1 != null) {
             var o = P.eq[i];
             if (o.name) {
-                e1.src = "//" + itemSprite;
+                e1.src = itemSprite;
                 e1.style.left = o.xPos + 'px';
                 e1.style.top = o.yPos + 'px';
             } else {
-                e1.src = "images1/blank.png";
+                e1.src = "/classic/images1/blank.png";
             }
         }
     }
@@ -11036,11 +11038,11 @@ function updateInventory() {
         if (e1 !== null) {
             var o = P.item[i];
             if (o.name) {
-                e1.src = "//" + itemSprite;
+                e1.src = itemSprite;
                 e1.style.left = o.xPos + 'px';
                 e1.style.top = o.yPos + 'px';
             } else {
-                e1.src = "images1/blank.png";
+                e1.src = "/classic/images1/blank.png";
             }
         }
     }
@@ -11052,11 +11054,11 @@ function updateBank() {
         if (e1 !== null) {
             var o = P.bank[i];
             if (o.name) {
-                e1.src = "//" + itemSprite;
+                e1.src = itemSprite;
                 e1.style.left = o.xPos + 'px';
                 e1.style.top = o.yPos + 'px';
             } else {
-                e1.src = "images1/blank.png";
+                e1.src = "/classic/images1/blank.png";
             }
         }
     }
@@ -11153,7 +11155,7 @@ $(function() {
             dragSlot = that.parent().index();
             var X = P.item[dragSlot];
             classDrag = "inventory";
-            if (that.attr("src") === "images1/blank.png") { //clicked an empty slot
+            if (that.attr("src") === "/classic/images1/blank.png") { //clicked an empty slot
                 dragID = "";
                 dragStatus = false;
                 Error("There seems to be nothing there.");
@@ -11358,7 +11360,7 @@ $(function() {
                 classDrag = "bank";
                 dragSlot = dragSlot + (activeBankTab * 90);
             }
-            if (that.attr("src") === "images1/blank.png") { //clicked an empty slot
+            if (that.attr("src") === "/classic/images1/blank.png") { //clicked an empty slot
                 dragID = "";
                 dragStatus = false;
             } else { // transfer data to dragged object
@@ -11599,5 +11601,5 @@ function keepSessionAlive() {
 }
 (function() {
     var e = new Image();
-    e.src = 'backgrounds/home.jpg';
+    e.src = '/classic/backgrounds/home.jpg';
 })();

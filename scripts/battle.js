@@ -1355,7 +1355,7 @@ function summonWolfFamiliar(name, maxDam, minDam){
 		left:-50,
 		opacity:0,
 		width:400
-	}).attr("src","images1/a white wolf.png")
+	}).attr("src","/classic/images1/a white wolf.png")
 	.appendTo($NG.eWin2);
 	T.to(familiar[familiarId], .5, {
 		opacity:1
@@ -4180,7 +4180,7 @@ function killAllMonsters(){
 function playEnding(){
 	window.onbeforeunload = null;
 	playMusic("Heroic Demise (2013 - With Choir)");
-	var w4 = new C.Bitmap('backgrounds/nimgaul.jpg');
+	var w4 = new C.Bitmap('/classic/backgrounds/nimgaul.jpg');
 	stage[8].addChild(w4);
 	w4.image.onload = function(){
 		var e = w4.getBounds();
@@ -4229,11 +4229,11 @@ function killBoss(){
 		}
 	});
 	var s1 = new Audio();
-	s1.src = "sound1/explode1."+audioExt;
+	s1.src = "/classic/sound1/explode1."+audioExt;
 	var s2 = new Audio();
-	s2.src = "sound1/explode2."+audioExt;
+	s2.src = "/classic/sound1/explode2."+audioExt;
 	var s3 = new Audio();
-	s3.src = "sound1/explode3."+audioExt;
+	s3.src = "/classic/sound1/explode3."+audioExt;
 	var p1 = new Image();
 	p1.src = 'images1/tremorFG.png';
 	var p2 = new Image();
@@ -6330,19 +6330,19 @@ function battle(){
 		NG['mobIcons'+newSlotNumber].style.display="block";
 		if(mob[TGT].rare===0){
 			NG.mobBar.className="ui-draggable";
-			NG.mobPlate.src = "images1/rarePlate.png";
+			NG.mobPlate.src = "/classic/images1/rarePlate.png";
 			NG.mobPlate.className = "nameplateGold";
 		}else if(mob[TGT].rare==2){
 			NG.mobBar.className="ui-draggable";
-			NG.mobPlate.src = "images1/championPlate.png";
+			NG.mobPlate.src = "/classic/images1/championPlate.png";
 			NG.mobPlate.className = "nameplateBlue";
 		}else if(mob[TGT].rare==3){
 			NG.mobBar.className="ui-draggable";
-			NG.mobPlate.src = "images1/bossPlate.png";
+			NG.mobPlate.src = "/classic/images1/bossPlate.png";
 			NG.mobPlate.className = "nameplateRed";
 		}else if(mob[TGT].rare===1){
 			NG.mobBar.className="ui-draggable";
-			NG.mobPlate.src = "images1/normalPlate.png";
+			NG.mobPlate.src = "/classic/images1/normalPlate.png";
 			NG.mobPlate.className = "nameplateBlack";
 		}
 		NG.mobTraits.innerHTML=mob[newSlotNumber].traits;
@@ -7069,12 +7069,12 @@ function toggleAutoAttackStatus(){
 	}
 	if(g.autoAttackStatus===0){
 		D.getElementById('mobName'+TGT).style.color="#ff0";
-		D.getElementById('mobShadow'+TGT).src="//i.imgur.com/7bn79bN.png";
+		D.getElementById('mobShadow'+TGT).src="/classic/images1/mobShadow.png";
 		g.autoAttackStatus=1;
 		autoAttackTimer(0);
 	}else{
 		D.getElementById('mobName'+TGT).style.color="#ff3333";
-		D.getElementById('mobShadow'+TGT).src="//i.imgur.com/fnHtalN.png";
+		D.getElementById('mobShadow'+TGT).src="/classic/images1/mobShadowRed.png";
 		g.autoAttackStatus=0;
 		myAttack.kill();
 		myAttack2.kill();
@@ -7126,7 +7126,7 @@ function addBuffRaceIcon(skillName,buffId,duration,spriteX){
 			top:0,
 			left:spriteX,
 			position:"absolute"
-		}).attr("src", "images1/sprite"+my.race+"2.png");
+		}).attr("src", "/classic/images1/sprite"+my.race+"2.png");
 	var newBuff1 = $('<div>').css({
 			width:32,
 			height:32,
@@ -7164,7 +7164,7 @@ function addBuffIcon(skillName,buffId,duration,spriteX,spriteY){ //buff myself
 			top:spriteY,
 			left:spriteX,
 			position:"absolute"
-		}).attr("src", "images1/sprite"+my.job+"3.png");
+		}).attr("src", "/classic/images1/sprite"+my.job+"3.png");
 	var newBuff1 = $('<div>').css({
 			width:32,
 			height:32,
@@ -7211,12 +7211,12 @@ function addMobBuffIcon(skillName,Slot,buffId,duration,spriteX,spriteY,proc,stac
 	var w1 = 576;
 	var h1 = 128;
 	if(spriteX===9999){
-		img = "images1/spriteGnome2.png";
+		img = "/classic/images1/spriteGnome2.png";
 		spriteX=0;
 		var w1 = 32;
 		var h1 = 64;
 	}else{
-		img = "images1/sprite"+my.job+"3.png";
+		img = "/classic/images1/sprite"+my.job+"3.png";
 	}
 	var newBuff2 = $('<img>').css({
 			width:w1,
@@ -7232,7 +7232,7 @@ function addMobBuffIcon(skillName,Slot,buffId,duration,spriteX,spriteY,proc,stac
 			top:0,
 			left:0,
 			position:"absolute"
-		}).attr("src","images1/"+proc+"Icon.png");
+		}).attr("src","/classic/images1/"+proc+"Icon.png");
 	}
 	var newBuff1 = $('<div>').css({
 		width:32,
@@ -7264,7 +7264,7 @@ function mobBuffIcon(skillName,buffId,duration,spriteX){ //mob hits me
 			margin:0,
 			padding:0,
 			position:"absolute"
-		}).attr("src","//i.imgur.com/hqFEnqI.png");
+		}).attr("src","/classic/images1/spriteMobs2.png");
 	var newBuff1 = $('<div>').css({
 		width:32,
 		height:32,
@@ -7301,7 +7301,7 @@ function mobSelfBuffIcon(skillName,buffId,duration,spriteX,Slot){ //mob self buf
 			top:0,
 			left:spriteX,
 			position:"absolute"
-		}).attr("src","//i.imgur.com/hqFEnqI.png");
+		}).attr("src","/classic/images1/spriteMobs2.png");
 	var bar = $('<div>').css({
 		width:32,
 		height:32,
