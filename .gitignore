@@ -22,3 +22,6 @@ account/
 confirmemail/
 includes/
 master1.php
+*.min.js
+*.min.css
+nevergrind.js
