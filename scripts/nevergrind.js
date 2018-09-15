@@ -1,4 +1,38 @@
-(function($,Math,document,location,TweenMax,TimelineMax,Power0,Power1,Power2,Power3,Power4,Back,Elastic,Bounce,SteppedEase,Circ,Expo,Sine,setTimeout,setInterval,undefined){
+(function(
+	$,
+	Math,
+	document,
+	location,
+	TweenMax,
+	TimelineMax,
+	Power0,
+	Power1,
+	Power2,
+	Power3,
+	Power4,
+	Back,
+	Elastic,
+	Bounce,
+	SteppedEase,
+	Circ,
+	Expo,
+	Sine,
+	setTimeout,
+	setInterval,
+	clearTimeout,
+	clearInterval,
+	webkitRequestAnimationFrame,
+	webkitCancelAnimationFrame,
+	getComputedStyle,
+	requestAnimationFrame,
+	cancelAnimationFrame,
+	window,
+	Array,
+	JSON,
+	Date,
+	Object,
+	undefined
+){
 
 if(location.pathname.indexOf("nevergrounds")===-1){
 	nevergrounds = false;
@@ -15879,8 +15913,9 @@ function loadServerCharacters() {
         for (var i = 1; i <= 16; i++) {
             D.getElementById('characterslot' + i).style.display = 'none';
         }
-		data.chars.forEach(function(c, i){
-			i++;
+        console.info(data.chars);
+        for (var i in data.chars) {
+            var c = data.chars[i];
             var foo = D.getElementById('characterslot' + i);
             var name = c.name;
             var level = c.level;
@@ -15895,18 +15930,20 @@ function loadServerCharacters() {
             var subzoneH = c.subzoneH * 1;
             var hardcoreMode = c.hardcoreMode;
 			var timestamp = c.timestamp*1;
+
             var s1 = '<div class="yellow glowYellow nomouse">' + name + '</div>' +
                 '<div class="nomouse">' + level + ' ' + race + ' <span id="myjob' + i + '">' + job + '</div>';
-			if(timestamp===0){ // no expire
+			if (timestamp===0){ // no expire
 				s1 += '<div class="nomouse yellow"></div>';
-			}else if(timestamp>0){ // time left to expire
-				var word = "Days";
+			}
+			else if(timestamp>0){ // time left to expire
+				/*var word = "Days";
 				if(timestamp===1){
 					word = "Day";
 				}
-				if(timestamp < 10){
+				if (timestamp < 10){
 					s1 += '<div class="nomouse yellow">Expires in '+timestamp+' '+word+'</div>';
-				}
+				}*/
 			}
             foo.innerHTML = s1
             $("#characterslot" + i).data({
@@ -15923,7 +15960,7 @@ function loadServerCharacters() {
             charactersFound++;
             firstEmptyCharacterSlot = 16 - charactersFound;
             foundCharacter = true;
-		});
+        }
         block(['leftPaneBG']);
         D.getElementById('createWindowId').style.display = 'block';
         D.getElementById('currencyIndicator').style.display = 'block';
@@ -35878,7 +35915,7 @@ function animateDissension(Slot){
 			});
 		}
 		var p4 = can('drainBG', 7, x2-xWidth, y2-150, xWidth*2, 100);
-		e1.image.onload = function(){
+		p4.image.onload = function(){
 			T.to(p4, (800+(count*100))/1000, {
 				y:600,
 				alpha:0,
@@ -59373,7 +59410,7 @@ function getMonster(count, rareMobFlag) {
         cX = 105;
         cY = 110;
         Maud1 = "ghostatt";
-        Maud2 = "giosthit";
+        Maud2 = "ghosthit";
         Maud3 = "ghostdie";
         Mstr *= 1.2;
         Mmagic = 67;
@@ -66346,7 +66383,7 @@ function getArmor(Slot, newItem, newTier) {
 				name = "Chausses";
 			}
 			if (qux == 4) {
-				foo = 11;
+				foo = 18;
 				yPos = -832;
 				name = "Iron Legplates";
 			}
@@ -68968,7 +69005,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 				I.allResist = 9;
 				I.req = 21;
 			}
-			if (N === "Dragon Cape") {
+			if (N === "Burnt Cape") {
 				if (M.random() > .5) {
 					I.name = "Cloak of Qalon";
 					I.dex = 9;
@@ -72484,7 +72521,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 				I.resistPoison = 12;
 				I.req = 44;
 			}
-			if (N === "Dragon Cape") {
+			if (N === "Burnt Cape") {
 				I.name = "Rukishna Cloak";
 				I.channeling = 5;
 				I.evocation = 5;
@@ -76405,7 +76442,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 					I.req = 62;
 				}
 			}
-			if (N === "Dragon Cape") {
+			if (N === "Burnt Cape") {
 				I.name = "Cloak of Piety";
 				I.wis = 18;
 				I.dex = 18;
@@ -90522,4 +90559,37 @@ initAudio();
 
 
 scriptsLoaded=true;
-})($,Math,document,location,TweenMax,TimelineMax,Power0,Power1,Power2,Power3,Power4,Back,Elastic,Bounce,SteppedEase,Circ,Expo,Sine,setTimeout,setInterval,undefined);
+})(
+	$,
+		Math,
+		document,
+		location,
+		TweenMax,
+		TimelineMax,
+		Power0,
+		Power1,
+		Power2,
+		Power3,
+		Power4,
+		Back,
+		Elastic,
+		Bounce,
+		SteppedEase,
+		Circ,
+		Expo,
+		Sine,
+		setTimeout,
+		setInterval,
+		clearTimeout,
+		clearInterval,
+		window.webkitRequestAnimationFrame === undefined ? undefined : webkitRequestAnimationFrame,
+		window.webkitCancelAnimationFrame === undefined ? undefined : webkitCancelAnimationFrame,
+		getComputedStyle,
+		requestAnimationFrame,
+		cancelAnimationFrame,
+		window,
+		Array,
+		JSON,
+		Date,
+		Object
+);

@@ -11427,7 +11427,7 @@ function animateDissension(Slot){
 			});
 		}
 		var p4 = can('drainBG', 7, x2-xWidth, y2-150, xWidth*2, 100);
-		e1.image.onload = function(){
+		p4.image.onload = function(){
 			T.to(p4, (800+(count*100))/1000, {
 				y:600,
 				alpha:0,

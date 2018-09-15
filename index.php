@@ -26,7 +26,7 @@ if(!empty($_SESSION['account'])){
 	<meta name="google-site-verification" content="iC9l4midOGIXERCwagfpkef9ifunV-aZd_zlUUOPjIU" />
 	<link rel='stylesheet' type='text/css' href="/classic/css/global.css">
 	<?php
-	$version = '2-0-15';
+	$version = '2-0-17';
 	?>
 	<script>
 		patchVersion='<?php echo $version ?>';
@@ -192,15 +192,7 @@ if(!empty($_SESSION['account'])){
 						<marquee class="red">Season 2 of Nevergrind coming soon... date to be decided</marquee-->
 						
 						<hr class="fancyHR">
-						<div>Other Games I Made:</div>
-						<a href="/games/firmament-wars" title="Firmament Wars | Risk-Like Multiplayer Grand Strategy Browser Game" class="links">Firmament Wars</a>
-						
-						<hr class="fancyHR">
-						
-						<div>In Development:</div>
-						<div>
-							<a href="//nevergrind.com/ng2-test-server/">Nevergrind 2<br>Cooperative Multiplayer RPG<br>Coming to multiple platforms!</a>
-						</div>
+						<iframe src="https://store.steampowered.com/widget/849790/" frameborder="0" width="420" height="190"></iframe>
 						
 					</nav>
 				</div>

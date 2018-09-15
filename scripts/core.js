@@ -10444,9 +10444,11 @@ function loadServerCharacters() {
         for (var i = 1; i <= 16; i++) {
             D.getElementById('characterslot' + i).style.display = 'none';
         }
-		data.chars.forEach(function(c, i){
-			i++;
-            var foo = D.getElementById('characterslot' + i);
+        console.info(data.chars);
+        data.chars.forEach(function(v, i) {
+            console.info('KEY: ', i);
+            var c = data.chars[i];
+            var foo = D.getElementById('characterslot' + (i+1));
             var name = c.name;
             var level = c.level;
             var race = c.race;
@@ -10460,21 +10462,14 @@ function loadServerCharacters() {
             var subzoneH = c.subzoneH * 1;
             var hardcoreMode = c.hardcoreMode;
 			var timestamp = c.timestamp*1;
+
             var s1 = '<div class="yellow glowYellow nomouse">' + name + '</div>' +
                 '<div class="nomouse">' + level + ' ' + race + ' <span id="myjob' + i + '">' + job + '</div>';
-			if(timestamp===0){ // no expire
+			if (timestamp===0){ // no expire
 				s1 += '<div class="nomouse yellow"></div>';
-			}else if(timestamp>0){ // time left to expire
-				var word = "Days";
-				if(timestamp===1){
-					word = "Day";
-				}
-				if(timestamp < 10){
-					s1 += '<div class="nomouse yellow">Expires in '+timestamp+' '+word+'</div>';
-				}
 			}
             foo.innerHTML = s1
-            $("#characterslot" + i).data({
+            $("#characterslot" + (i+1)).data({
                 difficulty: difficulty,
                 zone: zone,
                 zoneN: zoneN,
@@ -10488,7 +10483,8 @@ function loadServerCharacters() {
             charactersFound++;
             firstEmptyCharacterSlot = 16 - charactersFound;
             foundCharacter = true;
-		});
+
+        });
         block(['leftPaneBG']);
         D.getElementById('createWindowId').style.display = 'block';
         D.getElementById('currencyIndicator').style.display = 'block';
