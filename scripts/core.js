@@ -7524,15 +7524,8 @@ $(function() {
 			}).done(function(data) {
 				if (data == 'maxed') {
 					QMsg("You cannot have more than 16 character slots per account.");
-				} else if (data == 'buyCrystals') {
-					QMsg("Please purchase Never Crystals to unlock additional character slots.");
-				} else if (data == 'pay150') {
-					playAudio("buyitem");
-					QMsg("Character slot purchased for 150 Never Crystals.");
-					var oldCrystals = $("#crystalCount").text() * 1;
-					$("#crystalCount").text(oldCrystals - 150);
-					createChar();
-				} else if (data == 'create') {
+				}
+				else if (data == 'create') {
 					createChar();
 				}
 				g.unlockScreen();
@@ -7752,7 +7745,7 @@ function loadCharacterSlot(Slot) {
 function setZoneDifficultyIndicators(reset) {
     if (mySubzone() === 0) {
         checkZoneExists();
-        D.getElementById("zoneIndicator").textContent = myZone(); // Remove
+        $("#zoneIndicator").text(myZone()); // Remove
     }
     if (reset) {
         my.difficulty = 1;
@@ -7780,10 +7773,14 @@ function setZoneDifficultyIndicators(reset) {
 		$("#normalLabel, #nightmareLabel").css('display', 'inline-block');
 	}
 	setDiffColor(srv.difficulty);
-    if (hardcoreMode === "true") {
-        D.getElementById("enterworld").className = "strongShadow NGhardcore";
-    } else {
-        D.getElementById("enterworld").className = "strongShadow NGgradient";
+	var el = D.getElementById("enterworld");
+	if (el !== null) {
+        if (hardcoreMode === "true") {
+            el.className = "strongShadow NGhardcore";
+        }
+        else {
+            el.className = "strongShadow NGgradient";
+        }
     }
 }
 
@@ -9182,10 +9179,19 @@ save.my = function(loc) {
 			url: '/classic/php/game1.php',
 			data: {
 				run: "updateMy",
-				my: my,
+                title: my.title,
+                difficulty: my.difficulty,
+                level: my.level,
+                zone: my.zone,
+                zoneH: my.zoneH,
+                zoneN: my.zoneN,
+                subzone: my.subzone,
+                subzoneN: my.subzoneN,
+                subzoneH: my.subzoneH,
+                name: my.name,
 				json: JSON.stringify(json)
 			}
-		}).done(function(data) {
+		}).done(function() {
 			if (campStatus === true) {
 				QMsg("Logging out...");
 				serverLogout();
@@ -9219,6 +9225,7 @@ function saveGame() {
 }
 
 function delChar() {
+    if (!charactersFound) return;
     playAudio('button_2');
 	if ($("#characterslot" + characterslot).children().first().text() === "") {
 		return;
@@ -10446,9 +10453,10 @@ function loadServerCharacters() {
         }
         console.info(data.chars);
         data.chars.forEach(function(v, i) {
-            console.info('KEY: ', i);
             var c = data.chars[i];
-            var foo = D.getElementById('characterslot' + (i+1));
+            i = i+1;
+            console.info('KEY: ', i);
+            var foo = D.getElementById('characterslot' + i);
             var name = c.name;
             var level = c.level;
             var race = c.race;
@@ -10469,7 +10477,7 @@ function loadServerCharacters() {
 				s1 += '<div class="nomouse yellow"></div>';
 			}
             foo.innerHTML = s1
-            $("#characterslot" + (i+1)).data({
+            $("#characterslot" + i).data({
                 difficulty: difficulty,
                 zone: zone,
                 zoneN: zoneN,
@@ -10792,7 +10800,7 @@ function enterZoneSuccess2(instant) {
 
     // one-time actions upon login
     if (enteredWorldOnce === false) {
-        checkSessionActive();
+        // checkSessionActive();
 		Chat2("Hit Enter to begin chatting",3);
 		Chat2("Type /help for chat commands",3);
 		Chat2("You have joined [1. General Chat]",3);
@@ -10949,7 +10957,7 @@ $(function() {
 		}).always(function(){
 			setTimeout(function(){
 				do1();
-			}, 300000);
+			}, 150000);
 		});
 	}
 	setTimeout(function(){
@@ -11398,14 +11406,6 @@ $('#gameView').on('mouseup', '.inventory', function(e) {
 });
 
 function setCharacterSelectPanel() {
-    $("#createcharacter").remove();
-    var h = '<div id="createcharacter" class="strongShadow NGgradient">Create Character</div>';
-    $('#showCrystalWrap').after(h);
-    $("#deletecharacter").remove();
-    if (charactersFound > 0) {
-        var h = '<div id="deletecharacter" class="strongShadow NGgradient">Delete Character</div>';
-        $('#characterSlotPanel').before(h);
-    }
     block('leftPaneBG');
     D.getElementById('logout').style.display = 'block';
     if (charactersFound > 0) {
@@ -11444,12 +11444,11 @@ function logout() {
 			data: {
 				run: "logout"
 			}
-		}).done(function(data) {
+		}).done(function() {
 			QMsg("Logout successful");
 			for (var i = 1; i < 16; i++) {
 				$('#characterslot' + i).css('display', "none");
 			}
-			$("#createcharacter, #deletecharacter").remove();
 			$('#enterWorldWrap').css('display', "none");
 			$('#logout').html('');
 			$("#loginPassword").val('');
@@ -11494,6 +11493,12 @@ $("#addBankSlots").on('click', function() {
         });
     }
 });
+$("#card-open-form").on('click', function() {
+   if (buttonLock === false) {
+       card.openPaymentModal();
+   }
+});
+
 g.lockScreen = function(bypass) {
     buttonLock = true;
     if (!bypass) {
@@ -11529,7 +11534,7 @@ $("#gameView").on('dragstart', 'img', function(e) {
     e.preventDefault();
 });
 
-function checkSessionActive() {
+/*function checkSessionActive() {
 	$.ajax({
 		data: {
 			run: "checkSessionActive"
@@ -11546,7 +11551,7 @@ function checkSessionActive() {
 			}
 		}
 	});
-}
+}*/
 
 function keepSessionAlive() {
     $.ajax({
@@ -11556,7 +11561,7 @@ function keepSessionAlive() {
 			zone: myZone()
         }
     }).done(function(data) {
-        var count = data * 1;
+        /*var count = data * 1;
 
         function do1(foo) {
             if (g.view !== "Main") {
@@ -11590,7 +11595,7 @@ function keepSessionAlive() {
         }
         setTimeout(function() {
             keepSessionAlive();
-        }, 20000);
+        }, 20000);*/
     }).fail(function() {
         failToCommunicate();
     });

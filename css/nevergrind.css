@@ -232,9 +232,10 @@ table{
 #lockOverlay{
 	display:none;
 	position:absolute;
-	width:1280px;
-	height:720px;
-	z-index:99999;
+	top: 0;
+	width: 1280px;
+	height: 720px;
+	z-index: 999999;
 }
 
 #window2dawn{
@@ -547,6 +548,7 @@ label{
 }
 
 #leftPaneBG{
+	user-select: none;
 	display:none;
 	position:absolute;
 	left:0;
@@ -2291,6 +2293,7 @@ th,td{
 	width:680px;
 }
 .bankTab{
+	user-select: none;
 	color:#d7d7b5;
 	float:left;
 	text-align:center;
@@ -2311,7 +2314,8 @@ th,td{
 }
 .bankTabActive{
 	cursor:pointer;
-	background: #664;
+	background: #db7;
+	text-shadow: 0 0 1px #000, 0 0 1px #000, 0 0 2px #000, 0 0 2px #000;
 }
 .bankTabDisabled{
 	cursor:pointer;
@@ -2336,12 +2340,6 @@ th,td{
 .bankTabActive:hover,
 .bankTabDisabled:hover{
 	color:#fff;
-	text-shadow:0 0 2px #fff;
-}
-.bankTabActive:active,
-.bankTabDisabled:active{
-	color:#eaead5;
-	text-shadow:none;
 }
 #bankWrap{
 	position:relative;
@@ -2991,8 +2989,7 @@ th,td{
 	margin:2px 0 0 10px;
 	cursor:pointer;
 }
-#addBankSlots{
-	display:none;
+#addBankSlots, #card-open-form {
 	position:absolute;
 	font-family:Times New Roman,serif;
 	font-size:20px;
@@ -3001,9 +2998,15 @@ th,td{
 	right:4px;
 	height:34px;
 	line-height:34px;
-	width:200px;
+	width:50px;
 	cursor:pointer;
 	background:url('/classic/images1/NGbutton.png') 0 0 / 100% 200%;
+}
+#card-open-form {
+	text-align: center;
+	width: auto;
+	padding: 0 2rem;
+	right: 54px;
 }
 #inventoryGoldIcon, #bankGoldIcon{
 	float:left;
@@ -3509,4 +3512,88 @@ th,td{
 }
 #Login>div{
 	cursor: pointer;
+}
+
+/* payment form */
+#payment-form input {
+	margin-top: 4px;
+	font-size:20px;
+}
+#screenLock{
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 2000px;
+	height: 2000px;
+	opacity: .6;
+	background: #111;
+	z-index: 9999999;
+}
+#currencyIndicator{
+	width: 100%;
+}
+#mainBG{
+	width: 100%;
+	height: 1080px;
+	background: url('/images/bg/ng2-bg.jpg');
+}
+.accountValueText3{
+	margin-right: 6px;
+}
+#payment-form {
+	display: none;
+	left: auto;
+	right: 100px;
+}
+#crystalWrap {
+	display: flex;
+	justify-content: space-around;
+}
+#payment-form-wrap {
+	cursor: pointer;
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,.7);
+	z-index: 999998;
+}
+
+
+::-webkit-scrollbar {
+	/* addresses the background of the bar itself. It is usually covered by the other elements */
+	width: 1rem;
+}
+::-webkit-scrollbar-button {
+	/* addresses the directional buttons on the scrollbar */
+	display: none;
+}
+::-webkit-scrollbar-track {
+	/* background */
+	background: #333;
+	background-image: -webkit-linear-gradient(left, #013 0%, #103860 100%);
+	box-shadow: inset 0 0 0 1px #444;
+}
+::-webkit-scrollbar-track-piece {
+	/*
+		is the top-most layer of the the progress bar not covered
+		by the draggable scrolling element (thumb)
+	*/
+}
+::-webkit-scrollbar-thumb {
+	/* draggable thing */
+	background-color: #58a;
+	/*background-image: -webkit-linear-gradient(top, #579 0%, #bdf 50%, #579 100%);*/
+}
+::-webkit-scrollbar-corner {
+	/* bottom corner intersection of scrollbar */
+	display: none;
+}
+::-webkit-resizer {
+	/* bottom corner intersection when it is resizeable */
+	display: none;
 }

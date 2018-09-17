@@ -2,14 +2,11 @@
 session_start();
 $_SESSION['referPath'] = '/classic';
 include($_SERVER['DOCUMENT_ROOT'] . "/includes/head.html");
-if($_SERVER["SERVER_NAME"] === "localhost"){
-	error_reporting(E_ALL);
-	ini_set('display_errors', true);
-}
 require('php/values.php');
 if(!empty($_SESSION['account'])){
 	// nothing
-}else{
+}
+else{
 	unset($_SESSION['email']);
 	unset($_SESSION['account']);
 	unset($_SESSION['customerId']);
@@ -24,14 +21,14 @@ if(!empty($_SESSION['account'])){
 	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes">
 	<meta name="google-signin-client_id" content="1015425037202-g5ri6qnj14b8vrk33lnu130ver9f43ef.apps.googleusercontent.com">
 	<meta name="google-site-verification" content="iC9l4midOGIXERCwagfpkef9ifunV-aZd_zlUUOPjIU" />
-	<link rel='stylesheet' type='text/css' href="/classic/css/global.css">
+	<link rel='stylesheet' href="/classic/css/global.css">
 	<?php
-	$version = '2-0-17';
+	$version = '2-1-2';
 	?>
 	<script>
 		patchVersion='<?php echo $version ?>';
 	</script>
-	<link rel='stylesheet' type='text/css' href="/classic/css/nevergrind.<?php
+	<link rel='stylesheet' href="/classic/css/nevergrind.<?php
 		echo $_SERVER["SERVER_NAME"] === "localhost" ? '' : 'min.'; ?>css?v=<?php echo $version;
 	?>">
 	<link rel="stylesheet" href="/classic/css/font-awesome.min.css">
@@ -44,7 +41,6 @@ if(!empty($_SESSION['account'])){
 
 <body id="curtain">
 	<div id="window2">
-		<div id="lockOverlay"></div>
 		<div id="intro">
 			<canvas id="cWin4" width="1280" height="720"></canvas>
 			<div id="introText" class="strongShadow noSelect"></div>
@@ -56,13 +52,13 @@ if(!empty($_SESSION['account'])){
 			</div>
 		</div>
 		<div id="gameView">
-				<header id="currencyIndicator" class="strongShadow">
-				<?php
-				if (!empty($_SESSION['account'])){
-					echo '<a id="manage-account" title="Manage Account" href="/account/?back=/" class="btn "> '. ucfirst($_SESSION['account']) .'</a>';
-				}
-				
-				echo '<div class="modePanel">
+			<header id="currencyIndicator" class="strongShadow">
+			<?php
+			if (!empty($_SESSION['account'])){
+				echo '<a id="manage-account" title="Manage Account" href="/account/?back=/" class="btn "> '. ucfirst($_SESSION['account']) .'</a>';
+			}
+			?>
+				<div class="modePanel">
 					<a href="//twitch.tv/maelfyn" target="_blank">
 						<i class="fa fa-twitch text-primary pointer"></i>
 					</a>
@@ -77,10 +73,9 @@ if(!empty($_SESSION['account'])){
 					</a>
 					<a href="//twitter.com/maelfyn" target="_blank">
 						<i class="fa fa-twitter text-primary pointer"></i>
-					</a>'; 
-				echo '</div>';
-				?>
-				</header>;
+					</a>
+				</div>
+			</header>;
 			<div id="loadingmessage" class="strongShadow"></div>
 			<div id="paused" class="strongShadow">PAUSED<br>Press ESC to Resume</div>
 			<div id="lore">
@@ -135,12 +130,7 @@ if(!empty($_SESSION['account'])){
 				<?php
 				if (!empty($_SESSION['account'])){
 					echo '<div id="leftPaneBG">
-						<a id="showCrystalWrap" target="_blank" href="/store/">
-							<div id="showCrystals" class="strongShadow2 NGgradient">
-								<i class="crystals crystals2 pointer"></i>
-								Buy Crystals
-							</div>
-						</a>
+						<div id="showCrystalWrap"></div>
 						<div id="createcharacter" class="strongShadow NGgradient">Create Character</div>
 						<div id="deletecharacter" class="strongShadow NGgradient">Delete Character</div>
 						<div id="characterSlotPanel" class="strongShadow" >
@@ -226,12 +216,6 @@ if(!empty($_SESSION['account'])){
 					<div id="createcancelId">
 						<div id="createbuttonId" class="okCancelStats strongShadow">Create</div>
 						<div id="cancelbuttonId" class="okCancelStats strongShadow">Cancel</div>
-						<?php
-							echo '
-							<div id="createCharacterCost">If your account has sufficient Never Crystals, you will be automatically charged when adding additional character slots to your account. Accounts start with two character slots.</div>
-							<div id="createCharCrystalIcon" class="strongShadow crystalIcon">150</div>
-							';
-						?>
 					</div>
 					<div id="raceBox">
 						<div align="center" class="strongShadow">Select Your Race</div>
@@ -426,10 +410,14 @@ if(!empty($_SESSION['account'])){
 					<div id="bankGoldIcon" class="goldIcon"></div>
 					<div id="bankGoldAmount"></div>
 				</div>
-				<div id='addBankSlots' class='strongShadow'>
-					<div id="bankCost" class="crystalIcon" title="Adds Nine Bank Slots"></div>
-					40: Expand Bank
-				</div>
+				<div id='card-open-form'
+					 class='strongShadow'
+					 title="Share Items With Other Characters On Your Account!">Unlock Shared Bank Slots</div>
+				<div id='addBankSlots'
+					 class='strongShadow'
+					 title="Legacy Method: Add 10 Bank Slots Using Never Crystals (No Longer For Sale)">
+					<div id="bankCost"
+						 class="crystalIcon"></div>40</div>
 				<div id="bankTabWrap">
 					<div class='bankTab bankTabActive'>I</div>
 					<div class='bankTab bankTabDisabled'>II</div>
@@ -488,8 +476,15 @@ if(!empty($_SESSION['account'])){
 			</div>
 			<div id="goldInputWrap">
 				<div id="inventoryGoldOk" class="transferGold strongShadow">Ok</div>
-				<input id="goldInput" type="number" class="goldInput strongShadow" value="0">
+				<input id="goldInput"
+					   type="number"
+					   class="goldInput strongShadow"
+					   value="0">
 			</div>
+
+			<div id="payment-form-wrap"></div>
+			<div id="payment-form"></div>
+			<div id="lockOverlay"></div>
 		</div> <!-- gameView -->
 	</div><!-- window 2 -->
 
@@ -500,6 +495,7 @@ if(!empty($_SESSION['account'])){
 require $_SERVER['DOCUMENT_ROOT'] . "/includes/loginJs.php";
 ?>
 <script src="//apis.google.com/js/platform.js?onload=loginRenderButton" async defer></script>
+<script src="https://js.stripe.com/v2/" async defer></script>
 
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . "/includes/ga.html";
@@ -522,7 +518,8 @@ if (empty($_SESSION['account'])){
 				'items',
 				'ui'
 			];
-		}else{
+		}
+		else {
 			var _scriptLoader = [
 				'nevergrind.min'
 			];

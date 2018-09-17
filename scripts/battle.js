@@ -4525,7 +4525,7 @@ function reportBattleStats(){
 	battleDps = (battleDamageTotal/battleDuration).toFixed(1);
 	comboRating = getComboRating();
 	var combatString = ("Chain Combo: "+chainCounter).fontcolor("#ffff00");
-	combatString+=("<br>Combo Rating: "+comboRating+"").fontcolor("#ffff00");
+	combatString+=("<br>Combo Rating: "+comboRating).fontcolor("#ffff00");
 	combatString+=("<br>Time Bonus: "+fix(timeBonus()*100)+"%").fontcolor("#ffff00");
 	combatString+=("<br>Experience Earned: "+battleExperienceTotal+"").fontcolor("#ffff00");
 	combatString+=("<br><br>Hits: "+totalHits+"<br>Total Damage: "+battleDamageTotal).fontcolor("#ffffdd");
@@ -4572,18 +4572,20 @@ function reportBattleStats(){
 		}
 	}
 	if(bardSingStatus===true){ bardSinging(); }
-	checkZoneCombo();
-	$.ajax({
-		url: '/classic/php/game1.php',
-		data:{
-			run: "updateCombo",
-			rating: comboRating,
-			name:my.name
-			
-		}
-	}).fail(function(data){
-		failToCommunicate();
-	});
+	var newRecord = checkZoneCombo();
+	if (newRecord) {
+		$.ajax({
+			url: '/classic/php/game1.php',
+			data:{
+				run: "updateCombo",
+				rating: comboRating,
+				name:my.name
+
+			}
+		}).fail(function(data){
+			failToCommunicate();
+		});
+	}
 }
 function hpKillAbsorb(){
 	g.popupHeal(M.ceil(g.hpKillEquip));

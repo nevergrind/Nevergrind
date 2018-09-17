@@ -6420,9 +6420,9 @@ $(window).on('blur',function(){
 	ttTimer.kill();
 	NG.tooltip.style.visibility = "hidden";
 });
-$(window).on('focus',function(){
+/*$(window).on('focus',function(){
 	checkSessionActive();
-});
+});*/
 function setDragFlash(that){
 	function flashThis(that,toggleStatus){
 		if(toggleStatus===true){
@@ -6937,49 +6937,60 @@ function resurrectMe(){
 function checkZoneCombo(){
 	var Z = myZone();
 	var cr = comboRating;
+	var newRecord = false;
 	if(Z==="Galeblast Fortress"){
 		if(cr > my.comboPermafrost){
 			my.comboPermafrost = cr;
+			newRecord = true;
 		}
 	}
 	if(Z==="Viston's Redoubt"){
 		if(cr > my.comboKedgeKeep){
 			my.comboKedgeKeep = cr;
+			newRecord = true;
 		}
 	}
 	if(Z==="Ashenflow Peak"){
 		if(cr > my.comboSolB){
 			my.comboSolB = cr;
+			newRecord = true;
 		}
 	}
 	if(Z==="Fahlnir Citadel"){
 		if(cr > my.comboMistmoore){
 			my.comboMistmoore = cr;
+			newRecord = true;
 		}
 	}
 	if(Z==="Kordata Ruins"){
 		if(cr > my.comboLowerGuk){
 			my.comboLowerGuk = cr;
+			newRecord = true;
 		}
 	}
 	if(Z==="Temple of Prenssor"){
 		if(cr > my.comboCazicThule){
 			my.comboCazicThule = cr;
+			newRecord = true;
 		}
 	}
 	if(Z==="Dire Sanctum"){
 		if(cr > my.comboPlaneofHate){
 			my.comboPlaneofHate = cr;
+			newRecord = true;
 		}
 	}
 	if(Z==="Nimgaul"){
 		if(cr > my.comboPlaneofFear){
 			my.comboPlaneofFear = cr;
+			newRecord = true;
 		}
 	}
 	if(cr > my.comboOverall){
 		my.comboOverall = cr;
+		newRecord = true;
 	}
+	return newRecord;
 }
 function positionMap(x, d){
 	if(!d){ d = 1; }

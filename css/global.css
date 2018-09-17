@@ -415,14 +415,9 @@ audio{ display:none; }
 	margin:10px 0;
 }
 .floater{
-	position:relative;
-	text-indent:5px;
-	float:left;
-	width:25%;
-	margin:0 4%;
+	width:21%;
+	text-align: center;
 	background:url('/classic/images1/buyButtons.png') 0 0 / 100% 200%;
-}
-.floater:hover{
 	cursor:pointer;
 }
 .purchase{

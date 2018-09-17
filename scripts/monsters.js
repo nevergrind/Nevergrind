@@ -12875,9 +12875,8 @@ function loadSlotData(Slot, summoned) {
     }
     if (mob[x].name) {
         $.ajax({
-            url: '/classic/php/game1.php',
+            url: '/classic/php/setMob.php',
             data: {
-                run: "setMob",
                 name: mob[x].name,
                 Slot: x,
                 exp: mob[x].xp,

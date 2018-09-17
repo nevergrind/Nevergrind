@@ -762,3 +762,352 @@ $("#cityWrap").on('click','#cityNPC',function(){
 	Chat(NPCname+' says, "Hello, '+my.name+'. How can I help you?"');
 	$("#cityWindow").css("left",10);
 });
+
+/* pay for bank slots */
+
+var card = {
+	init: function() {
+		if (location.host === 'localhost') {
+			Stripe.setPublishableKey('pk_test_GtNfTRB1vYUiMv1GY2kSSRRh');
+		}
+		else {
+			Stripe.setPublishableKey('pk_live_rPSfoOYjUrmJyQYLnYJw71Zm');
+		}
+		// init
+		$("#last-credit-card").css({
+			background: '#777',
+			border: '2px ridge #aaa'
+		}).data('oldcard', 'false');
+		$("#newCard").css({
+			display: 'block',
+		});
+		$("#payment-form").css('display', 'block');
+		$("#card-number").focus();
+		if ($("#old-cards").css('display') === 'block') {
+			$("#last-credit-card").trigger('click');
+		}
+		this.checkKnownCC();
+		this.events();
+	},
+	getFormHtml: function() {
+		return [
+			'<div style="padding-top: 1rem; display: flex; justify-content: center">',
+				'<img src="/images/neverworks-txt.png">',
+			'</div>',
+			'<p class="centerize">',
+				'Purchase bank slots to share your items with other characters on your account!',
+			'</p>',
+			'<div id="old-cards" class="strongShadow">',
+				'<hr class="fancyHR">',
+				'<div id="last-credit-card" class="noSelect" data-oldcard="false">Use credit card: **** **** **** <span id="CC-last-four">****</span></div>',
+				'<div class="centerize">',
+					'<button id="deleteCards" class="NGgradient strongShadow">Delete Card</button>',
+				'</div>',
+			'</div>',
+			'<div id="newCard">',
+				'<hr class="fancyHR">',
+				'<p>',
+					'<div>Card Number (no spaces or hyphens)</div>',
+					'<input id="card-number" type="text" size="20" maxlength="16" autocomplete="off">',
+				'</p>',
+				'<p>',
+					'<div>CVC (number on the back of your credit card)</div>',
+					'<input id="card-cvc" type="text" size="4" maxlength="4" autocomplete="off">',
+				'</p>',
+				'<p>',
+					'<div>Expiration Month/Year (MM/YYYY)</div>',
+					'<input id="card-month" type="text" size="2" maxlength="2"> /',
+					'<input id="card-year" type="text" size="4" maxlength="4">',
+				'</p>',
+				'<p>',
+					'<input id="rememberCard" type="checkbox" checked><label for="rememberCard">Remember me</label>',
+				'</p>',
+			'</div>',
+			'<hr class="fancyHR">',
+			'<div id="crystalWrap" class="strongShadow">',
+				'<div data-amount="100" class="floater purchase">',
+					'$1',
+				'</div>',
+				'<div data-amount="500" class="floater">',
+					'$5',
+				'</div>',
+				'<div data-amount="1000" class="floater">',
+					'$10',
+				'</div>',
+			'</div>',
+			'<div id="crystalsExplained">$1 will purchase 10 bank slots (1 row)</div>',
+			'<div id="payment-errors" class="red"></div>',
+			'<div class="centerize">',
+				'<button id="payment-confirm" class="NGgradient strongShadow">Submit</button>',
+			'</div>',
+		].join('');
+	},
+	formWrap: document.querySelector('#payment-form-wrap'),
+	form: document.querySelector('#payment-form'),
+	openPaymentModal: function() {
+		this.form.style.display = 'block';
+		this.formWrap.style.display = 'block';
+		TweenMax.to([this.formWrap, this.form], .3, {
+			startAt: { opacity: 0 },
+			opacity: 1
+		});
+		TweenMax.to(this.form, .8, {
+			startAt: { y: -50 },
+			y: 0
+		})
+		this.form.innerHTML = this.getFormHtml();
+		this.init();
+	},
+	closePaymentModal: function() {
+		TweenMax.to([this.formWrap, this.form], .2, {
+			opacity: 0,
+			onComplete: function() {
+				card.form.style.display = 'none';
+				card.formWrap.style.display = 'none';
+				card.form.innerHTML = '';
+			}
+		});
+	},
+	checkKnownCC: function() {
+		// check known cards
+		$.ajax({
+			type: 'POST',
+			url: '/php/master1.php',
+			data: {
+				run: "checkCC"
+			}
+		}).done(function(data) {
+			if (data !== "cardNotFound") {
+				$('#CC-last-four').text(data);
+				$('#old-cards').css({
+					display: 'block'
+				});
+				$("#last-credit-card").trigger("click");
+			}
+			$("#payment-form").css('visibility', 'visible');
+		});
+	},
+	events: function() {
+		// events
+		$('#payment-form-wrap').off().on('click', function() {
+			card.closePaymentModal();
+		});
+		$("#last-credit-card").on('click', function() {
+			$("#card-number, #card-cvc, #card-month, #card-year").val("");
+			$("#payment-errors").text("");
+			if ($(this).data('oldcard') === "false") {
+				$(this).css({
+					background: '#080',
+					border: '2px ridge #0d0'
+				}).data('oldcard', 'true');
+				$("#newCard").css('display', 'none');
+				$("#rememberCard").prop("checked", false);
+			} else {
+				$(this).css({
+					background: '#777',
+					border: '2px ridge #aaa'
+				}).data('oldcard', 'false');
+				$("#newCard").css('display', 'block');
+				$("#rememberCard").prop("checked", true);
+			}
+		});
+		$(".floater").on('click', function() {
+			var e = document.getElementsByClassName('floater');
+			for (var i = 0; i < e.length; i++) {
+				e[i].className = "floater";
+			}
+			this.className += " purchase";
+			var amount = parseInt($(".purchase").data('amount'), 10);
+			var e1 = document.getElementById('crystalsExplained');
+			if (amount === 1000) {
+				e1.textContent = "$10 will purchase 270 bank slots (3 tabs)";
+			}
+			else if (amount === 500) {
+				e1.textContent = "$5 will purchase 90 bank slots (1 tab)";
+			}
+			else {
+				e1.textContent = "$1 will purchase 10 bank slots (1 row)";
+			}
+		});
+		$("#deleteCards").on('click', function() {
+			var that = $(this);
+			g.lockScreen();
+			that.text("Deleting...");
+			$.ajax({
+				data: {
+					run: "deleteCards"
+				}
+			}).done(function(data) {
+				card.msg("All customer card data has been deleted.");
+				$("#last-credit-card").data("oldcard", "false");
+				$('#CC-last-four').text("****");
+				$('#old-cards').css({
+					display: 'none'
+				});
+				that.text("Delete Card");
+				$("#newCard").css('display', 'block');
+				g.unlockScreen();
+			}).fail(function() {
+				card.msg("Failed to communicate with the server!");
+			});
+		});
+
+		$("#payment-confirm").on('click', function() {
+			g.lockScreen();
+			card.clickLastBankTab();
+			// get data
+			var ccNum = $('#card-number').val(),
+				cvcNum = $('#card-cvc').val(),
+				expMonth = $('#card-month').val(),
+				expYear = $('#card-year').val(),
+				oldcard = $("#last-credit-card").data("oldcard"),
+				error = false;
+			var lastFour = ccNum.slice(12);
+			// Validate the number:
+			if (oldcard === "true") {
+				document.getElementById('payment-errors').textContent = '';
+				stripeResponseHandler('Using old card', {
+					id: "oldCard"
+				});
+			}
+			else {
+				if (!Stripe.validateCardNumber(ccNum)) {
+					error = true;
+					card.reportError('The credit card number appears to be invalid.');
+				}
+				// Validate the CVC:
+				if (!Stripe.validateCVC(cvcNum)) {
+					error = true;
+					card.reportError('The CVC number appears to be invalid.');
+				}
+				// Validate the expiration:
+				if (!Stripe.validateExpiry(expMonth, expYear)) {
+					error = true;
+					card.reportError('The expiration date appears to be invalid.');
+				}
+				if (!error) {
+					createToken();
+				}
+			}
+
+			function createToken() {
+				Stripe.createToken({
+					number: ccNum,
+					cvc: cvcNum,
+					exp_month: expMonth,
+					exp_year: expYear
+				}, stripeResponseHandler);
+				card.msg('');
+			}
+
+			function stripeResponseHandler(status, response) {
+				if (response.error) {
+					card.reportError(response.error.message);
+				}
+				else {
+					// No errors, submit the form.
+					var amount = parseInt($(".purchase").data('amount'), 10);
+					var crystals = 0;
+					if (amount > 1000) {
+						amount = 1000;
+					}
+					if (amount < 100) {
+						amount = 100;
+					}
+					var valid = false;
+					if (amount === 100) {
+						valid = true;
+						crystals = 70;
+					}
+					if (amount === 500) {
+						valid = true;
+						crystals = 400;
+					}
+					if (amount === 1000) {
+						valid = true;
+						crystals = 1000;
+					}
+					var rememberMe = "false";
+					if ($("#rememberCard").prop('checked') === true) {
+						rememberMe = "true";
+					}
+					if (valid === true) {
+						card.msg("Communicating with the server...");
+						$.ajax({
+							type: 'POST',
+							url: '/php/unlock-bank.php',
+							data: {
+								stripeToken: response.id,
+								amount: amount,
+								crystals: crystals,
+								lastFour: lastFour,
+								oldcard: oldcard,
+								rememberMe: rememberMe
+							}
+						}).done(function(data) {
+							var a = data.split("|");
+							if (a[0] === "Error") {
+								card.msg(a[1]);
+							}
+							else {
+								if (amount === 1000) {
+									card.msg("You have spent $10 on 270 bank slots");
+								}
+								else if (amount === 500) {
+									card.msg("You have spent $5 on 90 bank slots");
+								}
+								else {
+									card.msg("You have spent $1 on 10 bank slots");
+								}
+								QMsg("Bank Slots Available: " + data);
+								// render
+								playAudio("buyitem");
+								cancelMySpell();
+								bankToggle();
+								setTimeout(function() {
+									card.clickLastBankTab();
+								}, 250);
+								g.unlockScreen();
+							}
+						}).fail(function(data) {
+							console.info(data);
+							card.msg("Error: " + data.statusText);
+						}).always(function(){
+							g.unlockScreen();
+						});
+					}
+				}
+			}
+		});
+	},
+	clickLastBankTab: function() {
+		// click the last active tab
+		var els = $("#bankTabWrap").children('.bankTab:not(.bankTabLocked)'),
+			len = els.length;
+		$(els[len-1]).trigger('click');
+	},
+	msg: function(msg) {
+		var e = $("#payment-errors");
+		e.text(msg);
+		/*TweenMax.set(e, {
+			transformPerspective: 300,
+			transformOrigin: '50% 0'
+		});
+		TweenMax.killTweensOf(e);
+		TweenMax.fromTo(e, 2, {
+			rotationX: 0,
+			height: "auto"
+		}, {
+			rotationX: -90,
+			delay: 8,
+			height: 0,
+			onComplete: function(){
+				e.text("");
+			}
+		});*/
+	},
+	reportError: function(msg) {
+		card.msg(msg);
+		g.unlockScreen();
+	},
+};
