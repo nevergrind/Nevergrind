@@ -1,0 +1,276 @@
+fieldset {
+	min-width: 0;
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+.strongShadow{
+	text-shadow:
+		1px 1px #222,
+		-.4px .6px #222,
+		.6px -.6px #222,
+		-.4px 0 #222,
+		.6px 0 #222,
+		0 .6px #222,
+		0 -.6px #222,
+		.6px .6px #222;
+}
+.blackOutline3{
+	text-shadow:
+		.6px .6px #222,
+		-.4px .6px #222,
+		-.4px 0 #222,
+		.6px 0 #222,
+		0 .6px #222,
+		0 -.6px #222,
+		0px 0px 5px #222,
+		0px 0px 2px #222;
+}
+#login-header{
+	position:relative;
+	height:32px;
+	box-shadow: 0 100px rgba(0,0,0,.75) inset;
+	border-bottom:2px groove #444;
+	overflow:hidden;
+	left:0;
+	top:0;
+	z-index:99999;
+}
+#loginWrap{
+	position:absolute;
+	bottom:0;
+	left:0;
+	right:0;
+	font-size: 14px;
+	margin:0 auto;
+	width:280px;
+	padding-bottom:40px;
+	text-align:center;
+}
+.textLeft{
+	text-align:left;
+	text-indent:15px;
+}
+#login-btn, #resetPW{
+	position:relative;
+	font-size:16px;
+	width:180px;
+	margin:0 auto;
+	margin-top:10px;
+	left:0;
+	right:0;
+	border:2px groove #642;
+}
+#login-btn:hover, #resetPW:hover{
+	box-shadow:0 0 2px rgba(80, 110, 240, 1),
+		0 0 5px rgba(80, 110, 240, 1);
+}
+.loginInputs{
+	display:block;
+	left:0;
+	right:0;
+	margin:0 auto;
+	border:1px solid #666;
+	font-size:16px;
+	line-height:22px;
+	width:250px;
+	background:#132239;
+	background-image: -webkit-radial-gradient(80px 0px, farthest-corner, #132239 0%, #001 100%);
+	background-image: -moz-radial-gradient(80px 0px, farthest-corner, #132239 0%, #001 100%);
+	background-image: -ms-radial-gradient(80px 0px, farthest-corner, #132239 0%, #001 100%);
+	background-image: -o-radial-gradient(80px 0px, farthest-corner, #132239 0%, #001 100%);
+	color:#fff;
+	border-radius:4px;
+	text-indent:2px;
+}
+.loginInputs:focus{
+	background:#4478c7;
+	background-image: -webkit-radial-gradient(80px 0px, farthest-corner, #5488da 0%, #132239 100%);
+	background-image: -moz-radial-gradient(80px 0px, farthest-corner, #5488da 0%, #132239 100%);
+	background-image: -ms-radial-gradient(80px 0px, farthest-corner, #5488da 0%, #132239 100%);
+	background-image: -o-radial-gradient(80px 0px, farthest-corner, #5488da 0%, #132239 100%);
+}
+#forgotPasswordWrap{
+	margin-top:15px;
+}
+#forgotPassword{
+	color:#3bf;
+	cursor:pointer;
+}
+
+
+body{
+	position: relative;
+	width: 100%;
+	height: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	max-width: 1920px
+}
+.fancy-hr {
+	border: 0;
+	height: 1px;
+	margin: 8px 0;
+	background-image: -webkit-linear-gradient(left, rgba(16, 64, 176, .4), rgba(32, 128, 232, 1), rgba(16, 64, 176, .4));
+	background-image: -moz-linear-gradient(left, rgba(16, 64, 176, .4), rgba(32, 128, 232, 1), rgba(16, 64, 176, .4));
+	background-image: -ms-linear-gradient(left, rgba(16, 64, 176, .4), rgba(32, 128, 232, 1), rgba(16, 64, 176, .4));
+	background-image: -o-linear-gradient(left, rgba(16, 64, 176, .4), rgba(32, 128, 232, 1), rgba(16, 64, 176, .4))
+}
+.abcRioButton{
+	margin: 5px auto;
+}
+.abcRioButtonBlue .abcRioButtonIcon {
+	border-radius: 5px !important;
+}
+.abcRioButtonBlue {
+	border-radius: 5px !important;
+}
+#divider{
+	margin: 8px 0
+}
+.error-msg {
+	color: #ff1611;
+	margin: 10px 0;
+}
+#currencyIndicator{
+	width: 100%
+}
+#mainBG{
+	width: 100%;
+	height: 1080px;
+	background: url('/images/bg/ng2-bg.jpg')
+}
+label{
+	font-weight: normal;
+	display: block;
+	margin: .1em 0
+}
+#login-btn{
+	border: 1px solid #000;
+	width: 240px;
+	border-radius: 5px;
+}
+#twitter-wrap {
+	margin:0 0 5px 0;
+	width:240px;
+	border-radius: 6px;
+	background: #337ab7;
+	color: #fff;
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	cursor: pointer!important;
+}
+#twitter-wrap:hover {
+	text-decoration: none;
+}
+#twitter-icon-wrap {
+	color: #337ab7;
+	cursor: pointer;
+	background: #ddd;
+	padding: 6px 9px;
+	display: inline-block;
+	margin-bottom: 0;
+	font-size: 14px;
+	line-height: 20px;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	float: left;
+}
+#twitter-icon {
+	font-size:20px;
+	text-shadow: none;
+	height:20px;
+	display:inline-block;
+	cursor: pointer!important;
+}
+#twitter-text {
+	color: #fff;
+	line-height: 2.5;
+	border-radius:0;
+	display: inline-block;
+	font-size: 14px;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	cursor: pointer!important;
+}
+#createAccount{
+	color: #aef;
+	font: 14px;
+}
+#createAccount:hover{
+	color: #fff
+}
+#forgotPassword{
+	color: #fff
+}
+.textLeft, .signupHeader{
+	margin-top: .375em
+}
+.loginInputs{
+	background: #132239;
+	border: 1px solid #357
+}
+.hide{
+	display: none
+}
+#rememberMe{
+	position: relative;
+	top: 2px
+}
+.strongShadow {
+	text-shadow: 1px 1px #222, -0.4px 0.6px #222, 0.6px -0.6px #222, -0.4px 0 #222, 0.6px 0 #222, 0 0.6px #222, 0 -0.6px #222, 0.6px 0.6px #222;
+}
+
+#login-container {
+	display: none;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	overflow-y: auto;
+	z-index: 99999999;
+}
+#login-backdrop{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 99999999;
+}
+#loginWrap{
+	position: absolute;
+	z-index: 99999999;
+	color: #fff;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	width: 280px;
+	text-align: center;
+	top: 40px;
+	bottom: auto;
+	padding: 10px 0;
+	border-radius: 6px;
+	border: 2px ridge #337ab7;
+	background: #0a0a1a;
+	box-shadow: 0 0 20px #000,
+		0 0 40px #000,
+		0 0 60px #000
+}
+#loginWrap p {
+	line-height: 1.5;
+	margin: 0 0 10px;
+}
+#loginWrap .btn-primary {
+	color: #fff;
+	background: #337ab7;
+	padding: 6px 12px;
+	cursor: pointer;
+}

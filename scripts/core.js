@@ -10424,11 +10424,44 @@ function loadAllCharacters() {
 }
 
 function loadServerCharacters() {
+
+    function showLogin() {
+        // login modal css
+        var e = D.createElement('link');
+        e.href = 'css/login.css?v='+ app.version;
+        e.rel = 'stylesheet';
+        D.body.appendChild(e);
+        D.body.style.display = 'block';
+        setTimeout(function() {
+            block(['login-container']);
+        }, 100);
+    }
+
+    function removeLoginElements() {
+        D.getElementById('manage-account').innerHTML = data.account;
+        $("#loginWrap, #login-modal-container, #login-form-wrap").remove();
+    }
+
+    function showTitleDom() {
+        D.getElementById('characterSelectScreen').style.opacity = 1;
+        $('.QMsg').remove();
+        block([
+            'leftPaneBG',
+            'createWindowId',
+            'currencyIndicator',
+            'characterSelectScreen',
+        ]);
+        setCharacterSelectPanel();
+        D.getElementById('enterWorldWrap').style.display = !charactersFound ?
+            'none' : 'block';
+    }
+
     QMsg('Loading account data');
     D.getElementById('zoneIndicator').textContent = '';
 
-    $.get('/classic/php/init-game.php').done(function(data) {
-        $('.QMsg').remove();
+    $.post('/classic/php/init-game.php', {
+        app: app.isApp
+    }).done(function(data) {
         console.info("loadAllCharacters DONE: ", data);
 
         if (g.view === "Main" ||
@@ -10479,11 +10512,7 @@ function loadServerCharacters() {
             firstEmptyCharacterSlot = 16 - charactersFound;
 
         });
-        D.getElementById('createWindowId').style.display = 'block';
-        D.getElementById('currencyIndicator').style.display = 'block';
-        var el = D.getElementById('characterSelectScreen');
-        el.style.display = 'block';
-        el.style.opacity = 1;
+
         T.to("#characterSelectScreen", .5, {
             opacity: 1,
             ease: ez.lin,
@@ -10491,19 +10520,28 @@ function loadServerCharacters() {
                 g.view = "Main";
             }
         });
-        if (charactersFound === 0) {
-            D.getElementById('enterWorldWrap').style.display = 'none';
-        } else {
-            D.getElementById('enterWorldWrap').style.display = 'block';
-        }
-        setCharacterSelectPanel();
 
-        if (!data.email) {
-            return;
+        if (!app.isApp) {
+            if (!data.email) {
+                showLogin();
+                return;
+            }
+            else {
+                removeLoginElements();
+                showTitleDom();
+            }
+        }
+        else {
+            if (!data.email) {
+                showLogin();
+                return;
+            }
+            else {
+                removeLoginElements();
+                showTitleDom();
+            }
         }
 
-        block(['leftPaneBG']);
-        $("#loginWrap, #login-modal-container").remove();
 
         $.ajax({
             url: '/classic/php/loadData1.php',
@@ -10533,6 +10571,8 @@ function loadServerCharacters() {
             GLB.ks = a.shift() * 1;
             GLB.account = a.shift();
 			GLB.confirmed = a.shift()*1;
+
+			sessionStorage.setItem('account', GLB.account);
 
             $('#logout').html("[ " + GLB.account.split("")[0].toUpperCase() + GLB.account.slice(1) + "&nbsp;Logout&nbsp;]");
             D.getElementById('bgmusic').volume = (M.round(((.5 * (GLB.musicStatus / 100)) * 1) * 100) / 100);
@@ -10568,7 +10608,6 @@ function loadServerCharacters() {
 			}
         });
         $("#normalLabel, #nightmareLabel, #hellLabel").css('display', 'none');
-
 
         $.ajax({
             data: {
