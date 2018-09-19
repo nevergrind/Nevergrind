@@ -22035,7 +22035,7 @@ function checkLevelUp(){
 		$.ajax({
 			url: '/classic/php/game1.php',
 			data:{
-				run: "updateExpGold", // level up
+				run: "updateExpGold", // level up - no idea why this is here
 				lastName: my.lastName,
 				title: my.title,
 				level: my.level,

@@ -12882,7 +12882,7 @@ function loadSlotData(Slot, summoned) {
                 exp: mob[x].xp,
                 gold: mob[x].gold
             }
-        }).fail(function(data) {
+        }).fail(function() {
             failToCommunicate();
         });
     }

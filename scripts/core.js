@@ -3413,6 +3413,11 @@ function saveButtonPositions() {
 }
 
 function sortButtons() {
+
+    function GO(foo) {
+        a.push(foo);
+    }
+
     var foo = $("#window3a");
     for (var i = 0; i <= 23; i++) {
         if (Lmy['C' + i] !== '') {
@@ -3430,22 +3435,20 @@ function sortButtons() {
                 x === "granitevisageId" ||
                 x === "shortcircuitId") {
                 Lmy['C' + i] = '';
-            } else {
+            }
+            else {
                 var x = $("#" + Lmy['C' + i]).clone(true, true);
                 $("#" + Lmy['C' + i]).remove();
                 x.appendTo(foo);
             }
         }
-    }
-    var foo = patchVersion;
+    }/*
+    var foo = app.version;
     var a = foo.split('-');
-    if (parseInt(a[0], 10) === 0 && parseInt(a[1], 10) <= 6) { // reset for a patch
+    if (parseInt(a[0], 10) === 0 &&
+        parseInt(a[1], 10) <= 6) { // reset for a patch
         var a = [];
         var e1 = $("#window3a");
-
-        function GO(foo) {
-            a.push(foo);
-        }
         GO('addmonsterId');
         GO('toggleattackId');
         //GO('meditateId');
@@ -3703,7 +3706,10 @@ function sortButtons() {
         } else if (my.race === "Halfling") {
             GO('halflinghideId');
         }
-        if (my.job === "Shaman" || my.job === "Necromancer" || my.job === "Shadow Knight" || my.job === "Magician") {
+        if (my.job === "Shaman" ||
+            my.job === "Necromancer" ||
+            my.job === "Shadow Knight" ||
+            my.job === "Magician") {
             GO('togglepetattackId');
         }
         a.reverse();
@@ -3712,7 +3718,7 @@ function sortButtons() {
             $("#" + a[i]).remove();
             x.prependTo(e1);
         }
-    }
+    }*/
     moveLockedSkills();
 }
 
@@ -7094,7 +7100,6 @@ function enterWorld() {
     if (my.job === "Wizard") {
         updateIcebolt();
     }
-    my.patch = patchVersion;
     if (GLB.hideMenu === "On") {
         D.getElementById('window5Id').style.opacity = 0;
     }
@@ -8717,9 +8722,6 @@ function checkUndefined() {
     if (my.story === undefined) {
         my.story = "Intro";
     }
-    if (my.patch === undefined) {
-        my.patch = patchVersion;
-    }
     if (my.talent1 === undefined) {
         my.talent1 = 0;
     }
@@ -9007,18 +9009,6 @@ function checkUndefined() {
     if (my.subzone === undefined) {
         my.subzone = 1;
     }
-    var a = (my.patch + "").split("-");
-    var m2 = a[0] * 1;
-    var m = a[1] * 1;
-    var t = a[2] * 1;
-    if (m2 <= 0) {
-        if (m <= 8) {
-            if (t <= 67) {
-                resetTalents();
-                talentResetNotify = true;
-            }
-        }
-    }
 }
 
 function itemSwapStart() {
@@ -9145,36 +9135,37 @@ function serverLogout(){
 		location.reload();
 	});
 }
-save.my = function(loc) {
+function getMyJson() {
+    var keys = [
+        'name',
+        'lastName',
+        'exp',
+        'gold',
+        'title',
+        'hardcoreMode',
+        'job',
+        'level',
+        'race',
+        'difficulty',
+        'zone',
+        'zoneH',
+        'zoneN',
+        'subzone',
+        'subzoneN',
+        'subzoneH',
+        'comboOverall',
+        'views'
+    ], json = {}, key;
+    for (key in my){
+        // not one of these blacklisted keys? add it to json
+        if (keys.indexOf(key) === -1){
+            json[key] = my[key];
+        }
+    }
+    return json;
+}
+save.my = function() {
 	if(!g.hardcoreDeathStatus){
-		var json = JSON.parse(JSON.stringify(my));
-		var keys = [
-			'name',
-			'lastName',
-			'exp',
-			'gold',
-			'title',
-			'hardcoreMode',
-			'job',
-			'level',
-			'race',
-			'difficulty',
-			'zone',
-			'zoneH',
-			'zoneN',
-			'subzone',
-			'subzoneN',
-			'subzoneH',
-			'comboOverall',
-			'views'
-		];
-		var json = {};
-		for (var key in my){
-			// not one of these keys? add it to json
-			if (keys.indexOf(key) === -1){
-				json[key] = my[key];
-			}
-		}
 		$.ajax({
 			url: '/classic/php/game1.php',
 			data: {
@@ -9189,14 +9180,14 @@ save.my = function(loc) {
                 subzoneN: my.subzoneN,
                 subzoneH: my.subzoneH,
                 name: my.name,
-				json: JSON.stringify(json)
+				json: JSON.stringify(getMyJson())
 			}
 		}).done(function() {
 			if (campStatus === true) {
 				QMsg("Logging out...");
 				serverLogout();
 			}
-		}).fail(function(data) {
+		}).fail(function() {
 			failToCommunicate();
 		});
 	}
@@ -10426,27 +10417,24 @@ function loadAllCharacters() {
         GLB = JSON.parse(zig);
     }
     $("#deleteConfirm").removeClass("disabled");
-    foundCharacter = false;
-    var goToSlot = 0;
     $NG.allChButtons.removeClass("disabled");
     resetCharButtons();
-    var loadLastCharacter = false;
 	loadServerCharacters();
 	block(['currencyIndicator', 'leftPaneBG']);
 }
 
 function loadServerCharacters() {
-	if (!$("#leftPaneBG").length) return; // player not logged in
     QMsg('Loading account data');
     D.getElementById('zoneIndicator').textContent = '';
-    $.ajax({
-        data: {
-            run: "loadAllCharacters"
+
+    $.get('/classic/php/init-game.php').done(function(data) {
+        $('.QMsg').remove();
+        console.info("loadAllCharacters DONE: ", data);
+
+        if (g.view === "Main" ||
+            g.view === "Create") {
+            playMusic("Soliloquy (2013)");
         }
-    }).done(function(data) {
-        var email = data.email.toLowerCase();
-        foundCharacter = false;
-        var Slot = 1;
         charactersFound = 0;
         for (var i = 1; i <= 16; i++) {
             D.getElementById('characterslot' + i).style.display = 'none';
@@ -10455,7 +10443,6 @@ function loadServerCharacters() {
         data.chars.forEach(function(v, i) {
             var c = data.chars[i];
             i = i+1;
-            console.info('KEY: ', i);
             var foo = D.getElementById('characterslot' + i);
             var name = c.name;
             var level = c.level;
@@ -10490,14 +10477,13 @@ function loadServerCharacters() {
             foo.style.display = 'inline-block';
             charactersFound++;
             firstEmptyCharacterSlot = 16 - charactersFound;
-            foundCharacter = true;
 
         });
-        block(['leftPaneBG']);
         D.getElementById('createWindowId').style.display = 'block';
         D.getElementById('currencyIndicator').style.display = 'block';
-        D.getElementById('characterSelectScreen').style.display = 'block';
-        D.getElementById('characterSelectScreen').style.opacity = 1;
+        var el = D.getElementById('characterSelectScreen');
+        el.style.display = 'block';
+        el.style.opacity = 1;
         T.to("#characterSelectScreen", .5, {
             opacity: 1,
             ease: ez.lin,
@@ -10511,6 +10497,14 @@ function loadServerCharacters() {
             D.getElementById('enterWorldWrap').style.display = 'block';
         }
         setCharacterSelectPanel();
+
+        if (!data.email) {
+            return;
+        }
+
+        block(['leftPaneBG']);
+        $("#loginWrap, #login-modal-container").remove();
+
         $.ajax({
             url: '/classic/php/loadData1.php',
             data: {
@@ -10519,6 +10513,7 @@ function loadServerCharacters() {
         }).done(function(data) {
             var a = data.split("|");
             a.pop();
+            console.info('GLB: ', a);
             GLB.chatMyHit = a.shift();
             GLB.hideMenu = a.shift();
             GLB.musicStatus = a.shift() * 1;
@@ -10527,43 +10522,20 @@ function loadServerCharacters() {
             GLB.videoSetting = a.shift();
             GLB.showCombatLog = a.shift();
             GLB.debugMode = a.shift();
+
             GLB.gold = a.shift() * 1;
             GLB.hcgold = a.shift() * 1;
-            var bankSlots = a.shift() * 1;
-            var hcBankSlots = a.shift() * 1;
-            var characterSlots = a.shift() * 1;
-            var crystals = a.shift() * 1;
+
+            GLB.bankSlots = a.shift() * 1;
+            GLB.hcBankSlots = a.shift() * 1;
+            GLB.characters = a.shift() * 1;
+            GLB.crystals = a.shift() * 1;
             GLB.ks = a.shift() * 1;
             GLB.account = a.shift();
 			GLB.confirmed = a.shift()*1;
-			/*
-			if (isset($_SESSION['email'])){
-				echo 
-				'<div class="accountDetails">
-					<div id="globalGold" class="accountValues"></div>
-					<div id="globalGoldCount" class="accountValueText2">0</div>
-				</div>
-				<div class="accountDetails">
-					<div id="crystals" class="crystalIcon accountValues"></div>
-					<div id="crystalCount" class="accountValueText2">0</div>
-				</div>
-				<div class="accountValueText accountDetails">
-					Character Slots: <span id="characterSlots">0</span>
-				</div>
-				<div class="accountValueText accountDetails">
-					Bank Slots: <span id="bankSlots">0</span>
-				</div>';
-			}
-            $('#globalGoldCount').text(GLB.gold + " / " + GLB.hcgold);
-            $('#crystalCount').text(crystals);
-            $('#bankSlots').text(bankSlots +" / "+ hcBankSlots);
-            $('#characterSlots').text(characterSlots);
-			*/
+
             $('#logout').html("[ " + GLB.account.split("")[0].toUpperCase() + GLB.account.slice(1) + "&nbsp;Logout&nbsp;]");
             D.getElementById('bgmusic').volume = (M.round(((.5 * (GLB.musicStatus / 100)) * 1) * 100) / 100);
-            if (g.view === "Main" || g.view === "Create") {
-                playMusic("Soliloquy (2013)");
-            }
             srv.glb = true;
 			if (!GLB.confirmed){
 				var z = $("#sendEmailConfirmation");
@@ -10594,44 +10566,44 @@ function loadServerCharacters() {
 						});
 					});
 			}
-        }).fail(function() {
-            QMsg("Server Error! Failed to load global values.");
         });
         $("#normalLabel, #nightmareLabel, #hellLabel").css('display', 'none');
 
+
+        $.ajax({
+            data: {
+                run: 'checkDifficulty'
+            }
+        }).done(function(a) {
+            // skips normal
+            for (var i = 1, len=a.length+1; i < len; i++) {
+                var z = a.shift();
+                // has data
+                var x = {
+                    nightmare: 0,
+                    hell: 0
+                };
+                if (z.nightmare){
+                    var nm = JSON.parse(z.nightmare);
+                    x.nightmare = nm.PlaneofFear;
+                }
+                if (z.hell){
+                    var h = JSON.parse(z.hell);
+                    x.hell = h.PlaneofFear;
+                }
+                $("#characterslot" + i).data({
+                    nightmare: x.nightmare,
+                    hell: x.hell
+                });
+            }
+            setZoneDifficultyIndicators();
+            setTimeout(function(){
+                setZoneDifficultyIndicators(true);
+            }, 500);
+        });
+
     }).fail(function() {
         QMsg("Failed to contact server.");
-    });
-    $.ajax({
-        data: {
-            run: 'checkDifficulty'
-        }
-    }).done(function(a) {
-		// skips normal
-        for (var i = 1, len=a.length+1; i < len; i++) {
-			var z = a.shift();
-			// has data
-			var x = {
-				nightmare: 0,
-				hell: 0
-			};
-			if (z.nightmare){
-				var nm = JSON.parse(z.nightmare);
-				x.nightmare = nm.PlaneofFear;
-			}
-			if (z.hell){
-				var h = JSON.parse(z.hell);
-				x.hell = h.PlaneofFear;
-			}
-			$("#characterslot" + i).data({
-				nightmare: x.nightmare,
-				hell: x.hell
-			});
-        }
-        setZoneDifficultyIndicators();
-		setTimeout(function(){
-			setZoneDifficultyIndicators(true);
-		}, 500);
     });
 }
 

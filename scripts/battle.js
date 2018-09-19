@@ -4285,14 +4285,8 @@ function attackOff(){
 				save.quests();
 			}
 			playAudio(mob[i].audio3);
-			var ranX = M.ceil(M.random()*60-30);
-			var ranY = M.ceil(M.random()*40-20);
 			if(mob[i].charmStatus===false){ Chat(("You have slain "+mob[i].name+"!")); }
 			if(mob[i].charmStatus===true){ slainPet(); }
-			var x1 = MOB[i].offsetLeft;
-			var y1 = MOB[i].offsetTop;
-			var xWidth = mob[i].imageWidth;
-			var xHeight = mob[i].imageHeight;
 			// death animation picture and font
 			stopMob(i);
 			if(i===2&&
@@ -4415,20 +4409,44 @@ function attackOff(){
 			} else {
 				mob[i].xp = M.round(mob[i].xp * percentBonus);
 			}
+			if (!g.hardcoreDeathStatus) {
+				$.ajax({
+					url: '/classic/php/update-my-exp-gold.php',
+					data: {
+						title: my.title,
+						difficulty: my.difficulty,
+						level: my.level,
+						zone: my.zone,
+						zoneH: my.zoneH,
+						zoneN: my.zoneN,
+						subzone: my.subzone,
+						subzoneN: my.subzoneN,
+						subzoneH: my.subzoneH,
+						name: my.name,
+						json: JSON.stringify(getMyJson()),
+						Slot: i,
+						mobExp: mobExp,
+						exp: my.exp,
+						gold: my.gold,
+					}
+				}).done(function(data){
+					var x = data*1;
+					if (x){
+						my.exp += x;
+						Chat("You have earned "+x+" experience!",2);
+						battleExperienceTotal+= x;
+						checkLevelUp();
+						drawExpBar();
+					}
+				}).fail(function(){
+					failToCommunicate();
+				});
+			}
+			/*save.my();
 			$.ajax({
 				url: '/classic/php/game1.php',
 				data:{
 					run: "updateExpGold", // add exp
-					lastName: my.lastName,
-					title: my.title,
-					level: x,
-					job: my.job,
-					race: my.race,
-					mobExp: mobExp,
-					Slot: i,
-					exp: mob[i].xp,
-					gold: goldFound,
-					name: my.name
 				}
 			}).done(function(data){
 				var x = data*1;
@@ -4444,7 +4462,7 @@ function attackOff(){
 				}
 			}).fail(function(data){
 				failToCommunicate();
-			});
+			});*/
 		}
 	}
 	if(my.gold>999999999){ my.gold=999999999; }
@@ -4495,7 +4513,8 @@ function attackOff(){
 	addMonsterTimer.kill();
 	addMonsterTimer = T.delayedCall(2, resetAddMonster);
 	timerTick(D.getElementById('addmonsterId'),2,'addmonsterId');
-	save.my();
+	/*save.my();
+	console.info("save.my attackOff");*/
 	if(g.showPortal){
 		makePortal();
 	}

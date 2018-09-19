@@ -1,8 +1,6 @@
 <?php
 session_start();
-$_SESSION['referPath'] = '/classic';
 include($_SERVER['DOCUMENT_ROOT'] . "/includes/head.html");
-require('php/values.php');
 if(!empty($_SESSION['account'])){
 	// nothing
 }
@@ -16,21 +14,40 @@ else{
 <html lang="en">
 <head>
 	<title>Nevergrind | Web Browser RPG | Free Online Game</title>
-	<meta name="keywords" content="web, online, browser, free, game, rpg">
+	<meta charset="utf-8">
+	<meta http-equiv="Cache-control" content="no-cache">
+	<script>
+		var app = {
+			version: '1.0.0',
+			initialized: 0, // init-game returned
+			isApp: location.protocol === 'chrome-extension:' ? 1 : 0,
+			account: ''
+		};
+		app.url = app.isApp ?
+			'https://nevergrind.com/classic/' : '';
+		app.socketUrl = app.isApp ?
+			'nevergrind.com' : location.hostname;
+		app.isServer = 0;
+		if (!app.isApp && location.hostname === 'nevergrind.com'){
+			app.isServer = 1;
+		}
+		app.isLocal = location.hostname.indexOf('localhost') > -1;
+		app.loginUrl = app.isLocal ? '' : 'https://nevergrind.com';
+		// fw only
+		var isLoggedIn = 0;
+	</script>
+	<meta name="keywords" content="web, online, browser, free, combat, battle, game, rpg">
 	<meta name="description" content="Nevergrind is a free web browser RPG created by Neverworks Games. Select from 12 races, 14 classes, and 12 talents as you fight your way to level 99!">
 	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes">
 	<meta name="google-signin-client_id" content="1015425037202-g5ri6qnj14b8vrk33lnu130ver9f43ef.apps.googleusercontent.com">
 	<meta name="google-site-verification" content="iC9l4midOGIXERCwagfpkef9ifunV-aZd_zlUUOPjIU" />
 	<link rel='stylesheet' href="/classic/css/global.css">
-	<?php
-	$version = '2-1-2';
-	?>
-	<script>
-		patchVersion='<?php echo $version ?>';
-	</script>
-	<link rel='stylesheet' href="/classic/css/nevergrind.<?php
-		echo $_SERVER["SERVER_NAME"] === "localhost" ? '' : 'min.'; ?>css?v=<?php echo $version;
-	?>">
+	<style>
+		body {
+			display: none;
+		}
+	</style>
+
 	<link rel="stylesheet" href="/classic/css/font-awesome.min.css">
 	<?php
 		if (empty($_SESSION['account'])){
@@ -40,6 +57,15 @@ else{
 </head>
 
 <body id="curtain">
+	<script>
+		(function(b){
+			var e = document.createElement('link');
+			e.href = 'css/nevergrind.' + (app.isLocal ? 'css' : 'min.css') + '?v='+ app.version;
+			e.rel = 'stylesheet';
+			b.appendChild(e);
+			b.style.display = 'block';
+		})(document.body);
+	</script>
 	<div id="window2">
 		<div id="intro">
 			<canvas id="cWin4" width="1280" height="720"></canvas>
@@ -91,7 +117,7 @@ else{
 			<div id="chatId">
 				<div id="chatLogWrap">
 					<div id="chatLog" class='chatLogs'></div>
-					<input type='text' id="chatInput" maxlength="240" autocomplete="off"></input>
+					<input type='text' id="chatInput" maxlength="240" autocomplete="off">
 				</div>
 			</div>
 			<div id="tooltip">
@@ -125,11 +151,8 @@ else{
 			<div id="spellblind"></div>
 			
 			<div id="characterSelectScreen">
-				<img style="position: absolute; bottom: 0; left: 0; width: 140px" 
-				src="/classic/images1/neverworks.png">
-				<?php
-				if (!empty($_SESSION['account'])){
-					echo '<div id="leftPaneBG">
+				<img id="neverworks-logo" src="/classic/images1/neverworks.png">
+					<div id="leftPaneBG">
 						<div id="showCrystalWrap"></div>
 						<div id="createcharacter" class="strongShadow NGgradient">Create Character</div>
 						<div id="deletecharacter" class="strongShadow NGgradient">Delete Character</div>
@@ -152,9 +175,7 @@ else{
 							<div id="characterslot16"></div>
 						</div>
 						<div id="logout" class="strongShadow"></div>
-					</div>';
-				}
-				?>
+					</div>
 				
 				<div id="deletecharfade"></div>
 				<div id="deletecharconfirm" class="strongShadow" >
@@ -178,9 +199,6 @@ else{
 						<a href="//nevergrind.com/wiki" class="links" title="Nevergrind Wiki">Wiki</a> | 
 						<a href="//nevergrind.com/blog" class="links" title="Browser Game Development News and Articles">Blog</a>
 						
-						<!--hr class="fancyHR">
-						<marquee class="red">Season 2 of Nevergrind coming soon... date to be decided</marquee-->
-						
 						<hr class="fancyHR">
 						<iframe src="https://store.steampowered.com/widget/849790/" frameborder="0" width="420" height="190"></iframe>
 						
@@ -201,7 +219,6 @@ else{
 	<?php
 	if (empty($_SESSION['account'])){
 		require $_SERVER['DOCUMENT_ROOT'] . "/includes/loginModal.php";
-		require $_SERVER['DOCUMENT_ROOT'] . "/includes/loginRefer.php";
 	}
 	?>
 			</div>
@@ -383,8 +400,6 @@ else{
 				<div id="mobName3" class="strongShadow"></div>
 				<canvas id="mobPic3"></canvas>
 			</div>
-
-
 			<div id="mob5">
 				<img id="petShadow" class="shadows" src="/classic/images1/blank.png" alt="Blank image placeholder">
 				<div id="petName" class="strongShadow"></div>
@@ -503,7 +518,6 @@ if (empty($_SESSION['account'])){
 	require $_SERVER['DOCUMENT_ROOT'] . "/includes/loginKong.html";
 }
 ?>
-	
 	<script>
 	(function(d){
 		if(location.host==='localhost'){
@@ -532,7 +546,7 @@ if (empty($_SESSION['account'])){
 		var target = d.getElementsByTagName('script')[0];
 		for(var i=0, len=_scriptLoader.length; i<len; i++){
 			var x=d.createElement('script');
-			x.src = '/classic/scripts/'+_scriptLoader[i]+'.js?v=' + patchVersion;
+			x.src = '/classic/scripts/'+_scriptLoader[i]+'.js?v=' + app.version;
 			x.async=false;
 			target.parentNode.appendChild(x);
 		}

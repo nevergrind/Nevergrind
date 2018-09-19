@@ -14999,19 +14999,7 @@ function getLoot(Slot, Qitem, weaponType, rarity, armorType) {
 		my.setFound += 1;
 	}
 	Chat(x);
-	if (newRarity >= 3) {
-		g.lastDrop = P.item[NI].name;
-		/*if (!dev) {
-			$.ajax({
-				data : {
-					run : "addLoot",
-					itemName : P.item[NI].name,
-					rarity : P.item[NI].rarity,
-					name : my.name
-				}
-			});
-		}*/
-	}
+
 	var mobX = MOB[Slot].offsetLeft + (mob[Slot].imageWidth / 2) - 32
 			+ M.random() * (100) - 50;
 	var mobY = MOB[Slot].offsetTop + (mob[Slot].imageHeight / 2) - 32
