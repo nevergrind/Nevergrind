@@ -6201,7 +6201,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 		if (ni === "helmet") {
 			if (N === "Hood") {
 				I.name = "Vampire Cowl";
-				I.enhancedArmor = 65
+				I.enhancedArmor = 65;
 				I.coldDamage = 5;
 				I.sta = 19;
 				I.leech = 3;
@@ -6238,7 +6238,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			}
 			if (N === "Bandana") {
 				I.name = "Ebony Headband";
-				I.enhancedArmor = 65
+				I.enhancedArmor = 65;
 				I.fear = 6;
 				I.handtohand = 4;
 				I.attack = 6;
@@ -6842,7 +6842,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 		if (ni === "shoulders") {
 			if (N === "Cloth Drape") {
 				I.name = "Spectre's Drape";
-				I.enhancedArmor = 65
+				I.enhancedArmor = 65;
 				I.hp = 35;
 				I.dex = 8;
 				I.intel = 15;
@@ -6903,7 +6903,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			}
 			if (N === "Leather Shoulders") {
 				I.name = "Gaulite Pads";
-				I.enhancedArmor = 65
+				I.enhancedArmor = 65;
 				I.allStats = 7
 				I.riposte = 5;
 				I.parry = 5;
@@ -6947,7 +6947,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			if (N === "Scaled Mantle") {
 				if (M.random() > .5) {
 					I.name = "Doubtful Repent";
-					I.enhancedArmor = 65
+					I.enhancedArmor = 65;
 					I.mp = 35;
 					I.wis = 12;
 					I.dex = 10;
@@ -7005,7 +7005,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			}
 			if (N === "Cobalt Spaulders") {
 				I.name = "Solitude's Penance";
-				I.enhancedArmor = 65
+				I.enhancedArmor = 65;
 				I.hp = 20;
 				I.defense = 4;
 				I.twoHandSlash = 8;
@@ -7280,7 +7280,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 		if (ni === "chest") {
 			if (N === "Elven Robe") {
 				I.name = "Robe of the Blighted";
-				I.enhancedArmor = 65
+				I.enhancedArmor = 65;
 				I.sta = 10;
 				I.mp = 100;
 				I.intel = 10;
@@ -7370,7 +7370,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			}
 			if (N === "Quilted Tunic") {
 				I.name = "Ghastly Vapors";
-				I.enhancedArmor = 65
+				I.enhancedArmor = 65;
 				I.handtohand = 5;
 				I.poisonDamage = 15;
 				I.hp = 30;
@@ -7426,7 +7426,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			if (N === "Chain Mail") {
 				if (M.random() > .5) {
 					I.name = "Raven Mail";
-					I.enhancedArmor = 65
+					I.enhancedArmor = 65;
 					I.haste = -40;
 					I.dex = 20;
 					I.cold = 8;
@@ -7482,7 +7482,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			}
 			if (N === "Breast Plate") {
 				I.name = "Driela's Shell";
-				I.enhancedArmor = 65
+				I.enhancedArmor = 65;
 				I.hp = 50;
 				I.str = 15;
 				I.defense = 4;
@@ -7561,7 +7561,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 		if (ni === "bracers") {
 			if (N === "Jade Bracers") {
 				I.name = "Accursed Jade Bracer";
-				I.enhancedArmor = 65
+				I.enhancedArmor = 65;
 				I.conjuration = 4;
 				I.wis = 12;
 				I.sta = 12;
@@ -7608,7 +7608,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			}
 			if (N === "Leather Bracers") {
 				I.name = "Staunch Battle Wraps";
-				I.enhancedArmor = 65
+				I.enhancedArmor = 65;
 				I.attack = 5;
 				I.oneHandBlunt = 9;
 				I.physicalDamage = 6;
@@ -7662,7 +7662,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			}
 			if (N === "Scaled Bracers") {
 				I.name = "Bartender's Bracer";
-				I.enhancedArmor = 65
+				I.enhancedArmor = 65;
 				I.hp = 15;
 				I.str = 12;
 				I.handtohand = 8;
@@ -7711,7 +7711,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			if (N === "Bronze Bracers") {
 				if (M.random() > .5) {
 					I.name = "Surestout's Bracer";
-					I.enhancedArmor = 65
+					I.enhancedArmor = 65;
 					I.hp = 25;
 					I.defense = 4;
 					I.parry = 3;
@@ -7781,7 +7781,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 		if (ni === "gloves") {
 			if (N === "Gloves") {
 				I.name = "Celestial Gloves";
-				I.enhancedArmor = 65
+				I.enhancedArmor = 65;
 				I.allStats = 7;
 				I.conjuration = 4;
 				I.allResist = 7;
@@ -7858,7 +7858,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			if (N === "Rawhide Gloves") {
 				if (M.random() > .5) {
 					I.name = "Venom Grip";
-					I.enhancedArmor = 65
+					I.enhancedArmor = 65;
 					I.sta = 12;
 					I.handtohand = 4;
 					I.resistPoison = 30;
@@ -7918,7 +7918,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			}
 			if (N === "Lamellar Gauntlets") {
 				I.name = "Ghoulhide";
-				I.enhancedArmor = 65
+				I.enhancedArmor = 65;
 				I.coldDamage = 15;
 				I.resistCold = 27;
 				I.str = 5;
@@ -7930,7 +7930,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			if (N === "Banded Gauntlets") {
 				I.name = "Flame Reckoning";
 				I.enhancedArmor = 65;
-				I.absorbFire = 7
+				I.absorbFire = 7;
 				I.castingHaste = -80;
 				I.weight = 1;
 				I.enhanceFire = 6;
@@ -7966,7 +7966,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			}
 			if (N === "Cobalt Gauntlets") {
 				I.name = "Chaos Knight Gauntlets";
-				I.enhancedArmor = 65
+				I.enhancedArmor = 65;
 				I.hp = 20;
 				I.mp = 20;
 				I.intel = 12;
@@ -8042,7 +8042,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			if (N === "Sash") {
 				if (M.random() > .5) {
 					I.name = "Clasp of Ears";
-					I.enhancedArmor = 65
+					I.enhancedArmor = 65;
 					I.defense = 3;
 					I.leech = 5;
 					I.magMit = 4;
@@ -8051,7 +8051,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 					I.req = 36;
 				} else {
 					I.name = "Loam Addled Sash";
-					I.enhancedArmor = 65
+					I.enhancedArmor = 65;
 					I.str = 8;
 					I.mana = 15;
 					I.resistFire = 10;
@@ -8092,7 +8092,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			if (N === "Leather Belt") {
 				if (M.random() > .5) {
 					I.name = "Terrorwhip";
-					I.enhancedArmor = 65
+					I.enhancedArmor = 65;
 					I.defense = 3;
 					I.physicalDamage = 5;
 					I.dex = 20;
@@ -8100,7 +8100,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 					I.req = 36;
 				} else {
 					I.name = "Honeycomb Belt";
-					I.enhancedArmor = 65
+					I.enhancedArmor = 65;
 					I.cha = 5;
 					I.mana = 50;
 					I.haste = -90;
@@ -8137,7 +8137,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			if (N === "Mesh Belt") {
 				if (M.random() > .5) {
 					I.name = "Runed Frontier Belt";
-					I.enhancedArmor = 65
+					I.enhancedArmor = 65;
 					I.str = 10;
 					I.dex = 10;
 					I.sta = 10;
@@ -8147,7 +8147,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 				} else {
 					if (M.random() > .5) {
 						I.name = "Girdle of Wurmslaying";
-						I.enhancedArmor = 65
+						I.enhancedArmor = 65;
 						I.str = 10;
 						I.wis = 10;
 						I.intel = 10;
@@ -8196,7 +8196,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			if (N === "Monarch Girdle") {
 				if (M.random() > .5) {
 					I.name = "Bone-Clasped Girdle";
-					I.enhancedArmor = 65
+					I.enhancedArmor = 65;
 					I.hp = 75;
 					I.mp = 75;
 					I.str = 7;
@@ -8206,7 +8206,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 					I.req = 36;
 				} else {
 					I.name = "Belt of Concordance";
-					I.enhancedArmor = 65
+					I.enhancedArmor = 65;
 					I.str = 10;
 					I.cha = 10;
 					I.resistPoison = 15;
@@ -8245,7 +8245,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 		if (ni === "legs") {
 			if (N === "Pants") {
 				I.name = "Imbued Viperskin";
-				I.enhancedArmor = 65
+				I.enhancedArmor = 65;
 				I.hp = 30;
 				I.agi = 12;
 				I.expFind = 7;
@@ -8266,14 +8266,30 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 				I.req = 42;
 			}
 			if (N === "Linen Pants") {
-				I.name = "Mystical Vizier's Pants";
-				I.enhancedArmor = 75;
-				I.critDamage = 15;
-				I.runSpeed = 8;
-				I.conjuration = 3;
-				I.evocation = 5;
-				I.channeling = 7;
-				I.req = 46;
+				if (M.random() > .5) {
+					I.name = "Mystical Vizier's Pants";
+					I.enhancedArmor = 75;
+					I.critDamage = 15;
+					I.runSpeed = 8;
+					I.conjuration = 3;
+					I.evocation = 5;
+					I.channeling = 7;
+					I.req = 46;
+				}
+				else {
+					I.name = "Wraith's Envy";
+					I.enhancedArmor = 75;
+					I.allStats = 7;
+					I.hp = 45;
+					I.conjuration = 7;
+					I.enhancePoison = 5;
+					I.resistFire = 33;
+					I.resistPoison = 17;
+					I.silence = 20;
+					I.fear = 25;
+					I.req = 46;
+					I.rarity = 4;
+				}
 			}
 			if (N === "Silk Leggings") {
 				I.name = "Fantoam Pantaloons";
@@ -8287,7 +8303,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			if (N === "Fur Pants") {
 				if (M.random() > .5) {
 					I.name = "Exalted Furs";
-					I.enhancedArmor = 65
+					I.enhancedArmor = 65;
 					I.allStats = 8;
 					I.phyMit = 9;
 					I.mpRegen = 3;
@@ -8348,7 +8364,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			}
 			if (N === "Scaled Legs") {
 				I.name = "Accursed Serenity Leggings";
-				I.enhancedArmor = 65
+				I.enhancedArmor = 65;
 				I.agi = 14;
 				I.dex = 25;
 				I.goldFind = 12;
@@ -8380,7 +8396,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			}
 			if (N === "Poleyn") {
 				I.name = "Haunted Wail";
-				I.enhancedArmor = 65
+				I.enhancedArmor = 65;
 				I.runSpeed = 5;
 				I.conjuration = 9;
 				I.allStats = 8;
@@ -8429,7 +8445,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 					I.resistCold = 30;
 					I.resistLightning = 11;
 					I.absorbFire = 5;
-					I.allStats = 13
+					I.allStats = 13;
 					I.lightRadius = 20;
 					I.expFind = 12;
 					I.enhanceAll = 3;
@@ -8465,7 +8481,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			}
 			if (N === "Royal Legplates") {
 				I.name = "Doomhaunch";
-				I.enhancedArmor = 65
+				I.enhancedArmor = 65;
 				I.hp = 50;
 				I.globalHaste = -80;
 				I.critChance = 5;
@@ -8478,7 +8494,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			if (N === "Boots") {
 				if (M.random() > .5) {
 					I.name = "Strideblazers";
-					I.enhancedArmor = 65
+					I.enhancedArmor = 65;
 					I.runSpeed = 20;
 					I.fireDamage = 8;
 					I.defense = 3;
@@ -8488,7 +8504,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 					I.req = 36;
 				} else {
 					I.name = "Apothic Boots";
-					I.enhancedArmor = 65
+					I.enhancedArmor = 65;
 					I.runSpeed = 15;
 					I.hp = 25;
 					I.agi = 13;
@@ -8526,7 +8542,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			if (N === "Heavy Boots") {
 				if (M.random() > .5) {
 					I.name = "Miracle Workers";
-					I.enhancedArmor = 65
+					I.enhancedArmor = 65;
 					I.hp = 55;
 					I.dodge = 5;
 					I.dex = 15;
@@ -8536,7 +8552,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 					I.req = 36;
 				} else {
 					I.name = "White Lotus Slippers";
-					I.enhancedArmor = 65
+					I.enhancedArmor = 65;
 					I.parry = 4;
 					I.riposte = 6;
 					I.offense = 4;
@@ -8602,7 +8618,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			if (N === "Chain Boots") {
 				if (M.random() > .5) {
 					I.name = "Silkweaver's Treads";
-					I.enhancedArmor = 65
+					I.enhancedArmor = 65;
 					I.hp = 17;
 					I.defense = 4;
 					I.mpKill = 5;
@@ -8656,7 +8672,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			if (N === "Steel Boots") {
 				if (M.random() > .66) {
 					I.name = "Blood Rider";
-					I.enhancedArmor = 65
+					I.enhancedArmor = 65;
 					I.poisonDamage = 6;
 					I.critDamage = 15;
 					I.hp = 25;
@@ -9440,7 +9456,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 			if (nt === "shield") {
 				if (N === "Buckler") {
 					I.name = "Arwen's Blessed Circle";
-					I.enhancedArmor = 65
+					I.enhancedArmor = 65;
 					I.defense = 6;
 					I.wraith = 5;
 					I.globalSkill = -60;
@@ -9451,7 +9467,7 @@ function getUniqueItem(NI, newItem, newTier, newType, newName, Slot, newQuality)
 				}
 				if (N === "Small Shield") {
 					I.name = "Runewood Shield";
-					I.enhancedArmor = 65
+					I.enhancedArmor = 65;
 					I.wis = 21;
 					I.mpRegen = 3;
 					I.alteration = 6;

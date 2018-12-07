@@ -10425,6 +10425,19 @@ function loadAllCharacters() {
 
 function loadServerCharacters() {
 
+    QMsg('Loading account data');
+    D.getElementById('zoneIndicator').textContent = '';
+
+    $.post('/classic/php/init-game.php', {
+        app: app.isApp
+    }).done(function(data) {
+        initGameCallback(data);
+    }).fail(function() {
+        QMsg("Failed to contact server.");
+    });
+}
+function initGameCallback(data) {
+
     function showLogin() {
         // login modal css
         var e = D.createElement('link');
@@ -10438,7 +10451,6 @@ function loadServerCharacters() {
     }
 
     function removeLoginElements() {
-        D.getElementById('manage-account').innerHTML = data.account;
         $("#loginWrap, #login-modal-container, #login-form-wrap").remove();
     }
 
@@ -10456,193 +10468,183 @@ function loadServerCharacters() {
             'none' : 'block';
     }
 
-    QMsg('Loading account data');
-    D.getElementById('zoneIndicator').textContent = '';
+    console.info("loadAllCharacters DONE: ", data);
 
-    $.post('/classic/php/init-game.php', {
-        app: app.isApp
-    }).done(function(data) {
-        console.info("loadAllCharacters DONE: ", data);
+    if (g.view === "Main" ||
+        g.view === "Create") {
+        playMusic("Soliloquy (2013)");
+    }
+    charactersFound = 0;
+    for (var i = 1; i <= 16; i++) {
+        D.getElementById('characterslot' + i).style.display = 'none';
+    }
+    console.info(data.chars);
+    data.chars.forEach(function(v, i) {
+        var c = data.chars[i];
+        i = i+1;
+        var foo = D.getElementById('characterslot' + i);
+        var name = c.name;
+        var level = c.level;
+        var race = c.race;
+        var job = c.job;
+        var difficulty = c.difficulty * 1;
+        var zone = c.zone;
+        var zoneN = c.zoneN;
+        var zoneH = c.zoneH;
+        var subzone = c.subzone * 1;
+        var subzoneN = c.subzoneN * 1;
+        var subzoneH = c.subzoneH * 1;
+        var hardcoreMode = c.hardcoreMode;
+        var timestamp = c.timestamp*1;
 
-        if (g.view === "Main" ||
-            g.view === "Create") {
-            playMusic("Soliloquy (2013)");
+        var s1 = '<div class="yellow glowYellow nomouse">' + name + '</div>' +
+            '<div class="nomouse">' + level + ' ' + race + ' <span id="myjob' + i + '">' + job + '</div>';
+        if (timestamp===0){ // no expire
+            s1 += '<div class="nomouse yellow"></div>';
         }
-        charactersFound = 0;
-        for (var i = 1; i <= 16; i++) {
-            D.getElementById('characterslot' + i).style.display = 'none';
+        foo.innerHTML = s1
+        $("#characterslot" + i).data({
+            difficulty: difficulty,
+            zone: zone,
+            zoneN: zoneN,
+            zoneH: zoneH,
+            subzone: subzone,
+            subzoneN: subzoneN,
+            subzoneH: subzoneH,
+            hardcoreMode: hardcoreMode
+        });
+        foo.style.display = 'inline-block';
+        charactersFound++;
+        firstEmptyCharacterSlot = 16 - charactersFound;
+
+    });
+
+    T.to("#characterSelectScreen", .5, {
+        opacity: 1,
+        ease: ez.lin,
+        onComplete: function() {
+            g.view = "Main";
         }
-        console.info(data.chars);
-        data.chars.forEach(function(v, i) {
-            var c = data.chars[i];
-            i = i+1;
-            var foo = D.getElementById('characterslot' + i);
-            var name = c.name;
-            var level = c.level;
-            var race = c.race;
-            var job = c.job;
-            var difficulty = c.difficulty * 1;
-            var zone = c.zone;
-            var zoneN = c.zoneN;
-            var zoneH = c.zoneH;
-            var subzone = c.subzone * 1;
-            var subzoneN = c.subzoneN * 1;
-            var subzoneH = c.subzoneH * 1;
-            var hardcoreMode = c.hardcoreMode;
-			var timestamp = c.timestamp*1;
+    });
 
-            var s1 = '<div class="yellow glowYellow nomouse">' + name + '</div>' +
-                '<div class="nomouse">' + level + ' ' + race + ' <span id="myjob' + i + '">' + job + '</div>';
-			if (timestamp===0){ // no expire
-				s1 += '<div class="nomouse yellow"></div>';
-			}
-            foo.innerHTML = s1
-            $("#characterslot" + i).data({
-                difficulty: difficulty,
-                zone: zone,
-                zoneN: zoneN,
-                zoneH: zoneH,
-                subzone: subzone,
-                subzoneN: subzoneN,
-                subzoneH: subzoneH,
-                hardcoreMode: hardcoreMode
-            });
-            foo.style.display = 'inline-block';
-            charactersFound++;
-            firstEmptyCharacterSlot = 16 - charactersFound;
-
-        });
-
-        T.to("#characterSelectScreen", .5, {
-            opacity: 1,
-            ease: ez.lin,
-            onComplete: function() {
-                g.view = "Main";
-            }
-        });
-
-        if (!app.isApp) {
-            if (!data.email) {
-                showLogin();
-                return;
-            }
-            else {
-                removeLoginElements();
-                showTitleDom();
-            }
+    if (!app.isApp) {
+        if (!data.email) {
+            showLogin();
+            return;
         }
         else {
-            if (!data.email) {
-                showLogin();
-                return;
-            }
-            else {
-                removeLoginElements();
-                showTitleDom();
-            }
+            removeLoginElements();
+            showTitleDom();
         }
+    }
+    else {
+        if (!data.email) {
+            showLogin();
+            return;
+        }
+        else {
+            removeLoginElements();
+            showTitleDom();
+        }
+    }
 
 
-        $.ajax({
-            url: '/classic/php/loadData1.php',
-            data: {
-                run: "loadGlb"
-            }
-        }).done(function(data) {
-            var a = data.split("|");
-            a.pop();
-            console.info('GLB: ', a);
-            GLB.chatMyHit = a.shift();
-            GLB.hideMenu = a.shift();
-            GLB.musicStatus = a.shift() * 1;
-            GLB.soundStatus = a.shift() * 1;
-            GLB.tooltipMode = a.shift();
-            GLB.videoSetting = a.shift();
-            GLB.showCombatLog = a.shift();
-            GLB.debugMode = a.shift();
+    $.ajax({
+        url: '/classic/php/loadData1.php',
+        data: {
+            run: "loadGlb"
+        }
+    }).done(function(data) {
+        var a = data.split("|");
+        a.pop();
+        GLB.chatMyHit = a.shift();
+        GLB.hideMenu = a.shift();
+        GLB.musicStatus = a.shift() * 1;
+        GLB.soundStatus = a.shift() * 1;
+        GLB.tooltipMode = a.shift();
+        GLB.videoSetting = a.shift();
+        GLB.showCombatLog = a.shift();
+        GLB.debugMode = a.shift();
 
-            GLB.gold = a.shift() * 1;
-            GLB.hcgold = a.shift() * 1;
+        GLB.gold = a.shift() * 1;
+        GLB.hcgold = a.shift() * 1;
 
-            GLB.bankSlots = a.shift() * 1;
-            GLB.hcBankSlots = a.shift() * 1;
-            GLB.characters = a.shift() * 1;
-            GLB.crystals = a.shift() * 1;
-            GLB.ks = a.shift() * 1;
-            GLB.account = a.shift();
-			GLB.confirmed = a.shift()*1;
+        GLB.bankSlots = a.shift() * 1;
+        GLB.hcBankSlots = a.shift() * 1;
+        GLB.characters = a.shift() * 1;
+        GLB.crystals = a.shift() * 1;
+        GLB.ks = a.shift() * 1;
+        GLB.account = a.shift();
+        GLB.confirmed = a.shift()*1;
 
-			sessionStorage.setItem('account', GLB.account);
+        sessionStorage.setItem('account', GLB.account);
+        D.getElementById('manage-account').innerHTML = GLB.account;
 
-            $('#logout').html("[ " + GLB.account.split("")[0].toUpperCase() + GLB.account.slice(1) + "&nbsp;Logout&nbsp;]");
-            D.getElementById('bgmusic').volume = (M.round(((.5 * (GLB.musicStatus / 100)) * 1) * 100) / 100);
-            srv.glb = true;
-			if (!GLB.confirmed){
-				var z = $("#sendEmailConfirmation");
-				TweenMax.to(z, 1, {
-					color: "#ff0000",
-					repeat: -1,
-					yoyo: true
-				});
-				z.css('display', 'block')
-					.on('click', function(){
-						var x = $(this);
-						T.set(x, {color: "#00ff00"});
-						x.off('click')
-							.text("Confirmation Email Sent!");
-							TweenMax.to(x, 1, {
-								alpha: 0,
-								delay: 2,
-								onComplete: function(){
-									x.remove();
-								}
-							});
-						$.ajax({
-							data: {
-								run: "sendEmailConfirmation"
-							}
-						}).fail(function(data) {
-							failToCommunicate();
-						});
-					});
-			}
-        });
-        $("#normalLabel, #nightmareLabel, #hellLabel").css('display', 'none');
-
-        $.ajax({
-            data: {
-                run: 'checkDifficulty'
-            }
-        }).done(function(a) {
-            // skips normal
-            for (var i = 1, len=a.length+1; i < len; i++) {
-                var z = a.shift();
-                // has data
-                var x = {
-                    nightmare: 0,
-                    hell: 0
-                };
-                if (z.nightmare){
-                    var nm = JSON.parse(z.nightmare);
-                    x.nightmare = nm.PlaneofFear;
-                }
-                if (z.hell){
-                    var h = JSON.parse(z.hell);
-                    x.hell = h.PlaneofFear;
-                }
-                $("#characterslot" + i).data({
-                    nightmare: x.nightmare,
-                    hell: x.hell
+        $('#logout').html("[ " + GLB.account.split("")[0].toUpperCase() + GLB.account.slice(1) + "&nbsp;Logout&nbsp;]");
+        D.getElementById('bgmusic').volume = (M.round(((.5 * (GLB.musicStatus / 100)) * 1) * 100) / 100);
+        srv.glb = true;
+        if (!GLB.confirmed){
+            var z = $("#sendEmailConfirmation");
+            TweenMax.to(z, 1, {
+                color: "#ff0000",
+                repeat: -1,
+                yoyo: true
+            });
+            z.css('display', 'block')
+                .on('click', function(){
+                    var x = $(this);
+                    T.set(x, {color: "#00ff00"});
+                    x.off('click')
+                        .text("Confirmation Email Sent!");
+                        TweenMax.to(x, 1, {
+                            alpha: 0,
+                            delay: 2,
+                            onComplete: function(){
+                                x.remove();
+                            }
+                        });
+                    $.ajax({
+                        data: {
+                            run: "sendEmailConfirmation"
+                        }
+                    }).fail(function(data) {
+                        failToCommunicate();
+                    });
                 });
-            }
-            setZoneDifficultyIndicators();
-            setTimeout(function(){
-                setZoneDifficultyIndicators(true);
-            }, 500);
-        });
+        }
+    });
+    $("#normalLabel, #nightmareLabel, #hellLabel").css('display', 'none');
 
-    }).fail(function() {
-        QMsg("Failed to contact server.");
+    $.ajax({
+        data: {
+            run: 'checkDifficulty'
+        }
+    }).done(function(a) {
+        // skips normal
+        for (var i = 1, len=a.length+1; i < len; i++) {
+            var z = a.shift();
+            // has data
+            var x = {
+                nightmare: 0,
+                hell: 0
+            };
+            if (z.nightmare){
+                var nm = JSON.parse(z.nightmare);
+                x.nightmare = nm.PlaneofFear;
+            }
+            if (z.hell){
+                var h = JSON.parse(z.hell);
+                x.hell = h.PlaneofFear;
+            }
+            $("#characterslot" + i).data({
+                nightmare: x.nightmare,
+                hell: x.hell
+            });
+        }
+        setZoneDifficultyIndicators();
+        setTimeout(function(){
+            setZoneDifficultyIndicators(true);
+        }, 500);
     });
 }
 
